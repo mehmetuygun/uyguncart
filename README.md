@@ -1,3 +1,4 @@
 Uygun Cart
 =========
-I started to develop this project to learn framework of php.
+I started to develop this project to learn how to use php framework.
+
