@@ -1,0 +1,16 @@
+body{
+	background-color: rgb(214, 214, 214);
+}
+.login-box{
+	margin: 0 auto;
+	margin-top:120px;
+	width: 500px;
+	background-color: white;
+	border-radius: 5px;
+	border: 2px solid rgb(170, 170, 170);
+	padding: 5px;
+}
+.login-tittle{
+	margin: 0 auto;
+	color: blue;
+}
