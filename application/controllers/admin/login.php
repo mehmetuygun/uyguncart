@@ -19,7 +19,7 @@ class Login extends CI_Controller {
 				// redirect('/admin/home', 'location', 301);
 			}
 			else {
-				$data["message"] = "not logged";
+				$data["message"] = "wrong information";
 				$data["alert_class"] = "alert-error";
 			}
 				
