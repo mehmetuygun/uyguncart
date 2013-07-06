@@ -27,7 +27,7 @@ class Login extends CI_Controller {
 		}
 		$this->load->view('admin/login.php',$data);
 	}
-	public function sex(){
-		echo "sex";
+	public function test(){
+		echo "test";
 	}
 }
