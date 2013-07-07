@@ -30,7 +30,7 @@ class Login extends CI_Controller {
 				redirect('/admin/home', 'location', 301);
 			}
 			else {
-				$data["message"] = 'test';
+				$data["message"] = 'Email and password did not match.';
 				$data["alert_class"] = "alert-error";
 			}
 				

@@ -26,5 +26,13 @@ class User_model extends CI_model{
 		else 
 			return false;
 	}
+	// check the admin is logged
+	public function admin_logged(){
+		$this->load->library('session');
+		$this->load->helper('url');
+		$check = $this->session->userdata('logged_in');
+		if(!$check)
+			redirect('/admin/login', 'location', 301);
+	}
 }
 ?>
