@@ -32,20 +32,20 @@ class Setting extends CI_Controller {
 				$this->form_validation->set_rules('email','Email','required|valid_email|max_length[75]|is_unique[user.userEmail]');
 				$field[] = array('userEmail'=>$this->input->post('email'));
 			}
-			else if($this->input->post('fname')!=$this->Setting_model->userFirstName){
+			if($this->input->post('fname')!=$this->Setting_model->userFirstName){
 				$this->form_validation->set_rules('fname','First Name','required|min_length[3]|max_length[45]|alpha');
 				$field[] = array('userFirstName'=>$this->input->post('fname'));
 			}
-			else if($this->input->post('lname')!=$this->Setting_model->userLastName){
+			if($this->input->post('lname')!=$this->Setting_model->userLastName){
 				$this->form_validation->set_rules('lname','Last Name','required|min_length[3]|max_length[45]|alpha');
 				$field[] = array('userLastName'=>$this->input->post('lname'));
 			}
-			else{
+			$field = array_shift($field);
+			if(is_null($field)){
 				$data["alert_message"] = "Enter data you want to update.";
 				$data["alert_class"] = "alert-error";
 			}
 
-			$field = array_shift($field);
 			if(!is_null($field))
 			{
 				$this->form_validation->set_rules('pwd','Password','required|min_length[8]|max_length[64]|checkpassword');
@@ -103,8 +103,13 @@ class Setting extends CI_Controller {
 				$data["alert_message"] = "Your data is update succesfuly.";
 				$data["alert_class"] = "alert-success";
 			}
+			else
+			{
+				$data["alert_message"] = "Something went wrong.";
+				$data["alert_class"] = "alert-error";		
+			}
 		}
-		
+
 		$this->load->view('admin/default',$data);
 	}
 }

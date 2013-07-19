@@ -39,7 +39,7 @@
   			</div>
 			<div class="form-actions">
  				<button type="submit" class="btn btn-primary">Save changes</button>
-  				<button type="button" class="btn">Cancel</button>
+  				<a class="btn" href="<?php echo base_url('/admin/home') ?>">Cancel</a>
 			</div>
 		</form>
 	</div>
