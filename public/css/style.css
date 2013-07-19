@@ -36,3 +36,6 @@ body {
 code {
     font-size: 80%;
 }
+.fix_nav{
+    padding-top: 60px;
+}

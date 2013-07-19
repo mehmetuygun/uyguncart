@@ -20,8 +20,10 @@ class Login extends CI_Controller {
 
 				// setting user session information
 				$session = array(
-					'email'=>$this->User_model->userEmail,
-					'name'=>$this->User_model->userName,
+					'userID'=>$this->User_model->userID,
+					'userEmail'=>$this->User_model->userEmail,
+					'userFirstName'=>$this->User_model->userFirstName,
+					'userLastName'=>$this->User_model->userLastName,
 					'role'=>$this->User_model->userType,
 					'logged_in'=>TRUE
 					);
