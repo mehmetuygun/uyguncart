@@ -7,6 +7,10 @@ class Login extends CI_Controller {
 		$this->load->library('session');
 		$data["base_url"] = $this->load->helper('url');
 		$data["title"] = "UygunCart Administator";
+
+		if($this->session->userdata('logged_in'))
+			redirect('/admin/home');
+		
 		if($this->input->post()){
 			$data["alert"] = "true";
 

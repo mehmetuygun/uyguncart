@@ -104,7 +104,7 @@ class Setting extends CI_Controller {
 				$data["alert_class"] = "alert-success";
 			}
 		}
-
+		
 		$this->load->view('admin/default',$data);
 	}
 }
