@@ -13,15 +13,15 @@
 			<div class="navbar navbar-inverse navbar-fixed-top">
   				<div class="navbar-inner">
   					<div class="container-fluid">
-		    			<a class="brand" href="#">UygunCart</a>
+		    			<a class="brand" href="<?php echo base_url('admin/home'); ?>">UygunCart</a>
 		    			<ul class="nav">
-		      				<li class="<?php if(isset($menu_active)&&$menu_active=="home")echo 'active'; ?>"><a href="#">Home</a></li>
+		      				<li class="<?php if(isset($menu_active)&&$menu_active=="home")echo 'active'; ?>"><a href="<?php echo base_url('admin/home'); ?>">Home</a></li>
 		      				<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="catalog")echo 'active'; ?>">
                     			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
                     			<ul class="dropdown-menu">
 		                        	<li><a href="<?php echo base_url('admin/category'); ?>">Category</a></li>
 		                        	<li><a href="<?php echo base_url('admin/category'); ?>">Product</a></li>
-		                        	<li><a href="<?php echo base_url('admin/category'); ?>">Manufactures</a></li>
+		                        	<li><a href="<?php echo base_url('admin/manufacturer'); ?>">Manufactures</a></li>
 		                        </ul>
 		                    </li>
 		      				<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="sales")echo 'active'; ?>">
