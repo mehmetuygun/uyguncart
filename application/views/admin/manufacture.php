@@ -7,3 +7,12 @@
     	</span>
   	</div>
 </div>
+<table class="table table-bordered">
+	<thead>
+		<th>Manufacturer</th>
+		<th></th>
+	</thead>
+	<tbody>
+		
+	</tbody>
+</table>

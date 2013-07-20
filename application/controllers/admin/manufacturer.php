@@ -11,12 +11,17 @@ class Manufacturer extends CI_Controller {
 	{
 		$this->load->library('session');
 		$this->load->model('User_model');
+		$this->load->model('Manufacturer_model');
 		$this->load->library('form_validation');
+
 		$data["base_url"] = $this->load->helper(array('form', 'url'));
 		$data["title"] = "UygunCart";
 		$data["breadcrumb"] = array("admin/home"=>"Dashboard","admin/manufacturer"=>"Manufacturer","last"=>"View");
 		$data["menu_active"] = "catalog";
 		$data["mainview"] = "manufacture";
+
+		var_dump($this->Manufacturer_model->fetch('a','asc',1,3));
+		echo $this->db->last_query();
 
 		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
 		$this->load->view('admin/default',$data);
@@ -56,7 +61,7 @@ class Manufacturer extends CI_Controller {
 		}
 
 		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
-		
+
 		$this->load->view('admin/default',$data);
 	}
 
