@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 20, 2013 at 12:46 
+-- Generation Time: Jul 20, 2013 at 06:45 
 -- Server version: 5.6.10
 -- PHP Version: 5.3.5
 
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('2164556ec9b03f156113c0dd7cd7adf0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1374191542, 'a:5:{s:9:"user_data";s:0:"";s:5:"email";s:24:"mehmet.uygun@outlook.com";s:4:"name";s:12:"Mehmet Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}'),
-('d9d3bae9356798e9d865d5393cc75af0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1374273721, 'a:7:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}');
+('ebebf691ec4745565e28308664b782e1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1374274600, 'a:7:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}'),
+('f2c66dfe9790a73e5ed45023972a2868', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1374338687, 'a:7:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -55,12 +55,15 @@ CREATE TABLE IF NOT EXISTS `manufacturer` (
   `manufacturerID` int(11) NOT NULL AUTO_INCREMENT,
   `manufacturerName` varchar(45) NOT NULL,
   PRIMARY KEY (`manufacturerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `manufacturer`
 --
 
+INSERT INTO `manufacturer` (`manufacturerID`, `manufacturerName`) VALUES
+(1, 'abc'),
+(2, 'asdasd');
 
 -- --------------------------------------------------------
 
