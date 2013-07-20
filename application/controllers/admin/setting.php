@@ -33,11 +33,11 @@ class Setting extends CI_Controller {
 				$field[] = array('userEmail'=>$this->input->post('email'));
 			}
 			if($this->input->post('fname')!=$this->Setting_model->userFirstName){
-				$this->form_validation->set_rules('fname','First Name','required|min_length[3]|max_length[45]|alpha');
+				$this->form_validation->set_rules('fname','First Name','required|min_length[3]|max_length[45]|alpha_int');
 				$field[] = array('userFirstName'=>$this->input->post('fname'));
 			}
 			if($this->input->post('lname')!=$this->Setting_model->userLastName){
-				$this->form_validation->set_rules('lname','Last Name','required|min_length[3]|max_length[45]|alpha');
+				$this->form_validation->set_rules('lname','Last Name','required|min_length[3]|max_length[45]|alpha_int');
 				$field[] = array('userLastName'=>$this->input->post('lname'));
 			}
 			$field = array_shift($field);

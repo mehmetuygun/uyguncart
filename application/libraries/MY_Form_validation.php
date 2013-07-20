@@ -8,9 +8,9 @@ class MY_Form_validation extends CI_Form_validation
 	}
 	
 	/**
-	* @param	string	The form element to be checked
-	* @return	string
-	*/	
+	 * @param	string	The form element to be checked
+	 * @return	string
+	 */
 	public function checkpassword($str)
 	{
 		$this->CI->load->model('User_model');
@@ -21,6 +21,19 @@ class MY_Form_validation extends CI_Form_validation
 		else 
 			return false;
 	}
+
+	/**
+	 * @param	string	The form element to be checked
+	 * @return	string
+	 */
+	public function alpha_int($str)
+	{
+		$str = (strtolower($this->CI->config->item('charset')) != 'utf-8') ? utf8_encode($str) : $str;
+		$this->CI->form_validation->set_message('alpha_int', 'The %s field may only contain alphabetical characters.');
+
+		return !!preg_match("/^[[:alpha:]- ÀÁÂÃÄÅĀĄĂÆÇĆČĈĊĎĐÈÉÊËĒĘĚĔĖĜĞĠĢĤĦÌÍÎÏĪĨĬĮİĲĴĶŁĽĹĻĿÑŃŇŅŊÒÓÔÕÖØŌŐŎŒŔŘŖŚŠŞŜȘŤŢŦȚÙÚÛÜŪŮŰŬŨŲŴÝŶŸŹŽŻàáâãäåæçèéêëìíîïñòóôõöøùúûüýÿœšß_.]+$/", $str);
+	} 
 }
+
 
 ?>
