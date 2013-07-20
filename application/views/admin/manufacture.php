@@ -13,6 +13,10 @@
 		<th></th>
 	</thead>
 	<tbody>
-		
+		<?php
+		foreach ($manufacturers as $row) {
+			echo '<tr><td>'.$row->manufacturerName.'</td><td></td></tr>';
+		}
+		?>
 	</tbody>
 </table>
