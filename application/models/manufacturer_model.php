@@ -47,8 +47,7 @@ class Manufacturer_model extends CI_model{
 	{
 		$this->load->database();
 
-		$this->db->select('manufacturerName')
-				->from('manufacturer')
+		$this->db->from('manufacturer')
 				->like('manufacturerName',$query)
 				->order_by('manufacturerName',$order_by);
 		
@@ -61,8 +60,7 @@ class Manufacturer_model extends CI_model{
 		else
 			$from = ($page * $limit) - $limit;
 
-		$this->db->select('manufacturerName')
-				->from('manufacturer')
+		$this->db->from('manufacturer')
 				->like('manufacturerName',$query)
 				->order_by('manufacturerName',$order_by)
 				->limit($limit,$from);

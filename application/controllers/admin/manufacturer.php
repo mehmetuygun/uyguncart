@@ -20,7 +20,7 @@ class Manufacturer extends CI_Controller {
 		$data["menu_active"] = "catalog";
 		$data["mainview"] = "manufacture";
 
-		$data["manufacturers"] = $this->Manufacturer_model->fetch('','random',10,1);
+		$data["manufacturers"] = $this->Manufacturer_model->fetch('','asc',10,1);
 
 		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
 		$this->load->view('admin/default',$data);
