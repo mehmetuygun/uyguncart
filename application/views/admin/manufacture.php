@@ -7,8 +7,7 @@
     	</span>
   	</div>
 </div>
-Display <select class="span1"><option>10</option></select> records.
-<span class="pull-right">Search: <input type="text" name="search"></span>
+<span class="pull-left"><input type="text" name="search" placeholder="Search" class="span4"></span>
 <table class="table table-bordered">
 	<thead>
 		<th style="width:20px"><input type="checkbox" name="check_all"></th>
@@ -27,3 +26,4 @@ Display <select class="span1"><option>10</option></select> records.
 		?>
 	</tbody>
 </table>
+<span>Display <select name="limit" class="span2"><option>10</option><option>25</option><option>50</option><option>100</option></select> records.</span>
