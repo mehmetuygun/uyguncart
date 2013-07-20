@@ -7,6 +7,13 @@ class User_model extends CI_model{
 	public $userLastName;
 	public $userType;
 
+	/**
+	*	User Authentication	
+	*
+	*	@param string The email of user
+	*	@param string The password of user
+	*	@return boolean 
+	*/
 	public function login($email,$password){
 		$this->load->database();
 
@@ -31,7 +38,12 @@ class User_model extends CI_model{
 		else 
 			return false;
 	}
-	// check the admin is logged
+
+	/**
+	*	Checking user is logged
+	*	
+	*	@return boolean
+	*/
 	public function admin_logged(){
 		$this->load->library('session');
 		$this->load->helper('url');
@@ -40,6 +52,13 @@ class User_model extends CI_model{
 			redirect('/admin/login', 'location', 301);
 	}
 
+	/**
+	*	Checking user's password is correct
+	*
+	*	@param string The password of user.
+	*	@param string The userID of user.
+	*	@return boolean
+	*/
 	public function checkpassword($password,$id){
 		$this->load->database();
 

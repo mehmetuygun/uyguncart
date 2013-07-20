@@ -5,6 +5,10 @@ class Setting_model extends CI_model{
 	public $userFirstName;
 	public $userLastName;
 
+	/**
+	*	Setting user information
+	*	@param string The userID of user.
+	*/
 	public function set($id){
 		$this->load->database();
 
@@ -22,6 +26,13 @@ class Setting_model extends CI_model{
 		}
 	}
 
+	/**
+	*	Update user's personal information
+	*	
+	*	@param array The array include information to be updated. 
+	*	@param string The userID of user.
+	* 	@return boolean
+	*/
 	public function update_account($field,$id){
 		$this->load->database();
 		return $this->db->update('user',$field,array('userID'=>$id));

@@ -6,7 +6,11 @@ class my_form_validation extends CI_Form_validation
 	{
 		parent::__construct();
 	}
-
+	
+	/**
+	* @param	string	The form element to be checked
+	* @return	string
+	*/	
 	public function checkpassword($str)
 	{
 		$this->CI->load->model('User_model');
