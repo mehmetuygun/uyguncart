@@ -2,6 +2,8 @@
 class Manufacturer_model extends CI_model{
 
 	public $manufacturerName;
+	public $entries;
+	public $pagecount;
 
 	/**
 	*	Setting manufacturer
@@ -50,13 +52,13 @@ class Manufacturer_model extends CI_model{
 		$this->db->from('manufacturer')
 				->like('manufacturerName',$query)
 				->order_by('manufacturerName',$order_by);
-		
-		$total_pages = $this->db->count_all_results();
-
+		 
+		$this->entries = $this->db->count_all_results();
+		$this->pagecount = ceil($this->entries/$limit);
 		if($page == 1 or $page < 1)
 			$from = 0;
-		else if ($page > $total_pages)
-			$from = ($total_pages * $limit) - $limit;
+		else if ($page > $this->pagecount)
+			$from = ($this->pagecount * $limit) - $limit;
 		else
 			$from = ($page * $limit) - $limit;
 

@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class my_form_validation extends CI_Form_validation
+class MY_Form_validation extends CI_Form_validation
 {
 	function __construct()
 	{

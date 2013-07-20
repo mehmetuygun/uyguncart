@@ -21,6 +21,8 @@ class Manufacturer extends CI_Controller {
 		$data["mainview"] = "manufacture";
 
 		$data["manufacturers"] = $this->Manufacturer_model->fetch('','asc',10,1);
+		$data["entries"] = $this->Manufacturer_model->entries;
+		$data["pagecount"] = $this->Manufacturer_model->pagecount;
 
 		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
 		$this->load->view('admin/default',$data);
