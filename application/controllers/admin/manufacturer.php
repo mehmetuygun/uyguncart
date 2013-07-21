@@ -67,7 +67,21 @@ class Manufacturer extends CI_Controller {
 
 		$this->load->view('admin/default',$data);
 	}
-	public function edit($id){
-		echo "sex";
+
+	public function ajax()
+	{
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->model('Manufacturer_model');
+		$this->User_model->admin_logged();
+
+		$search = $this->input->post('search');
+		$page = $this->input->post('page');
+
+		$manufacturers = $this->Manufacturer_model->fetch($search,'asc',10,1);
+
+		$page = array($this->Manufacturer_model->pagecount,$page);
+		$array = array($manufacturers,$page);
+		echo json_encode($array);
 	}
 }
