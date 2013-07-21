@@ -30,12 +30,14 @@
 <div class="pagination pull-right" style="margin:0">
   	<ul>
     	<li class="active"><a href="#">Prev</a></li>
-    	<li class="active"><a href="#">1</a></li>
+    	<li class="active"><a href="#1">1</a></li>
     	<?php 
     	for ($i=2; $i <= $pagecount ; $i++) { 
-    		echo '<li><a href="#">'.$i.'</a></li>';
+    		echo '<li><a href="#'.$i.'">'.$i.'</a></li>';
     	}
     	?>
     	<li><a href="#">Next</a></li>
   	</ul>
 </div>
+<span class="clearfix"></span>
+<hr>

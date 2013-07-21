@@ -24,6 +24,8 @@ class Manufacturer extends CI_Controller {
 		$data["entries"] = $this->Manufacturer_model->entries;
 		$data["pagecount"] = $this->Manufacturer_model->pagecount;
 
+		$data["js"] = array("public/js/pagination.js","public/js/manufacturer_view.js");
+
 		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
 		$this->load->view('admin/default',$data);
 
@@ -65,5 +67,7 @@ class Manufacturer extends CI_Controller {
 
 		$this->load->view('admin/default',$data);
 	}
-
+	public function edit($id){
+		echo "sex";
+	}
 }
