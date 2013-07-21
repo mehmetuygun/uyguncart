@@ -50,15 +50,13 @@ $(document).ready(function(){
 			ajax(search,page);
 		});
 	}
-	delete_manufacturer();
-	function delete_manufacturer(){
-	    $("#delete,.delete_one").on('click',function(){
-	        var checkboxValues = [];
-	        $('.table tr td input[type="checkbox"]:checked').each(function(index, elem) {
-	            checkboxValues.push($(elem).val());
-	        });
 
-	        checkboxValues = $(this).attr("href").substring(1);
+	delete_manufacturer();
+	
+	function delete_manufacturer(){
+	    $(".delete_one").on('click',function(){
+	    	checkboxValues = [];
+	       	checkboxValues.push($(this).attr("href").substring(1));
 
 		    if(checkboxValues.length === 0)
 		        alert('Please, select manufacturer you want to delete.');
@@ -76,6 +74,28 @@ $(document).ready(function(){
 		        }
 	    });
 	}
+
+	$("#delete").on('click',function(){
+        var checkboxValues = [];
+        $('.table tr td input[type="checkbox"]:checked').each(function(index, elem) {
+            checkboxValues.push($(elem).val());
+        });
+
+	    if(checkboxValues.length === 0)
+	        alert('Please, select manufacturer you want to delete.');
+	    else
+	        var answer = confirm('Are sure you want to delete ?');
+	        if (answer){
+	            $.ajax({
+	                url: "delete",
+	                type: "POST",
+	                data: { list: checkboxValues },
+	                success: function() {
+	                    ajax("",1);
+	                },
+	            });
+	        }
+    });
 });
 
 function check_all(elem)

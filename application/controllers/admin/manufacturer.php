@@ -131,7 +131,7 @@ class Manufacturer extends CI_Controller
 
 		$manufacturers = $this->Manufacturer_model->fetch($search, 'asc', 10, $page);
 
-		$page = array($this->Manufacturer_model->pagecount, $page);
+		$page = array($this->Manufacturer_model->pagecount, $page,$this->Manufacturer_model->entries);
 		$array = array($manufacturers, $page);
 		echo json_encode($array);
 	}
