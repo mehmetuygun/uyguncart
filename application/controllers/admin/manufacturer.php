@@ -114,7 +114,7 @@ class Manufacturer extends CI_Controller
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
-		$manufacturers = $this->Manufacturer_model->fetch($search, 'asc', 10, 1);
+		$manufacturers = $this->Manufacturer_model->fetch($search, 'asc', 10, $page);
 
 		$page = array($this->Manufacturer_model->pagecount, $page);
 		$array = array($manufacturers, $page);
