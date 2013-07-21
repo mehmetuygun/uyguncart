@@ -49,7 +49,7 @@ class User_model extends CI_model{
 		$this->load->helper('url');
 		$check = $this->session->userdata('logged_in');
 		if(!$check)
-			redirect('/admin/login', 'location', 301);
+			redirect('/admin/login', 'location');
 	}
 
 	/**

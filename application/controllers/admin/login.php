@@ -18,22 +18,23 @@ class Login extends CI_Controller {
 			$this->load->model('User_model');
 
 			// check user data
-			if($this->User_model->login($this->input->post('emaisl'),$this->input->post('password'))){
+			if($this->User_model->login($this->input->post('email'),$this->input->post('password'))){
 				$data["message"] = "logged";
 				$data["alert_class"] = "alert-success";
 
 				// setting user session information
 				$session = array(
-					'userID'=>$this->User_model->userID,
-					'userEmail'=>$this->User_model->userEmail,
-					'userFirstName'=>$this->User_model->userFirstName,
-					'userLastName'=>$this->User_model->userLastName,
-					'role'=>$this->User_model->userType,
-					'logged_in'=>TRUE
-					);
+					'userID' => $this->User_model->userID,
+					'userEmail' => $this->User_model->userEmail,
+					'userFirstName' => $this->User_model->userFirstName,
+					'userLastName' => $this->User_model->userLastName,
+					'userFullName' => $this->User_model->userFirstName. ' ' .$this->User_model->userLastName,
+					'role' => $this->User_model->userType,
+					'logged_in' => TRUE
+				);
 				$this->session->set_userdata($session);
 
-				redirect('/admin/home', 'location', 301);
+				redirect('/admin/home', 'location');
 			}
 			else {
 				$data["message"] = 'Email and password did not match.';
