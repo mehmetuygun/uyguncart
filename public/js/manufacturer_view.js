@@ -33,7 +33,7 @@ $(document).ready(function(){
 			html += '<tr>';
 			html += '<td><input type="checkbox" value="'+data[i]['manufacturerID']+'" class="check"></td>';
 			html += '<td>'+data[i]['manufacturerName']+'</td>';
-			html += '<td><a class="link" href="edit/'+data[i]['manufacturerID']+'">Edit</a></td>';
+			html += '<td><a class="link" href="edit/'+data[i]['manufacturerID']+'">Edit</a>&nbsp;<a id="delete_one" class="btn btn-mini btn-danger" href="#'+data[i]['manufacturerID']+'">Delete</a></td>';
 			html += '</tr>';
 		}
 		$(".table tbody").empty();
@@ -50,11 +50,14 @@ $(document).ready(function(){
 		});
 	}
 
-    $("#delete").click(function(){
+    $("#delete,#delete_one").click(function(){
         var checkboxValues = [];
         $('.table tr td input[type="checkbox"]:checked').each(function(index, elem) {
             checkboxValues.push($(elem).val());
         });
+
+        checkboxValues = $(this).attr("href").substring(1);
+
 	    if(checkboxValues.length === 0)
 	        alert('Please, select manufacturer you want to delete.');
 	    else
