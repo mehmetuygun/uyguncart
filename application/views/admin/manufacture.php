@@ -20,7 +20,7 @@
 			echo '<tr>
 			<td><input type="checkbox" value="'.$row->manufacturerID.'"/></td>
 			<td>'.$row->manufacturerName.'</td>
-			<td><a class="link" href="'.base_url("admin/Manufacturer/edit/".$row->manufacturerID).'">Edit</a></td>
+			<td><a class="link" href="'.base_url("admin/manufacturer/edit/".$row->manufacturerID).'">Edit</a></td>
 			</tr>';
 		}
 		?>
