@@ -135,4 +135,17 @@ class Manufacturer extends CI_Controller
 		$array = array($manufacturers, $page);
 		echo json_encode($array);
 	}
+
+	public function delete() {
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->model('Manufacturer_model');
+		$this->User_model->admin_logged();
+
+		$list = $this->input->post('list');
+
+		foreach ($list as $value) {
+			$this->Manufacturer_model->delete(array('manufacturerID'=>$value));
+		}
+	}
 }

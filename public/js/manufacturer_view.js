@@ -55,8 +55,7 @@ $(document).ready(function(){
         $('.table tr td input[type="checkbox"]:checked').each(function(index, elem) {
             checkboxValues.push($(elem).val());
         });
-        alert(checkboxValues);
-	    if(checkboxValues.length==0)
+	    if(checkboxValues.length === 0)
 	        alert('Please, select manufacturer you want to delete.');
 	    else
 	        var answer = confirm('Are sure you want to delete ?');

@@ -34,7 +34,7 @@ class Manufacturer_model extends CI_model
 	}
 
 	/**
-	 *	Update manufacturer information
+	 *	Update manufacturer
 	 *
 	 *	@param array The array include information to be updated.
 	 *	@param integer ID of the manufacturer
@@ -44,6 +44,18 @@ class Manufacturer_model extends CI_model
 		$this->load->database();
 
 		return $this->db->update('manufacturer', $field, array('manufacturerID' => $id));
+	}
+
+	/**
+	 *	Delete manufacturer
+	 *
+	 *	@param array The array include information to be deleted.
+	 *	@return boolean true for success
+	 */
+	public function delete($field) {
+		$this->load->database();
+
+		return $this->db->delete('manufacturer', $field);
 	}
 
 	/**
@@ -80,4 +92,5 @@ class Manufacturer_model extends CI_model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
 }
