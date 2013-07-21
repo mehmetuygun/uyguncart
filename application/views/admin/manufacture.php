@@ -6,11 +6,11 @@
 <span class="pull-left"><input type="text" name="search" placeholder="Search" class="span4"></span>
 <span class="pull-right">
 	<a class="btn" href="<?php echo base_url('admin/manufacturer/insert') ?>">Add</a>
-	<a class="btn btn-danger" href="#">Delete</a>
+	<a class="btn btn-danger" href="#" onclick="return false" id="delete">Delete</a>
 </span>
 <table class="table table-bordered">
 	<thead>
-		<th style="width:20px"><input type="checkbox" name="check_all"></th>
+		<th style="width:20px"><input type="checkbox" name="check_all" onclick="check_all(this)"></th>
 		<th>Manufacturer</th>
 		<th style="width:100px"></th>
 	</thead>
@@ -18,7 +18,7 @@
 		<?php
 		foreach ($manufacturers as $row) {
 			echo '<tr>
-			<td><input type="checkbox" value="'.$row->manufacturerID.'"/></td>
+			<td><input type="checkbox" name="check[]" class="check"  value="'.$row->manufacturerID.'"/></td>
 			<td>'.$row->manufacturerName.'</td>
 			<td><a class="link" href="'.base_url("admin/manufacturer/edit/".$row->manufacturerID).'">Edit</a></td>
 			</tr>';
@@ -35,7 +35,7 @@
     	if($pagecount>5)
     		$pagecount = 5;
     	for ($i=2; $i <= $pagecount ; $i++) { 
-    		echo '<li><a href="#'.$i.'" onclick="return false">'.$i.'</a></li>';
+    		echo '<li><a href="#'.$i.'"   onclick="return false">'.$i.'</a></li>';
     	}
     	?>
     	<li><a href="#" onclick="return false">&raquo;</a></li>
