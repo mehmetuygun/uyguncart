@@ -14,22 +14,26 @@ class Manufacturer extends CI_Controller
 		$this->load->model('Manufacturer_model');
 		$this->load->library('form_validation');
 
-		$data["base_url"] = $this->load->helper(array('form', 'url'));
-		$data["title"] = "UygunCart";
-		$data["breadcrumb"] = array("admin/home"=>"Dashboard","admin/manufacturer"=>"Manufacturer","last"=>"View");
-		$data["menu_active"] = "catalog";
-		$data["mainview"] = "manufacture";
-
-		$data["manufacturers"] = $this->Manufacturer_model->fetch('','asc',10,1);
-		$data["entries"] = $this->Manufacturer_model->entries;
-		$data["pagecount"] = $this->Manufacturer_model->pagecount;
-
-		$data["js"] = array("public/js/pagination.js","public/js/manufacturer_view.js");
-
-		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
-		$this->load->view('admin/default',$data);
-
 		$this->User_model->admin_logged();
+
+		$data = array(
+			'base_url' => $this->load->helper(array('form', 'url')),
+			'title' => 'UygunCart',
+			'breadcrumb' => array(
+				'admin/home' => 'Dashboard',
+				'admin/manufacturer' => 'Manufacturer',
+				'last' => 'View'
+			),
+			'menu_active' => 'catalog',
+			'mainview' => 'manufacture',
+			'fullname' => $this->session->userdata('userFullName'),
+			'js' => array('public/js/pagination.js', 'public/js/manufacturer_view.js'),
+			'manufacturers' => $this->Manufacturer_model->fetch('', 'asc', 10, 1),
+			'entries' => $this->Manufacturer_model->entries,
+			'pagecount' => $this->Manufacturer_model->pagecount
+		);
+
+		$this->load->view('admin/default', $data);
 	}
 
 	public function insert() {
@@ -40,14 +44,21 @@ class Manufacturer extends CI_Controller
 
 		$this->User_model->admin_logged();
 
-		$data["base_url"] = $this->load->helper(array('form', 'url'));
-		$data["title"] = "UygunCart";
-		$data["breadcrumb"] = array("admin/home"=>"Dashboard","admin/manufacturer"=>"Manufacturer","last"=>"Insert");
-		$data["menu_active"] = "catalog";
-		$data["mainview"] = "manufacture_insert";
-
 		$this->form_validation->set_rules('manufacturer','Manufacturer','required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
 		$this->form_validation->set_error_delimiters('', '');
+
+		$data = array(
+			'base_url' => $this->load->helper(array('form', 'url')),
+			'title' => 'UygunCart',
+			'breadcrumb' => array(
+				'admin/home' => 'Dashboard',
+				'admin/manufacturer' => 'Manufacturer',
+				'last' => 'Insert'
+			),
+			'menu_active' => 'catalog',
+			'mainview' => 'manufacture_insert',
+			'fullname' => $this->session->userdata('userFullName'),
+		);
 
 		if($this->form_validation->run() == TRUE)
 		{
@@ -62,9 +73,7 @@ class Manufacturer extends CI_Controller
 			}
 		}
 
-		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
-
-		$this->load->view('admin/default',$data);
+		$this->load->view('admin/default', $data);
 	}
 
 	public function edit($id) {
@@ -75,17 +84,24 @@ class Manufacturer extends CI_Controller
 
 		$this->User_model->admin_logged();
 
-		$data["base_url"] = $this->load->helper(array('form', 'url'));
-		$data["title"] = "UygunCart";
-		$data["breadcrumb"] = array("admin/home"=>"Dashboard","admin/manufacturer"=>"Manufacturer","last"=>"Edit");
-		$data["menu_active"] = "catalog";
-		$data["mainview"] = "manufacture_edit";
-
 		$this->Manufacturer_model->set($id);
 		if ($this->Manufacturer_model->manufacturerName != $this->input->post('manufacturer')) {
 			$this->form_validation->set_rules('manufacturer','Manufacturer','required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
 			$this->form_validation->set_error_delimiters('', '');
 		}
+
+		$data = array(
+			'base_url' => $this->load->helper(array('form', 'url')),
+			'title' => 'UygunCart',
+			'breadcrumb' => array(
+				'admin/home' => 'Dashboard',
+				'admin/manufacturer' => 'Manufacturer',
+				'last' => 'Edit'
+			),
+			'menu_active' => 'catalog',
+			'mainview' => 'manufacture_edit',
+			'fullname' => $this->session->userdata('userFullName'),
+		);
 
 		if ($this->form_validation->run() === true) {
 			$field = array("manufacturerName" => $this->input->post('manufacturer'));
@@ -100,7 +116,6 @@ class Manufacturer extends CI_Controller
 		}
 
 		$data['manufacturer'] = $this->Manufacturer_model->manufacturerName;
-		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
 
 		$this->load->view('admin/default', $data);
 	}

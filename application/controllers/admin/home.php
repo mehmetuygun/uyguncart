@@ -12,7 +12,7 @@ class Home extends CI_Controller {
 
 		$data["mainview"] = "home";
 		$this->load->library('session');
-		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
+		$data["fullname"] = $this->session->userdata('userFullName');
 
 		$this->load->view('admin/default',$data);
 		$this->User_model->admin_logged();

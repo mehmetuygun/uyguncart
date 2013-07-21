@@ -23,20 +23,6 @@ class Manufacturer_model extends CI_model
 	}
 
 	/**
-	 *	Getting manufacturer
-	 *	@param string The ID of the manufacturer.
-	 */
-	public function get($id) {
-		$this->load->database();
-
-		$this->db->from('manufacturer')
-				->where(array('manufacturerID' => $id));
-
-		$query = $this->db->get();
-		return $query->row();
-	}
-
-	/**
 	 *	Create manufacturer information
 	 *	
 	 *	@param array The array include information to be updated. 

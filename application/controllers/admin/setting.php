@@ -72,7 +72,7 @@ class Setting extends CI_Controller {
 		$data["userFirstName"] = $this->Setting_model->userFirstName;
 		$data["userLastName"] = $this->Setting_model->userLastName;
 
-		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
+		$data["fullname"] = $this->session->userdata('userFullName');
 		$this->load->view('admin/default',$data);
 
 		$this->User_model->admin_logged();
@@ -87,7 +87,7 @@ class Setting extends CI_Controller {
 		$data["base_url"] = $this->load->helper(array('form', 'url'));
 		$data["title"] = "UygunCart";
 		$data["breadcrumb"] = array("admin/home"=>"Dashboard","admin/setting"=>"Setting","last"=>"Password");
-		$data["fullname"] = $this->session->userdata('userFirstName').' '.$this->session->userdata('userLastName');
+		$data["fullname"] = $this->session->userdata('userFullName');
 		$data["mainview"] = "password";
 
 		$this->form_validation->set_rules('current_password','Current Password','required|min_length[8]|max_length[64]|checkpassword');
