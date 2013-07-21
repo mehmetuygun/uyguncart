@@ -9,6 +9,7 @@ $(document).ready(function(){
 			dataType: "json",
 			success: function(data) {
 				draw_table(data[0]);
+				delete_manufacturer();
 				draw_page(data[1]);
 			},
 		});
@@ -33,7 +34,7 @@ $(document).ready(function(){
 			html += '<tr>';
 			html += '<td><input type="checkbox" value="'+data[i]['manufacturerID']+'" class="check"></td>';
 			html += '<td>'+data[i]['manufacturerName']+'</td>';
-			html += '<td><a class="link" href="edit/'+data[i]['manufacturerID']+'">Edit</a>&nbsp;<a id="delete_one" class="btn btn-mini btn-danger" href="#'+data[i]['manufacturerID']+'">Delete</a></td>';
+			html += '<td><a class="link" href="edit/'+data[i]['manufacturerID']+'">Edit</a>&nbsp;<a class="link delete_one" href="#'+data[i]['manufacturerID']+'">Delete</a></td>';
 			html += '</tr>';
 		}
 		$(".table tbody").empty();
@@ -49,30 +50,32 @@ $(document).ready(function(){
 			ajax(search,page);
 		});
 	}
+	delete_manufacturer();
+	function delete_manufacturer(){
+	    $("#delete,.delete_one").on('click',function(){
+	        var checkboxValues = [];
+	        $('.table tr td input[type="checkbox"]:checked').each(function(index, elem) {
+	            checkboxValues.push($(elem).val());
+	        });
 
-    $("#delete,#delete_one").click(function(){
-        var checkboxValues = [];
-        $('.table tr td input[type="checkbox"]:checked').each(function(index, elem) {
-            checkboxValues.push($(elem).val());
-        });
+	        checkboxValues = $(this).attr("href").substring(1);
 
-        checkboxValues = $(this).attr("href").substring(1);
-
-	    if(checkboxValues.length === 0)
-	        alert('Please, select manufacturer you want to delete.');
-	    else
-	        var answer = confirm('Are sure you want to delete ?');
-	        if (answer){
-	            $.ajax({
-	                url: "delete",
-	                type: "POST",
-	                data: { list: checkboxValues },
-	                success: function() {
-	                    ajax("",1);
-	                },
-	            });
-	        }
-    });
+		    if(checkboxValues.length === 0)
+		        alert('Please, select manufacturer you want to delete.');
+		    else
+		        var answer = confirm('Are sure you want to delete ?');
+		        if (answer){
+		            $.ajax({
+		                url: "delete",
+		                type: "POST",
+		                data: { list: checkboxValues },
+		                success: function() {
+		                    ajax("",1);
+		                },
+		            });
+		        }
+	    });
+	}
 });
 
 function check_all(elem)
