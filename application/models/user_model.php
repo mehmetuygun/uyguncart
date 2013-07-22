@@ -76,4 +76,3 @@ class User_model extends CI_model{
 			return false;
 	}
 }
-?>

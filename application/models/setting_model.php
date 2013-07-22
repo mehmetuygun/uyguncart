@@ -38,4 +38,3 @@ class Setting_model extends CI_model{
 		return $this->db->update('user',$field,array('userID'=>$id));
 	}
 }
-?>

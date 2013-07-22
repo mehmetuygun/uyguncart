@@ -64,13 +64,31 @@ class Category_model extends CI_model
 	 */
 	public function get_path($id){
 		$this->load->database();
-		$this->db->from('caqtegory')->where('caqtegoryID',$id);
+		$this->db->from('category')->where('categoryID',$id);
 
 		$query = $this->db->get();
 		$path = array($id);
-		foreach ($query->result() as $row)
-			$path = array_merge($path, $row->parentID);
+		foreach ($query->result_array() as $row)
+			$path = array_merge($path, $this->get_path($row["parentID"]));
 		return $path ;
+
 	}
+
+	/**
+	 *	Get list of category as array.
+	 *
+	 *	@return array
+	 */
+	public function fetchAll() {
+		$this->load->database();
+		$this->db->from('category');
+		$query = $this->db->get();
+		$field = array();
+		foreach ( $query->result() as $row ) 
+		{	
+		 	$field[] = array('categoryID'=>$row->categoryID,'categoryName'=>$this->get_path($row->categoryID));
+		}
+		return $field;
+	}
+
 }
-?>

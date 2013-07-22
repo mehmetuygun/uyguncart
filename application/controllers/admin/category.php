@@ -60,22 +60,23 @@ class Category extends CI_Controller
 
 		if($this->form_validation->run() == TRUE)
 		{	
-			$parentID = $this->input->post('parentID');
-			if(strlen($parentID)>0)
-				$field = array('parentID'=>$this->input->post('parentID'),'categoryName'=>$this->input->post('categoryName'));
-			else
-				$field = array('categoryName'=>$this->input->post('categoryName'));
+			var_dump($this->Category_model->fetchAll());
+			// $parentID = $this->input->post('parentID');
+			// if(strlen($parentID)>0)
+			// 	$field = array('parentID'=>$this->input->post('parentID'),'categoryName'=>$this->input->post('categoryName'));
+			// else
+			// 	$field = array('categoryName'=>$this->input->post('categoryName'));
 
-			if($this->Category_model->add($field))
-			{
-				$data["alert_message"] = "The Category is added succesfuly.";
-				$data["alert_class"] = "alert-success";
-			}
-			else
-			{
-				$data["alert_message"] = "Something went wrong. Please try again.";
-				$data["alert_class"] = "alert-error";
-			}
+			// if($this->Category_model->add($field))
+			// {
+			// 	$data["alert_message"] = "The Category is added succesfuly.";
+			// 	$data["alert_class"] = "alert-success";
+			// }
+			// else
+			// {
+			// 	$data["alert_message"] = "Something went wrong. Please try again.";
+			// 	$data["alert_class"] = "alert-error";
+			// }
 		}
 
 		$this->load->view('admin/default', $data);
