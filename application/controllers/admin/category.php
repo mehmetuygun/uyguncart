@@ -53,12 +53,13 @@ class Category extends CI_Controller
 			'js' => array('public/js/pagination.js', 'public/js/category_view.js'),
 		);
 
+		$this->form_validation->set_rules('parentID','Parent Category','category_exist');
 		$this->form_validation->set_rules('categoryName','Category','required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]');
 		$this->form_validation->set_error_delimiters('', '');
 
 		if($this->form_validation->run() == TRUE)
 		{
-			
+
 		}
 
 		$this->load->view('admin/default', $data);

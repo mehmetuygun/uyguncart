@@ -50,7 +50,10 @@ class Category_model extends CI_model
 	 */
 	public function category_exist ($categoryID) {
 		$this->load->database();
-		
+		$this->db->from('category')->where('categoryID',$categoryID);
+		if($this->db->count_all_results()>0)
+			return true;
+		return false;
 	}
 }
 ?>
