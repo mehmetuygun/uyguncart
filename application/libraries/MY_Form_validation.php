@@ -33,4 +33,17 @@ class MY_Form_validation extends CI_Form_validation
 
 		return !!preg_match("/^[[:alpha:]- ÀÁÂÃÄÅĀĄĂÆÇĆČĈĊĎĐÈÉÊËĒĘĚĔĖĜĞĠĢĤĦÌÍÎÏĪĨĬĮİĲĴĶŁĽĹĻĿÑŃŇŅŊÒÓÔÕÖØŌŐŎŒŔŘŖŚŠŞŜȘŤŢŦȚÙÚÛÜŪŮŰŬŨŲŴÝŶŸŹŽŻàáâãäåæçèéêëìíîïñòóôõöøùúûüýÿœšß_.]+$/", $str);
 	} 
+
+	/**
+	* @param string The form element to be checked
+	* @return bolean
+	*/ 
+	public function category_exist($str)
+	{
+		$this->CI->load->model('Category_model');
+		$this->CI->form_validation->set_message('category_exist', 'The %s does not exist.');
+		if(is_null($str))
+			return true;
+		return $this->CI->Category_model->category_exist($str);
+	}
 }

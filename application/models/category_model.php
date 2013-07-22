@@ -1,6 +1,5 @@
 <?php
-
-class Manufacturer_model extends CI_model
+class Category_model extends CI_model
 {
 	public $categoryName;
 	public $parentID;
@@ -44,3 +43,4 @@ class Manufacturer_model extends CI_model
 	}
 
 }
+?>
