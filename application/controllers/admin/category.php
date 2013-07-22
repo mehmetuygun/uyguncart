@@ -32,4 +32,28 @@ class Category extends CI_Controller
 		$this->load->view('admin/default', $data);
 	}
 
+	public function add(){
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->library('form_validation');
+
+		$this->User_model->admin_logged();
+
+		$data = array(
+			'base_url' => $this->load->helper(array('form', 'url')),
+			'title' => 'UygunCart',
+			'breadcrumb' => array(
+				'admin/home' => 'Dashboard',
+				'admin/category' => 'Category',
+				'last' => 'Add'
+			),
+			'menu_active' => 'catalog',
+			'mainview' => 'category_add',
+			'fullname' => $this->session->userdata('userFullName'),
+			'js' => array('public/js/pagination.js', 'public/js/category_view.js'),
+		);
+
+		$this->load->view('admin/default', $data);
+	}
+
 }
