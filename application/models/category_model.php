@@ -42,5 +42,15 @@ class Category_model extends CI_model
 		return $this->db->delete('category', array('categoryID'=>$categoryID));
 	}
 
+	/**
+	 *	Check if category is exist.
+	 *
+	 *	@param string The id of category.
+	 *	@return boolean true for success
+	 */
+	public function category_exist ($categoryID) {
+		$this->load->database();
+		
+	}
 }
 ?>
