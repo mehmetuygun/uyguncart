@@ -25,7 +25,7 @@ class Manufacturer extends CI_Controller
 				'last' => 'View'
 			),
 			'menu_active' => 'catalog',
-			'mainview' => 'manufacture',
+			'mainview' => 'manufacturer',
 			'fullname' => $this->session->userdata('userFullName'),
 			'js' => array('public/js/pagination.js', 'public/js/manufacturer_view.js'),
 			'manufacturers' => $this->Manufacturer_model->fetch('', 'asc', 10, 1),
@@ -56,7 +56,7 @@ class Manufacturer extends CI_Controller
 				'last' => 'Insert'
 			),
 			'menu_active' => 'catalog',
-			'mainview' => 'manufacture_insert',
+			'mainview' => 'manufacturer_insert',
 			'fullname' => $this->session->userdata('userFullName'),
 		);
 
@@ -99,7 +99,7 @@ class Manufacturer extends CI_Controller
 				'last' => 'Edit'
 			),
 			'menu_active' => 'catalog',
-			'mainview' => 'manufacture_edit',
+			'mainview' => 'manufacturer_edit',
 			'fullname' => $this->session->userdata('userFullName'),
 		);
 
