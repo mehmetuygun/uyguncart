@@ -37,15 +37,10 @@ class Login extends CI_Controller {
 				redirect('/admin/home', 'location');
 			}
 			else {
-				$data["message"] = 'Email and password did not match.';
+				$data["message"] = 'Invalid Email or Password.';
 				$data["alert_class"] = "alert-error";
 			}
-				
-			
 		}
 		$this->load->view('admin/login.php',$data);
-	}
-	public function test(){
-		echo "test";
 	}
 }

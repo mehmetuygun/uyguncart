@@ -49,10 +49,20 @@ $(document).ready(function(){
 			var page = $(this).attr('href').substring(1);
 			ajax(search,page);
 		});
+
+		var info = "";
+		if(data[1] == '1' && data[2] > 10)
+			info += 'Showing 1 to 10 of '+data[2]+' entries.';
+		if(data[1] == 1 && data[2] <= 10)
+			info += 'Showing 1 to '+data[2]+' of '+data[2]+' entries.';
+		// if(data[1] > 1 && data[2] > ((data[1]*10)+10))
+		// 	info += 'Showing '+(data[1]*10)+' to '+(data[1]*10)+10)+' of '+data[2]+' entries.';
+		$("#show_info").empty();
+		$("#show_info").append(info);
 	}
 
 	delete_manufacturer();
-	
+
 	function delete_manufacturer(){
 	    $(".delete_one").on('click',function(){
 	    	checkboxValues = [];

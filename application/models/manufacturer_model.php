@@ -70,9 +70,7 @@ class Manufacturer_model extends CI_model
 	public function fetch($query='', $order_by='random', $limit=10, $page=1) {
 		$this->load->database();
 
-		$this->db->from('manufacturer')
-				->like('manufacturerName', $query)
-				->order_by('manufacturerName', $order_by);
+		$this->db->from('manufacturer')->like('manufacturerName', $query)->order_by('manufacturerName', $order_by);
 		 
 		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $limit);
@@ -84,10 +82,7 @@ class Manufacturer_model extends CI_model
 		else
 			$from = ($page * $limit) - $limit;
 
-		$this->db->from('manufacturer')
-				->like('manufacturerName', $query)
-				->order_by('manufacturerName', $order_by)
-				->limit($limit, $from);
+		$this->db->from('manufacturer')->like('manufacturerName', $query)->order_by('manufacturerName', $order_by)->limit($limit, $from);
 
 		$query = $this->db->get();
 		return $query->result();

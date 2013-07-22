@@ -1,16 +1,31 @@
 body{
-	background-color: rgb(214, 214, 214);
+	background-color: rgb(194, 194, 194);
 }
 .login-box{
+	background-color: white;
 	margin: 0 auto;
 	margin-top:120px;
 	width: 500px;
-	background-color: white;
-	border-radius: 5px;
-	border: 2px solid rgb(170, 170, 170);
-	padding: 5px;
+	-webkit-box-shadow: 0px 0px 16px 7px rgba(0,0,0,0.17);
+	-moz-box-shadow: 0px 0px 16px 7px rgba(0,0,0,0.17);
+	box-shadow: 0px 0px 16px 7px rgba(0,0,0,0.17);
 }
-.login-tittle{
-	margin: 0 auto;
-	color: blue;
+.alert{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.login-title{
+	background-color: rgb(134, 134, 134);
+	height: 50px;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 30px;
+	padding-bottom: 0;
+}
+span{
+	color: white;
+	font-size: 18px;
+	font-family: verdana;
+	font-weight: bold;
 }

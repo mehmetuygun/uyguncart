@@ -26,7 +26,7 @@
 		?>
 	</tbody>
 </table>
-<span class="pull-left">Showing 1 to 10 of <?php echo $entries; ?> entries.</span>
+<span class="pull-left" id="show_info">Showing 1 to 10 of <?php echo $entries; ?> entries.</span>
 <div class="pagination pull-right" style="margin:0">
   	<ul>
     	<li class="active"><a href="#" onclick="return false">&laquo;</a></li>
