@@ -81,18 +81,18 @@ class Category_model extends CI_model
 	/**
 	 *	Get list of categories as an array.
 	 *
-	 *	@return array
+	 *	@param	bool	add '-- NONE --' option
+	 *	@return	array	list of categories
 	 */
-	public function fetchAll() {
+	public function fetchAll($with_none = false) {
 		$this->load->database();
 		$this->db->from('category');
 		$query = $this->db->get();
 		$field = array();
+
+		if ($with_none) $field[''] = '-- NONE --';
 		foreach ($query->result() as $row) {	
-		 	$field[] = array(
-		 		'categoryID' => $row->categoryID,
-		 		'categoryName' => $this->get_path($row->categoryID)
-		 	);
+		 	$field[$row->categoryID] = $this->get_path($row->categoryID);
 		}
 		return $field;
 	}

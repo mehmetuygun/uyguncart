@@ -13,14 +13,7 @@
     <div class="control-group">
 		<label class="control-label" for="inputCategory">Parent Category</label>
 		<div class="controls">
-			<select name="parentID">
-				<option value="">-- NONE --</option>
-				<?php
-				foreach ($categories as $row) {
-					echo '<option value="'.$row['categoryID'].'">'.$row['categoryName'].'</option>';
-				}
-				?>
-			</select>
+            <?php echo form_dropdown('parentID', $categories, set_value('parentID', '')) ?>
 			<span class="help-inline"><?php echo form_error('parentID'); ?></span>
 		</div>
 	</div>

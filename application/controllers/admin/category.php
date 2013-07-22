@@ -52,7 +52,7 @@ class Category extends CI_Controller
 			'mainview' => 'category_add',
 			'fullname' => $this->session->userdata('userFullName'),
 			'js' => array('public/js/pagination.js', 'public/js/category_view.js'),
-			'categories' => $this->Category_model->fetchAll(),
+			'categories' => $this->Category_model->fetchAll(true),
 		);
 
 		$this->form_validation->set_rules('parentID','Parent Category','category_exist');
@@ -71,7 +71,7 @@ class Category extends CI_Controller
 			{
 				$data["alert_message"] = "The Category is added succesfuly.";
 				$data["alert_class"] = "alert-success";
-				$data["categories"] = $this->Category_model->fetchAll();
+				$data["categories"] = $this->Category_model->fetchAll(true);
 			}
 			else
 			{
