@@ -42,9 +42,9 @@ class MY_Form_validation extends CI_Form_validation
 	public function category_exist($str)
 	{
 		$this->CI->load->model('Category_model');
-		$this->CI->form_validation->set_message('category_exist', 'The %s is exist.');
-		return !$this->CI->Category_model->category_exist($str);
-		return true;
+		$this->CI->form_validation->set_message('category_exist', 'The %s does not exist.');
+		return $this->CI->Category_model->category_exist($str);
+		return false;
 	}
 
 	/*

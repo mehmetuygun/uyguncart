@@ -20,7 +20,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <i class="caret"></i></a>
 								<ul class="dropdown-menu">
 									<li><a href="<?php echo base_url('admin/category'); ?>">Categories</a></li>
-									<li><a href="<?php echo base_url('admin/category'); ?>">Products</a></li>
+									<li><a href="<?php echo base_url('admin/product'); ?>">Products</a></li>
 									<li><a href="<?php echo base_url('admin/manufacturer'); ?>">Manufacturers</a></li>
 								</ul>
 							</li>

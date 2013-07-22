@@ -16,9 +16,9 @@
 			<select name="parentID">
 				<option value="">-- NONE --</option>
 				<?php
-				// foreach ($categories as $row) {
-				// 	echo '<option value="'.$row->categoryID.'">'.$row->categoryName.'</option>';
-				// }
+				foreach ($categories as $row) {
+					echo '<option value="'.$row['categoryID'].'">'.$row['categoryName'].'</option>';
+				}
 				?>
 			</select>
 			<span class="help-inline"><?php echo form_error('parentID'); ?></span>
