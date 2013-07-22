@@ -1,4 +1,5 @@
 <?php
+
 class Category_model extends CI_model
 {
 	public $categoryName;
@@ -50,7 +51,7 @@ class Category_model extends CI_model
 	 */
 	public function category_exist ($categoryID) {
 		$this->load->database();
-		$this->db->from('category')->where('categoryID',$categoryID);
+		$this->db->from('category')->where('categoryID', $categoryID);
 		if($this->db->count_all_results()>0)
 			return true;
 		return false;
@@ -59,23 +60,26 @@ class Category_model extends CI_model
 	/**
 	 *	Get category path.
 	 *
-	 *	@param string The id of category.
-	 *	@return string
+	 *	@param	integer	Category ID.
+	 *	@param	string	used for recursion
+	 *	@return	string	path of the category
 	 */
-	public function get_path($id){
+	public function get_path($id, $sep = '') {
+		if (empty($id)) return '';
+
 		$this->load->database();
-		$this->db->from('category')->where('categoryID',$id);
+		$this->db->from('category')->where('categoryID', $id);
 
 		$query = $this->db->get();
-		$path = array($id);
-		foreach ($query->result_array() as $row)
-			$path = array_merge($path, $this->get_path($row["parentID"]));
-		return $path ;
+		$row = $query->result_array();
+		if (empty($row)) return '';
 
+		return $this->get_path($row[0]['parentID'], ' / ')
+			. $row[0]['categoryName'] . $sep;
 	}
 
 	/**
-	 *	Get list of category as array.
+	 *	Get list of categories as an array.
 	 *
 	 *	@return array
 	 */
@@ -84,9 +88,11 @@ class Category_model extends CI_model
 		$this->db->from('category');
 		$query = $this->db->get();
 		$field = array();
-		foreach ( $query->result() as $row ) 
-		{	
-		 	$field[] = array('categoryID'=>$row->categoryID,'categoryName'=>$this->get_path($row->categoryID));
+		foreach ($query->result() as $row) {	
+		 	$field[] = array(
+		 		'categoryID' => $row->categoryID,
+		 		'categoryName' => $this->get_path($row->categoryID)
+		 	);
 		}
 		return $field;
 	}
