@@ -17,7 +17,7 @@
 						<ul class="nav">
 							<li class="<?php if(isset($menu_active)&&$menu_active=="home")echo 'active'; ?>"><a href="<?php echo base_url('admin/home'); ?>">Home</a></li>
 							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="catalog")echo 'active'; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <i class="caret"></i></a>
 								<ul class="dropdown-menu">
 									<li><a href="<?php echo base_url('admin/category'); ?>">Categories</a></li>
 									<li><a href="<?php echo base_url('admin/category'); ?>">Products</a></li>
@@ -25,20 +25,24 @@
 								</ul>
 							</li>
 							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="sales")echo 'active'; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <i class="caret"></i></a>
 								<ul class="dropdown-menu">
 									<li><a href="<?php echo base_url('admin/category'); ?>">Order</a></li>
 								</ul>
 							</li>
 							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="system")echo 'active'; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">System <b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">System <i class="caret"></i></a>
 								<ul class="dropdown-menu">
 									<li><a href="<?php echo base_url('admin/category'); ?>">Payment Setting</a></li>
 								</ul>
 							</li>
 						</ul>
 						<div class="btn-group pull-right">
-						<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="icon-user"></span>&nbsp;<?php echo $fullname;?>&nbsp;<span class="caret"></span></button>
+							<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-user icon-white"></i>
+								<?php echo $fullname ?>
+								<i class="caret"></i>
+							</button>
 							<ul class="dropdown-menu">
 								<li><a href="<?php echo base_url('admin/setting'); ?>">Settings</a></li>
 								<li class="divider"></li>
