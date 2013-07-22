@@ -18,27 +18,27 @@
 			if(isset($alert)){
 			?>
 			<div class="alert <?php echo $alert_class ?>">
-  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-  				<?php echo $message ?>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<?php echo $message ?>
 			</div>
 			<?php
 			}
 			?>
 			<form class="form-horizontal" method="post" action="">
 				<div class="control-group">
-			    	<label class="control-label" for="inputEmail">Email</label>
-			    	<div class="controls">
-			      		<input type="text" name="email" id="inputEmail" placeholder="Email" >
-			    	</div>
-			  	</div>
-			  	<div class="control-group">
-			    	<label class="control-label" for="inputPassword">Password</label>
-			    	<div class="controls">
-			      		<input type="password" name="password" id="inputPassword" placeholder="Password" >
-			    	</div>
-			  	</div>
-			  	<div class="form-actions">
-  					<button type="submit" name="submit_form" class="btn btn-success">Log in</button>
+					<label class="control-label" for="inputEmail">Email</label>
+					<div class="controls">
+						<input type="text" name="email" id="inputEmail" placeholder="Email" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Password</label>
+					<div class="controls">
+						<input type="password" name="password" id="inputPassword" placeholder="Password" >
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="submit" name="submit_form" class="btn btn-success">Log in</button>
 				</div>
 			</form>
 		</div>
