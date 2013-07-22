@@ -14,7 +14,7 @@
 		<label class="control-label" for="inputCategory">Parent Category</label>
 		<div class="controls">
 			<select name="parentID">
-				<option value="1">-- NONE --</option>
+				<option value="">-- NONE --</option>
 				<?php
 				// foreach ($categories as $row) {
 				// 	echo '<option value="'.$row->categoryID.'">'.$row->categoryName.'</option>';
