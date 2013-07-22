@@ -55,5 +55,22 @@ class Category_model extends CI_model
 			return true;
 		return false;
 	}
+
+	/**
+	 *	Get category path.
+	 *
+	 *	@param string The id of category.
+	 *	@return string
+	 */
+	public function get_path($id){
+		$this->load->database();
+		$this->db->from('caqtegory')->where('caqtegoryID',$id);
+
+		$query = $this->db->get();
+		$path = array($id);
+		foreach ($query->result() as $row)
+			$path = array_merge($path, $row->parentID);
+		return $path ;
+	}
 }
 ?>
