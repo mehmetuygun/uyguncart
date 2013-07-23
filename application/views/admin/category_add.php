@@ -1,6 +1,6 @@
 <div class="navbar">
 	<div class="navbar-inner">
-		<a class="brand" href="#" onclick="return false">Edit Category</a>
+		<a class="brand" href="#" onclick="return false">Add Category</a>
 	</div>
 </div>
 <form class="form-horizontal" method="POST" action="">
