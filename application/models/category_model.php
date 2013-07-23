@@ -5,6 +5,8 @@ class Category_model extends CI_model
 	public $categoryName;
 	public $parentID;
 	public $categoryID;
+	public $entries;
+	public $pagecount;
 
 	/**
 	 *	Setting category
@@ -97,4 +99,34 @@ class Category_model extends CI_model
 		return $field;
 	}
 
+	/**
+	 *	Get list of categories as an array page by page.
+	 *
+	 *	@param	bool	
+	 *	@return	array	list of categories
+	 */
+	public function fetch($query ="", $sort = "asc",$limit=10,$page=1) {
+		$this->load->database();
+
+		$this->db->from('category')->like('categoryName', $query)->order_by('categoryName', $sort);
+		 
+		$this->entries = $this->db->count_all_results();
+		$this->pagecount = ceil($this->entries / $limit);
+
+		if($page == 1 or $page < 1)
+			$from = 0;
+		else if ($page > $this->pagecount)
+			$from = ($this->pagecount * $limit) - $limit;
+		else
+			$from = ($page * $limit) - $limit;
+
+		$this->db->from('category')->like('categoryName', $query)->order_by('categoryName', $sort)->limit($limit, $from);
+
+		$query = $this->db->get();
+		$field = array();
+		foreach ($query->result() as  $row) {
+			$field[] = array("categoryID"=>$row->categoryID,"categoryName"=>$this->get_path($row->categoryID),"parentID"=>$row->parentID);
+		}
+		return $field;
+	}
 }

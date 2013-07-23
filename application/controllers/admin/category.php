@@ -11,6 +11,7 @@ class Category extends CI_Controller
 	public function view() {
 		$this->load->library('session');
 		$this->load->model('User_model');
+		$this->load->model('Category_model');
 		$this->load->library('form_validation');
 
 		$this->User_model->admin_logged();
@@ -26,6 +27,9 @@ class Category extends CI_Controller
 			'menu_active' => 'catalog',
 			'mainview' => 'category',
 			'fullname' => $this->session->userdata('userFullName'),
+			'categories' => $this->Category_model->fetch(),
+			'entries'=>$this->Category_model->entries,
+			'pagecount'=>$this->Category_model->pagecount,
 			'js' => array('public/js/pagination.js', 'public/js/category_view.js'),
 		);
 

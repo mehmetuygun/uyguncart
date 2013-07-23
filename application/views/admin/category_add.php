@@ -11,7 +11,7 @@
     </div>
     <?php } ?>
     <div class="control-group">
-		<label class="control-label" for="inputCategory">Parent Category</label>
+		<label class="control-label" for="ParentID">Parent Category</label>
 		<div class="controls">
             <?php echo form_dropdown('parentID', $categories, set_value('parentID', '')) ?>
 			<span class="help-inline"><?php echo form_error('parentID'); ?></span>

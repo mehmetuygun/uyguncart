@@ -38,7 +38,7 @@
     		echo '<li><a href="#'.$i.'"   onclick="return false">'.$i.'</a></li>';
     	}
     	?>
-    	<li><a href="#" onclick="return false">&raquo;</a></li>
+    	<li <?php if($pagecount==1)echo 'class="active"'; ?>><a href="#"  onclick="return false">&raquo;</a></li>
   	</ul>
 </div>
 <span class="clearfix"></span>
