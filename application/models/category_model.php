@@ -42,6 +42,11 @@ class Category_model extends CI_model
 	 */
 	public function delete($categoryID) {
 		$this->load->database();
+		$this->db->from('category')->where('parentID',$categoryID);
+		$query = $this->db->get();
+		foreach ($query->result() as $row)
+			$this->delete($row->categoryID);
+
 		return $this->db->delete('category', array('categoryID'=>$categoryID));
 	}
 

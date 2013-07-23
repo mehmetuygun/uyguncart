@@ -87,4 +87,32 @@ class Category extends CI_Controller
 		$this->load->view('admin/default', $data);
 	}
 
+	public function ajax() {
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->model('Category_model');
+		$this->User_model->admin_logged();
+
+		$search = $this->input->post('search');
+		$page = $this->input->post('page');
+
+		$categories = $this->Category_model->fetch($search, 'asc', 10, $page);
+
+		$page = array($this->Category_model->pagecount, $page,$this->Category_model->entries);
+		$array = array($categories, $page);
+		echo json_encode($array);
+	}
+
+	public function delete() {
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->model('Category_model');
+		$this->User_model->admin_logged();
+
+		$list = $this->input->post('list');
+
+		foreach ($list as $value) {
+			$this->Category_model->delete($value);
+		}
+	}
 }
