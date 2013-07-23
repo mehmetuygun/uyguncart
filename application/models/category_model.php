@@ -35,6 +35,18 @@ class Category_model extends CI_model
 	}
 
 	/**
+	 *	Edit category
+	 *	
+	 *	@param array The array include information to be updated. 
+	 *	@param array The ID of the category to be updated. 
+	 * 	@return boolean
+	 */
+	public function edit($field, $id) {
+		$this->load->database();
+		return $this->db->update('category', $field, array('categoryID' => $id));
+	}
+
+	/**
 	 *	Delete category
 	 *
 	 *	@param array The array include information to be deleted.
@@ -91,14 +103,15 @@ class Category_model extends CI_model
 	 *	@param	bool	add '-- NONE --' option
 	 *	@return	array	list of categories
 	 */
-	public function fetchAll($with_none = false) {
+	public function fetchAll($with_none = false, $skip = false) {
 		$this->load->database();
 		$this->db->from('category');
 		$query = $this->db->get();
 		$field = array();
 
 		if ($with_none) $field[''] = '-- NONE --';
-		foreach ($query->result() as $row) {	
+		foreach ($query->result() as $row) {
+			if ($row->categoryID === $skip) continue;
 		 	$field[$row->categoryID] = $this->get_path($row->categoryID);
 		}
 		return $field;
@@ -133,5 +146,18 @@ class Category_model extends CI_model
 			$field[] = array("categoryID"=>$row->categoryID,"categoryName"=>$this->get_path($row->categoryID),"parentID"=>$row->parentID);
 		}
 		return $field;
+	}
+
+	public function group_by_parent() {
+		$categories = array();
+		$this->load->database();
+		$this->db->from('category');
+		$query = $this->db->get();
+
+		foreach ($query->result_array() as $row) {
+			$categories[$row['parentID']][] = $row['categoryID'];
+		}
+
+		return $categories;
 	}
 }

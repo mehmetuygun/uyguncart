@@ -48,32 +48,25 @@ class MY_Form_validation extends CI_Form_validation
 	}
 
 	/*
-	 * @param	integer	ID of the category that is not supposed to be the parent
-	 * @param	string	The form element to be checked
+	 * @param	integer	Category to look for in the list of children
+	 * @param	integer	Category to check the children of
 	 * @return	bool	valid
 	 */
 	public function not_sub_category($id, $target, $categories = null)
 	{
-		if (!isset($_POST[$target])) return true;
-		if ($id == $_POST[$target]) return false;
+		$this->CI->form_validation->set_message('not_sub_category', '%s is a subcategory of the current category.');
+		if ($id == $target) return false;
 
 		if (!isset($categories)) {
-			$categories = array();
-			$this->load->database();
-			$this->db->from('category');
-			$query = $this->db->get();
-
-			foreach ($query->result() as $row) {
-				$categories[$row['parentID']][] = $row['categoryID'];
-			}
+			$this->CI->Category_model->group_by_parent();
 		}
 
 		if (empty($categories[$id])) {
 			return true;
 		}
 
-		foreach ($categories[$id] as $row) {
-			if ($this->not_sub_category($row['categoryID'], $target, $categories)) {
+		foreach ($categories[$id] as $categoryID) {
+			if ($this->not_sub_category($categoryID, $target, $categories)) {
 				return true;
 			}
 		}
