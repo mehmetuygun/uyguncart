@@ -119,8 +119,12 @@ class Category extends CI_Controller
 		);
 
 		if($this->form_validation->run() == TRUE)
-		{	
-			$field = array('parentID'=>$this->input->post('parentID'),'categoryName'=>$this->input->post('categoryName'));
+		{
+			$parentID = $this->input->post('parentID');
+			if (empty($parentID)) {
+				$parentID = null;
+			}
+			$field = array('parentID'=>$parentID,'categoryName'=>$this->input->post('categoryName'));
 
 			if($this->Category_model->edit($field, $id))
 			{
