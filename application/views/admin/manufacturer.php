@@ -1,7 +1,7 @@
 <div class="navbar">
-  	<div class="navbar-inner">
-    	<a class="brand" href="#">Manufacturer</a>
-  	</div>
+	<div class="navbar-inner">
+		<a class="brand" href="#">Manufacturer</a>
+	</div>
 </div>
 <span class="pull-left"><input type="text" name="search" placeholder="Search" class="span4"></span>
 <span class="pull-right">

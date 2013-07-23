@@ -1,1 +1,1 @@
-asdasdb
+This is placeholder for dashboard
