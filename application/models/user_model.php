@@ -18,18 +18,16 @@ class User_model extends CI_model
 	public function login($email, $password)
 	{
 		$this->load->database();
-		$this->db->from('user');
-
 		$data = array('userEmail' => $email, 'userPassword' => $password);
+		$this->db->from('user')
+			->where($data);
 
-		$this->db->where($data);
 		$query = $this->db->get();
-		
 		if ($query->num_rows() != 1) {
 			return false;
 		}
 
-		$row = $query->result();
+		$row = $query->row();
 		$this->userID = $row->userID;
 		$this->userEmail = $row->userEmail;
 		$this->userFirstName = $row->userFirstName;

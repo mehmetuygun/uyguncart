@@ -18,7 +18,7 @@ class Category_model extends CI_model
 		$this->db->from('category')
 			->where(array('categoryID' => $id));
 
-		$row = $this->db->get()->result();
+		$row = $this->db->get()->row();
 		$this->categoryID = $row->categoryID;
 		$this->categoryName = $row->categoryName;
 		$this->parentID = $row->parentID;
