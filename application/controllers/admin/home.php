@@ -1,7 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller {
-	public function Index(){
+class Home extends CI_Controller 
+{
+	public function Index()
+	{
 		$this->load->model('User_model');
 		$this->load->library('session');
 		$data["base_url"] = $this->load->helper('url');
@@ -14,7 +16,7 @@ class Home extends CI_Controller {
 		$this->load->library('session');
 		$data["fullname"] = $this->session->userdata('userFullName');
 
-		$this->load->view('admin/default',$data);
+		$this->load->view('admin/default', $data);
 		$this->User_model->admin_logged();
 	}
 }
