@@ -10,16 +10,16 @@ class Manufacturer_model extends CI_model
 	 *	Setting manufacturer
 	 *	@param string The ID of the manufacturer.
 	 */
-	public function set($id) {
+	public function set($id)
+	{
 		$this->load->database();
 
 		$this->db->from('manufacturer')
-				->where(array('manufacturerID' => $id));
+			->where(array('manufacturerID' => $id));
 
 		$query = $this->db->get();
-		foreach ($query->result() as $row) {
-			$this->manufacturerName = $row->manufacturerName;
-		}
+		$row = $query->result();
+		$this->manufacturerName = $row->manufacturerName;
 	}
 
 	/**
@@ -28,7 +28,8 @@ class Manufacturer_model extends CI_model
 	 *	@param array The array include information to be updated. 
 	 * 	@return boolean
 	 */
-	public function insert($field) {
+	public function insert($field)
+	{
 		$this->load->database();
 		return $this->db->insert('manufacturer', $field);
 	}
@@ -40,10 +41,11 @@ class Manufacturer_model extends CI_model
 	 *	@param integer ID of the manufacturer
 	 *	@return boolean true for success
 	 */
-	public function update($field, $id) {
+	public function update($field, $id)
+	{
 		$this->load->database();
-
-		return $this->db->update('manufacturer', $field, array('manufacturerID' => $id));
+		$data = array('manufacturerID' => $id);
+		return $this->db->update('manufacturer', $field, $data);
 	}
 
 	/**
@@ -52,7 +54,8 @@ class Manufacturer_model extends CI_model
 	 *	@param array The array include information to be deleted.
 	 *	@return boolean true for success
 	 */
-	public function delete($field) {
+	public function delete($field)
+	{
 		$this->load->database();
 
 		return $this->db->delete('manufacturer', $field);
@@ -67,22 +70,29 @@ class Manufacturer_model extends CI_model
 	 * @param string page of number.
 	 * @return array
 	 */
-	public function fetch($query='', $order_by='random', $limit=10, $page=1) {
+	public function fetch($query = '', $order_by = 'random', $limit = 10, $page = 1)
+	{
 		$this->load->database();
 
-		$this->db->from('manufacturer')->like('manufacturerName', $query)->order_by('manufacturerName', $order_by);
+		$this->db->from('manufacturer')
+			->like('manufacturerName', $query)
+			->order_by('manufacturerName', $order_by);
 		 
 		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $limit);
 
-		if($page == 1 or $page < 1)
+		if($page == 1 or $page < 1) {
 			$from = 0;
-		else if ($page > $this->pagecount)
+		} else if ($this->pagecount < $page) {
 			$from = ($this->pagecount * $limit) - $limit;
-		else
+		} else {
 			$from = ($page * $limit) - $limit;
+		}
 
-		$this->db->from('manufacturer')->like('manufacturerName', $query)->order_by('manufacturerName', $order_by)->limit($limit, $from);
+		$this->db->from('manufacturer')
+			->like('manufacturerName', $query)
+			->order_by('manufacturerName', $order_by)
+			->limit($limit, $from);
 
 		$query = $this->db->get();
 		return $query->result();

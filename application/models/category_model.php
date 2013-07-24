@@ -12,15 +12,16 @@ class Category_model extends CI_model
 	 *	Setting category
 	 *	@param string The ID of the category.
 	 */
-	public function set($id) {
+	public function set($id)
+	{
 		$this->load->database();
-		$this->db->from('category')->where(array('categoryID' => $id));
-		$query = $this->db->get();
-		foreach ($query->result() as $row) {
-			$this->categoryID = $row->categoryID;
-			$this->categoryName = $row->categoryName;
-			$this->parentID = $row->parentID;
-		}
+		$this->db->from('category')
+			->where(array('categoryID' => $id));
+
+		$row = $this->db->get()->result();
+		$this->categoryID = $row->categoryID;
+		$this->categoryName = $row->categoryName;
+		$this->parentID = $row->parentID;
 	}
 
 	/**
@@ -41,9 +42,11 @@ class Category_model extends CI_model
 	 *	@param array The ID of the category to be updated. 
 	 * 	@return boolean
 	 */
-	public function edit($field, $id) {
+	public function edit($field, $id)
+	{
 		$this->load->database();
-		return $this->db->update('category', $field, array('categoryID' => $id));
+		$data = array('categoryID' => $id);
+		return $this->db->update('category', $field, $data);
 	}
 
 	/**
@@ -52,14 +55,18 @@ class Category_model extends CI_model
 	 *	@param array The array include information to be deleted.
 	 *	@return boolean true for success
 	 */
-	public function delete($categoryID) {
+	public function delete($categoryID)
+	{
 		$this->load->database();
-		$this->db->from('category')->where('parentID',$categoryID);
+		$this->db->from('category')->where('parentID', $categoryID);
 		$query = $this->db->get();
-		foreach ($query->result() as $row)
+		foreach ($query->result() as $row) {
 			$this->delete($row->categoryID);
+		}
 
-		return $this->db->delete('category', array('categoryID'=>$categoryID));
+		$data = array('categoryID' => $categoryID);
+
+		return $this->db->delete('category', $data);
 	}
 
 	/**
@@ -68,7 +75,8 @@ class Category_model extends CI_model
 	 *	@param string The id of category.
 	 *	@return boolean true for success
 	 */
-	public function category_exist ($categoryID) {
+	public function category_exist($categoryID)
+	{
 		$this->load->database();
 		$this->db->from('category')->where('categoryID', $categoryID);
 		if($this->db->count_all_results()>0)
@@ -83,7 +91,8 @@ class Category_model extends CI_model
 	 *	@param	string	used for recursion
 	 *	@return	string	path of the category
 	 */
-	public function get_path($id, $sep = '') {
+	public function get_path($id, $sep = '')
+	{
 		if (empty($id)) return '';
 
 		$this->load->database();
@@ -103,7 +112,8 @@ class Category_model extends CI_model
 	 *	@param	bool	add '-- NONE --' option
 	 *	@return	array	list of categories
 	 */
-	public function fetchAll($with_none = false, $skip = false) {
+	public function fetchAll($with_none = false, $skip = false)
+	{
 		$this->load->database();
 		$this->db->from('category');
 		$query = $this->db->get();
@@ -123,32 +133,49 @@ class Category_model extends CI_model
 	 *	@param	bool	
 	 *	@return	array	list of categories
 	 */
-	public function fetch($query ="", $sort = "asc",$limit=10,$page=1) {
+	public function fetch($query = '', $sort = 'asc', $limit = 10, $page = 1)
+	{
 		$this->load->database();
 
-		$this->db->from('category')->like('categoryName', $query)->order_by('categoryName', $sort);
+		$this->db->from('category')
+			->like('categoryName', $query)
+			->order_by('categoryName', $sort);
 		 
 		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $limit);
 
-		if($page == 1 or $page < 1)
+		if ($page == 1 or $page < 1) {
 			$from = 0;
-		else if ($page > $this->pagecount)
+		} else if ($this->pagecount < $page) {
 			$from = ($this->pagecount * $limit) - $limit;
-		else
+		} else {
 			$from = ($page * $limit) - $limit;
+		}
 
-		$this->db->from('category')->like('categoryName', $query)->order_by('categoryName', $sort)->limit($limit, $from);
+		$this->db->from('category')
+			->like('categoryName', $query)
+			->order_by('categoryName', $sort)
+			->limit($limit, $from);
 
 		$query = $this->db->get();
 		$field = array();
 		foreach ($query->result() as  $row) {
-			$field[] = array("categoryID"=>$row->categoryID,"categoryName"=>$this->get_path($row->categoryID),"parentID"=>$row->parentID);
+			$field[] = array(
+				'categoryID' => $row->categoryID,
+				'categoryName' => $this->get_path($row->categoryID),
+				'parentID' => $row->parentID
+			);
 		}
 		return $field;
 	}
 
-	public function group_by_parent() {
+	/**
+	 * Groups categories by their parent ID
+	 *
+	 * @return array category IDs grouped by their parent ID
+	 */
+	public function group_by_parent()
+	{
 		$categories = array();
 		$this->load->database();
 		$this->db->from('category');
