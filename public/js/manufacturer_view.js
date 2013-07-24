@@ -44,21 +44,12 @@ $(document).ready(function(){
 	function draw_page(data)
 	{
 		pagination(data[1],data[0]);
+		show_info(data[1],data[2]);
 		$(".pagination ul li a").on('click',function(){
 			var search = $('input[name="search"]').val();
 			var page = $(this).attr('href').substring(1);
 			ajax(search,page);
 		});
-
-		var info = "";
-		if(data[1] == '1' && data[2] > 10)
-			info += 'Showing 1 to 10 of '+data[2]+' entries.';
-		if(data[1] == 1 && data[2] <= 10)
-			info += 'Showing 1 to '+data[2]+' of '+data[2]+' entries.';
-		// if(data[1] > 1 && data[2] > ((data[1]*10)+10))
-		// 	info += 'Showing '+(data[1]*10)+' to '+(data[1]*10)+10)+' of '+data[2]+' entries.';
-		$("#show_info").empty();
-		$("#show_info").append(info);
 	}
 
 	delete_manufacturer();

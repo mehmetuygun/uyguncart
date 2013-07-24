@@ -50,3 +50,18 @@ function pagination(page,page_count)
 	html += '</ul>';
 	$(".pagination").append(html);
 }
+function show_info (page,entries)
+{
+	var message,limit=10;
+	if(entries<=limit && page == 1)
+		message = "Showing 1 to "+entries+" of "+entries+" entries.";
+	if(entries>limit && page == 1)
+		message = "Showing 1 to 10 of "+entries+" entries.";
+	if(entries>limit && page > 1)
+		if(entries>(limit*page))
+			message = "Showing "+(((page*limit)-limit)+1)+" to "+(page*limit)+" of "+entries+" entries.";
+		else
+			message = "Showing "+(((page*limit)-limit)+1)+" to "+entries+" of "+entries+" entries.";
+	$("#show_info").empty();
+	$("#show_info").append(message);
+}
