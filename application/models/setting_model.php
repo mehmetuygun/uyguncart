@@ -13,14 +13,10 @@ class Setting_model extends CI_model
 	public function set($id)
 	{
 		$this->load->database();
-		$this->db->from('user');
+		$this->db->from('user')
+			->where(array('userID' => $id));
 
-		$data = array('userID' => $id);
-
-		$this->db->where($data);
-		$query = $this->db->get();
-
-		$row = $query->result();
+		$row = $this->db->get()->row();
 		$this->userEmail = $row->userEmail;
 		$this->userFirstName = $row->userFirstName;
 		$this->userLastName = $row->userLastName;

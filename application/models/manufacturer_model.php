@@ -13,12 +13,10 @@ class Manufacturer_model extends CI_model
 	public function set($id)
 	{
 		$this->load->database();
-
 		$this->db->from('manufacturer')
 			->where(array('manufacturerID' => $id));
 
-		$query = $this->db->get();
-		$row = $query->result();
+		$row = $this->db->get()->row();
 		$this->manufacturerName = $row->manufacturerName;
 	}
 
