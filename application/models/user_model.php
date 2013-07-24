@@ -29,12 +29,13 @@ class User_model extends CI_model
 			return false;
 		}
 
-		$row = $query->result();
-		$this->userID = $row->userID;
-		$this->userEmail = $row->userEmail;
-		$this->userFirstName = $row->userFirstName;
-		$this->userLastName = $row->userLastName;
-		$this->userType = $row->userType;
+		foreach($query->result() as $row){		
+			$this->userID = $row->userID;
+			$this->userEmail = $row->userEmail;
+			$this->userFirstName = $row->userFirstName;
+			$this->userLastName = $row->userLastName;
+			$this->userType = $row->userType;
+		}
 
 		return true;
 	}

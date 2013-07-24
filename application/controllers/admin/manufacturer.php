@@ -3,7 +3,8 @@
 class Manufacturer extends CI_Controller
 {
 
-	public function index() {
+	public function index() 
+	{
 		$this->load->helper('url');
 		redirect('/admin/manufacturer/view', 'location', 301);
 	}
@@ -36,7 +37,8 @@ class Manufacturer extends CI_Controller
 		$this->load->view('admin/default', $data);
 	}
 
-	public function insert() {
+	public function insert() 
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Manufacturer_model');
@@ -44,7 +46,7 @@ class Manufacturer extends CI_Controller
 
 		$this->User_model->admin_logged();
 
-		$this->form_validation->set_rules('manufacturer','Manufacturer','required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
+		$this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
 		$this->form_validation->set_error_delimiters('', '');
 
 		$data = array(
@@ -66,8 +68,7 @@ class Manufacturer extends CI_Controller
 			if($this->Manufacturer_model->insert($field)){
 				$data["alert_message"] = "The manufacturer is inserted.";
 				$data["alert_class"] = "alert-success";
-			}
-			else{
+			} else {
 				$data["alert_message"] = "Something went wrong.";
 				$data["alert_class"] = "alert-error";
 			}
@@ -76,7 +77,8 @@ class Manufacturer extends CI_Controller
 		$this->load->view('admin/default', $data);
 	}
 
-	public function edit($id) {
+	public function edit($id) 
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Manufacturer_model');
@@ -86,7 +88,7 @@ class Manufacturer extends CI_Controller
 
 		$this->Manufacturer_model->set($id);
 		if ($this->Manufacturer_model->manufacturerName != $this->input->post('manufacturer')) {
-			$this->form_validation->set_rules('manufacturer','Manufacturer','required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
+			$this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
 			$this->form_validation->set_error_delimiters('', '');
 		}
 
@@ -108,8 +110,7 @@ class Manufacturer extends CI_Controller
 			if($this->Manufacturer_model->update($field, $id)){
 				$data["alert_message"] = "The manufacturer is updated.";
 				$data["alert_class"] = "alert-success";
-			}
-			else{
+			} else {
 				$data["alert_message"] = "Something went wrong.";
 				$data["alert_class"] = "alert-error";
 			}
@@ -120,7 +121,8 @@ class Manufacturer extends CI_Controller
 		$this->load->view('admin/default', $data);
 	}
 
-	public function ajax() {
+	public function ajax() 
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Manufacturer_model');
@@ -136,7 +138,8 @@ class Manufacturer extends CI_Controller
 		echo json_encode($array);
 	}
 
-	public function delete() {
+	public function delete() 
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Manufacturer_model');

@@ -3,12 +3,14 @@
 class Product extends CI_Controller
 {
 
-	public function index() {
+	public function index() 
+	{
 		$this->load->helper('url');
 		redirect('/admin/product/view', 'location', 301);
 	}
 
-	public function view() {
+	public function view() 
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		// $this->load->model('Product_model');
@@ -33,7 +35,8 @@ class Product extends CI_Controller
 		$this->load->view('admin/default', $data);
 	}
 
-	public function add(){
+	public function add()
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		// $this->load->model('Product_model');

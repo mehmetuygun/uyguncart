@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends CI_Controller 
+{
 
 	public function index()
 	{	
@@ -18,7 +19,7 @@ class Login extends CI_Controller {
 			$this->load->model('User_model');
 
 			// check user data
-			if($this->User_model->login($this->input->post('email'),$this->input->post('password'))){
+			if($this->User_model->login($this->input->post('email'), $this->input->post('password'))) {
 				$data["message"] = "logged";
 				$data["alert_class"] = "alert-success";
 
@@ -35,12 +36,11 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($session);
 
 				redirect('/admin/home', 'location');
-			}
-			else {
+			} else {
 				$data["message"] = 'Invalid Email or Password.';
 				$data["alert_class"] = "alert-error";
 			}
 		}
-		$this->load->view('admin/login.php',$data);
+		$this->load->view('admin/login.php', $data);
 	}
 }

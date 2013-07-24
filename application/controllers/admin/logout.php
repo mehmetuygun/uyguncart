@@ -2,7 +2,8 @@
 
 class Logout extends CI_Controller
 {
-	public function index() {
+	public function index() 
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->helper('url');
