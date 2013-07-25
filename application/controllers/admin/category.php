@@ -32,7 +32,7 @@ class Category extends CI_Controller
 			'categories' => $this->Category_model->fetch(),
 			'entries'=> $this->Category_model->entries,
 			'pagecount'=> $this->Category_model->pagecount,
-			'js' => array('public/js/pagination.js', 'public/js/category_view.js'),
+			'js' => array('public/js/view.js'),
 		);
 
 		$this->load->view('admin/default', $data);

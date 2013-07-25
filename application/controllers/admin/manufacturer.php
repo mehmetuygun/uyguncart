@@ -28,7 +28,7 @@ class Manufacturer extends CI_Controller
 			'menu_active' => 'catalog',
 			'mainview' => 'manufacturer',
 			'fullname' => $this->session->userdata('userFullName'),
-			'js' => array('public/js/pagination.js', 'public/js/manufacturer_view.js'),
+			'js' => array('public/js/view.js'),
 			'manufacturers' => $this->Manufacturer_model->fetch('', 'asc', 10, 1),
 			'entries' => $this->Manufacturer_model->entries,
 			'pagecount' => $this->Manufacturer_model->pagecount

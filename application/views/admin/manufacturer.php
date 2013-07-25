@@ -42,4 +42,18 @@
   	</ul>
 </div>
 <span class="clearfix"></span>
+<script type="text/javascript">
+	function draw_table(data) {
+		var html = "";
+		for (var i = 0; i < data.length; i++) {
+			html += '<tr>';
+			html += '<td><input type="checkbox" value="'+data[i]['manufacturerID']+'" class="check"></td>';
+			html += '<td>'+data[i]['manufacturerName']+'</td>';
+			html += '<td><a class="link" href="edit/'+data[i]['manufacturerID']+'">Edit</a>&nbsp;';
+			html += '<a class="link delete_one" href="#'+data[i]['manufacturerID']+'">Delete</a></td>';
+			html += '</tr>';
+		}
+		$(".table tbody").html(html);
+	}
+</script>
 <hr>
