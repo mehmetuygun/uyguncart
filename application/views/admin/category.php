@@ -16,32 +16,35 @@
 	</thead>
 	<tbody>
 		<?php
-		$length = sizeof($categories);
-		for($i=0;$i<$length;$i++)
-		{
-			echo '<tr>
-			<td><input type="checkbox" name="check[]" class="check"  value="'.$categories[$i]["categoryID"].'"/></td>
-			<td>'.$categories[$i]["categoryName"].'</td>
-			<td><a class="link" href="'.base_url("admin/category/edit/".$categories[$i]["categoryID"]).'">Edit</a>&nbsp;<a class="link delete_one" href="#'.$categories[$i]["categoryID"].'" onclick="return false">Delete</a></td>
-			</tr>';
+		foreach ($categories as $category) {
+			$edit_url = base_url("admin/category/edit/{$category['categoryID']}");
+			echo <<<HTML
+		<tr>
+			<td><input name="check[]" type="checkbox" value="{$category['categoryID']}" /></td>
+			<td>{$category['categoryName']}</td>
+			<td valign="middle">
+				<a class="link" href="$edit_url">Edit</a>
+				<a class="link delete_one" href="#{$category['categoryID']}" onclick="return false">Delete</a>
+			</td>
+		</tr>
+HTML;
 		}
 		?>
 	</tbody>
 </table>
 <span class="pull-left" id="show_info">Showing 1 to 10 of <?php echo $entries; ?> entries.</span>
 <div class="pagination pull-right" style="margin:0">
-  	<ul>
-    	<li class="active"><a href="#" onclick="return false">&laquo;</a></li>
-    	<li class="active"><a href="#1" onclick="return false">1</a></li>
-    	<?php 
-    	if($pagecount>5)
-    		$pagecount = 5;
-    	for ($i=2; $i <= $pagecount ; $i++) { 
-    		echo '<li><a href="#'.$i.'"   onclick="return false">'.$i.'</a></li>';
-    	}
-    	?>
-    	<li <?php if($pagecount==1)echo 'class="active"'; ?>><a href="#"  onclick="return false">&raquo;</a></li>
-  	</ul>
+	<ul>
+		<li class="active"><a href="#" onclick="return false">&laquo;</a></li>
+		<li class="active"><a href="#1" onclick="return false">1</a></li>
+		<?php 
+		if ($pagecount > 5) $pagecount = 5;
+		for ($i=2; $i <= $pagecount ; $i++) { 
+			echo '<li><a href="#'.$i.'"   onclick="return false">'.$i.'</a></li>';
+		}
+		?>
+		<li <?php if($pagecount==1)echo 'class="active"'; ?>><a href="#"  onclick="return false">&raquo;</a></li>
+	</ul>
 </div>
 <span class="clearfix"></span>
 <hr>
