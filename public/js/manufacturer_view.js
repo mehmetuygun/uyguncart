@@ -16,6 +16,7 @@ $(document).ready(function(){
 	}
 
 	$(".pagination ul li a").on('click',function(){
+		if ($(this).parent().hasClass('disabled')) return;
 		var search = $('input[name="search"]').val();
 		var page = $(this).attr('href').substring(1);
 		ajax(search,page);
@@ -46,6 +47,7 @@ $(document).ready(function(){
 		pagination(data[1],data[0]);
 		show_info(data[1],data[2]);
 		$(".pagination ul li a").on('click',function(){
+			if ($(this).parent().hasClass('disabled')) return;
 			var search = $('input[name="search"]').val();
 			var page = $(this).attr('href').substring(1);
 			ajax(search,page);
