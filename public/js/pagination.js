@@ -27,6 +27,8 @@ pagination = function(page, pcount) {
 	};
 
 	var html = '<ul>';
+	page = parseInt(page);
+	pcount = parseInt(pcount);
 	var nums = getPageNumbers(page, pcount);
 	var prev = page > 1 ? page - 1 : '';
 	var next = page < pcount ? page + 1 : '';
