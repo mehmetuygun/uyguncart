@@ -26,7 +26,7 @@ class Product extends CI_Controller {
 			'menu_active' => 'catalog',
 			'mainview' => 'product',
 			'fullname' => $this->session->userdata('userFullName'),
-			'js' => array('public/js/pagination.js', 'public/js/category_view.js'),
+			'js' => array('public/js/view.js'),
 		);
 
 		$this->load->view('admin/default', $data);
@@ -51,7 +51,7 @@ class Product extends CI_Controller {
 			'menu_active' => 'catalog',
 			'mainview' => 'product_add',
 			'fullname' => $this->session->userdata('userFullName'),
-			'js' => array('public/js/pagination.js', 'public/js/tinymce/tinymce.min.js', 'public/js/product_add.js'),
+			'js' => array('public/js/view.js', 'public/js/tinymce/tinymce.min.js', 'public/js/product_add.js'),
 		);
 
 		$this->load->view('admin/default', $data);
