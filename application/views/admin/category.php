@@ -10,9 +10,11 @@
 </span>
 <table class="table table-bordered">
 	<thead>
-		<th style="width:20px"><input type="checkbox" name="check_all" onclick="check_all(this)"></th>
-		<th>Category</th>
-		<th style="width:100px"></th>
+		<tr>
+			<th style="width:20px"><input type="checkbox" name="check_all" onclick="check_all(this)"></th>
+			<th>Category</th>
+			<th style="width:100px"></th>
+		</tr>
 	</thead>
 	<tbody>
 		<?php
