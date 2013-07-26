@@ -46,3 +46,6 @@
 			<a class="btn" href="<?php echo base_url('/admin/product') ?>">Cancel</a>
 	</div>
 </form>
+<script>
+        tinymce.init({selector:'textarea'});
+</script>
