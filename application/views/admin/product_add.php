@@ -20,32 +20,22 @@
             <span class="help-inline"><?php echo form_error('productName'); ?></span>
 	   </div>
 	</div>
-    <div class="control-group <?php if(form_error('productPrize')) echo "error"; ?>">
-    <label class="control-label" for="inputproductPrize">Product Prize</label>
-       <div class="controls">
-            <input type="text" name="productPrize" id="inputproductPrize" value="<?php echo set_value('productPrize'); ?>">
-            <span class="help-inline"><?php echo form_error('productPrize'); ?></span>
-       </div>
+    <div class="control-group">
+        <label class="control-label">Category</label>
+        <div class="controls">
+            <?php echo form_dropdown('categoryID', $categories, set_value('categoryID', '')) ?>
+            <span class="help-inline"><?php echo form_error('categoryID'); ?></span>
+        </div>
     </div>
-    <div class="control-group <?php if(form_error('productDescription')) echo "error"; ?>">
-    <label class="control-label" for="inputproductDescription">Product Description</label>
-       <div class="controls">
-            <textarea name="productDescription" id="inputproductDescription" value="<?php echo set_value('productDescription'); ?>"></textarea> 
-            <span class="help-inline"><?php echo form_error('productDescription'); ?></span>
-       </div>
-    </div>
-    <div class="control-group <?php if(form_error('productName')) echo "error"; ?>">
-    <label class="control-label" for="inputProductName">Product Name</label>
-       <div class="controls">
-            <input type="text" name="productName" id="inputProductName" value="<?php echo set_value('productName'); ?>">
-            <span class="help-inline"><?php echo form_error('productName'); ?></span>
-       </div>
+    <div class="control-group">
+        <label class="control-label">Manufacturer</label>
+        <div class="controls">
+            <?php echo form_dropdown('manufacturerID', $manufacturer, set_value('manufacturerID', '')) ?>
+            <span class="help-inline"><?php echo form_error('manufacturerID'); ?></span>
+        </div>
     </div>
 	<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Add</button>
+			<button type="submit" class="btn btn-primary">Create</button>
 			<a class="btn" href="<?php echo base_url('/admin/product') ?>">Cancel</a>
 	</div>
 </form>
-<script>
-        tinymce.init({selector:'textarea'});
-</script>

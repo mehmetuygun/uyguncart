@@ -36,6 +36,7 @@ class Product extends CI_Controller {
 	{
 		$this->load->library('session');
 		$this->load->model('User_model');
+		$this->load->model('Category_model');
 		$this->load->library('form_validation');
 
 		$this->User_model->admin_logged();
@@ -51,7 +52,8 @@ class Product extends CI_Controller {
 			'menu_active' => 'catalog',
 			'mainview' => 'product_add',
 			'fullname' => $this->session->userdata('userFullName'),
-			'js' => array('public/js/view.js', 'public/js/tinymce/tinymce.min.js', 'public/js/product_add.js'),
+			'categories' => $this->Category_model->fetchAll(true),
+			'manufacturer' => array(0 => 'test'),
 		);
 
 		$this->load->view('admin/default', $data);
