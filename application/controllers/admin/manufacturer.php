@@ -9,7 +9,8 @@ class Manufacturer extends CI_Controller
 		redirect('/admin/manufacturer/view', 'location', 301);
 	}
 
-	public function view() {
+	public function view()
+	{
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Manufacturer_model');
@@ -47,7 +48,6 @@ class Manufacturer extends CI_Controller
 		$this->User_model->admin_logged();
 
 		$this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
-		$this->form_validation->set_error_delimiters('', '');
 
 		$data = array(
 			'base_url' => $this->load->helper(array('form', 'url')),
@@ -89,7 +89,6 @@ class Manufacturer extends CI_Controller
 		$this->Manufacturer_model->set($id);
 		if ($this->Manufacturer_model->manufacturerName != $this->input->post('manufacturer')) {
 			$this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
-			$this->form_validation->set_error_delimiters('', '');
 		}
 
 		$data = array(
@@ -107,7 +106,7 @@ class Manufacturer extends CI_Controller
 
 		if ($this->form_validation->run() === true) {
 			$field = array("manufacturerName" => $this->input->post('manufacturer'));
-			if($this->Manufacturer_model->update($field, $id)){
+			if ($this->Manufacturer_model->update($field, $id)) {
 				$data["alert_message"] = "The manufacturer is updated.";
 				$data["alert_class"] = "alert-success";
 			} else {
@@ -119,6 +118,20 @@ class Manufacturer extends CI_Controller
 		$data['manufacturer'] = $this->Manufacturer_model->manufacturerName;
 
 		$this->load->view('admin/default', $data);
+	}
+
+	public function delete() 
+	{
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->model('Manufacturer_model');
+		$this->User_model->admin_logged();
+
+		$list = $this->input->post('list');
+
+		foreach ($list as $value) {
+			$this->Manufacturer_model->delete(array('manufacturerID' => $value));
+		}
 	}
 
 	public function ajax() 
@@ -133,22 +146,14 @@ class Manufacturer extends CI_Controller
 
 		$manufacturers = $this->Manufacturer_model->fetch($search, 'asc', 10, $page);
 
-		$page = array($this->Manufacturer_model->pagecount, $page,$this->Manufacturer_model->entries);
-		$array = array($manufacturers, $page);
+		$array = array(
+			$manufacturers,
+			array(
+				$this->Manufacturer_model->pagecount,
+				$page,
+				$this->Manufacturer_model->entries
+			)
+		);
 		echo json_encode($array);
-	}
-
-	public function delete() 
-	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Manufacturer_model');
-		$this->User_model->admin_logged();
-
-		$list = $this->input->post('list');
-
-		foreach ($list as $value) {
-			$this->Manufacturer_model->delete(array('manufacturerID'=>$value));
-		}
 	}
 }

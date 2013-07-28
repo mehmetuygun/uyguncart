@@ -46,8 +46,6 @@ class Setting extends CI_Controller {
 				$this->form_validation->set_rules('pwd','Password','required|min_length[8]|max_length[64]|checkpassword');
 			}
 
-			$this->form_validation->set_error_delimiters('', '');
-
 			if($this->form_validation->run() == TRUE) {	
 				if ($this->Setting_model->update_account($field, $this->session->userdata('userID'))) {
 					$data["alert_message"] = "Your data is update succesfuly.";
@@ -87,7 +85,6 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('current_password', 'Current Password', 'required|min_length[8]|max_length[64]|checkpassword');
 		$this->form_validation->set_rules('new_password', 'New Password', 'required|min_length[8]|max_length[64]|matches[confirm_password]');
 		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|min_length[8]|max_length[64]|matches[new_password]');
-		$this->form_validation->set_error_delimiters('', '');
 		
 		if($this->form_validation->run() == TRUE) {
 			if($this->Setting_model->update_account(array('userPassword'=>$this->input->post('new_password')),$this->session->userdata('userID'))) {
