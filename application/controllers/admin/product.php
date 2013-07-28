@@ -57,24 +57,37 @@ class Product extends CI_Controller {
 			'categories' => $this->Category_model->fetchAll(true),
 			'manufacturer' => $this->Manufacturer_model->fetchAll(true),
 		);
-		if($this->input->post('categoryID')!=NULL)
-			$this->form_validation->set_rules('categoryID', 'Category', 'required|not_exists[category.categoryID]');
+		if ($this->input->post('categoryID') != NULL) {
+			$this->form_validation->set_rules(
+				'categoryID',
+				'Category',
+				'required|exists[category.categoryID]'
+			);
+		}
 		
-		if($this->input->post('manufacturerID')!=NULL)
-			$this->form_validation->set_rules('manufacturerID', 'MAnufacturer', 'required|not_exists[manufacturer.manufacturerID]');
+		if ($this->input->post('manufacturerID') != NULL) {
+			$this->form_validation->set_rules(
+				'manufacturerID',
+				'Manufacturer',
+				'required|exists[manufacturer.manufacturerID]'
+			);
+		}
 
-		$this->form_validation->set_rules('productName', 'Product', 'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[manufacturer.manufacturerName]');
-
-		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules(
+			'productName',
+			'Product',
+			'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[manufacturer.manufacturerName]'
+		);
 
 		if($this->form_validation->run() == TRUE) {
-			$field = array('productName'=> $this->input->post('productName'),
-					'categoryID'=> $this->input->post('categoryID'),
-					'manufacturerID'=> $this->input->post('manufacturerID')
-					);
-			if($this->Product_model->add($field))
+			$field = array(
+				'productName'=> $this->input->post('productName'),
+				'categoryID'=> $this->input->post('categoryID'),
+				'manufacturerID'=> $this->input->post('manufacturerID')
+			);
+			if($this->Product_model->add($field)) {
 				redirect('/admin/product/edit/'.$this->Product_model->insert_id(), 'location');
-			else {
+			} else {
 				$data["alert_message"] = "Something went wrong. Please try again.";
 				$data["alert_class"] = "alert-error";
 			}
