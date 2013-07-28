@@ -96,4 +96,16 @@ class Manufacturer_model extends CI_model
 		return $query->result();
 	}
 
+	public function fetchAll ($with_none = FALSE)
+	{
+		$this->load->database();
+		$this->db->from('manufacturer');
+		$query = $this->db->get();
+		$field = array();
+		if ($with_none) $field[''] = '-- NONE --';
+		foreach ($query->result() as $row) {
+		 	$field[$row->manufacturerID] = $row->manufacturerName;
+		}
+		return $field;
+	}
 }

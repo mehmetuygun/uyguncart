@@ -37,6 +37,8 @@ class Product extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Category_model');
+		$this->load->model('Manufacturer_model');
+		$this->load->model('Product_model');
 		$this->load->library('form_validation');
 
 		$this->User_model->admin_logged();
@@ -53,8 +55,30 @@ class Product extends CI_Controller {
 			'mainview' => 'product_add',
 			'fullname' => $this->session->userdata('userFullName'),
 			'categories' => $this->Category_model->fetchAll(true),
-			'manufacturer' => array(0 => 'test'),
+			'manufacturer' => $this->Manufacturer_model->fetchAll(true),
 		);
+		if($this->input->post('categoryID')!=NULL)
+			$this->form_validation->set_rules('categoryID', 'Category', 'required|not_exists[category.categoryID]');
+		
+		if($this->input->post('manufacturerID')!=NULL)
+			$this->form_validation->set_rules('manufacturerID', 'MAnufacturer', 'required|not_exists[manufacturer.manufacturerID]');
+
+		$this->form_validation->set_rules('productName', 'Product', 'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[manufacturer.manufacturerName]');
+
+		$this->form_validation->set_error_delimiters('', '');
+
+		if($this->form_validation->run() == TRUE) {
+			$field = array('productName'=> $this->input->post('productName'),
+					'categoryID'=> $this->input->post('categoryID'),
+					'manufacturerID'=> $this->input->post('manufacturerID')
+					);
+			if($this->Product_model->add($field))
+				redirect('/admin/product/edit/'.$this->Product_model->insert_id(), 'location');
+			else {
+				$data["alert_message"] = "Something went wrong. Please try again.";
+				$data["alert_class"] = "alert-error";
+			}
+		}
 
 		$this->load->view('admin/default', $data);
 	}

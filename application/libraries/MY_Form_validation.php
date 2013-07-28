@@ -71,4 +71,18 @@ class MY_Form_validation extends CI_Form_validation
 			}
 		}
 	}
+	public function not_exists($str, $field)
+	{
+		$this->CI->form_validation->set_message('not_exists', 'The %s field does not exists.');
+		list($table, $field)=explode('.', $field);
+		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
+		
+		return $query->num_rows() != 0;
+    }
+
+    public function alpha_dash_space($str)
+	{
+		$this->CI->form_validation->set_message('alpha_dash_space', 'The %s field may only contain alphabetical characters.');
+   		return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+	} 
 }
