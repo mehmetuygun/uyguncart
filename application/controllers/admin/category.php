@@ -63,7 +63,6 @@ class Category extends CI_Controller
 
 		$this->form_validation->set_rules('parentID', 'Parent Category',' category_exist');
 		$this->form_validation->set_rules('categoryName', 'Category', 'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]');
-		$this->form_validation->set_error_delimiters('', '');
 
 		if($this->form_validation->run() == TRUE) {	
 			$parentID = $this->input->post('parentID');
@@ -103,7 +102,6 @@ class Category extends CI_Controller
 			if ($cat_name_changed) {
 				$this->form_validation->set_rules('categoryName', 'Category', 'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]');
 			}
-			$this->form_validation->set_error_delimiters('', '');
 		}
 
 		$data = array(

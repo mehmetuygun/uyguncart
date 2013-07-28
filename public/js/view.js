@@ -66,7 +66,7 @@ function init_pagination() {
 	});
 }
 
-pagination = function(page, pcount) {
+function pagination(page, pcount) {
 	var returnLink = function(label, page, clsDef) {
 		if (clsDef) clsDef = ' class="' + clsDef + '" ';
 		return '<li' + clsDef + '>\

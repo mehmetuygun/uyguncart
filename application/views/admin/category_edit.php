@@ -10,7 +10,7 @@
 		<?php echo $alert_message ?>
 	</div>
 	<?php } ?>
-	<div class="control-group">
+	<div class="control-group <?php if(form_error('parentID')) echo "error"; ?>">
 		<label class="control-label" for="inputCategory">Parent Category</label>
 		<div class="controls">
 			<?php echo form_dropdown('parentID', $categories, set_value('parentID', $parentID)) ?>

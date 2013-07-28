@@ -5,6 +5,9 @@ class MY_Form_validation extends CI_Form_validation
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->_error_prefix = '';
+		$this->_error_suffix = '';
 	}
 	
 	/**
@@ -43,8 +46,8 @@ class MY_Form_validation extends CI_Form_validation
 	{
 		$this->CI->load->model('Category_model');
 		$this->CI->form_validation->set_message('category_exist', 'The %s does not exist.');
+
 		return $this->CI->Category_model->category_exist($str);
-		return false;
 	}
 
 	/*
