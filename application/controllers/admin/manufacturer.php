@@ -47,7 +47,11 @@ class Manufacturer extends CI_Controller
 
 		$this->User_model->admin_logged();
 
-		$this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
+		$this->form_validation->set_rules(
+			'manufacturer',
+			'Manufacturer',
+			'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]'
+		);
 
 		$data = array(
 			'base_url' => $this->load->helper(array('form', 'url')),
@@ -88,7 +92,11 @@ class Manufacturer extends CI_Controller
 
 		$this->Manufacturer_model->set($id);
 		if ($this->Manufacturer_model->manufacturerName != $this->input->post('manufacturer')) {
-			$this->form_validation->set_rules('manufacturer', 'Manufacturer', 'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]');
+			$this->form_validation->set_rules(
+				'manufacturer',
+				'Manufacturer',
+				'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]'
+			);
 		}
 
 		$data = array(
@@ -104,7 +112,7 @@ class Manufacturer extends CI_Controller
 			'fullname' => $this->session->userdata('userFullName'),
 		);
 
-		if ($this->form_validation->run() === true) {
+		if ($this->form_validation->run() == true) {
 			$field = array("manufacturerName" => $this->input->post('manufacturer'));
 			if ($this->Manufacturer_model->update($field, $id)) {
 				$data["alert_message"] = "The manufacturer is updated.";
