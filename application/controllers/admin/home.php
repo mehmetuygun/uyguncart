@@ -6,17 +6,18 @@ class Home extends CI_Controller
 	{
 		$this->load->model('User_model');
 		$this->load->library('session');
-		$data["base_url"] = $this->load->helper('url');
+		$this->User_model->admin_logged();
 
-		$data["title"] = "UygunCart";
-		$data["breadcrumb"] = array("last"=>"Dashboard");
-		$data["fullname"] = $this->session->userdata('name');
-
-		$data["mainview"] = "home";
-		$this->load->library('session');
-		$data["fullname"] = $this->session->userdata('userFullName');
+		$data = array(
+			'base_url' => $this->load->helper('url'),
+			'title' => 'UygunCart',
+			'breadcrumb' => array(
+				'last' => 'Dashboard'
+			),
+			'mainview' => 'home',
+			'fullname' => $this->session->userdata('userFullName')
+		);
 
 		$this->load->view('admin/default', $data);
-		$this->User_model->admin_logged();
 	}
 }

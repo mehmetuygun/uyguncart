@@ -15,7 +15,7 @@
 				<a class="btn btn-mini btn-inverse pull-right" href="<?php echo base_url();?>">Home</a>
 			</div>
 			<?php
-			if(isset($alert)){
+			if (isset($message)){
 			?>
 			<div class="alert <?php echo $alert_class ?>">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
