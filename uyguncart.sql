@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 26, 2013 at 09:29 
+-- Generation Time: Jul 31, 2013 at 08:40 
 -- Server version: 5.6.10
 -- PHP Version: 5.3.5
 
@@ -31,15 +31,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `categoryID` int(11) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(45) NOT NULL,
   `parentID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+  PRIMARY KEY (`categoryID`),
+  KEY `categoryID` (`categoryID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`categoryID`, `categoryName`, `parentID`) VALUES
-(5, 'uygun', 6),
+(5, 'uygun', 20),
 (6, 'asdasdasds', NULL),
 (10, 'easdasd', NULL),
 (11, 'easdaasdasd', NULL),
@@ -50,7 +51,8 @@ INSERT INTO `category` (`categoryID`, `categoryName`, `parentID`) VALUES
 (16, 'asdasdab', NULL),
 (17, 'basdasdb', NULL),
 (18, 'basdbac', NULL),
-(19, 'basdbacb', NULL);
+(19, 'basdbacb', NULL),
+(20, 'uyfguhyjgyuh', 5);
 
 -- --------------------------------------------------------
 
@@ -73,9 +75,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('5b4517e0350cf5ab4f8bfcf72de5c398', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0', 1374700935, 'a:8:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:12:"userFullName";s:12:"Mehmet Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}'),
-('8e140a16424af73904caaa9195f27236', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1374694675, 'a:8:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:12:"userFullName";s:12:"Mehmet Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}'),
-('fc687c2c4b5ca6e4b49d0990d0033176', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1374857667, 'a:7:{s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:12:"userFullName";s:12:"Mehmet Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}');
+('37c16af99588e913b4d09fc75ed8cec3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1375295697, 'a:8:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:12:"userFullName";s:12:"Mehmet Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,8 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 CREATE TABLE IF NOT EXISTS `manufacturer` (
   `manufacturerID` int(11) NOT NULL AUTO_INCREMENT,
   `manufacturerName` varchar(45) NOT NULL,
-  PRIMARY KEY (`manufacturerID`)
+  PRIMARY KEY (`manufacturerID`),
+  KEY `manufacturerID` (`manufacturerID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
@@ -102,7 +103,6 @@ INSERT INTO `manufacturer` (`manufacturerID`, `manufacturerName`) VALUES
 (8, 'testt'),
 (10, 'aqweqqwqqwe'),
 (14, 'aqweqqweqwqweeqqweqwe'),
-(15, 'aqweqqweqwqqweweeqqweqwe'),
 (16, 'aqweqqweqwqqwqweweeqqweqwe'),
 (17, 'poac'),
 (18, 'poacm'),
@@ -115,19 +115,26 @@ INSERT INTO `manufacturer` (`manufacturerID`, `manufacturerName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `product` (
-  `productID` int(11) NOT NULL,
+  `productID` int(11) NOT NULL AUTO_INCREMENT,
   `productName` varchar(75) NOT NULL,
-  `productDescription` text NOT NULL,
-  `productStatus` tinyint(1) NOT NULL,
+  `productDescription` text,
+  `productStatus` tinyint(1) DEFAULT NULL,
   `productAddedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `productPrize` double(11,2) NOT NULL,
-  PRIMARY KEY (`productID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `productPrize` double(11,2) DEFAULT NULL,
+  `manufacturerID` varchar(11) DEFAULT NULL,
+  `categoryID` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`productID`),
+  KEY `manufacturerID` (`manufacturerID`),
+  KEY `categoryID` (`categoryID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `product`
 --
 
+INSERT INTO `product` (`productID`, `productName`, `productDescription`, `productStatus`, `productAddedDate`, `productPrize`, `manufacturerID`, `categoryID`) VALUES
+(1, 'test product', NULL, NULL, '2013-07-28 19:14:17', NULL, '', ''),
+(2, 'test productq', NULL, NULL, '2013-07-28 19:14:41', NULL, '', '');
 
 -- --------------------------------------------------------
 
