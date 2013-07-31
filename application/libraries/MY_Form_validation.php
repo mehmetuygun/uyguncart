@@ -61,18 +61,20 @@ class MY_Form_validation extends CI_Form_validation
 		if ($id == $target) return false;
 
 		if (!isset($categories)) {
-			$this->CI->Category_model->group_by_parent();
+			$categories = $this->CI->Category_model->group_by_parent();
 		}
 
-		if (empty($categories[$id])) {
+		if (empty($categories[$target])) {
 			return true;
 		}
 
-		foreach ($categories[$id] as $categoryID) {
-			if ($this->not_sub_category($categoryID, $target, $categories)) {
-				return true;
+		foreach ($categories[$target] as $categoryID) {
+			if (!$this->not_sub_category($id, $categoryID, $categories)) {
+				return false;
 			}
 		}
+
+		return true;
 	}
 	public function exists($str, $field)
 	{
