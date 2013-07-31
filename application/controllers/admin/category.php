@@ -60,18 +60,28 @@ class Category extends CI_Controller
 			'fullname' => $this->session->userdata('userFullName'),
 			'categories' => $this->Category_model->fetchAll(true),
 		);
+		$rules = array(
+			array(
+				'field' => 'parentID',
+				'label' => 'Parent Category',
+				'rules' => 'category_exist'
+			),
+			array(
+				'field' => 'categoryName',
+				'label' => 'Category',
+				'rules' => 'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]'
+			)
+		);
+		$this->form_validation->set_rules($rules);
 
-		$this->form_validation->set_rules('parentID', 'Parent Category',' category_exist');
-		$this->form_validation->set_rules('categoryName', 'Category', 'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]');
-
-		if($this->form_validation->run() == TRUE) {	
+		if ($this->form_validation->run() == true) {	
 			$parentID = $this->input->post('parentID');
-			if(strlen($parentID) > 0)
-				$field = array('parentID'=> $this->input->post('parentID'), 'categoryName'=> $this->input->post('categoryName'));
-			else
-				$field = array('categoryName'=> $this->input->post('categoryName'));
+			$field = array('categoryName'=> $this->input->post('categoryName'));
+			if (strlen($parentID) > 0) {
+				$field['parentID'] = $this->input->post('parentID');
+			}
 
-			if($this->Category_model->add($field)) {
+			if ($this->Category_model->add($field)) {
 				$data["alert_message"] = "The Category is added succesfuly.";
 				$data["alert_class"] = "alert-success";
 				$data["categories"] = $this->Category_model->fetchAll(true);
@@ -98,9 +108,17 @@ class Category extends CI_Controller
 		$cat_name_changed = $this->Category_model->categoryName != $this->input->post('categoryName');
 
 		if ($cat_name_changed || $this->Category_model->parentID != $this->input->post('parentID')) {
-			$this->form_validation->set_rules('parentID', 'Parent Category', 'category_exist|not_sub_category['. $id .']');
+			$this->form_validation->set_rules(
+				'parentID',
+				'Parent Category',
+				'category_exist|not_sub_category['. $id .']'
+			);
 			if ($cat_name_changed) {
-				$this->form_validation->set_rules('categoryName', 'Category', 'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]');
+				$this->form_validation->set_rules(
+					'categoryName',
+					'Category',
+					'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]'
+				);
 			}
 		}
 
@@ -118,15 +136,18 @@ class Category extends CI_Controller
 			'categories' => $this->Category_model->fetchAll(true, $id),
 		);
 
-		if($this->form_validation->run() == TRUE) {
+		if ($this->form_validation->run() == TRUE) {
 			$parentID = $this->input->post('parentID');
 			if (empty($parentID)) {
 				$parentID = null;
 			}
 
-			$field = array('parentID'=>$parentID,'categoryName'=>$this->input->post('categoryName'));
+			$field = array(
+				'parentID' => $parentID,
+				'categoryName' => $this->input->post('categoryName')
+			);
 
-			if($this->Category_model->edit($field, $id)) {
+			if ($this->Category_model->edit($field, $id)) {
 				$data["alert_message"] = "The Category was updated successfully.";
 				$data["alert_class"] = "alert-success";
 				$data["categories"] = $this->Category_model->fetchAll(true, $id);
@@ -169,8 +190,13 @@ class Category extends CI_Controller
 
 		$categories = $this->Category_model->fetch($search, 'asc', 10, $page);
 
-		$page = array($this->Category_model->pagecount, $page,$this->Category_model->entries);
-		$array = array($categories, $page);
+		$array = array(
+			$categories, 
+			array(
+				$this->Category_model->pagecount,
+				$page, $this->Category_model->entries
+			)
+		);
 
 		echo json_encode($array);
 	}

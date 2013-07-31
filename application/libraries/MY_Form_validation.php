@@ -74,10 +74,10 @@ class MY_Form_validation extends CI_Form_validation
 			}
 		}
 	}
-	public function not_exists($str, $field)
+	public function exists($str, $field)
 	{
-		$this->CI->form_validation->set_message('not_exists', 'The %s field does not exists.');
-		list($table, $field)=explode('.', $field);
+		$this->CI->form_validation->set_message('exists', 'The %s field does not exists.');
+		list($table, $field) = explode('.', $field);
 		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
 		
 		return $query->num_rows() != 0;
