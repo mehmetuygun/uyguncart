@@ -83,4 +83,26 @@ class Product extends CI_Controller {
 		$this->load->view('admin/default', $data);
 	}
 
+	public function edit($id)
+	{
+		$this->load->library('session');
+		$this->load->model('User_model');
+
+		$this->User_model->admin_logged();
+
+		$data = array(
+			'base_url' => $this->load->helper('url'),
+			'title' => 'UygunCart',
+			'breadcrumb' => array(
+				'admin/home' => 'Dashboard',
+				'admin/product' => 'Product',
+				'last' => 'Edit'
+			),
+			'menu_active' => 'catalog',
+			'mainview' => 'product_edit',
+			'fullname' => $this->session->userdata('userFullName'),
+		);
+
+		$this->load->view('admin/default', $data);
+	}
 }
