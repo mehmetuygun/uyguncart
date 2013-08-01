@@ -103,7 +103,7 @@ function pagination(page, pcount) {
 	html += returnLink('&laquo;', prev, prev ? '' : 'disabled');
 	for (var i = 0; i < nums.length; i++) {
 		if (nums[i] == page) {
-			html += returnLink(nums[i], '', 'active');
+			html += returnLink(nums[i], '', 'active disabled');
 		} else if (nums[i] != '...') {
 			html += returnLink(nums[i], nums[i], '');
 		} else {
@@ -115,18 +115,14 @@ function pagination(page, pcount) {
 	$('.pagination').html(html);
 }
 
-function show_info(page,entries) {
-	var message,limit=10;
-	if(entries<=limit && page == 1)
-		message = "Showing 1 to "+entries+" of "+entries+" entries.";
-	if(entries>limit && page == 1)
-		message = "Showing 1 to 10 of "+entries+" entries.";
-	if(entries>limit && page > 1) {
-		if(entries>(limit*page))
-			message = "Showing "+(((page*limit)-limit)+1)+" to "+(page*limit)+" of "+entries+" entries.";
-		else
-			message = "Showing "+(((page*limit)-limit)+1)+" to "+entries+" of "+entries+" entries.";
+function show_info(page, entries) {
+	var message, limit = 10, from = 1, end = entries;
+	if (entries > limit && page == 1) {
+		end = 10;
+	} else if (entries > limit && page > 1) {
+		end = (entries > limit * page) ? page * limit : entries;
+		from = page * limit - limit + 1;
 	}
-	$("#show_info").empty();
-	$("#show_info").append(message);
+	message = 'Showing ' + from + ' to ' + end + ' of ' + entries + ' entries.';
+	$('#show_info').html(message);
 }
