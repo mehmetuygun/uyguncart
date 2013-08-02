@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `productDescription` text,
   `productStatus` tinyint(1) DEFAULT NULL,
   `productAddedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `productPrize` double(11,2) DEFAULT NULL,
+  `productPrice` double(11,2) DEFAULT NULL,
   `manufacturerID` varchar(11) DEFAULT NULL,
   `categoryID` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`productID`),
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productID`, `productName`, `productDescription`, `productStatus`, `productAddedDate`, `productPrize`, `manufacturerID`, `categoryID`) VALUES
+INSERT INTO `product` (`productID`, `productName`, `productDescription`, `productStatus`, `productAddedDate`, `productPrice`, `manufacturerID`, `categoryID`) VALUES
 (1, 'test product', NULL, NULL, '2013-07-28 19:14:17', NULL, '', ''),
 (2, 'test productq', NULL, NULL, '2013-07-28 19:14:41', NULL, '', '');
 
