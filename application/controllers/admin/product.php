@@ -99,8 +99,12 @@ class Product extends CI_Controller {
 	public function edit($id)
 	{
 		$this->load->library('session');
+		$this->load->library('form_validation');
 		$this->load->model('User_model');
-
+		$this->load->model('Category_model');
+		$this->load->model('Manufacturer_model');
+		$this->load->model('Product_model');
+		$this->load->helper('form');
 		$this->User_model->admin_logged();
 
 		$data = array(
@@ -114,7 +118,71 @@ class Product extends CI_Controller {
 			'menu_active' => 'catalog',
 			'mainview' => 'product_edit',
 			'fullname' => $this->session->userdata('userFullName'),
+			'js' => array('public/js/tinymce/tinymce.min.js','public/js/product_edit.js'),
+			'status' => array(0 => 'Disabled', 1 => 'Enabled'),
+			'categories' => $this->Category_model->fetchAll(true),
+			'manufacturers' => $this->Manufacturer_model->fetchAll(true),
+			'product' => $this->Product_model->set($id),
 		);
+
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			$update = array();
+
+			$fields = array(
+				array(
+					'field' => 'productName',
+					'label' => 'Email',
+					'rules' => 'integer',
+				),
+				array(
+					'field' => 'categoryID',
+					'label' => 'Category',
+					'rules' => 'exists_null[category.categoryID]',
+				),
+				array(
+					'field' => 'manufacturerID',
+					'label' => 'Manufacturer',
+					'rules' => 'exists_null[manufacturer.manufacturerID]',
+				),
+				array(
+					'field' => 'productPrice',
+					'label' => 'Product Price',
+					'rules' => 'integer',
+				),
+				array(
+					'field' => 'productStatus',
+					'label' => 'Product Status',
+					'rules' => 'status',
+				),
+				array(
+					'field' => 'productDescription',
+					'label' => 'Product Description',
+					'rules' => 'required',
+				),
+			);
+
+			foreach ($fields as $field) {
+				if ($this->input->post($field['field']) != $this->Product_model->{$field['field']}) {
+					$this->form_validation->set_rules(array($field));
+					$update[$field['field']] = $this->input->post($field['field']);
+				}
+			}
+
+			if (empty($update)) {
+				$data['alert_message'] = 'Enter data you want to update.';
+				$data['alert_class'] = 'alert-error';
+			} 
+
+			if ($this->form_validation->run() == true) {
+				if ($this->Product_model->update($update,$id)) {
+					$data['alert_message'] = 'Your data has been updated successfully.';
+					$data['alert_class'] = 'alert-success'; 
+				} else {
+					$data['alert_message'] = 'Something went wrong.';
+					$data['alert_class'] = 'alert-error';	
+				}
+			}
+		}
 
 		$this->load->view('admin/default', $data);
 	}
