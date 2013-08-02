@@ -29,13 +29,12 @@ class User_model extends CI_model
 			return false;
 		}
 
-		foreach($query->result() as $row){		
-			$this->userID = $row->userID;
-			$this->userEmail = $row->userEmail;
-			$this->userFirstName = $row->userFirstName;
-			$this->userLastName = $row->userLastName;
-			$this->userType = $row->userType;
-		}
+		$row = $query->row();
+		$this->userID = $row->userID;
+		$this->userEmail = $row->userEmail;
+		$this->userFirstName = $row->userFirstName;
+		$this->userLastName = $row->userLastName;
+		$this->userType = $row->userType;
 
 		return true;
 	}
@@ -70,8 +69,7 @@ class User_model extends CI_model
 
 		$data = array('userID' => $id, 'userPassword' => $password);
 
-		$this->db->where($data);
-		$query = $this->db->get();
+		$query = $this->db->where($data)->get();
 		
 		if ($query->num_rows() != 1) {
 			return false;
