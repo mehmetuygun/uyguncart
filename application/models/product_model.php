@@ -53,4 +53,37 @@ class Product_model extends CI_model
 		$data = array('productID' => $id);
 		return $this->db->update('product', $field, $data);
 	}
+
+	public function fetch($query = '', $order_by = 'random', $limit = 10, $page = 1)
+	{
+		$this->load->database();
+
+		$this->db->from('product')
+			->like('productName', $query)
+			->order_by('productName', $order_by);
+		 
+		$this->entries = $this->db->count_all_results();
+		$this->pagecount = ceil($this->entries / $limit);
+
+		if($page == 1 or $page < 1) {
+			$from = 0;
+		} else if ($this->pagecount < $page) {
+			$from = ($this->pagecount * $limit) - $limit;
+		} else {
+			$from = ($page * $limit) - $limit;
+		}
+
+		$this->db->from('product')
+			->like('productName', $query)
+			->order_by('productName', $order_by)
+			->limit($limit, $from);
+
+		$query = $this->db->get();
+
+		$field = array();
+		foreach ($query->result_array() as $res) {
+			$field[] = $res;
+		}
+		return $field;
+	}
 }
