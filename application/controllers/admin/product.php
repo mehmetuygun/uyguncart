@@ -131,8 +131,8 @@ class Product extends CI_Controller {
 			$fields = array(
 				array(
 					'field' => 'productName',
-					'label' => 'Email',
-					'rules' => 'integer',
+					'label' => 'Product Name',
+					'rules' => 'required',
 				),
 				array(
 					'field' => 'categoryID',
@@ -147,7 +147,7 @@ class Product extends CI_Controller {
 				array(
 					'field' => 'productPrice',
 					'label' => 'Product Price',
-					'rules' => 'integer',
+					'rules' => 'numeric',
 				),
 				array(
 					'field' => 'productStatus',
