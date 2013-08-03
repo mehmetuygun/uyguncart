@@ -12,6 +12,7 @@ class Product extends CI_Controller {
 	{
 		$this->load->library('session');
 		$this->load->model('User_model');
+		$this->load->model('Product_model');
 
 		$this->User_model->admin_logged();
 
@@ -26,6 +27,9 @@ class Product extends CI_Controller {
 			'menu_active' => 'catalog',
 			'mainview' => 'product',
 			'fullname' => $this->session->userdata('userFullName'),
+			'products' => $this->Product_model->fetch(),
+			'entries'=> $this->Product_model->entries,
+			'pagecount'=> $this->Product_model->pagecount,
 			'js' => array('public/js/view.js'),
 		);
 
@@ -185,5 +189,29 @@ class Product extends CI_Controller {
 		}
 
 		$this->load->view('admin/default', $data);
+	}
+
+	public function ajax() 
+	{
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$this->load->model('Product_model');
+		$this->User_model->admin_logged();
+
+		$search = $this->input->post('search');
+		$page = $this->input->post('page');
+
+		$categories = $this->Product_model->fetch($search, 'asc', 10, $page);
+
+		$array = array(
+			$categories, 
+			array(
+				$this->Product_model->pagecount,
+				$page,
+				$this->Product_model->entries
+			)
+		);
+
+		echo json_encode($array);
 	}
 }
