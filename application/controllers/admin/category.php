@@ -15,11 +15,11 @@ class Category extends CI_Controller
 		$this->load->model('User_model');
 		$this->load->model('Category_model');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 
 		$this->User_model->admin_logged();
 
 		$data = array(
-			'base_url' => $this->load->helper(array('form', 'url')),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
@@ -44,11 +44,11 @@ class Category extends CI_Controller
 		$this->load->model('User_model');
 		$this->load->model('Category_model');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 
 		$this->User_model->admin_logged();
 
 		$data = array(
-			'base_url' => $this->load->helper(array('form', 'url')),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
@@ -100,6 +100,7 @@ class Category extends CI_Controller
 		$this->load->model('User_model');
 		$this->load->model('Category_model');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 
 		$this->User_model->admin_logged();
 
@@ -123,7 +124,6 @@ class Category extends CI_Controller
 		}
 
 		$data = array(
-			'base_url' => $this->load->helper(array('form', 'url')),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',

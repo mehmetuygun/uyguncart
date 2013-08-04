@@ -5,10 +5,9 @@ class Login extends CI_Controller
 	public function index()
 	{	
 		$this->load->library('session');
-		$data = array(
-			'base_url' => $this->load->helper('url'),
-			'title' => 'UygunCart'
-		);
+		$this->load->helper('url');
+
+		$data['title'] = 'UygunCart';
 
 		if ($this->input->post()) {
 			// loading user model

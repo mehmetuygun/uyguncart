@@ -13,11 +13,11 @@ class Product extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Product_model');
+		$this->load->helper('url');
 
 		$this->User_model->admin_logged();
 
 		$data = array(
-			'base_url' => $this->load->helper('url'),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
@@ -44,11 +44,11 @@ class Product extends CI_Controller {
 		$this->load->model('Manufacturer_model');
 		$this->load->model('Product_model');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 
 		$this->User_model->admin_logged();
 
 		$data = array(
-			'base_url' => $this->load->helper(array('form', 'url')),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
@@ -108,11 +108,10 @@ class Product extends CI_Controller {
 		$this->load->model('Category_model');
 		$this->load->model('Manufacturer_model');
 		$this->load->model('Product_model');
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'url'));
 		$this->User_model->admin_logged();
 
 		$data = array(
-			'base_url' => $this->load->helper('url'),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',

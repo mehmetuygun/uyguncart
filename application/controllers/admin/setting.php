@@ -14,9 +14,9 @@ class Setting extends CI_Controller {
 		$this->load->model('Setting_model');
 		$this->load->library('session');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 
 		$data = array(
-			'base_url' => $this->load->helper(array('form', 'url')),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
@@ -102,9 +102,9 @@ class Setting extends CI_Controller {
 		$this->load->model('Setting_model');
 		$this->load->library('session');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 
 		$data = array(
-			'base_url' => $this->load->helper(array('form', 'url')),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',

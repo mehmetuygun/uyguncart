@@ -6,10 +6,10 @@ class Home extends CI_Controller
 	{
 		$this->load->model('User_model');
 		$this->load->library('session');
+		$this->load->helper('url');
 		$this->User_model->admin_logged();
 
 		$data = array(
-			'base_url' => $this->load->helper('url'),
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
 				'last' => 'Dashboard'
