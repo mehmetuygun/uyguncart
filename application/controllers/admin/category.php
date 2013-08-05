@@ -1,24 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category extends CI_Controller
+class Category extends Admin_Controller
 {
+	public function __construct() {
+		parent::__construct();
 
-	public function index() 
+		$this->load->model('Category_model');
+	}
+
+	public function index()
 	{
 		$this->load->helper('url');
 		redirect('/admin/category/view', 'location', 301);
 	}
 
-	public function view() 
+	public function view()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
-		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
-
 		$data = array(
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
@@ -28,25 +25,19 @@ class Category extends CI_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'category',
-			'fullname' => $this->session->userdata('userFullName'),
 			'categories' => $this->Category_model->fetch(),
 			'entries'=> $this->Category_model->entries,
 			'pagecount'=> $this->Category_model->pagecount,
 			'js' => array('public/js/view.js'),
 		);
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
 	public function add()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
+		$this->load->helper('form');
 
 		$data = array(
 			'title' => 'UygunCart',
@@ -57,7 +48,6 @@ class Category extends CI_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'category_add',
-			'fullname' => $this->session->userdata('userFullName'),
 			'categories' => $this->Category_model->fetchAll(true),
 		);
 		$rules = array(
@@ -74,7 +64,7 @@ class Category extends CI_Controller
 		);
 		$this->form_validation->set_rules($rules);
 
-		if ($this->form_validation->run() == true) {	
+		if ($this->form_validation->run() == true) {
 			$parentID = $this->input->post('parentID');
 			$field = array('categoryName'=> $this->input->post('categoryName'));
 			if (strlen($parentID) > 0) {
@@ -91,18 +81,13 @@ class Category extends CI_Controller
 			}
 		}
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
-	public function edit($id) 
+	public function edit($id)
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
+		$this->load->helper('form');
 
 		$this->Category_model->set($id);
 
@@ -132,7 +117,6 @@ class Category extends CI_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'category_edit',
-			'fullname' => $this->session->userdata('userFullName'),
 			'categories' => $this->Category_model->fetchAll(true, $id),
 		);
 
@@ -160,17 +144,11 @@ class Category extends CI_Controller
 		$data['parentID'] = $this->Category_model->parentID;
 		$data['categoryName'] = $this->Category_model->categoryName;
 
-
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
-	public function delete() 
+	public function delete()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
-		$this->User_model->admin_logged();
-
 		$list = $this->input->post('list');
 
 		foreach ($list as $value) {
@@ -178,20 +156,15 @@ class Category extends CI_Controller
 		}
 	}
 
-	public function ajax() 
+	public function ajax()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
-		$this->User_model->admin_logged();
-
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
 		$categories = $this->Category_model->fetch($search, 'asc', 10, $page);
 
 		$array = array(
-			$categories, 
+			$categories,
 			array(
 				$this->Category_model->pagecount,
 				$page, $this->Category_model->entries
