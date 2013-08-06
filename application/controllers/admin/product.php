@@ -71,7 +71,7 @@ class Product extends Admin_Controller
 		$this->form_validation->set_rules(
 			'productName',
 			'Product',
-			'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[manufacturer.manufacturerName]'
+			'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[product.productName]'
 		);
 
 		if($this->form_validation->run() == TRUE) {
@@ -120,7 +120,7 @@ class Product extends Admin_Controller
 				array(
 					'field' => 'productName',
 					'label' => 'Product Name',
-					'rules' => 'required',
+					'rules' => 'required|is_unique[product.productName]',
 				),
 				array(
 					'field' => 'categoryID',
@@ -173,6 +173,15 @@ class Product extends Admin_Controller
 		}
 
 		$this->load_view($data);
+	}
+
+	public function delete()
+	{
+		$list = $this->input->post('list');
+
+		foreach ($list as $value) {
+			$this->Product_model->delete(array('productID' => $value));
+		}
 	}
 
 	public function ajax()

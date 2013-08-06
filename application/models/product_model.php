@@ -18,7 +18,7 @@ class Product_model extends CI_model
 	}
 
 	public function insert_id()
-	{	
+	{
 		$this->load->database();
 		return $this->db->insert_id();
 	}
@@ -54,6 +54,19 @@ class Product_model extends CI_model
 		return $this->db->update('product', $field, $data);
 	}
 
+	/**
+	 *	Delete manufacturer
+	 *
+	 *	@param array The array include information to be deleted.
+	 *	@return boolean true for success
+	 */
+	public function delete($field)
+	{
+		$this->load->database();
+
+		return $this->db->delete('product', $field);
+	}
+
 	public function fetch($query = '', $order_by = 'random', $limit = 10, $page = 1)
 	{
 		$this->load->database();
@@ -61,7 +74,7 @@ class Product_model extends CI_model
 		$this->db->from('product')
 			->like('productName', $query)
 			->order_by('productName', $order_by);
-		 
+
 		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $limit);
 
