@@ -19,21 +19,21 @@
 			<div class="control-group <?php if(form_error('current_password')) echo "error"; ?>">
 				<label class="control-label" for="inputPassword">Current Password</label>
 				<div class="controls">
-					<input type="password" name="current_password" id="inputPassword" value="<?php echo set_value('current_password'); ?>">
+					<input type="password" name="current_password" id="inputPassword">
 					<span class="help-inline"><?php echo form_error('current_password'); ?></span>
 				</div>
 			</div>
 			<div class="control-group <?php if(form_error('new_password')) echo "error"; ?>">
 				<label class="control-label" for="inputNewPassword">New Password</label>
 				<div class="controls">
-					<input type="password" name="new_password" id="inputNewPassword" value="<?php echo set_value('new_password'); ?>">
+					<input type="password" name="new_password" id="inputNewPassword">
 					<span class="help-inline"><?php echo form_error('new_password'); ?></span>
 				</div>
 			</div>
 			<div class="control-group <?php if(form_error('confirm_password')) echo "error"; ?>">
 				<label class="control-label" for="inputConfirmPassword">Confirm Passwword</label>
 				<div class="controls">
-					<input type="password" name="confirm_password" id="inputConfirmPassword" value="<?php echo set_value('confirm_password'); ?>">
+					<input type="password" name="confirm_password" id="inputConfirmPassword">
 					<span class="help-inline"><?php echo form_error('confirm_password'); ?></span>
 				</div>
 			</div>
