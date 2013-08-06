@@ -1,22 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product extends CI_Controller {
+class Product extends Admin_Controller
+{
+	public function __construct() {
+		parent::__construct();
 
-	public function index() 
+		$this->load->model('Product_model');
+	}
+
+	public function index()
 	{
 		$this->load->helper('url');
 		redirect('/admin/product/view', 'location', 301);
 	}
 
-	public function view() 
+	public function view()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Product_model');
-		$this->load->helper('url');
-
-		$this->User_model->admin_logged();
-
 		$data = array(
 			'title' => 'UygunCart',
 			'breadcrumb' => array(
@@ -26,27 +25,20 @@ class Product extends CI_Controller {
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'product',
-			'fullname' => $this->session->userdata('userFullName'),
 			'products' => $this->Product_model->fetch(),
 			'entries'=> $this->Product_model->entries,
 			'pagecount'=> $this->Product_model->pagecount,
 			'js' => array('public/js/view.js'),
 		);
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
 	public function add()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
-		$this->load->model('Manufacturer_model');
-		$this->load->model('Product_model');
+		$this->load_model(array('Category', 'Manufacturer'));
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
+		$this->load->helper('form');
 
 		$data = array(
 			'title' => 'UygunCart',
@@ -57,7 +49,6 @@ class Product extends CI_Controller {
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'product_add',
-			'fullname' => $this->session->userdata('userFullName'),
 			'categories' => $this->Category_model->fetchAll(true),
 			'manufacturer' => $this->Manufacturer_model->fetchAll(true),
 		);
@@ -68,7 +59,7 @@ class Product extends CI_Controller {
 				'required|exists[category.categoryID]'
 			);
 		}
-		
+
 		if ($this->input->post('manufacturerID') != NULL) {
 			$this->form_validation->set_rules(
 				'manufacturerID',
@@ -97,19 +88,14 @@ class Product extends CI_Controller {
 			}
 		}
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
 	public function edit($id)
 	{
-		$this->load->library('session');
 		$this->load->library('form_validation');
-		$this->load->model('User_model');
-		$this->load->model('Category_model');
-		$this->load->model('Manufacturer_model');
-		$this->load->model('Product_model');
-		$this->load->helper(array('form', 'url'));
-		$this->User_model->admin_logged();
+		$this->load_model(array('Category', 'Manufacturer'));
+		$this->load->helper('form');
 
 		$data = array(
 			'title' => 'UygunCart',
@@ -120,7 +106,6 @@ class Product extends CI_Controller {
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'product_edit',
-			'fullname' => $this->session->userdata('userFullName'),
 			'js' => array('public/js/tinymce/tinymce.min.js','public/js/product_edit.js'),
 			'status' => array(0 => 'Disabled', 1 => 'Enabled'),
 			'categories' => $this->Category_model->fetchAll(true),
@@ -174,36 +159,31 @@ class Product extends CI_Controller {
 			if (empty($update)) {
 				$data['alert_message'] = 'Enter data you want to update.';
 				$data['alert_class'] = 'alert-error';
-			} 
+			}
 
 			if ($this->form_validation->run() == true) {
 				if ($this->Product_model->update($update,$id)) {
 					$data['alert_message'] = 'Your data has been updated successfully.';
-					$data['alert_class'] = 'alert-success'; 
+					$data['alert_class'] = 'alert-success';
 				} else {
 					$data['alert_message'] = 'Something went wrong.';
-					$data['alert_class'] = 'alert-error';	
+					$data['alert_class'] = 'alert-error';
 				}
 			}
 		}
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
-	public function ajax() 
+	public function ajax()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Product_model');
-		$this->User_model->admin_logged();
-
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
 		$categories = $this->Product_model->fetch($search, 'asc', 10, $page);
 
 		$array = array(
-			$categories, 
+			$categories,
 			array(
 				$this->Product_model->pagecount,
 				$page,

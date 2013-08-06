@@ -1,6 +1,6 @@
 <div class="navbar">
 	<div class="navbar-inner">
-		<a class="brand" href="#">Insert Manufacturer</a>
+		<a class="brand" href="#">Add Manufacturer</a>
 		<span class="pull-right">
 			<a class="btn btn-inverse" href="<?php echo base_url('admin/manufacturer/') ?>">Back</a>
 		</span>
@@ -21,7 +21,7 @@
 	</div>
 		</div>
 	<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Insert</button>
+			<button type="submit" class="btn btn-primary">Add</button>
 			<a class="btn" href="<?php echo base_url('/admin/manufacturer') ?>">Cancel</a>
 	</div>
 </form>

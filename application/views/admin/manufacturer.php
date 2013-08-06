@@ -5,7 +5,7 @@
 </div>
 <span class="pull-left"><input type="text" name="search" placeholder="Search" class="span4"></span>
 <span class="pull-right">
-	<a class="btn" href="<?php echo base_url('admin/manufacturer/insert') ?>">Add</a>
+	<a class="btn" href="<?php echo base_url('admin/manufacturer/add') ?>">Add</a>
 	<a class="btn btn-danger" href="#" onclick="return false" id="delete">Delete</a>
 </span>
 <table class="table table-bordered">
@@ -33,10 +33,10 @@
   	<ul>
     	<li class="active"><a href="#" onclick="return false">&laquo;</a></li>
     	<li class="active"><a href="#1" onclick="return false">1</a></li>
-    	<?php 
+    	<?php
     	if($pagecount>5)
     		$pagecount = 5;
-    	for ($i=2; $i <= $pagecount ; $i++) { 
+    	for ($i=2; $i <= $pagecount ; $i++) {
     		echo '<li><a href="#'.$i.'"   onclick="return false">'.$i.'</a></li>';
     	}
     	?>

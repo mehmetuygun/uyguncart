@@ -1,9 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Manufacturer extends CI_Controller
+class Manufacturer extends Admin_Controller
 {
+	public function __construct() {
+		parent::__construct();
 
-	public function index() 
+		$this->load->model('Manufacturer_model');
+	}
+
+	public function index()
 	{
 		$this->load->helper('url');
 		redirect('/admin/manufacturer/view', 'location', 301);
@@ -11,13 +16,8 @@ class Manufacturer extends CI_Controller
 
 	public function view()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Manufacturer_model');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
+		$this->load->helper('form');
 
 		$data = array(
 			'title' => 'UygunCart',
@@ -28,25 +28,19 @@ class Manufacturer extends CI_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'manufacturer',
-			'fullname' => $this->session->userdata('userFullName'),
 			'js' => array('public/js/view.js'),
 			'manufacturers' => $this->Manufacturer_model->fetch('', 'asc', 10, 1),
 			'entries' => $this->Manufacturer_model->entries,
 			'pagecount' => $this->Manufacturer_model->pagecount
 		);
 
-		$this->load->view('admin/default', $data);
+		$this->load_view( $data);
 	}
 
-	public function insert() 
+	public function add()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Manufacturer_model');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
+		$this->load->helper('form');
 
 		$this->form_validation->set_rules(
 			'manufacturer',
@@ -59,18 +53,17 @@ class Manufacturer extends CI_Controller
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/manufacturer' => 'Manufacturer',
-				'last' => 'Insert'
+				'last' => 'Add'
 			),
 			'menu_active' => 'catalog',
-			'mainview' => 'manufacturer_insert',
-			'fullname' => $this->session->userdata('userFullName'),
+			'mainview' => 'manufacturer_add',
 		);
 
-		if($this->form_validation->run() == TRUE)
+		if ($this->form_validation->run() == true)
 		{
 			$field = array("manufacturerName" => $this->input->post('manufacturer'));
 			if($this->Manufacturer_model->insert($field)){
-				$data["alert_message"] = "The manufacturer is inserted.";
+				$data["alert_message"] = "The manufacturer is added successfully.";
 				$data["alert_class"] = "alert-success";
 			} else {
 				$data["alert_message"] = "Something went wrong.";
@@ -78,18 +71,13 @@ class Manufacturer extends CI_Controller
 			}
 		}
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
-	public function edit($id) 
+	public function edit($id)
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Manufacturer_model');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
-
-		$this->User_model->admin_logged();
+		$this->load->helper('form');
 
 		$this->Manufacturer_model->set($id);
 		if ($this->Manufacturer_model->manufacturerName != $this->input->post('manufacturer')) {
@@ -109,7 +97,6 @@ class Manufacturer extends CI_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'manufacturer_edit',
-			'fullname' => $this->session->userdata('userFullName'),
 		);
 
 		if ($this->form_validation->run() == true) {
@@ -125,16 +112,11 @@ class Manufacturer extends CI_Controller
 
 		$data['manufacturer'] = $this->Manufacturer_model->manufacturerName;
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 
-	public function delete() 
+	public function delete()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Manufacturer_model');
-		$this->User_model->admin_logged();
-
 		$list = $this->input->post('list');
 
 		foreach ($list as $value) {
@@ -142,13 +124,8 @@ class Manufacturer extends CI_Controller
 		}
 	}
 
-	public function ajax() 
+	public function ajax()
 	{
-		$this->load->library('session');
-		$this->load->model('User_model');
-		$this->load->model('Manufacturer_model');
-		$this->User_model->admin_logged();
-
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
