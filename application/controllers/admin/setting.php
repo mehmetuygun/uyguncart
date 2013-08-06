@@ -1,6 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Setting extends CI_Controller {
+class Setting extends Admin_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->model('Setting_model');
+	}
 
 	public function index()
 	{
@@ -10,11 +17,8 @@ class Setting extends CI_Controller {
 
 	public function account()
 	{
-		$this->load->model('User_model');
-		$this->load->model('Setting_model');
-		$this->load->library('session');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper('form');
 
 		$data = array(
 			'title' => 'UygunCart',
@@ -25,7 +29,7 @@ class Setting extends CI_Controller {
 			),
 			'mainview' => 'account'
 		);
-		
+
 		$userID = $this->session->userdata('userID');
 		$this->Setting_model->set($userID);
 
@@ -76,13 +80,13 @@ class Setting extends CI_Controller {
 					$data['alert_class'] = 'alert-success';
 					$this->Setting_model->set($userID);
 					$this->session->set_userdata($update);
-					$this->session->set_userdata('userFullName', 
+					$this->session->set_userdata('userFullName',
 						$this->Setting_model->userFirstName . ' ' .
 						$this->Setting_model->userLastName
 					);
 				} else {
 					$data['alert_message'] = 'Something went wrong.';
-					$data['alert_class'] = 'alert-error';	
+					$data['alert_class'] = 'alert-error';
 				}
 			}
 		}
@@ -90,19 +94,14 @@ class Setting extends CI_Controller {
 		$data['userEmail'] = $this->Setting_model->userEmail;
 		$data['userFirstName'] = $this->Setting_model->userFirstName;
 		$data['userLastName'] = $this->Setting_model->userLastName;
-		$data['fullname'] = $this->session->userdata('userFullName');
 
-		$this->load->view('admin/default', $data);
-		$this->User_model->admin_logged();
+		$this->load_view($data);
 	}
 
 	public function password()
 	{
-		$this->load->model('User_model');
-		$this->load->model('Setting_model');
-		$this->load->library('session');
 		$this->load->library('form_validation');
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper('form');
 
 		$data = array(
 			'title' => 'UygunCart',
@@ -111,7 +110,6 @@ class Setting extends CI_Controller {
 				'admin/setting' => 'Setting',
 				'last' => 'Password'
 			),
-			'fullname' => $this->session->userdata('userFullName'),
 			'mainview' => 'password'
 		);
 
@@ -133,7 +131,7 @@ class Setting extends CI_Controller {
 			)
 		);
 		$this->form_validation->set_rules($rules);
-		
+
 		if ($this->form_validation->run() == true) {
 			$update = array(
 				'userPassword' => $this->input->post('new_password'),
@@ -143,10 +141,10 @@ class Setting extends CI_Controller {
 				$data['alert_class'] = 'alert-success';
 			} else {
 				$data['alert_message'] = 'Something went wrong.';
-				$data['alert_class'] = 'alert-error';		
+				$data['alert_class'] = 'alert-error';
 			}
 		}
 
-		$this->load->view('admin/default', $data);
+		$this->load_view($data);
 	}
 }
