@@ -45,6 +45,7 @@
                             while ($i<9) {
                                 if($i%3 == 0)
                                     echo '</div>';
+
                                 if($i == 0 or $i%3 == 0 and $i!=9)
                                     echo '<div class="row f-space">';
 
@@ -58,7 +59,7 @@
                                             </div>
                                         </div>
                                     </div>';
-                                    
+
                                 // echo '<div class="col-lg-4">
                                 //         <div class="thumbnail">
                                 //             <img  alt="200x150" src="'.$recenltyAdded[$i]["imgSrc"].'"/>
@@ -77,6 +78,7 @@
         				</div>
                     </div>
 			    </div>
+                <div class="f-footer-space"></div>
             </div>
 			<div id="push"></div>
 	    	<!-- End of wrap -->
