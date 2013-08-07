@@ -2,7 +2,6 @@ html,
 body {
     height: 100%;
     /* The html and body elements cannot have any padding or margin. */
-    /*padding-top: 70px;*/
     padding-top: 50px;
 }
 #wrap {
@@ -37,4 +36,19 @@ code {
 }
 #search {
 	width: 300px;
+}
+.with-frame {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    padding: 10px;
+}
+.price {
+    color: red;
+}
+.f-space {
+    margin-top: 10px;
+}
+.f-add-to-cart {
+    width: 100%;
 }
