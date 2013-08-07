@@ -47,6 +47,9 @@ code {
 .price {
     color: red;
 }
+.price :hover {
+    color: red;
+}
 .f-space {
     margin-top: 10px;
 }

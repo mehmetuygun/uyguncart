@@ -11,6 +11,14 @@ class Product_model extends CI_model
 	public $categoryID;
 	public $manufacturerID;
 
+	public $search_term = '';
+	public $pagecount;
+	public $entries;
+	public $limit = 10;
+	public $page = 1;
+	public $order_by = 'productName';
+	public $sort = 'asc';
+
 	public function add($field)
 	{
 		$this->load->database();
@@ -67,29 +75,38 @@ class Product_model extends CI_model
 		return $this->db->delete('product', $field);
 	}
 
-	public function fetch($query = '', $order_by = 'random', $limit = 10, $page = 1)
+	/**
+	 *	Fetch products as array
+	 *
+	 *	@param array The array which includes param name and its value.
+	 *	@return array
+	 */
+	public function fetch(array $param)
 	{
+		foreach ($param as $key => $value)
+			$this->$$key = $value;
+		
 		$this->load->database();
 
 		$this->db->from('product')
-			->like('productName', $query)
-			->order_by('productName', $order_by);
+			->like('productName', $this->search_term)
+			->order_by($this->order_by, $this->sort);
 
 		$this->entries = $this->db->count_all_results();
-		$this->pagecount = ceil($this->entries / $limit);
+		$this->pagecount = ceil($this->entries / $this->limit);
 
-		if($page == 1 or $page < 1) {
+		if($this->page == 1 or $this->page < 1) {
 			$from = 0;
-		} else if ($this->pagecount < $page) {
-			$from = ($this->pagecount * $limit) - $limit;
+		} else if ($this->pagecount < $this->this->page) {
+			$from = ($this->pagecount * $this->limit) - $this->limit;
 		} else {
-			$from = ($page * $limit) - $limit;
+			$from = ($this->page * $this->limit) - $this->limit;
 		}
 
 		$this->db->from('product')
-			->like('productName', $query)
+			->like('productName', $this->search_term)
 			->order_by('productName', $order_by)
-			->limit($limit, $from);
+			->limit($this->limit, $from);
 
 		$query = $this->db->get();
 
