@@ -22,6 +22,7 @@ class Product_model extends CI_model
 	public function add($field)
 	{
 		$this->load->database();
+		$field['productAddedDate'] = date('Y-m-d H:i:s');
 		return $this->db->insert('product', $field);
 	}
 
@@ -85,7 +86,7 @@ class Product_model extends CI_model
 	{
 		foreach ($param as $key => $value)
 			$this->$$key = $value;
-		
+
 		$this->load->database();
 
 		$this->db->from('product')

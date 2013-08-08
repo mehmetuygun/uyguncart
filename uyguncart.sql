@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 31, 2013 at 08:40 
+-- Generation Time: Jul 31, 2013 at 08:40
 -- Server version: 5.6.10
 -- PHP Version: 5.3.5
 
@@ -114,19 +114,20 @@ INSERT INTO `manufacturer` (`manufacturerID`, `manufacturerName`) VALUES
 -- Table structure for table `product`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
-  `productID` int(11) NOT NULL AUTO_INCREMENT,
-  `productName` varchar(75) NOT NULL,
-  `productDescription` text,
-  `productStatus` tinyint(1) DEFAULT NULL,
-  `productAddedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `productPrice` double(11,2) DEFAULT NULL,
-  `manufacturerID` varchar(11) DEFAULT NULL,
-  `categoryID` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`productID`),
-  KEY `manufacturerID` (`manufacturerID`),
-  KEY `categoryID` (`categoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  CREATE TABLE `product` (
+ `productID` int(11) NOT NULL AUTO_INCREMENT,
+ `productName` varchar(75) NOT NULL,
+ `productDescription` text,
+ `productStatus` tinyint(1) NOT NULL DEFAULT '0',
+ `productAddedDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+ `productUpdatedDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+ `productPrice` double(11,2) NOT NULL DEFAULT '0.00',
+ `manufacturerID` varchar(11) DEFAULT NULL,
+ `categoryID` varchar(11) DEFAULT NULL,
+ PRIMARY KEY (`productID`),
+ KEY `manufacturerID` (`manufacturerID`),
+ KEY `categoryID` (`categoryID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
