@@ -35,7 +35,7 @@ class Product_model extends CI_model
 	public function set($id)
 	{
 		$this->load->database();
-		$this->db->from('product')->where('productID',$id);
+		$this->db->from('product')->where('productID', $id);
 
 		$row = $this->db->get()->row();
 
@@ -49,6 +49,7 @@ class Product_model extends CI_model
 
 		return $row;
 	}
+
 	/**
 	 *	Update product
 	 *
@@ -61,6 +62,72 @@ class Product_model extends CI_model
 		$this->load->database();
 		$data = array('productID' => $id);
 		return $this->db->update('product', $field, $data);
+	}
+
+	public function upload_image($inputs = null)
+	{
+		if (!isset($inputs)) {
+			$inputs = 'image';
+		}
+
+		if (!is_array($inputs)) {
+			$inputs = array($inputs);
+		}
+
+		$images_dir = FCPATH . 'public/images/';
+
+		$config = array(
+			'upload_path' => $images_dir . 'original/',
+			'allowed_types' => 'gif|jpg|png',
+			'max_width' => '2048',
+			'max_height' => '2048',
+		);
+
+		$this->load->library('upload', $config);
+
+		foreach ($inputs as $input) {
+			$this->upload->do_upload($input);
+
+			$upload_data = $this->upload->data();
+			$f_name = uniqid('p' . $this->productID) . $upload_data['file_ext'];
+			$this->create_thumbnails($upload_data['full_path'], $f_name);
+		}
+	}
+
+	public function create_thumbnails($source_image, $f_name = null)
+	{
+		$images_dir = FCPATH . 'public/images/';
+
+		$this->load->library('image_lib');
+		if (!isset($f_name)) {
+			$f_name = basename($source_image);
+		}
+
+		$sizes = array(
+			// dir			width	height
+			'x' => array(	 '50', 	 '50'	),
+			's' => array(	'200', 	'150'	),
+			'm' => array(	'500', 	'500'	),
+		);
+
+		foreach ($sizes as $s_dir => $size) {
+			list($w, $h) = $size;
+
+			$dir = $images_dir . $s_dir . '/';
+			$f_path = $dir . $f_name;
+
+			$config = array(
+				'source_image' => $source_image,
+				'new_image' => $f_path,
+				'width' => $w,
+				'height' => $h,
+			);
+
+			$this->image_lib->initialize($config);
+			$this->image_lib->resize();
+
+			$this->image_lib->clear();
+		}
 	}
 
 	/**
