@@ -11,7 +11,13 @@ class Test extends CI_Controller
 	public function upload()
 	{
 		$this->load->helper(array('form', 'url'));
-		$images_dir = dirname($_SERVER['SCRIPT_FILENAME']) . '/public/images/';
+		$sizes = array(
+			// 		width	height
+			array(	 '50', 	 '50'),
+			array(	'200', 	'150'),
+			array(	'500', 	'500'),
+		);
+		$images_dir = FCPATH . 'public/images/';
 
 		$config = array(
 			'upload_path' => $images_dir . 'temp/',
@@ -21,28 +27,42 @@ class Test extends CI_Controller
 		);
 
 		$this->load->library('upload', $config);
-
 		$this->upload->do_upload('image');
 
 		$upload_data = $this->upload->data();
+		$file_name = uniqid() . $upload_data['file_ext'];
 
 		$this->load->library('image_lib');
+		$resize_errors = array();
 
-		$config = array(
-			'source_image' => $upload_data['full_path'],
-			'width' => 200,
-			'height' => 200,
-			'create_thumb' => true,
-		);
+		foreach ($sizes as $size) {
+			list($w, $h) = $size;
 
-		$this->image_lib->initialize($config);
+			$dir = $images_dir . "{$w}x{$h}/";
+			if (!is_dir($dir)) {
+				mkdir($dir, 0777, true);
+			}
+			$f_path = $dir . $file_name;
 
-		$this->image_lib->resize();
+			$config = array(
+				'source_image' => $upload_data['full_path'],
+				'new_image' => $f_path,
+				'width' => $w,
+				'height' => $h,
+			);
+
+			$this->image_lib->initialize($config);
+			if (!$this->image_lib->resize()) {
+				$resize_errors[] = $this->image_lib->display_errors();
+			}
+			$this->image_lib->clear();
+		}
 
 		$data = array(
 			'test' => 'test',
 			'test2' => $upload_data,
-			'errors' => $this->upload->display_errors()
+			'errors' => $this->upload->display_errors(),
+			'resize_errors' => $resize_errors
 		);
 		$this->load->view('/admin/test', $data);
 	}
