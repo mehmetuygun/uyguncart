@@ -106,11 +106,16 @@ class Product extends Admin_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'product_edit',
-			'js' => array('public/js/tinymce/tinymce.min.js','public/js/product_edit.js'),
+			'js' => array(
+				'public/js/tinymce/tinymce.min.js',
+				'public/js/product_edit.js',
+				'public/js/jquery.form.min.js'
+			),
 			'status' => array(0 => 'Disabled', 1 => 'Enabled'),
 			'categories' => $this->Category_model->fetchAll(true),
 			'manufacturers' => $this->Manufacturer_model->fetchAll(true),
 			'product' => $this->Product_model->set($id),
+			'productImages' => $this->Product_model->get_images(),
 		);
 
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
@@ -173,6 +178,28 @@ class Product extends Admin_Controller
 		}
 
 		$this->load_view($data);
+	}
+
+	public function upload_image($id = null)
+	{
+		if (!isset($id)) {
+			$id = $this->input->post('productID');
+			$this->Product_model->set($id);
+
+			$res = $this->Product_model->upload_image('image');
+			$output = array('success' => true);
+			if ($res !== true) {
+				$output['success'] = false;
+				$output['errors'] = $res;
+			}
+			echo json_encode($output);
+			return;
+		}
+
+		$this->load->helper('form');
+		$data['productID'] = $id;
+
+		$this->load->view('/admin/product_upload_image', $data);
 	}
 
 	public function delete()

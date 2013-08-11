@@ -10,6 +10,7 @@ class Product_model extends CI_model
 	public $productStatus;
 	public $categoryID;
 	public $manufacturerID;
+	public $productImages;
 
 	public $search_term = '';
 	public $pagecount;
@@ -50,6 +51,24 @@ class Product_model extends CI_model
 		return $row;
 	}
 
+	public function get_images()
+	{
+		$this->load->database();
+		$this->db->from('object_image')
+			->join('image', 'object_image.imageID = image.imageID')
+			->where('objectType', 'product')
+			->where('objectID', $this->productID);
+
+		$query = $this->db->get();
+		$this->productImages = array();
+
+		foreach ($query->result_array() as $row) {
+			$this->productImages[] = $row;
+		}
+
+		return $this->productImages;
+	}
+
 	/**
 	 *	Update product
 	 *
@@ -66,6 +85,8 @@ class Product_model extends CI_model
 
 	public function upload_image($inputs = null)
 	{
+		$this->load->database();
+
 		if (!isset($inputs)) {
 			$inputs = 'image';
 		}
@@ -86,12 +107,33 @@ class Product_model extends CI_model
 		$this->load->library('upload', $config);
 
 		foreach ($inputs as $input) {
-			$this->upload->do_upload($input);
+			if (!$this->upload->do_upload($input)) {
+				$upload_data = $this->upload->data();
+				continue;
+			}
 
 			$upload_data = $this->upload->data();
 			$f_name = uniqid('p' . $this->productID) . $upload_data['file_ext'];
 			$this->create_thumbnails($upload_data['full_path'], $f_name);
+
+			$field = array(
+				'imageFullName' => $f_name,
+				'imageOriginal' => $upload_data['file_name'],
+				'imageExt' => $upload_data['file_ext'],
+			);
+			$this->db->insert('image', $field);
+
+			$field = array(
+				'imageID' => $this->db->insert_id(),
+				'objectType' => 'product',
+				'objectID' => $this->productID,
+			);
+			$this->db->insert('object_image', $field);
 		}
+
+		return count($this->upload->error_msg) > 0
+			 ? $this->upload->error_msg
+			 : true;
 	}
 
 	public function create_thumbnails($source_image, $f_name = null)
@@ -105,9 +147,9 @@ class Product_model extends CI_model
 
 		$sizes = array(
 			// dir			width	height
-			'x' => array(	 '50', 	 '50'	),
-			's' => array(	'200', 	'150'	),
-			'm' => array(	'500', 	'500'	),
+			's' => array(	 '50', 	 '50'	),
+			'm' => array(	'200', 	'150'	),
+			'x' => array(	'500', 	'500'	),
 		);
 
 		foreach ($sizes as $s_dir => $size) {
