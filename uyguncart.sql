@@ -159,3 +159,30 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`userID`, `userFirstName`, `userLastName`, `userEmail`, `userPassword`, `userType`) VALUES
 (1, 'Mehmet', 'Uygun', 'mehmet.uygun@hotmail.com', '12345678', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image`
+--
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `imageID` int(11) NOT NULL AUTO_INCREMENT,
+  `imageFullName` varchar(25) NOT NULL,
+  `imageOriginal` varchar(255) NOT NULL,
+  `imageExt` varchar(5) NOT NULL,
+  PRIMARY KEY (`imageID`),
+  KEY `object` (`objectType`,`objectID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `object_image`
+--
+
+CREATE TABLE IF NOT EXISTS `object_image` (
+  `imageID` int(11) NOT NULL,
+  `objectType` enum('product','user','manufacturer','category') CHARACTER SET latin1 NOT NULL,
+  `objectID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
