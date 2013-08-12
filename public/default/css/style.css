@@ -2,7 +2,6 @@ html,
 body {
     height: 100%;
     /* The html and body elements cannot have any padding or margin. */
-    padding-top: 50px;
 }
 #wrap {
     min-height: 100%;
@@ -59,4 +58,17 @@ code {
 .f-footer-space {
     width: 100%;
     height: 20px;
+}
+#header {
+    background-color: rgb(241, 241, 241);
+    margin-bottom: 20px;
+}
+.header-up {
+    height: 25px;
+    width: 100%;
+}
+.price {
+    color: orange;
+    font-size: 16px;
+    font-weight: bold;
 }
