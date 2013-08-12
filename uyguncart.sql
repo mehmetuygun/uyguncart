@@ -114,7 +114,7 @@ INSERT INTO `manufacturer` (`manufacturerID`, `manufacturerName`) VALUES
 -- Table structure for table `product`
 --
 
-  CREATE TABLE `product` (
+CREATE TABLE IF NOT EXISTS `product` (
  `productID` int(11) NOT NULL AUTO_INCREMENT,
  `productName` varchar(75) NOT NULL,
  `productDescription` text,
@@ -171,8 +171,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `imageFullName` varchar(25) NOT NULL,
   `imageOriginal` varchar(255) NOT NULL,
   `imageExt` varchar(5) NOT NULL,
-  PRIMARY KEY (`imageID`),
-  KEY `object` (`objectType`,`objectID`)
+  PRIMARY KEY (`imageID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -184,5 +183,6 @@ CREATE TABLE IF NOT EXISTS `image` (
 CREATE TABLE IF NOT EXISTS `object_image` (
   `imageID` int(11) NOT NULL,
   `objectType` enum('product','user','manufacturer','category') CHARACTER SET latin1 NOT NULL,
-  `objectID` int(11) NOT NULL
+  `objectID` int(11) NOT NULL,
+  KEY `object` (`objectType`,`objectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
