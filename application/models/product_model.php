@@ -191,7 +191,7 @@ class Product_model extends CI_model
 	 *	@param array The array which includes param name and its value.
 	 *	@return array
 	 */
-	public function fetch(array $param)
+	public function fetch(array $param = array())
 	{
 		foreach ($param as $key => $value)
 			$this->$$key = $value;
@@ -215,7 +215,7 @@ class Product_model extends CI_model
 
 		$this->db->from('product')
 			->like('productName', $this->search_term)
-			->order_by('productName', $order_by)
+			->order_by('productName', $this->order_by)
 			->limit($this->limit, $from);
 
 		$query = $this->db->get();
