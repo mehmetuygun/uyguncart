@@ -193,29 +193,32 @@ class Product_model extends CI_model
 	 */
 	public function fetch(array $param = array())
 	{
-		foreach ($param as $key => $value)
-			$this->$$key = $value;
-
 		$this->load->database();
 
-		$this->db->from('product')
-			->like('productName', $this->search_term)
-			->order_by($this->order_by, $this->sort);
-
-		$this->entries = $this->db->count_all_results();
-		$this->pagecount = ceil($this->entries / $this->limit);
-
-		if($this->page == 1 or $this->page < 1) {
-			$from = 0;
-		} else if ($this->pagecount < $this->this->page) {
-			$from = ($this->pagecount * $this->limit) - $this->limit;
-		} else {
-			$from = ($this->page * $this->limit) - $this->limit;
+		foreach ($param as $key => $value) {
+			$this->$key = $value;
 		}
 
+		$this->entries = $this->db->from('product')
+			->like('productName', $this->search_term)
+			->count_all_results();
+		$this->pagecount = ceil($this->entries / $this->limit);
+
+		if ($this->entries == 0) {
+			return array();
+		}
+
+		if ($this->page > $this->pagecount) {
+			$this->page = $this->pagecount;
+		} else if ($this->page < 1) {
+			$this->page = 1;
+		}
+		$from = ($this->page - 1) * $this->limit;
+
 		$this->db->from('product')
 			->like('productName', $this->search_term)
-			->order_by('productName', $this->order_by)
+			->join('image', 'defaultImage = imageID', 'left')
+			->order_by($this->order_by)
 			->limit($this->limit, $from);
 
 		$query = $this->db->get();
@@ -224,6 +227,7 @@ class Product_model extends CI_model
 		foreach ($query->result_array() as $res) {
 			$field[] = $res;
 		}
+
 		return $field;
 	}
 }

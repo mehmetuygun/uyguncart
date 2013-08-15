@@ -216,13 +216,19 @@ class Product extends Admin_Controller
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
-		$categories = $this->Product_model->fetch($search, 'asc', 10, $page);
+		$params = array(
+			'search_term' => $search,
+			'order_by' => 'productName',
+			'page' => $page,
+		);
+
+		$products = $this->Product_model->fetch($params);
 
 		$array = array(
-			$categories,
+			$products,
 			array(
 				$this->Product_model->pagecount,
-				$page,
+				$this->Product_model->page,
 				$this->Product_model->entries
 			)
 		);
