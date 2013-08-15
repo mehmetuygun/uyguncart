@@ -124,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `product` (
  `productPrice` double(11,2) NOT NULL DEFAULT '0.00',
  `manufacturerID` varchar(11) DEFAULT NULL,
  `categoryID` varchar(11) DEFAULT NULL,
+ `defaultImage` int(11) DEFAULT NULL,
  PRIMARY KEY (`productID`),
  KEY `manufacturerID` (`manufacturerID`),
  KEY `categoryID` (`categoryID`)
