@@ -10,6 +10,7 @@ class Product_model extends CI_model
 	public $productStatus;
 	public $categoryID;
 	public $manufacturerID;
+	public $defaultImage;
 	public $productImages;
 
 	public $search_term = '';
@@ -47,6 +48,7 @@ class Product_model extends CI_model
 		$this->productStatus = $row->productStatus;
 		$this->categoryID = $row->categoryID;
 		$this->manufacturerID = $row->manufacturerID;
+		$this->defaultImage = $row->defaultImage;
 
 		return $row;
 	}
