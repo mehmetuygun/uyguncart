@@ -124,13 +124,22 @@ class Product_model extends CI_model
 				'imageExt' => $upload_data['file_ext'],
 			);
 			$this->db->insert('image', $field);
+			$imageID = $this->db->insert_id();
 
 			$field = array(
-				'imageID' => $this->db->insert_id(),
+				'imageID' => $imageID,
 				'objectType' => 'product',
 				'objectID' => $this->productID,
 			);
 			$this->db->insert('object_image', $field);
+
+			if (!isset($this->defaultImage)) {
+				$field = array(
+					'defaultImage' => $imageID
+				);
+				$this->update($field, $this->productID);
+				$this->defaultImage = $imageID;
+			}
 		}
 
 		return count($this->upload->error_msg) > 0
