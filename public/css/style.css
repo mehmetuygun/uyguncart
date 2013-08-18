@@ -47,7 +47,8 @@ code {
     display: table-cell;
     margin: auto;
     text-align: center;
-    border: 1px solid #ddd
+    border: 1px solid #ddd;
+    background-color: white;
 }
 .x64 {
     width: 64px;
