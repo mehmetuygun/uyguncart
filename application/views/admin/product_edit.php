@@ -88,7 +88,7 @@
 									<img src="{$image_small}" />
 								</a>
 							</td>
-							<td>{$image['imageID']}</td>
+							<td><a href="#" onclick="delete_image({$image['imageID']});return false">Delete</a></td>
 						</tr>
 HTML;
 						} ?>

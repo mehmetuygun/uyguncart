@@ -20,3 +20,12 @@ $(function() {
 function submit_image() {
 	$('#image_upload form').submit();
 }
+
+function delete_image(image_id) {
+	if (!confirm('Are you sure you want to delete this image?')) {
+		return;
+	}
+
+	var url = base_url + 'admin/product/delete_image/' + image_id;
+	$.post(url);
+}

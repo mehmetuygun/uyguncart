@@ -183,6 +183,38 @@ class Product_model extends CI_model
 		}
 	}
 
+	public function delete_image($id)
+	{
+		$images_dir = FCPATH . 'public/images/';
+
+		$this->load->database();
+
+		$image = $this->db->from('image')
+			->where('imageID', $id)
+			->get()->row();
+
+		if (empty($image)) {
+			return false;
+		}
+
+		$this->db->delete('image', array('imageID' => $id));
+		$this->db->delete('object_image', array('imageID' => $id));
+		$this->db->update(
+			'product',
+			array('defaultImage' => null),
+			array('defaultImage' => $id)
+		);
+
+		$dirs = array('s', 'm', 'x');
+		foreach ($dirs as $dir) {
+			unlink($images_dir . $dir . '/' . $image->imageFullName);
+		}
+
+		unlink($images_dir . 'original/' . $image->imageOriginal);
+
+		return true;
+	}
+
 	/**
 	 *	Delete manufacturer
 	 *

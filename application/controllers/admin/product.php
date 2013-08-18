@@ -207,6 +207,11 @@ class Product extends Admin_Controller
 		$this->load->view('/admin/product_upload_image', $data);
 	}
 
+	public function delete_image($id)
+	{
+		$this->Product_model->delete_image($id);
+	}
+
 	public function delete()
 	{
 		$list = $this->input->post('list');
