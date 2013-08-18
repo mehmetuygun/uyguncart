@@ -80,9 +80,11 @@
 						<tr>
 							<td>{$image['imageFullName']}</td>
 							<td>
-								<a href="{$image_large}">
-									<img src="{$image_small}" />
-								</a>
+								<div class="img-frame x50">
+									<a href="{$image_large}">
+										<img src="{$image_small}" />
+									</a>
+								</div>
 							</td>
 							<td>{$image['imageExt']}</td>
 						</tr>
