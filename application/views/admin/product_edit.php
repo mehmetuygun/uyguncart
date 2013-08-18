@@ -76,9 +76,13 @@
 						<?php foreach ($productImages as $image) {
 						$image_small = base_url('/public/images/s/' . $image['imageFullName']);
 						$image_large = base_url('/public/images/x/' . $image['imageFullName']);
+						$is_default = $product->defaultImage == $image['imageID'];
+						$checked = $is_default ? ' checked="checked"' : '';
 						echo <<<HTML
 						<tr>
-							<td>{$image['imageFullName']}</td>
+							<td>
+								<input name="defaultImage" type="radio" value="{$image['imageID']}"{$checked} />
+							</td>
 							<td>
 								<div class="img-frame x50">
 									<a href="{$image_large}">
@@ -86,7 +90,7 @@
 									</a>
 								</div>
 							</td>
-							<td>{$image['imageExt']}</td>
+							<td><a href="#" onclick="delete_image({$image['imageID']});return false">Delete</a></td>
 						</tr>
 HTML;
 						} ?>

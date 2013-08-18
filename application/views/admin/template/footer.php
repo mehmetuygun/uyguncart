@@ -17,5 +17,9 @@
 			}
 		}
 		?>
+
+		<script type="text/javascript">
+			base_url = '<?php echo base_url() ?>';
+		</script>
 	</body>
 </html>

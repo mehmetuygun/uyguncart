@@ -10,6 +10,7 @@ class Product_model extends CI_model
 	public $productStatus;
 	public $categoryID;
 	public $manufacturerID;
+	public $defaultImage;
 	public $productImages;
 
 	public $search_term = '';
@@ -47,6 +48,7 @@ class Product_model extends CI_model
 		$this->productStatus = $row->productStatus;
 		$this->categoryID = $row->categoryID;
 		$this->manufacturerID = $row->manufacturerID;
+		$this->defaultImage = $row->defaultImage;
 
 		return $row;
 	}
@@ -122,13 +124,22 @@ class Product_model extends CI_model
 				'imageExt' => $upload_data['file_ext'],
 			);
 			$this->db->insert('image', $field);
+			$imageID = $this->db->insert_id();
 
 			$field = array(
-				'imageID' => $this->db->insert_id(),
+				'imageID' => $imageID,
 				'objectType' => 'product',
 				'objectID' => $this->productID,
 			);
 			$this->db->insert('object_image', $field);
+
+			if (!isset($this->defaultImage)) {
+				$field = array(
+					'defaultImage' => $imageID
+				);
+				$this->update($field, $this->productID);
+				$this->defaultImage = $imageID;
+			}
 		}
 
 		return count($this->upload->error_msg) > 0
@@ -170,6 +181,38 @@ class Product_model extends CI_model
 
 			$this->image_lib->clear();
 		}
+	}
+
+	public function delete_image($id)
+	{
+		$images_dir = FCPATH . 'public/images/';
+
+		$this->load->database();
+
+		$image = $this->db->from('image')
+			->where('imageID', $id)
+			->get()->row();
+
+		if (empty($image)) {
+			return false;
+		}
+
+		$this->db->delete('image', array('imageID' => $id));
+		$this->db->delete('object_image', array('imageID' => $id));
+		$this->db->update(
+			'product',
+			array('defaultImage' => null),
+			array('defaultImage' => $id)
+		);
+
+		$dirs = array('s', 'm', 'x');
+		foreach ($dirs as $dir) {
+			unlink($images_dir . $dir . '/' . $image->imageFullName);
+		}
+
+		unlink($images_dir . 'original/' . $image->imageOriginal);
+
+		return true;
 	}
 
 	/**

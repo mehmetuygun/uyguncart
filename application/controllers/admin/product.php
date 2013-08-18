@@ -74,7 +74,7 @@ class Product extends Admin_Controller
 			'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[product.productName]'
 		);
 
-		if($this->form_validation->run() == TRUE) {
+		if ($this->form_validation->run() == true) {
 			$field = array(
 				'productName'=> $this->input->post('productName'),
 				'categoryID'=> $this->input->post('categoryID'),
@@ -114,13 +114,9 @@ class Product extends Admin_Controller
 			'status' => array(0 => 'Disabled', 1 => 'Enabled'),
 			'categories' => $this->Category_model->fetchAll(true),
 			'manufacturers' => $this->Manufacturer_model->fetchAll(true),
-			'product' => $this->Product_model->set($id),
-			'productImages' => $this->Product_model->get_images(),
 		);
 
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
-			$update = array();
-
 			$fields = array(
 				array(
 					'field' => 'productName',
@@ -152,8 +148,15 @@ class Product extends Admin_Controller
 					'label' => 'Product Description',
 					'rules' => 'required',
 				),
+				array(
+					'field' => 'defaultImage',
+					'label' => 'Default Image',
+					'rules' => ''
+				)
 			);
 
+			$this->Product_model->set($id);
+			$update = array();
 			foreach ($fields as $field) {
 				if ($this->input->post($field['field']) != $this->Product_model->{$field['field']}) {
 					$this->form_validation->set_rules(array($field));
@@ -167,7 +170,7 @@ class Product extends Admin_Controller
 			}
 
 			if ($this->form_validation->run() == true) {
-				if ($this->Product_model->update($update,$id)) {
+				if ($this->Product_model->update($update, $id)) {
 					$data['alert_message'] = 'Your data has been updated successfully.';
 					$data['alert_class'] = 'alert-success';
 				} else {
@@ -177,6 +180,8 @@ class Product extends Admin_Controller
 			}
 		}
 
+		$data['product'] = $this->Product_model->set($id);
+		$data['productImages'] = $this->Product_model->get_images();
 		$this->load_view($data);
 	}
 
@@ -200,6 +205,11 @@ class Product extends Admin_Controller
 		$data['productID'] = $id;
 
 		$this->load->view('/admin/product_upload_image', $data);
+	}
+
+	public function delete_image($id)
+	{
+		$this->Product_model->delete_image($id);
 	}
 
 	public function delete()
