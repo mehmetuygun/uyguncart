@@ -139,6 +139,7 @@ class Manufacturer extends Admin_Controller
 				$this->Manufacturer_model->entries
 			)
 		);
-		echo json_encode($array);
+
+		$this->output_json($array);
 	}
 }

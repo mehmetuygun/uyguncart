@@ -11,8 +11,7 @@ $(function() {
 				for (i in res['errors']) {
 					alert(res['errors'][i]);
 				}
-			},
-			dataType: 'json'
+			}
 		});
 	});
 });
@@ -27,5 +26,6 @@ function delete_image(image_id) {
 	}
 
 	var url = base_url + 'admin/product/delete_image/' + image_id;
-	$.post(url);
+	$.get(url);
 }
+

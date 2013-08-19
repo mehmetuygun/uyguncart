@@ -197,7 +197,8 @@ class Product extends Admin_Controller
 				$output['success'] = false;
 				$output['errors'] = $res;
 			}
-			echo json_encode($output);
+
+			$this->output_json($output);
 			return;
 		}
 
@@ -243,6 +244,6 @@ class Product extends Admin_Controller
 			)
 		);
 
-		echo json_encode($array);
+		$this->output_json($array);
 	}
 }

@@ -29,7 +29,7 @@ function ajax(search, page) {
 		draw_table(data[0]);
 		init_delete();
 		draw_page(data[1]);
-	}, 'json');
+	});
 }
 
 function check_all() {
