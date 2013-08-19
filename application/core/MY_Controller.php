@@ -1,6 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin_Controller extends CI_Controller
+class Base_Controller extends CI_Controller
+{
+	public function output_json(array $array)
+	{
+		header('Content-Type: application/json');
+
+		echo json_encode($array);
+	}
+}
+
+class Admin_Controller extends Base_Controller
 {
 	public function __construct()
 	{
@@ -30,4 +40,5 @@ class Admin_Controller extends CI_Controller
 			$this->load->model($model . '_model');
 		}
 	}
+
 }

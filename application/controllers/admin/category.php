@@ -171,6 +171,6 @@ class Category extends Admin_Controller
 			)
 		);
 
-		echo json_encode($array);
+		$this->output_json($array);
 	}
 }

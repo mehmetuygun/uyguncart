@@ -185,6 +185,14 @@ class Product extends Admin_Controller
 		$this->load_view($data);
 	}
 
+	public function get_images($id)
+	{
+		$this->Product_model->set($id);
+
+		$images = $this->Product_model->get_images();
+		$this->output_json($images);
+	}
+
 	public function upload_image($id = null)
 	{
 		if (!isset($id)) {
@@ -197,7 +205,8 @@ class Product extends Admin_Controller
 				$output['success'] = false;
 				$output['errors'] = $res;
 			}
-			echo json_encode($output);
+
+			$this->output_json($output);
 			return;
 		}
 
@@ -243,6 +252,6 @@ class Product extends Admin_Controller
 			)
 		);
 
-		echo json_encode($array);
+		$this->output_json($array);
 	}
 }

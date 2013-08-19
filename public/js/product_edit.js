@@ -6,16 +6,48 @@ $(function() {
 			success: function(res) {
 				if (res['success']) {
 					$('#image_upload').modal('hide');
+					get_images();
 					return;
 				}
 				for (i in res['errors']) {
 					alert(res['errors'][i]);
 				}
-			},
-			dataType: 'json'
+			}
 		});
 	});
+	$('a[href=#tab3]').on('shown', get_images);
 });
+
+function get_images() {
+	var url = base_url + 'admin/product/get_images/' + product_id;
+	$.get(url, function(res) {
+		$('#image_container').empty();
+		for (var i = 0; i < res.length; i++) {
+			var html = '', set_default, outer_class = '';
+			var img_med = base_url + res[i]['image_medium'];
+			var img_lrg = base_url + res[i]['image_large'];
+			var del_image = ' onclick="delete_image(' + res[i]['imageID'] + ')"';
+			var w_h = ' width="' + res[i]['width'] + 'px" height="' + res[i]['height'] + 'px"';
+			if (res[i]['default']) {
+				outer_class = ' img-default';
+				set_default = ' disabled="disabled"';
+			} else {
+				set_default = ' onclick="$(\'#defaultImage\').val(' + res[i]['imageID'] + ')"';
+			}
+
+			html += '<div class="img-outer' + outer_class + '">';
+			html += '<div class="img-inner">';
+			html += '<a href="' + img_lrg + '" target="_blank" title="See full size">';
+			html += '<img src="' + img_med + '" ' + w_h + ' /></a></div>';
+			html += '<div class="img-content">';
+			html += '<button type="button" class="btn btn-info pull-left"' + set_default + '>Set as default</button>';
+			html += '<button type="button" class="btn btn-danger pull-right" ' + del_image + '">Delete</button>';
+			html += '</div></div>';
+
+			$('#image_container').append(html);
+		}
+	});
+}
 
 function submit_image() {
 	$('#image_upload form').submit();
@@ -27,5 +59,6 @@ function delete_image(image_id) {
 	}
 
 	var url = base_url + 'admin/product/delete_image/' + image_id;
-	$.post(url);
+	$.get(url, get_images);
 }
+
