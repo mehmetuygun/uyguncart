@@ -158,7 +158,7 @@ class Product_model extends CI_model
 
 		$sizes = array(
 			// dir			width	height
-			's' => array(	 '50', 	 '50'	),
+			's' => array(	 '64', 	 '64'	),
 			'm' => array(	'200', 	'150'	),
 			'x' => array(	'500', 	'500'	),
 		);

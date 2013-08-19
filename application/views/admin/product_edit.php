@@ -64,38 +64,29 @@
 				</div>
 			</div><!-- End of Link -->
 			<div class="tab-pane space" id="tab3">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>Default</th>
-							<th>Image</th>
-							<th>Delete</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($productImages as $image) {
-						$image_small = base_url('/public/images/s/' . $image['imageFullName']);
-						$image_large = base_url('/public/images/x/' . $image['imageFullName']);
-						$is_default = $product->defaultImage == $image['imageID'];
-						$checked = $is_default ? ' checked="checked"' : '';
-						echo <<<HTML
-						<tr>
-							<td>
-								<input name="defaultImage" type="radio" value="{$image['imageID']}"{$checked} />
-							</td>
-							<td>
-								<div class="img-frame x50">
-									<a href="{$image_large}">
-										<img src="{$image_small}" />
-									</a>
-								</div>
-							</td>
-							<td><a href="#" onclick="delete_image({$image['imageID']});return false">Delete</a></td>
-						</tr>
+				<input id="defaultImage" name="defaultImage" type="hidden" value="<?php echo $product->defaultImage ?>" />
+				<?php foreach ($productImages as $image) {
+					$image_small = base_url('/public/images/m/' . $image['imageFullName']);
+					$image_large = base_url('/public/images/x/' . $image['imageFullName']);
+					$is_default = $product->defaultImage == $image['imageID'];
+					$outer_class = $is_default ? ' img-default' : '';
+					$set_default = !$is_default ? ' onclick="$(\'#defaultImage\').val(' . $image['imageID'] . ')"' : ' disabled="disabled"';
+					$imageinfo = getimagesize(FCPATH . 'public/images/m/' . $image['imageFullName']);
+					echo <<<HTML
+					<div class="img-outer{$outer_class}">
+						<div class="img-inner">
+							<a href="{$image_large}" target="_blank" title="See full size">
+								<img src="{$image_small}" {$imageinfo[3]} />
+							</a>
+						</div>
+						<div class="img-content">
+							<button type="button" class="btn btn-info pull-left"{$set_default}>Set as default</button>
+							<button type="button" class="btn btn-danger pull-right" onclick="delete_image({$image['imageID']})">Delete</button>
+						</div>
+					</div>
 HTML;
-						} ?>
-					</tbody>
-				</table>
+				} ?>
+				<div class="clearfix"></div>
 				<a href="<?php echo base_url('/admin/product/upload_image/' . $product->productID) ?>"
 					data-toggle="modal" data-target="#image_upload" class="btn">Add Image</a>
 			</div><!-- End of Images -->
