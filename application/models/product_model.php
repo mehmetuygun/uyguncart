@@ -65,6 +65,13 @@ class Product_model extends CI_model
 		$this->productImages = array();
 
 		foreach ($query->result_array() as $row) {
+			$row['image_medium'] = '/public/images/m/' . $row['imageFullName'];
+			$row['image_large'] = '/public/images/x/' . $row['imageFullName'];
+			$row['default'] = $this->defaultImage == $row['imageID'];
+			$imageinfo = getimagesize(FCPATH . 'public/images/m/' . $row['imageFullName']);
+			$row['width'] = $imageinfo[0];
+			$row['height'] = $imageinfo[1];
+
 			$this->productImages[] = $row;
 		}
 

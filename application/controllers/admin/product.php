@@ -185,6 +185,14 @@ class Product extends Admin_Controller
 		$this->load_view($data);
 	}
 
+	public function get_images($id)
+	{
+		$this->Product_model->set($id);
+
+		$images = $this->Product_model->get_images();
+		$this->output_json($images);
+	}
+
 	public function upload_image($id = null)
 	{
 		if (!isset($id)) {
