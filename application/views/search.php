@@ -9,15 +9,17 @@ if(empty($products)) {
   	<div class="panel-heading">
     	<h3 class="panel-title">Search</h3>
   	</div>
-  	<div class="alert">
-        <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
-        No result found related with <strong>q</strong> 
-     </div>
-    Suggestion
-    <ul>
-    	<li>Make sure the word is correct.</li>
-    	<li>Try to search with similar word.</li>
-    </ul>
+  	<div class="panel-body">
+	  	<div class="alert">
+	        <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+	        No result found related with <strong>q</strong> 
+	     </div>
+	    Suggestion
+	    <ul>
+	    	<li>Make sure the word is correct.</li>
+	    	<li>Try to search with similar word.</li>
+	    </ul>
+  	</div>
 </div>
 <?php
 } else {
