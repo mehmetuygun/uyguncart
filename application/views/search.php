@@ -31,7 +31,9 @@ if(empty($products)) {
   		<div class="col-lg-9">
   			<div class="panel">
   				<div class="panel-body">
-  					
+  					<div class="alert alert-warning" style="margin-bottom:0">
+  						<strong><?php echo $entries; ?></strong> products are found for <strong><?php echo $this->input->get('q'); ?></strong>.
+  					</div>
 	  			  	<div class="pull-left pagination">
 	  			  		<form method="GET" action="" class="form-inline" role="form">
 	  			  			<input name="q" type="hidden" value="<?php if(isset($_GET['q'])) echo $_GET['q']; ?>">

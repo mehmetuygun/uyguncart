@@ -26,7 +26,7 @@ class Search extends CI_Controller
 			$rules['order_by'] = 'productName';
 		else
 			$rules['order_by'] = 'productPrice';
-
+		$rules['search_term'] = $this->input->get('q');
 		$data['products'] = $this->product_model->fetch($rules);
 
 		$config['base_url'] = base_url('search').'?q='.$this->input->get('q').'&orderby='.$order_by;
@@ -50,6 +50,7 @@ class Search extends CI_Controller
 		$this->pagination->initialize($config);
 
 		$data['pagination'] = $this->pagination->create_links();
+		$data['entries'] = $this->product_model->entries;
 
 		$this->load->view('body', $data);
 	}
