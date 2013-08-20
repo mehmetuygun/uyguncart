@@ -7,12 +7,11 @@ class Product extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('index');
 	}
-	public function id($id, $name)
+	public function id($id)
 	{
 		$this->load->helper('url');
 		$data = array(
 			'mainview' => 'product',
-			'product' => null
 		);
 
 		$this->load->view('body', $data);

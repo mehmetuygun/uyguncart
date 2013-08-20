@@ -58,14 +58,14 @@ if(empty($products)) {
 					 	// var_dump($products);
 					 	foreach ($products as $row) {
 					 	echo '<div class="media">';
-			        	echo '<a class="pull-left" href="uyguncart.com">';
+			        	echo '<a class="pull-left" href="'.base_url('product/id').'/'.$row['productID'].'">';
 			        	if(!file_exists('public/images/sm/'.$row['imageFullName']) or is_null($row['imageFullName']))
 			        		echo '<div class="img-frame x135"><img class="media-object" src="'.base_url('public/images/sm').'/noimage.jpg"/></div>';
 			          	else 
 			          		echo '<div class="img-frame x135"><img class="media-object" src="'.base_url('public/images/sm').'/'.$row['imageFullName'].'"/></div>';
 			        	echo '</a>';
 			        	echo '<div class="media-body">';
-			          	echo '<h4 class="media-heading"><a href="#">'.$row['productName'].'</a></h4>';
+			          	echo '<h4 class="media-heading"><a href="'.base_url('product/id').'/'.$row['productID'].'">'.$row['productName'].'</a></h4>';
 			          	echo '<span class="price">'.$row['productPrice'].'$</span>';
 			        	echo '</div></div>';
 		      			}
