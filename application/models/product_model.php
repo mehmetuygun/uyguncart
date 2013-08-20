@@ -168,6 +168,7 @@ class Product_model extends CI_model
 			's' => array(	 '64', 	 '64'	),
 			'm' => array(	'200', 	'150'	),
 			'x' => array(	'500', 	'500'	),
+			'sm' => array(	'135', 	'135'	),
 		);
 
 		foreach ($sizes as $s_dir => $size) {

@@ -55,7 +55,7 @@ if(empty($products)) {
 					 	foreach ($products as $row) {
 					 	echo '<div class="media">';
 			        	echo '<a class="pull-left" href="#">';
-			          	echo '<img class="media-object" src="'.base_url('public/images/m').'/'.$row['imageFullName'].'"/>';
+			          	echo '<div class="img-frame x135"><img class="media-object" src="'.base_url('public/images/sm').'/'.$row['imageFullName'].'"/></div>';
 			        	echo '</a>';
 			        	echo '<div class="media-body">';
 			          	echo '<h4 class="media-heading"><a href="#">'.$row['productName'].'</a></h4>';

@@ -77,3 +77,16 @@ code {
     height: 330px;
     background-color: gray;
 }
+.img-frame {
+    border: 1px solid #ddd;
+    background-color: #FFF;
+    vertical-align:middle;
+    display:table-cell;
+}
+.img-frame hover {
+    
+}
+.x135 {
+    width: 135px;
+    height: 135px;
+}
