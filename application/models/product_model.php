@@ -37,11 +37,15 @@ class Product_model extends CI_model
 	public function set($id)
 	{
 		$this->load->database();
-		$this->db->from('product')->where('productID', $id)
-				->where('productID',$id)
-				->join('image', 'defaultImage = imageID', 'left');
-				
-		return $this->db->get()->row();
+		$row = $this->db->from('product')
+			->where('productID', $id)
+			->get()->row();
+
+		foreach ($row as $col => $field) {
+			$this->$col = $field;
+		}
+
+		return $row;
 	}
 
 	public function get_images()
@@ -157,9 +161,9 @@ class Product_model extends CI_model
 		$sizes = array(
 			// dir			width	height
 			's' => array(	 '64', 	 '64'	),
+			'sm' => array(	'135', 	'135'	),
 			'm' => array(	'200', 	'150'	),
 			'x' => array(	'500', 	'500'	),
-			'sm' => array(	'135', 	'135'	),
 		);
 
 		foreach ($sizes as $s_dir => $size) {
@@ -204,7 +208,7 @@ class Product_model extends CI_model
 			array('defaultImage' => $id)
 		);
 
-		$dirs = array('s', 'm', 'x');
+		$dirs = array('s', 'sm', 'm', 'x');
 		foreach ($dirs as $dir) {
 			unlink($images_dir . $dir . '/' . $image->imageFullName);
 		}
