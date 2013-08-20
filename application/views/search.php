@@ -34,13 +34,14 @@ if(empty($products)) {
   					
 	  			  	<div class="pull-left pagination">
 	  			  		<form method="GET" action="" class="form-inline" role="form">
+	  			  			<input name="q" type="hidden" value="<?php if(isset($_GET['q'])) echo $_GET['q']; ?>">
 	  			  			<div class="form-group">
 				  				<select class="form-control input-xs col-xs-3" name="orderby">
 				  					<option value="name">Name</option>
 				  					<option value="price">Price</option>
 				  				</select>
 			  				</div>
-				  				<input name="page" type="hidden" value="<?php if(isset($_GET['p'])) echo $_GET['p']; else echo 1; ?>">
+				  				<input name="per_page" type="hidden" value="<?php if(isset($_GET['per_page'])) echo $_GET['per_page']; else echo '1'; ?>">
 		  			  			<button type="submit" class="btn btn-default">Sort</button>
 	  			  		</form>
 
@@ -66,16 +67,16 @@ if(empty($products)) {
 	     			</div>
 	  			  	<div class="pull-left pagination">
 	  			  		<form method="GET" action="" class="form-inline" role="form">
+	  			  			<input name="q" type="hidden" value="<?php if(isset($_GET['q'])) echo $_GET['q']; ?>">
 	  			  			<div class="form-group">
 				  				<select class="form-control input-xs col-xs-3" name="orderby">
 				  					<option value="name">Name</option>
 				  					<option value="price">Price</option>
 				  				</select>
 			  				</div>
-				  				<input name="page" type="hidden" value="<?php if(isset($_GET['p'])) echo $_GET['p']; else echo 1; ?>">
+				  				<input name="per_page" type="hidden" value="<?php if(isset($_GET['per_page'])) echo $_GET['per_page']; else echo '1'; ?>">
 		  			  			<button type="submit" class="btn btn-default">Sort</button>
 	  			  		</form>
-
 		  			</div>
 	  				<?php echo $pagination; ?>
 	     			<div class="clearfix"></div>

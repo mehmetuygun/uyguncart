@@ -14,7 +14,7 @@ class Search extends CI_Controller
 		);
 
 		$rules = array();
-		$page = $this->input->get('page');
+		$page = $this->input->get('per_page');
 		if(isset($page))
 			$rules['page'] = $page;
 		else 
@@ -29,7 +29,7 @@ class Search extends CI_Controller
 
 		$data['products'] = $this->product_model->fetch($rules);
 
-		$config['base_url'] = '?asd=123';
+		$config['base_url'] = base_url('search').'?q='.$this->input->get('q').'&orderby='.$order_by;
 		$config['total_rows'] = $this->product_model->entries;
 		$config['per_page'] = $this->product_model->limit;
 		$config['page_query_string'] = TRUE;
