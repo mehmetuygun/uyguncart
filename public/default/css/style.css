@@ -90,3 +90,8 @@ code {
     width: 135px;
     height: 135px;
 }
+.img-main-frame {
+    width: 300px;
+    height: 300px;
+    background-color: gray;
+}
