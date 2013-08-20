@@ -37,20 +37,11 @@ class Product_model extends CI_model
 	public function set($id)
 	{
 		$this->load->database();
-		$this->db->from('product')->where('productID', $id);
-
-		$row = $this->db->get()->row();
-
-		$this->productID = $row->productID;
-		$this->productName = $row->productName;
-		$this->productPrice = $row->productPrice;
-		$this->productDescription = $row->productDescription;
-		$this->productStatus = $row->productStatus;
-		$this->categoryID = $row->categoryID;
-		$this->manufacturerID = $row->manufacturerID;
-		$this->defaultImage = $row->defaultImage;
-
-		return $row;
+		$this->db->from('product')->where('productID', $id)
+				->where('productID',$id)
+				->join('image', 'defaultImage = imageID', 'left');
+				
+		return $this->db->get()->row();
 	}
 
 	public function get_images()

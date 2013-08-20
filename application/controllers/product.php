@@ -10,6 +10,8 @@ class Product extends CI_Controller {
 	public function id($id)
 	{
 		$this->load->helper('url');
+		$this->load->model('product_model');
+		
 		$data = array(
 			'mainview' => 'product',
 		);
