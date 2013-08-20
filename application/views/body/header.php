@@ -24,7 +24,7 @@
     						</div>
     						<div class="col-lg-9">
     						<form class="navbar-form pull-left" action="<?php echo base_url('search') ?>" method="get">
-    	              			<input type="text" name="q" class="form-control" id="search" placeholder="Search">
+    	              			<input type="text" name="q" class="form-control" id="search" placeholder="Search" value="<?php if(isset($_GET["q"])) echo $_GET["q"]; ?>">
     	              			<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
     	            		</form>
                             <span class="navbar-form pull-right">
