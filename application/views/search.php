@@ -54,7 +54,7 @@ if(empty($products)) {
 					 	// var_dump($products);
 					 	foreach ($products as $row) {
 					 	echo '<div class="media">';
-			        	echo '<a class="pull-left" href="#">';
+			        	echo '<a class="pull-left" href="uyguncart.com">';
 			          	echo '<div class="img-frame x135"><img class="media-object" src="'.base_url('public/images/sm').'/'.$row['imageFullName'].'"/></div>';
 			        	echo '</a>';
 			        	echo '<div class="media-body">';

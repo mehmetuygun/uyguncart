@@ -83,8 +83,8 @@ code {
     vertical-align:middle;
     display:table-cell;
 }
-.img-frame hover {
-    
+.img-frame:hover {
+    border: 1px solid orange;
 }
 .x135 {
     width: 135px;
