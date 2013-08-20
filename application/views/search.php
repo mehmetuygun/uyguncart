@@ -85,9 +85,7 @@ if(empty($products)) {
 	  			  		</form>
 
 		  			</div>
-	  				<div class="pagination pull-right">
-	  					<?php echo $pagination; ?>
-	     			</div>
+	  				<?php echo $pagination; ?>
 	     			<div class="clearfix"></div>
   				</div>
 			</div>

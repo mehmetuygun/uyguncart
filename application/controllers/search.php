@@ -10,26 +10,22 @@ class Search extends CI_Controller
 		$this->load->library('pagination');
 
 		$config['base_url'] = '?asd=123';
-		$config['total_rows'] = 10;
-		$config['per_page'] = 1; 
+		$config['total_rows'] = 40;
+		$config['per_page'] = 10; 
 		$config['page_query_string'] = TRUE;
 		$config['first_link'] = false;
 		$config['last_link'] = false;
-
-
-		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['use_page_numbers'] = TRUE;
+		$config['full_tag_open'] = '<ul class="pagination pull-right">';
 		$config['full_tag_close'] = '</ul>';
-
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
-		
 		$config['prev_tag_open'] = '<li>';
 		$config['next_tag_open'] = '<li>';
 		$config['prev_tag_close'] = '</li>';
 		$config['next_tag_close'] = '</li>';
-
 		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
+		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
 
 
  
