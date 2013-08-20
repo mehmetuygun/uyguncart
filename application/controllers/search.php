@@ -9,6 +9,8 @@ class Search extends CI_Controller
 		$this->load->model('product_model');
 		$this->load->library('pagination');
 
+		
+
 		$config['base_url'] = '?asd=123';
 		$config['total_rows'] = 40;
 		$config['per_page'] = 10; 
