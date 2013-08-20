@@ -16,7 +16,7 @@ class Category_model extends CI_model
 	{
 		$this->load->database();
 		$this->db->from('category')
-			->where(array('categoryID' => $id));
+			->where('categoryID', $id);
 
 		$row = $this->db->get()->row();
 		$this->categoryID = $row->categoryID;
@@ -26,8 +26,8 @@ class Category_model extends CI_model
 
 	/**
 	 *	Add category
-	 *	
-	 *	@param array The array include information to be updated. 
+	 *
+	 *	@param array The array include information to be updated.
 	 * 	@return boolean
 	 */
 	public function add($field) {
@@ -37,9 +37,9 @@ class Category_model extends CI_model
 
 	/**
 	 *	Edit category
-	 *	
-	 *	@param array The array include information to be updated. 
-	 *	@param array The ID of the category to be updated. 
+	 *
+	 *	@param array The array include information to be updated.
+	 *	@param array The ID of the category to be updated.
 	 * 	@return boolean
 	 */
 	public function edit($field, $id)
@@ -110,6 +110,7 @@ class Category_model extends CI_model
 	 *	Get list of categories as an array.
 	 *
 	 *	@param	bool	add '-- NONE --' option
+	 *	@param  integer	ID of the category to skip
 	 *	@return	array	list of categories
 	 */
 	public function fetchAll($with_none = false, $skip = false)
@@ -130,7 +131,7 @@ class Category_model extends CI_model
 	/**
 	 *	Get list of categories as an array page by page.
 	 *
-	 *	@param	bool	
+	 *	@param	bool
 	 *	@return	array	list of categories
 	 */
 	public function fetch($query = '', $sort = 'asc', $limit = 10, $page = 1)
@@ -140,7 +141,7 @@ class Category_model extends CI_model
 		$this->db->from('category')
 			->like('categoryName', $query)
 			->order_by('categoryName', $sort);
-		 
+
 		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $limit);
 

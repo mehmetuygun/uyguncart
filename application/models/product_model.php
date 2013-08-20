@@ -219,7 +219,7 @@ class Product_model extends CI_model
 	}
 
 	/**
-	 *	Delete manufacturer
+	 *	Delete product
 	 *
 	 *	@param array The array include information to be deleted.
 	 *	@return boolean true for success

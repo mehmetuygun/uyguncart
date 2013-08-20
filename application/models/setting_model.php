@@ -14,7 +14,7 @@ class Setting_model extends CI_model
 	{
 		$this->load->database();
 		$this->db->from('user')
-			->where(array('userID' => $id));
+			->where('userID', $id);
 
 		$row = $this->db->get()->row();
 		$this->userEmail = $row->userEmail;
@@ -24,8 +24,8 @@ class Setting_model extends CI_model
 
 	/**
 	 *	Update user's personal information
-	 *	
-	 *	@param array The array include information to be updated. 
+	 *
+	 *	@param array The array include information to be updated.
 	 *	@param string The userID of user.
 	 * 	@return boolean
 	 */

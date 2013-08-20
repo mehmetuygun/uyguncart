@@ -9,22 +9,22 @@ class User_model extends CI_model
 	public $userType;
 
 	/**
-	 *	User Authentication	
+	 *	User Authentication
 	 *
 	 *	@param string The email of user
 	 *	@param string The password of user
-	 *	@return bool 
+	 *	@return bool
 	 */
 	public function login($email, $password)
 	{
 		$this->load->database();
-		$this->db->from('user');
 
-		$data = array('userEmail' => $email, 'userPassword' => $password);
+		$this->db->from('user')
+			->where('userEmail', $email)
+			->where('userPassword', $password);
 
-		$this->db->where($data);
 		$query = $this->db->get();
-		
+
 		if ($query->num_rows() != 1) {
 			return false;
 		}
@@ -41,8 +41,7 @@ class User_model extends CI_model
 
 	/**
 	 *	Checking user is logged
-	 *	
-	 *	@return boole
+	 *
 	 */
 	public function admin_logged()
 	{
@@ -70,7 +69,7 @@ class User_model extends CI_model
 		$data = array('userID' => $id, 'userPassword' => $password);
 
 		$query = $this->db->where($data)->get();
-		
+
 		if ($query->num_rows() != 1) {
 			return false;
 		}
