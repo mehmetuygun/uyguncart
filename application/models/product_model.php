@@ -1,6 +1,6 @@
 <?php
 
-class Product_model extends CI_model
+class Product_model extends MY_Model
 {
 
 	public $productID;
@@ -21,31 +21,18 @@ class Product_model extends CI_model
 	public $order_by = 'productName';
 	public $sort = 'asc';
 
+
+	public function __construct()
+	{
+		parent::__construct();
+		parent::initialize('product', 'productID');
+	}
+
 	public function add($field)
 	{
-		$this->load->database();
 		$field['productAddedDate'] = date('Y-m-d H:i:s');
-		return $this->db->insert('product', $field);
-	}
 
-	public function insert_id()
-	{
-		$this->load->database();
-		return $this->db->insert_id();
-	}
-
-	public function set($id)
-	{
-		$this->load->database();
-		$row = $this->db->from('product')
-			->where('productID', $id)
-			->get()->row();
-
-		foreach ($row as $col => $field) {
-			$this->$col = $field;
-		}
-
-		return $row;
+		return parent::insert($field);
 	}
 
 	public function get_images()
@@ -71,20 +58,6 @@ class Product_model extends CI_model
 		}
 
 		return $this->productImages;
-	}
-
-	/**
-	 *	Update product
-	 *
-	 *	@param array The array include information to be updated.
-	 *	@param integer ID of the product
-	 *	@return boolean true for success
-	 */
-	public function update($field, $id)
-	{
-		$this->load->database();
-		$data = array('productID' => $id);
-		return $this->db->update('product', $field, $data);
 	}
 
 	public function upload_image($inputs = null)

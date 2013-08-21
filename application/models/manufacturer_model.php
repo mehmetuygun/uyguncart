@@ -1,6 +1,6 @@
 <?php
 
-class Manufacturer_model extends CI_model
+class Manufacturer_model extends CI_Model
 {
 	public $manufacturerName;
 	public $entries;
@@ -22,8 +22,8 @@ class Manufacturer_model extends CI_model
 
 	/**
 	 *	Create manufacturer information
-	 *	
-	 *	@param array The array include information to be updated. 
+	 *
+	 *	@param array The array include information to be updated.
 	 * 	@return boolean
 	 */
 	public function insert($field)
@@ -75,7 +75,7 @@ class Manufacturer_model extends CI_model
 		$this->db->from('manufacturer')
 			->like('manufacturerName', $query)
 			->order_by('manufacturerName', $order_by);
-		 
+
 		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $limit);
 

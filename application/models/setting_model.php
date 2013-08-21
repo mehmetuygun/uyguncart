@@ -1,6 +1,6 @@
 <?php
 
-class Setting_model extends CI_model
+class Setting_model extends CI_Model
 {
 	public $userEmail;
 	public $userFirstName;

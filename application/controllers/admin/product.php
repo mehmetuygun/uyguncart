@@ -80,8 +80,8 @@ class Product extends Admin_Controller
 				'categoryID'=> $this->input->post('categoryID'),
 				'manufacturerID'=> $this->input->post('manufacturerID')
 			);
-			if($this->Product_model->add($field)) {
-				redirect('/admin/product/edit/'.$this->Product_model->insert_id(), 'location');
+			if ($productID = $this->Product_model->add($field)) {
+				redirect('/admin/product/edit/' . $productID);
 			} else {
 				$data["alert_message"] = "Something went wrong. Please try again.";
 				$data["alert_class"] = "alert-error";
@@ -225,8 +225,8 @@ class Product extends Admin_Controller
 	{
 		$list = $this->input->post('list');
 
-		foreach ($list as $value) {
-			$this->Product_model->delete(array('productID' => $value));
+		foreach ($list as $id) {
+			$this->Product_model->delete($id);
 		}
 	}
 

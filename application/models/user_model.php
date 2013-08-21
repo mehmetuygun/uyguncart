@@ -1,6 +1,6 @@
 <?php
 
-class User_model extends CI_model
+class User_model extends CI_Model
 {
 	public $userID;
 	public $userEmail;
