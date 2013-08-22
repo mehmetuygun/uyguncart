@@ -192,19 +192,6 @@ class Product_model extends MY_Model
 	}
 
 	/**
-	 *	Delete product
-	 *
-	 *	@param array The array include information to be deleted.
-	 *	@return boolean true for success
-	 */
-	public function delete($field)
-	{
-		$this->load->database();
-
-		return $this->db->delete('product', $field);
-	}
-
-	/**
 	 *	Fetch products as array
 	 *
 	 *	@param array The array which includes param name and its value.
