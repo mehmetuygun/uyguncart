@@ -1,62 +1,17 @@
 <?php
 
-class Manufacturer_model extends CI_Model
+class Manufacturer_model extends MY_Model
 {
+	public $manufacturerID;
 	public $manufacturerName;
 	public $entries;
 	public $pagecount;
 
-	/**
-	 *	Setting manufacturer
-	 *	@param string The ID of the manufacturer.
-	 */
-	public function set($id)
+
+	public function __construct()
 	{
-		$this->load->database();
-		$this->db->from('manufacturer')
-			->where(array('manufacturerID' => $id));
-
-		$row = $this->db->get()->row();
-		$this->manufacturerName = $row->manufacturerName;
-	}
-
-	/**
-	 *	Create manufacturer information
-	 *
-	 *	@param array The array include information to be updated.
-	 * 	@return boolean
-	 */
-	public function insert($field)
-	{
-		$this->load->database();
-		return $this->db->insert('manufacturer', $field);
-	}
-
-	/**
-	 *	Update manufacturer
-	 *
-	 *	@param array The array include information to be updated.
-	 *	@param integer ID of the manufacturer
-	 *	@return boolean true for success
-	 */
-	public function update($field, $id)
-	{
-		$this->load->database();
-		$data = array('manufacturerID' => $id);
-		return $this->db->update('manufacturer', $field, $data);
-	}
-
-	/**
-	 *	Delete manufacturer
-	 *
-	 *	@param array The array include information to be deleted.
-	 *	@return boolean true for success
-	 */
-	public function delete($field)
-	{
-		$this->load->database();
-
-		return $this->db->delete('manufacturer', $field);
+		parent::__construct();
+		parent::initialize('manufacturer', 'manufacturerID');
 	}
 
 	/**
@@ -96,7 +51,7 @@ class Manufacturer_model extends CI_Model
 		return $query->result();
 	}
 
-	public function fetchAll ($with_none = FALSE)
+	public function fetchAll($with_none = false)
 	{
 		$this->load->database();
 		$this->db->from('manufacturer');

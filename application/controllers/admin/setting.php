@@ -75,7 +75,7 @@ class Setting extends Admin_Controller
 			}
 
 			if ($this->form_validation->run() == true) {
-				if ($this->Setting_model->update_account($update, $userID)) {
+				if ($this->Setting_model->update($update, $userID)) {
 					$data['alert_message'] = 'Your data has been updated successfully.';
 					$data['alert_class'] = 'alert-success';
 					$this->Setting_model->set($userID);
@@ -136,7 +136,7 @@ class Setting extends Admin_Controller
 			$update = array(
 				'userPassword' => $this->input->post('new_password'),
 			);
-			if ($this->Setting_model->update_account($update, $this->session->userdata('userID'))) {
+			if ($this->Setting_model->update($update, $this->session->userdata('userID'))) {
 				$data['alert_message'] = 'Your data is update succesfuly.';
 				$data['alert_class'] = 'alert-success';
 			} else {

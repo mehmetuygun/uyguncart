@@ -35,6 +35,7 @@
 				<div class="control-group <?php if(form_error('productStatus')) echo "error"; ?>">
 				<label class="control-label" for="productStatus">Product Status</label>
 				   <div class="controls">
+				   	<?php var_dump($product->productStatus, set_value('productStatus', '')) ?>
 						<?php echo form_dropdown('productStatus', $status, set_value('productStatus', $product->productStatus), 'id="productStatus"') ?>
 						<span class="help-inline"><?php echo form_error('productStatus'); ?></span>
 				   </div>

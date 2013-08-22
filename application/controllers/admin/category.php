@@ -71,7 +71,7 @@ class Category extends Admin_Controller
 				$field['parentID'] = $this->input->post('parentID');
 			}
 
-			if ($this->Category_model->add($field)) {
+			if ($this->Category_model->insert($field)) {
 				$data["alert_message"] = "The Category is added succesfuly.";
 				$data["alert_class"] = "alert-success";
 				$data["categories"] = $this->Category_model->fetchAll(true);
@@ -131,7 +131,7 @@ class Category extends Admin_Controller
 				'categoryName' => $this->input->post('categoryName')
 			);
 
-			if ($this->Category_model->edit($field, $id)) {
+			if ($this->Category_model->update($field, $id)) {
 				$data["alert_message"] = "The Category was updated successfully.";
 				$data["alert_class"] = "alert-success";
 				$data["categories"] = $this->Category_model->fetchAll(true, $id);

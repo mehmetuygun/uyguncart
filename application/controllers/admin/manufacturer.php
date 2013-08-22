@@ -120,7 +120,7 @@ class Manufacturer extends Admin_Controller
 		$list = $this->input->post('list');
 
 		foreach ($list as $value) {
-			$this->Manufacturer_model->delete(array('manufacturerID' => $value));
+			$this->Manufacturer_model->delete($value);
 		}
 	}
 

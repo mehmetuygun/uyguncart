@@ -1,6 +1,6 @@
 <?php
 
-class Category_model extends CI_Model
+class Category_model extends MY_Model
 {
 	public $categoryName;
 	public $parentID;
@@ -8,45 +8,11 @@ class Category_model extends CI_Model
 	public $entries;
 	public $pagecount;
 
-	/**
-	 *	Setting category
-	 *	@param string The ID of the category.
-	 */
-	public function set($id)
+
+	public function __construct()
 	{
-		$this->load->database();
-		$this->db->from('category')
-			->where('categoryID', $id);
-
-		$row = $this->db->get()->row();
-		$this->categoryID = $row->categoryID;
-		$this->categoryName = $row->categoryName;
-		$this->parentID = $row->parentID;
-	}
-
-	/**
-	 *	Add category
-	 *
-	 *	@param array The array include information to be updated.
-	 * 	@return boolean
-	 */
-	public function add($field) {
-		$this->load->database();
-		return $this->db->insert('category', $field);
-	}
-
-	/**
-	 *	Edit category
-	 *
-	 *	@param array The array include information to be updated.
-	 *	@param array The ID of the category to be updated.
-	 * 	@return boolean
-	 */
-	public function edit($field, $id)
-	{
-		$this->load->database();
-		$data = array('categoryID' => $id);
-		return $this->db->update('category', $field, $data);
+		parent::__construct();
+		parent::initialize('category', 'categoryID');
 	}
 
 	/**
@@ -58,7 +24,9 @@ class Category_model extends CI_Model
 	public function delete($categoryID)
 	{
 		$this->load->database();
-		$this->db->from('category')->where('parentID', $categoryID);
+		$this->db->from('category')
+			->where('parentID', $categoryID);
+
 		$query = $this->db->get();
 		foreach ($query->result() as $row) {
 			$this->delete($row->categoryID);
@@ -78,10 +46,10 @@ class Category_model extends CI_Model
 	public function category_exist($categoryID)
 	{
 		$this->load->database();
-		$this->db->from('category')->where('categoryID', $categoryID);
-		if ($this->db->count_all_results() > 0)
-			return true;
-		return false;
+		$this->db->from('category')
+			->where('categoryID', $categoryID);
+
+		return $this->db->count_all_results() > 0;
 	}
 
 	/**

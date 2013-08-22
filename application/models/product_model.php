@@ -2,7 +2,6 @@
 
 class Product_model extends MY_Model
 {
-
 	public $productID;
 	public $productName;
 	public $productPrice;
@@ -28,7 +27,7 @@ class Product_model extends MY_Model
 		parent::initialize('product', 'productID');
 	}
 
-	public function add($field)
+	public function insert($field)
 	{
 		$field['productAddedDate'] = date('Y-m-d H:i:s');
 

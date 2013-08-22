@@ -80,7 +80,7 @@ class Product extends Admin_Controller
 				'categoryID'=> $this->input->post('categoryID'),
 				'manufacturerID'=> $this->input->post('manufacturerID')
 			);
-			if ($productID = $this->Product_model->add($field)) {
+			if ($productID = $this->Product_model->insert($field)) {
 				redirect('/admin/product/edit/' . $productID);
 			} else {
 				$data["alert_message"] = "Something went wrong. Please try again.";
