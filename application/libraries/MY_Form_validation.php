@@ -9,7 +9,7 @@ class MY_Form_validation extends CI_Form_validation
 		$this->_error_prefix = '';
 		$this->_error_suffix = '';
 	}
-	
+
 	/**
 	 * @param	string	The form element to be checked
 	 * @return	bool	valid
@@ -46,8 +46,10 @@ class MY_Form_validation extends CI_Form_validation
 	{
 		$this->CI->load->model('Category_model');
 		$this->CI->form_validation->set_message('category_exist', 'The %s does not exist.');
-		if($str == null)
+		if ($str == null) {
 			return true;
+		}
+
 		return $this->CI->Category_model->category_exist($str);
 	}
 
@@ -77,37 +79,40 @@ class MY_Form_validation extends CI_Form_validation
 
 		return true;
 	}
+
 	public function exists($str, $field)
 	{
 		$this->CI->form_validation->set_message('exists', 'The %s field does not exists.');
 		list($table, $field) = explode('.', $field);
 		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
-		
-		return $query->num_rows() != 0;
-    }
 
-    public function exists_null($str, $field)
-	{	
-		if($str == null)
+		return $query->num_rows() != 0;
+	}
+
+	public function exists_null($str, $field)
+	{
+		if ($str == null) {
 			return true;
-		
+		}
+
 		$this->CI->form_validation->set_message('exists', 'The %s field does not exists.');
 		list($table, $field) = explode('.', $field);
 		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
-		
-		return $query->num_rows() != 0;
-    }
 
-    public function alpha_dash_space($str)
+		return $query->num_rows() != 0;
+	}
+
+	public function alpha_dash_space($str)
 	{
 		$this->CI->form_validation->set_message('alpha_dash_space', 'The %s field may only contain alphabetical characters.');
-   		return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+
+		return !!preg_match("/^([-a-z_ ])+$/i", $str);
 	}
 
 	public function status($str)
 	{
 		$this->CI->form_validation->set_message('status', 'The %s field contains invalid status.');
-		if($str != 0 and $str != 1)
-			return false;
-	} 
+
+		return $str === '0' || $str === '1';
+	}
 }
