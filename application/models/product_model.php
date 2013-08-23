@@ -34,6 +34,22 @@ class Product_model extends MY_Model
 		return parent::insert($field);
 	}
 
+	public function delete($id)
+	{
+		$this->load->database();
+
+		$query = $this->db->from('object_image')
+			->where('objectType', 'product')
+			->where('objectID', $id)
+			->get();
+
+		foreach ($query->result_array() as $row) {
+			$this->delete_image($row['imageID']);
+		}
+
+		parent::delete($id);
+	}
+
 	public function get_images()
 	{
 		$this->load->database();
