@@ -75,7 +75,7 @@ class Product_model extends MY_Model
 					continue;
 				}
 
-				$imageinfo = explode('x', $row['size_' . $sdir]);
+				$imageinfo = explode('x', $row['size_' . $s_dir]);
 				$row['image_' . $s_dir] = array(
 					'path' => $s_path,
 					'width' => $imageinfo[0],
