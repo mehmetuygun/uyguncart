@@ -12,14 +12,6 @@ class Product_model extends MY_Model
 	public $defaultImage;
 	public $productImages;
 
-	public $search_term = '';
-	public $pagecount;
-	public $entries;
-	public $limit = 10;
-	public $page = 1;
-	public $order_by = 'productName';
-	public $sort = 'asc';
-
 
 	public function __construct()
 	{
@@ -47,7 +39,7 @@ class Product_model extends MY_Model
 			$this->delete_image($row['imageID']);
 		}
 
-		parent::delete($id);
+		return parent::delete($id);
 	}
 
 	public function get_images()
@@ -212,43 +204,12 @@ class Product_model extends MY_Model
 	 *	@param array The array which includes param name and its value.
 	 *	@return array
 	 */
-	public function fetch(array $param = array())
+	public function fetch(array $params = array())
 	{
-		$this->load->database();
+		$this->order_by = 'productName';
+		$this->search_field = 'productName';
+		$this->join = array('image', 'defaultImage = imageID', 'left');
 
-		foreach ($param as $key => $value) {
-			$this->$key = $value;
-		}
-
-		$this->entries = $this->db->from('product')
-			->like('productName', $this->search_term)
-			->count_all_results();
-		$this->pagecount = ceil($this->entries / $this->limit);
-
-		if ($this->entries == 0) {
-			return array();
-		}
-
-		if ($this->page > $this->pagecount) {
-			$this->page = $this->pagecount;
-		} else if ($this->page < 1) {
-			$this->page = 1;
-		}
-		$from = ($this->page - 1) * $this->limit;
-
-		$this->db->from('product')
-			->like('productName', $this->search_term)
-			->join('image', 'defaultImage = imageID', 'left')
-			->order_by($this->order_by)
-			->limit($this->limit, $from);
-
-		$query = $this->db->get();
-
-		$field = array();
-		foreach ($query->result_array() as $res) {
-			$field[] = $res;
-		}
-
-		return $field;
+		return parent::fetch($params);
 	}
 }
