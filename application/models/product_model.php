@@ -42,12 +42,15 @@ class Product_model extends MY_Model
 		return parent::delete($id);
 	}
 
-	public function get_images()
+	public function get_images($default_only = false)
 	{
 		$this->load->database();
 		$this->db->from('object_image')
-			->join('image', 'object_image.imageID = image.imageID')
-			->where('objectType', 'product')
+			->join('image', 'object_image.imageID = image.imageID');
+		if ($default_only) {
+			$this->db->join('product', 'defaultImage = image.imageID');
+		}
+		$this->db->where('objectType', 'product')
 			->where('objectID', $this->productID);
 
 		$query = $this->db->get();

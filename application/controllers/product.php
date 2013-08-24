@@ -11,9 +11,11 @@ class Product extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->model('product_model');
-		
+
 		$data = array(
 			'mainview' => 'product',
+			'row' => $this->product_model->set($id),
+			'img' => $this->product_model->get_images(true)
 		);
 
 		$this->load->view('body', $data);
