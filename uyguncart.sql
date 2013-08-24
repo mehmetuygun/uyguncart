@@ -171,7 +171,11 @@ CREATE TABLE IF NOT EXISTS `image` (
   `imageID` int(11) NOT NULL AUTO_INCREMENT,
   `imageFullName` varchar(25) NOT NULL,
   `imageOriginal` varchar(255) NOT NULL,
-  `imageExt` varchar(5) NOT NULL,
+  `size_64` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `size_135` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `size_200` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `size_300` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `size_500` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`imageID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

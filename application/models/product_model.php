@@ -12,6 +12,16 @@ class Product_model extends MY_Model
 	public $defaultImage;
 	public $productImages;
 
+	protected static $img_path = 'public/images/';
+	protected static $img_sizes = array(
+		// dir			width 		height
+		64 		 => array(64, 		64),
+		135 	 => array(135, 		135),
+		200 	 => array(200, 		200),
+		300 	 => array(300, 		300),
+		500 	 => array(500, 		500),
+	);
+
 
 	public function __construct()
 	{
@@ -57,12 +67,21 @@ class Product_model extends MY_Model
 		$this->productImages = array();
 
 		foreach ($query->result_array() as $row) {
-			$row['image_medium'] = '/public/images/m/' . $row['imageFullName'];
-			$row['image_large'] = '/public/images/x/' . $row['imageFullName'];
 			$row['default'] = $this->defaultImage == $row['imageID'];
-			$imageinfo = getimagesize(FCPATH . 'public/images/m/' . $row['imageFullName']);
-			$row['width'] = $imageinfo[0];
-			$row['height'] = $imageinfo[1];
+
+			foreach (static::$img_sizes as $s_dir => $size) {
+				$s_path = static::$img_path . $s_dir . '/' . $row['imageFullName'];
+				if (!file_exists(FCPATH . $s_path)) {
+					continue;
+				}
+
+				$imageinfo = explode('x', $row['size_' . $sdir]);
+				$row['image_' . $s_dir] = array(
+					'path' => $s_path,
+					'width' => $imageinfo[0],
+					'height' => $imageinfo[1],
+				);
+			}
 
 			$this->productImages[] = $row;
 		}
@@ -82,7 +101,7 @@ class Product_model extends MY_Model
 			$inputs = array($inputs);
 		}
 
-		$images_dir = FCPATH . 'public/images/';
+		$images_dir = FCPATH . static::$img_path;
 
 		$config = array(
 			'upload_path' => $images_dir . 'original/',
@@ -101,13 +120,17 @@ class Product_model extends MY_Model
 
 			$upload_data = $this->upload->data();
 			$f_name = uniqid('p' . $this->productID) . $upload_data['file_ext'];
-			$this->create_thumbnails($upload_data['full_path'], $f_name);
+			$sizes = $this->create_thumbnails($upload_data['full_path'], $f_name);
 
 			$field = array(
 				'imageFullName' => $f_name,
 				'imageOriginal' => $upload_data['file_name'],
-				'imageExt' => $upload_data['file_ext'],
 			);
+
+			foreach ($sizes as $s_dir => $size) {
+				$field['size_' . $s_dir] = $size[0] . 'x' . $size[1];
+			}
+
 			$this->db->insert('image', $field);
 			$imageID = $this->db->insert_id();
 
@@ -134,22 +157,15 @@ class Product_model extends MY_Model
 
 	public function create_thumbnails($source_image, $f_name = null)
 	{
-		$images_dir = FCPATH . 'public/images/';
+		$images_dir = FCPATH . static::$img_path;
 
 		$this->load->library('image_lib');
 		if (!isset($f_name)) {
 			$f_name = basename($source_image);
 		}
 
-		$sizes = array(
-			// dir			width	height
-			's' => array(	 '64', 	 '64'	),
-			'sm' => array(	'135', 	'135'	),
-			'm' => array(	'200', 	'150'	),
-			'x' => array(	'500', 	'500'	),
-		);
-
-		foreach ($sizes as $s_dir => $size) {
+		$sizes = array();
+		foreach (static::$img_sizes as $s_dir => $size) {
 			list($w, $h) = $size;
 
 			$dir = $images_dir . $s_dir . '/';
@@ -166,12 +182,17 @@ class Product_model extends MY_Model
 			$this->image_lib->resize();
 
 			$this->image_lib->clear();
+
+			$s = &$sizes[$s_dir];
+			list($s[0], $s[1]) = getimagesize($f_path);
 		}
+
+		return $sizes;
 	}
 
 	public function delete_image($id)
 	{
-		$images_dir = FCPATH . 'public/images/';
+		$images_dir = FCPATH . static::$img_path;
 
 		$this->load->database();
 
@@ -191,9 +212,8 @@ class Product_model extends MY_Model
 			array('defaultImage' => $id)
 		);
 
-		$dirs = array('s', 'sm', 'm', 'x');
-		foreach ($dirs as $dir) {
-			unlink($images_dir . $dir . '/' . $image->imageFullName);
+		foreach (static::$img_sizes as $s_dir => $size) {
+			unlink($images_dir . $s_dir . '/' . $image->imageFullName);
 		}
 
 		unlink($images_dir . 'original/' . $image->imageOriginal);

@@ -24,10 +24,11 @@ function get_images() {
 		$('#image_container').empty();
 		for (var i = 0; i < res.length; i++) {
 			var html = '', set_default, outer_class = '';
-			var img_med = base_url + res[i]['image_medium'];
-			var img_lrg = base_url + res[i]['image_large'];
+			var med_info = res[i]['image_200'];
+			var img_med = base_url + med_info['path'];
+			var img_lrg = base_url + res[i]['image_500']['path'];
 			var del_image = ' onclick="delete_image(' + res[i]['imageID'] + ')"';
-			var w_h = ' width="' + res[i]['width'] + 'px" height="' + res[i]['height'] + 'px"';
+			var w_h = ' width="' + med_info['width'] + 'px" height="' + med_info['height'] + 'px"';
 			if (res[i]['default']) {
 				outer_class = ' img-default';
 				set_default = ' disabled="disabled"';
