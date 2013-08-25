@@ -45,7 +45,10 @@
 				</table>
 			</div>
 			<div class="col-sm-2">
-				<button class="btn btn-primary pull-right">Add to Cart</button>
+				<form method="POSt" action="<?php echo base_url('cart'); ?>">
+					<input type="hidden" name="productID" value="<?php echo $row->productID; ?>">
+					<button type="submit" class="btn btn-primary pull-right">Add to Cart</button>
+				</form>
 			</div>
 		</div>
 	</div>
