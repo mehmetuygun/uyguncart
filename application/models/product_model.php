@@ -57,9 +57,12 @@ class Product_model extends MY_Model
 		$this->load->database();
 		$this->db->from('object_image')
 			->join('image', 'object_image.imageID = image.imageID');
+
 		if ($default_only) {
-			$this->db->join('product', 'defaultImage = image.imageID');
+			$this->db->select('object_image.*, image.*, product.defaultImage')
+				->join('product', 'defaultImage = image.imageID');
 		}
+
 		$this->db->where('objectType', 'product')
 			->where('objectID', $this->productID);
 
