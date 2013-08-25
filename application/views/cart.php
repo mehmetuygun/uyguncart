@@ -2,6 +2,11 @@
 	<div class="panel-heading">Cart</div>
 	<div class="panel-body">
 		<?php
+		if(isset($error)) {
+			echo '<div class="alert alert-'.$error_type.'">';
+			echo $error_message;
+			echo '</div>';
+		}
 		if(!$items) {
 			echo '<div class="alert alert-warning">';
 			echo 'Your shopping cart is empty.';
@@ -30,6 +35,8 @@
 						echo '<td>';
 						echo '<form method="POST" action="">';
 						echo '<input type="hidden" name="add_qty" value="1"/>';
+						echo '<input type="hidden" name="productID" value="'.$item['id'].'"/>';
+						echo '<input type="hidden" name="rowid" value="'.$item['rowid'].'"/>';
 						echo '<input type="text" name="qty" value="'.$item['qty'].'" class="col-lg-2">';
 						echo '<button type="submit" class="btn btn-default btn-xs">Update</button>';
 						echo '</form>';
