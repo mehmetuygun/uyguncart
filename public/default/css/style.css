@@ -60,8 +60,7 @@ code {
     height: 20px;
 }
 #header {
-    background-color: rgb(241, 241, 241);
-    margin-bottom: 20px;
+    background-color: gray;
 }
 .header-up {
     height: 25px;
