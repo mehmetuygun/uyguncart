@@ -2,94 +2,102 @@
 	<li><a href="<?php echo base_url(); ?>">Home</a><span class="divider"></span></li>
 	<li class="active">Search</li>
 </ul>
-<?php 
+<?php
 if(empty($products)) {
 ?>
 <div class="panel">
-  	<div class="panel-heading">
-    	<h3 class="panel-title">Search</h3>
-  	</div>
-  	<div class="panel-body">
-	  	<div class="alert">
-	        <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
-	        No result found related with <strong>q</strong> 
-	     </div>
-	    Suggestion
-	    <ul>
-	    	<li>Make sure the word is correct.</li>
-	    	<li>Try to search with similar word.</li>
-	    </ul>
-  	</div>
+	<div class="panel-heading">
+		<h3 class="panel-title">Search</h3>
+	</div>
+	<div class="panel-body">
+		<div class="alert">
+			<!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+			No result found related with <strong><?php echo $q ?></strong>
+		</div>
+		Suggestion
+		<ul>
+			<li>Make sure the word is correct.</li>
+			<li>Try to search with similar word.</li>
+		</ul>
+	</div>
 </div>
 <?php
 } else {
 	?>
 	<div class="row">
-  		<div class="col-lg-3">
-  			<div class="panel">
-  				Category
-  			</div>
-  		</div>
-  		<div class="col-lg-9">
-  			<div class="panel">
-  				<div class="panel-body">
-  					<div class="alert alert-warning" style="margin-bottom:0">
-  						<strong><?php echo $entries; ?></strong> products are found for <strong><?php echo $this->input->get('q'); ?></strong>.
-  					</div>
-	  			  	<div class="pull-left pagination">
-	  			  		<form method="GET" action="" class="form-inline" role="form">
-	  			  			<input name="q" type="hidden" value="<?php if(isset($_GET['q'])) echo $_GET['q']; ?>">
-	  			  			<div class="form-group">
-				  				<select class="form-control input-xs col-xs-3" name="orderby">
-				  					<option value="name">Name</option>
-				  					<option value="price">Price</option>
-				  				</select>
-			  				</div>
-				  				<input name="per_page" type="hidden" value="<?php if(isset($_GET['per_page'])) echo $_GET['per_page']; else echo '1'; ?>">
-		  			  			<button type="submit" class="btn btn-default">Sort</button>
-	  			  		</form>
-
-		  			</div>
-		  			<?php echo $pagination; ?>
-	     			<div class="clearfix"></div>
-	     			<div class="result-body">
-					 	
-					 	<?php
-					 	// var_dump($products);
-					 	foreach ($products as $row) {
-					 	echo '<div class="media">';
-			        	echo '<a class="pull-left" href="'.base_url('product/id').'/'.$row['productID'].'">';
-			        	if(!file_exists('public/images/135/'.$row['imageFullName']) or is_null($row['imageFullName']))
-			        		echo '<div class="img-frame x135"><img class="media-object" src="'.base_url('public/images/135').'/noimage.jpg"/></div>';
-			          	else 
-			          		echo '<div class="img-frame x135"><img class="media-object" src="'.base_url('public/images/135').'/'.$row['imageFullName'].'"/></div>';
-			        	echo '</a>';
-			        	echo '<div class="media-body">';
-			          	echo '<h4 class="media-heading"><a href="'.base_url('product/id').'/'.$row['productID'].'">'.$row['productName'].'</a></h4>';
-			          	echo '<span class="price">'.$row['productPrice'].'$</span>';
-			        	echo '</div></div>';
-		      			}
-		      			?>
-	     			</div>
-	  			  	<div class="pull-left pagination">
-	  			  		<form method="GET" action="" class="form-inline" role="form">
-	  			  			<input name="q" type="hidden" value="<?php if(isset($_GET['q'])) echo $_GET['q']; ?>">
-	  			  			<div class="form-group">
-				  				<select class="form-control input-xs col-xs-3" name="orderby">
-				  					<option value="name">Name</option>
-				  					<option value="price">Price</option>
-				  				</select>
-			  				</div>
-				  				<input name="per_page" type="hidden" value="<?php if(isset($_GET['per_page'])) echo $_GET['per_page']; else echo '1'; ?>">
-		  			  			<button type="submit" class="btn btn-default">Sort</button>
-	  			  		</form>
-		  			</div>
-	  				<?php echo $pagination; ?>
-	     			<div class="clearfix"></div>
-  				</div>
+		<div class="col-lg-3">
+			<div class="panel">
+				Category
 			</div>
-  		</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="panel">
+				<div class="panel-body">
+					<div class="alert alert-warning" style="margin-bottom:0">
+						<strong><?php echo $entries ?></strong> products are found for <strong><?php echo $q ?></strong>.
+					</div>
+					<div class="pull-left pagination">
+						<form method="GET" action="" class="form-inline" role="form">
+							<input name="q" type="hidden" value="<?php echo $q; ?>">
+							<div class="form-group">
+								<select class="form-control input-xs col-xs-3" name="orderby">
+									<option value="name"<?php if ($orderby == 'name') echo ' selected="selected"' ?>>Name</option>
+									<option value="price"<?php if ($orderby == 'price') echo ' selected="selected"' ?>>Price</option>
+								</select>
+							</div>
+							<input name="page" type="hidden" value="<?php echo $page ?>">
+							<button type="submit" class="btn btn-default">Sort</button>
+						</form>
+
+					</div>
+					<?php echo $pagination; ?>
+					<div class="clearfix"></div>
+					<div class="result-body">
+						<?php
+						$img_135_url = base_url('public/images/135') . '/';
+						foreach ($products as $row) {
+							$product_url = base_url('product/id/' . $row['productID']);
+							$img_src = $img_135_url . 'noimage.jpg';
+							if (!is_null($row['imageFullName']) && file_exists('public/images/135/'.$row['imageFullName'])) {
+								$img_src = $img_135_url . $row['imageFullName'];
+							}
+
+							echo <<<HTML
+							<div class="media">
+								<a class="pull-left" href="{$product_url}">
+									<div class="img-frame x135">
+										<img class="media-object" src="{$img_src}" />
+									</div>
+								</a>
+								<div class="media-body">
+									<h4 class="media-heading">
+										<a href="{$product_url}">{$row['productName']}</a>
+									</h4>
+									<span class="price">\${$row['productPrice']}</span>
+								</div>
+							</div>
+HTML;
+						}
+						?>
+					</div>
+					<div class="pull-left pagination">
+						<form method="GET" action="" class="form-inline" role="form">
+							<input name="q" type="hidden" value="<?php echo $q ?>">
+							<div class="form-group">
+								<select class="form-control input-xs col-xs-3" name="orderby">
+									<option value="name"<?php if ($orderby == 'name') echo ' selected="selected"' ?>>Name</option>
+									<option value="price"<?php if ($orderby == 'price') echo ' selected="selected"' ?>>Price</option>
+								</select>
+							</div>
+							<input name="page" type="hidden" value="<?php echo $page ?>">
+							<button type="submit" class="btn btn-default">Sort</button>
+						</form>
+					</div>
+					<?php echo $pagination; ?>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<?php
 }
-?>

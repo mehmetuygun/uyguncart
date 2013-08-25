@@ -1,11 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Search extends CI_Controller 
+class Search extends CI_Controller
 {
-
 	public function index()
 	{
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'form'));
 		$this->load->model('product_model');
 		$this->load->library('pagination');
 
@@ -13,44 +12,53 @@ class Search extends CI_Controller
 			'mainview' => 'search'
 		);
 
-		$rules = array();
-		$page = $this->input->get('per_page');
-		if(isset($page))
-			$rules['page'] = $page;
-		else 
-			$rules['page'] = 1;
+		$page = $this->input->get('page');
+
+		$params = array();
+		if (isset($page)) {
+			$params['page'] = $page;
+		} else {
+			$params['page'] = 1;
+		}
 
 		$order_by = $this->input->get('orderby');
+		if (isset($order_by) && $order_by == 'name') {
+			$params['order_by'] = 'productName';
+		} else {
+			$params['order_by'] = 'productPrice';
+		}
 
-		if(isset($order_by) and $order_by == 'name')
-			$rules['order_by'] = 'productName';
-		else
-			$rules['order_by'] = 'productPrice';
-		$rules['search_term'] = $this->input->get('q');
-		$data['products'] = $this->product_model->fetch($rules);
+		$query = $this->input->get('q');
+		$params['search_term'] = $query;
+		$data['products'] = $this->product_model->fetch($params);
 
-		$config['base_url'] = base_url('search').'?q='.$this->input->get('q').'&orderby='.$order_by;
-		$config['total_rows'] = $this->product_model->entries;
-		$config['per_page'] = $this->product_model->limit;
-		$config['page_query_string'] = TRUE;
-		$config['first_link'] = false;
-		$config['last_link'] = false;
-		$config['use_page_numbers'] = TRUE;
-		$config['full_tag_open'] = '<ul class="pagination pull-right">';
-		$config['full_tag_close'] = '</ul>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['prev_tag_open'] = '<li>';
-		$config['next_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['next_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
+		$config = array(
+			'base_url' => base_url('search') . '?q=' . $query . '&orderby=' . $order_by,
+			'total_rows' => $this->product_model->entries,
+			'per_page' => $this->product_model->limit,
+			'page_query_string' => true,
+			'first_link' => false,
+			'last_link' => false,
+			'use_page_numbers' => true,
+			'full_tag_open' => '<ul class="pagination pull-right">',
+			'full_tag_close' => '</ul>',
+			'num_tag_open' => '<li>',
+			'num_tag_close' => '</li>',
+			'prev_tag_open' => '<li>',
+			'next_tag_open' => '<li>',
+			'prev_tag_close' => '</li>',
+			'next_tag_close' => '</li>',
+			'cur_tag_open' => '<li class="active"><a href="#">',
+			'cur_tag_close' => '<span class="sr-only">(current)</span></a></li>',
+		);
 
 		$this->pagination->initialize($config);
 
 		$data['pagination'] = $this->pagination->create_links();
 		$data['entries'] = $this->product_model->entries;
+		$data['q'] = $query;
+		$data['orderby'] = $order_by;
+		$data['page'] = $page;
 
 		$this->load->view('body', $data);
 	}
