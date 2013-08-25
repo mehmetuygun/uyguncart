@@ -10,12 +10,20 @@ class Product extends CI_Controller {
 	public function id($id)
 	{
 		$this->load->helper('url');
-		$this->load->model('product_model');
+		$this->load->model('Product_model');
+
+		$product = $this->Product_model->set($id);
+		$images = $this->Product_model->get_images();
+
+		usort($images, function($a, $b) {
+			return (int) $b['default'];
+		});
+
 
 		$data = array(
 			'mainview' => 'product',
-			'row' => $this->product_model->set($id),
-			'img' => $this->product_model->get_images(true)
+			'row' => $product,
+			'images' => $images,
 		);
 
 		$this->load->view('body', $data);

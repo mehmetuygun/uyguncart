@@ -60,7 +60,7 @@ code {
     height: 20px;
 }
 #header {
-    background-color: gray;
+    background-color: black;
 }
 .header-up {
     height: 25px;
@@ -118,6 +118,24 @@ code {
 .tab-style li a:hover {
     border-bottom: 1px solid #eee;
 }
+.thum {
+    overflow-x: auto;
+    width: 300px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+}
 .thum-list {
-    overflow-x: scroll;
+    padding:3px;
+    list-style: none;
+    width: 1000px;
+}
+.thum-list li {
+    float: left;
+    display: inline;
+}
+.thum-list .frame {
+    border: 1px solid #ddd;
+}
+.thum-list .frame:hover{
+    border: 1px solid orange;
 }
