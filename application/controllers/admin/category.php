@@ -161,13 +161,20 @@ class Category extends Admin_Controller
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
-		$categories = $this->Category_model->fetch($search, 'asc', 10, $page);
+		$params = array(
+			'search_term' => $search,
+			'order_by' => 'productName',
+			'page' => $page,
+		);
+
+		$categories = $this->Category_model->fetch($params);
 
 		$array = array(
 			$categories,
 			array(
 				$this->Category_model->pagecount,
-				$page, $this->Category_model->entries
+				$this->Category_model->page,
+				$this->Category_model->entries
 			)
 		);
 
