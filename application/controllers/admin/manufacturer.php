@@ -29,7 +29,7 @@ class Manufacturer extends Admin_Controller
 			'menu_active' => 'catalog',
 			'mainview' => 'manufacturer',
 			'js' => array('public/js/view.js'),
-			'manufacturers' => $this->Manufacturer_model->fetch('', 'asc', 10, 1),
+			'manufacturers' => $this->Manufacturer_model->fetch(),
 			'entries' => $this->Manufacturer_model->entries,
 			'pagecount' => $this->Manufacturer_model->pagecount
 		);
@@ -129,13 +129,19 @@ class Manufacturer extends Admin_Controller
 		$search = $this->input->post('search');
 		$page = $this->input->post('page');
 
-		$manufacturers = $this->Manufacturer_model->fetch($search, 'asc', 10, $page);
+		$params = array(
+			'search_term' => $search,
+			'order_by' => 'manufacturerName',
+			'page' => $page,
+		);
+
+		$manufacturers = $this->Manufacturer_model->fetch($params);
 
 		$array = array(
 			$manufacturers,
 			array(
 				$this->Manufacturer_model->pagecount,
-				$page,
+				$this->Manufacturer_model->page,
 				$this->Manufacturer_model->entries
 			)
 		);

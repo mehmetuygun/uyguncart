@@ -15,40 +15,17 @@ class Manufacturer_model extends MY_Model
 	}
 
 	/**
-	 * Get list of manufacturer
+	 *	Fetch manufacturers as array
 	 *
-	 * @param string search query.
-	 * @param string order by asc, desc, or random.
-	 * @param string limit of display.
-	 * @param string page of number.
-	 * @return array
+	 *	@param array The array which includes param name and its value.
+	 *	@return array
 	 */
-	public function fetch($query = '', $order_by = 'random', $limit = 10, $page = 1)
+	public function fetch(array $params = array())
 	{
-		$this->load->database();
+		$this->order_by = 'manufacturerName';
+		$this->search_field = 'manufacturerName';
 
-		$this->db->from('manufacturer')
-			->like('manufacturerName', $query)
-			->order_by('manufacturerName', $order_by);
-
-		$this->entries = $this->db->count_all_results();
-		$this->pagecount = ceil($this->entries / $limit);
-
-		if($page == 1 or $page < 1) {
-			$from = 0;
-		} else if ($this->pagecount < $page) {
-			$from = ($this->pagecount * $limit) - $limit;
-		} else {
-			$from = ($page * $limit) - $limit;
-		}
-
-		$this->db->from('manufacturer')
-			->like('manufacturerName', $query)
-			->order_by('manufacturerName', $order_by)
-			->limit($limit, $from);
-
-		$query = $this->db->get();
-		return $query->result();
+		parent::fetch($fields);
 	}
 
 	public function fetchAll($with_none = false)
