@@ -41,7 +41,7 @@
 					</div>
                     <div class="col-lg-9">
                         <ul id="myTab" class="nav nav-tabs">
-                            <li class="active"><a href="#home" data-toggle="tab">Recenlty Added</a></li>
+                            <li class="active"><a href="#home" data-toggle="tab">Recently Added</a></li>
                         </ul>
                         <div id="myTabContent" class="tab-content with-frame">
                             <div class="tab-pane fade active in" id="home">

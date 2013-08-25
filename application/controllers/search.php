@@ -4,7 +4,7 @@ class Search extends CI_Controller
 {
 	public function index()
 	{
-		$this->load->helper(array('url', 'form'));
+		$this->load->helper('url');
 		$this->load->model('product_model');
 		$this->load->library('pagination');
 
