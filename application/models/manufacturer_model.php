@@ -25,7 +25,7 @@ class Manufacturer_model extends MY_Model
 		$this->order_by = 'manufacturerName';
 		$this->search_field = 'manufacturerName';
 
-		parent::fetch($fields);
+		return parent::fetch($params);
 	}
 
 	public function fetchAll($with_none = false)

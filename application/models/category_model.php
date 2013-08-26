@@ -104,7 +104,7 @@ class Category_model extends MY_Model
 		$this->order_by = 'categoryName';
 		$this->search_field = 'categoryName';
 
-		parent::fetch($fields);
+		return parent::fetch($params);
 	}
 
 	/**
