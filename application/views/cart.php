@@ -27,7 +27,12 @@
 					foreach ($items as $item) {
 						echo '<tr>';
 						echo '<td>';
-						echo 'remove';
+						echo '<form method="POST" action="">';
+						echo '<input type="hidden" name="add_qty" value="1"/>';
+						echo '<input type="hidden" name="rowid" value="'.$item['rowid'].'"/>';
+						echo '<input type="hidden" name="qty" value="0"/>';
+						echo '<button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>';
+						echo '</form>';
 						echo '</td>';
 						echo '<td>';
 						echo $item['name'];

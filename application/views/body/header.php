@@ -22,7 +22,7 @@
                 <div class="container">
                     <div class="row">
                             <div class="col-lg-3">
-                                <a class="navbar-brand" href="#">UygunCart</a>
+                                <a class="navbar-brand" href="<?php echo base_url(); ?>">UygunCart</a>
                             </div>
                             <div class="col-lg-9">
                             <form class="navbar-form pull-left" action="<?php echo base_url('search') ?>" method="get">
