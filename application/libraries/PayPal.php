@@ -30,8 +30,19 @@ class PayPal implements IPaymentGateway
 	 * @param  string $accept_url URL to redirect when payment is accepted
 	 * @param  string $cancel_url URL to redirect when payment is canceled
 	 * @param  array  $cart       Cart contents
+	 *								array(
+	 *									array(
+	 *										'quantity' => 1,
+	 *										'name' => 'Test Item',
+	 *										'price' => 10,
+	 *										'currency' => 'USD',
+	 *									),
+	 *									array(
+	 *										...
+	 *									),
+	 *									...
+	 *								)
 	 * @return array              Payment information
-	 * @todo   Add cart contents to be shown on payment
 	 * @todo   Fix up return array
 	 */
 	public function createPayment($params, $accept_url, $cancel_url, $cart)
@@ -52,6 +63,9 @@ class PayPal implements IPaymentGateway
 					'amount' => array(
 						'total' => $params['amount'],
 						'currency' => $params['currency'],
+					),
+					'item_list' => array(
+						'items' => $cart,
 					),
 					'description' => $params['description'],
 				),
