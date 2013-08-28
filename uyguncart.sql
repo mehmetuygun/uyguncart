@@ -191,3 +191,35 @@ CREATE TABLE IF NOT EXISTS `object_image` (
   `objectID` int(11) NOT NULL,
   KEY `object` (`objectType`,`objectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE IF NOT EXISTS `order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `payment_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `total_price` float NOT NULL DEFAULT '0',
+  `shipping_address` int(10) unsigned NOT NULL,
+  `billing_address` int(10) unsigned NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE IF NOT EXISTS `payment` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `order_id` int(10) unsigned NOT NULL,
+  `gateway_ref` varchar(50) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
