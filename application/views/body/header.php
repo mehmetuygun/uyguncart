@@ -13,8 +13,8 @@
             <div id="header">
                 <div class="container header-up">
                     <span class="pull-right">
-                        <a href="#">Register</a>
-                        <a href="#">Login</a>
+                        <a href="<?php echo base_url('user/register') ?>">Register</a>
+                        <a href="<?php echo base_url('user/login') ?>">Login</a>
                     </span>
                 </div>
             </div>
