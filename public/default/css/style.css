@@ -110,7 +110,7 @@ code {
 .tab-style li a{
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    background-color: #eee;    
+    background-color: #eee;
 }
 .tab-style li a:active {
     border-bottom: 0px;
@@ -127,11 +127,11 @@ code {
 .thum-list {
     padding:3px;
     list-style: none;
-    width: 1000px;
+    white-space: nowrap;
+    margin: 0;
 }
 .thum-list li {
-    float: left;
-    display: inline;
+    display: inline-block;
 }
 .thum-list .frame {
     border: 1px solid #ddd;
