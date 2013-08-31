@@ -80,6 +80,11 @@ class User_model extends CI_Model
 	public function insert($data)
 	{
 		$this->load->database();
-		return $this->db->insert('user', $data);
+		if($this->db->insert('user', $data)) {
+			$this->userID = $this->db->insert_id();
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

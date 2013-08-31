@@ -50,8 +50,17 @@ class User extends CI_Controller {
 					'userType' => 2
 				);
 
-			if($this->User_model->insert($data))
+			if($this->User_model->insert($data)) {
+				$session = array(
+					'userID' => $this->User_model->userID,
+					'userFirstName' => $this->input->post('firstname'),
+					'userLastName' => $this->input->post('lastname'),
+					'userFullName' =>  $this->input->post('firstname').' '.$this->input->post('lastname'),
+					'userLoggedIn' => true
+					);
+				$this->session->set_userdata($session);
 				redirect(base_url());
+			}
 		}
 
 		$this->load->view('body', $data);
