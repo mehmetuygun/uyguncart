@@ -76,4 +76,10 @@ class User_model extends CI_Model
 
 		return true;
 	}
+
+	public function insert($data)
+	{
+		$this->load->database();
+		return $this->db->insert('user', $data);
+	}
 }
