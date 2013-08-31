@@ -30,6 +30,8 @@ class Search extends CI_Controller
 
 		$query = $this->input->get('q');
 		$params['search_term'] = $query;
+		$params['filter'] = array('productStatus' => '1');
+
 		$data['products'] = $this->product_model->fetch($params);
 
 		$config = array(

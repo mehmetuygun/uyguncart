@@ -13,6 +13,7 @@ class MY_Model extends CI_Model
 	protected $search_term = '';
 	protected $order_by;
 	protected $search_field;
+	protected $filter = array();
 	protected $join = array();
 	protected $sort = 'asc';
 
@@ -92,6 +93,16 @@ class MY_Model extends CI_Model
 		// Do the search
 		$this->db->from($this->table)
 			->like($this->search_field, $this->search_term);
+
+		// Make sure filter parameter is array of arrays
+		if (!is_array(reset($this->filter))) {
+			$this->filter = array($this->filter);
+		}
+
+		// Do the filters
+		foreach ($this->filter as $filter) {
+			call_user_func_array(array($this->db, 'where'), array($filter));
+		}
 
 		// Make sure join parameter is array of arrays
 		if (isset($this->join[0]) && !is_array($this->join[0])) {
