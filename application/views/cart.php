@@ -47,23 +47,23 @@
 						echo '</form>';
 						echo '</td>';
 						echo '<td>';
-						echo $item['price'].'$';
+						echo '$' . $item['price'];
 						echo '</td>';
 						echo '<td>';
-						echo $item['subtotal'].'$';
+						echo '$' . $item['subtotal'];
 						echo '</td>';
 						echo '</tr>';
 						$totalPrice += $item['subtotal'];
 					}
 					echo '<tr>';
 					echo '<td colspan="4">Total</td>';
-					echo '<td>'.$totalPrice.'$</td>';
+					echo '<td>$'.$totalPrice.'</td>';
 					echo '</tr>';
 					?>
 				</tbody>
 			</table>
-			<?php 
-		} // end of else 
+			<?php
+		} // end of else
 		?>
 	</div>
 </div>

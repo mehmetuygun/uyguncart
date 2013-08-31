@@ -3,10 +3,10 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="img-main-frame">
-					<?php 
+					<?php
 					echo '<img class="media-object" width="'.$images[0]['image_300']['width'].'" height="'.$images[0]['image_300']['height'].'" src="'.base_url($images[0]['image_300']['path']).'" />';
 					?>
-					
+
 				</div>
 				<div class="thum">
 					<ul class="thum-list">
@@ -22,8 +22,8 @@
 			</div>
 			<div class="col-sm-6">
 				<h3 class="media-heading">
-					<?php 
-						// echo $row->productName; 
+					<?php
+						// echo $row->productName;
 					echo $row->productName;
 					?>
 				</h3>
@@ -35,7 +35,7 @@
 						</tr>
 						<tr>
 							<td>Price:</td>
-							<td><span class="price"><?php echo $row->productPrice; ?>$</span></td>
+							<td><span class="price">$<?php echo $row->productPrice; ?></span></td>
 						</tr>
 						<tr>
 							<td>Share on</td>
@@ -45,7 +45,7 @@
 				</table>
 			</div>
 			<div class="col-sm-2">
-				<form method="POSt" action="<?php echo base_url('cart'); ?>">
+				<form method="post" action="<?php echo base_url('cart'); ?>">
 					<input type="hidden" name="productID" value="<?php echo $row->productID; ?>">
 					<button type="submit" class="btn btn-primary pull-right">Add to Cart</button>
 				</form>
