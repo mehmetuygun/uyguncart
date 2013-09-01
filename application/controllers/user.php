@@ -92,6 +92,7 @@ class User extends CI_Controller {
 			),
 		);
 		$this->form_validation->set_rules($rules);
+		
 		if($this->form_validation->run() == true) {
 			if($this->User_model->login($this->input->post('email'), $this->input->post('password'), 2)) {
 				$session = array(
