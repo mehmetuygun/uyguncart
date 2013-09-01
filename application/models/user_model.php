@@ -15,14 +15,15 @@ class User_model extends CI_Model
 	 *	@param string The password of user
 	 *	@return bool
 	 */
-	public function login($email, $password)
+	public function login($email, $password, $userType = null)
 	{
 		$this->load->database();
 
 		$this->db->from('user')
 			->where('userEmail', $email)
 			->where('userPassword', $password);
-
+		if($userType == 2)
+			$this->db->where('userType', $userType);
 		$query = $this->db->get();
 
 		if ($query->num_rows() != 1) {
