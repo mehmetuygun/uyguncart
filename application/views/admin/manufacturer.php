@@ -20,9 +20,9 @@
 		<?php
 		foreach ($manufacturers as $row) {
 			echo '<tr>
-			<td><input type="checkbox" name="check[]" class="check"  value="'.$row->manufacturerID.'"/></td>
-			<td>'.$row->manufacturerName.'</td>
-			<td><a class="link" href="'.base_url("admin/manufacturer/edit/".$row->manufacturerID).'">Edit</a>&nbsp;<a class="link delete_one" href="#'.$row->manufacturerID.'" onclick="return false">Delete</a></td>
+			<td><input type="checkbox" name="check[]" class="check"  value="'.$row['manufacturerID'].'"/></td>
+			<td>'.$row['manufacturerName'].'</td>
+			<td><a class="link" href="'.base_url("admin/manufacturer/edit/".$row['manufacturerID']).'">Edit</a>&nbsp;<a class="link delete_one" href="#'.$row['manufacturerID'].'" onclick="return false">Delete</a></td>
 			</tr>';
 		}
 		?>
