@@ -108,6 +108,15 @@ class User extends CI_Controller {
 		}
 		$this->load->view('body', $data);	
 	}
+
+	public function logout()
+	{
+		$this->load->helper('url');
+		$this->load->library('session');
+		$this->session->sess_destroy();
+		redirect(base_url());
+
+	}
 }
 
 /* End of file welcome.php */

@@ -13,8 +13,24 @@
             <div id="header">
                 <div class="container header-up">
                     <span class="pull-right">
-                        <a href="<?php echo base_url('user/register') ?>">Register</a>
-                        <a href="<?php echo base_url('user/login') ?>">Login</a>
+                    <?php
+                        if(!isset($user['LoggedIn']) or $user['LoggedIn'] != TRUE) {
+                            echo '<a href="'.base_url('user/register').'">Register</a> ';
+                            echo '<a href="'.base_url('user/login').'">Login</a>';
+                        } else {
+                            echo '<span class="user">Welcome, </span>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Mehmet Uygun <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Setting</a></li>
+                                    <li><a hef="#">Separated link</a></li>
+                                    <li><a href="'.base_url('user/logout').'">Logout</a></li>
+                                </ul>
+                            </div>';
+                        }
+                    ?>
                     </span>
                 </div>
             </div>
