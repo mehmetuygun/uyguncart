@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$data['mainview'] = 'index';
+		
 		$this->load->view('body', $data);
 	}
 }

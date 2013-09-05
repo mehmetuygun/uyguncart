@@ -42,3 +42,31 @@ class Admin_Controller extends Base_Controller
 	}
 
 }
+
+class Main_Controller extends Base_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('session');
+	}
+
+	public function load_view($data = array())
+	{
+		$userLoggedIn = $this->session->userdata('userLoggedIn');
+
+		if($userLoggedIn) {
+			$data['user'] = array(
+				'FirstName' = $this->session->userdata('userFirstName'),
+				'LastName' = $this->session->userdata('userLastName'),
+				'FullName' = $this->session->userdata('userFullName'),
+				'LoggedIn' = $this->session->userdata('userLoggedIn'),
+				'ID' = $this->session->userdata('userID')
+				);
+		}
+
+
+		$this->load->helper('url');
+		$this->load->view('body', $data);
+	}
+}
