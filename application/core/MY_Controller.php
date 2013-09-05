@@ -55,16 +55,15 @@ class Main_Controller extends Base_Controller
 	{
 		$userLoggedIn = $this->session->userdata('userLoggedIn');
 
-		if($userLoggedIn) {
+		if($userLoggedIn == TRUE) {
 			$data['user'] = array(
-				'FirstName' = $this->session->userdata('userFirstName'),
-				'LastName' = $this->session->userdata('userLastName'),
-				'FullName' = $this->session->userdata('userFullName'),
-				'LoggedIn' = $this->session->userdata('userLoggedIn'),
-				'ID' = $this->session->userdata('userID')
+				'FirstName' => $this->session->userdata('userFirstName'),
+				'LastName' => $this->session->userdata('userLastName'),
+				'FullName' => $this->session->userdata('userFullName'),
+				'LoggedIn' => $this->session->userdata('userLoggedIn'),
+				'ID' => $this->session->userdata('userID')
 				);
 		}
-
 
 		$this->load->helper('url');
 		$this->load->view('body', $data);
