@@ -97,6 +97,9 @@ code {
     vertical-align:middle;
     display:table-cell;
 }
+.img-main-frame img {
+    margin:auto;
+}
 .tab-content-style {
     margin-bottom: 20px;
     background-color: #fff;
