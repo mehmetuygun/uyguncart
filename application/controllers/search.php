@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Search extends CI_Controller
+class Search extends Main_Controller
 {
 	public function index()
 	{
@@ -8,18 +8,10 @@ class Search extends CI_Controller
 		$this->load->model('product_model');
 		$this->load->library('pagination');
 
-		$data = array(
-			'mainview' => 'search'
-		);
-
 		$page = $this->input->get('page');
 
 		$params = array();
-		if (isset($page)) {
-			$params['page'] = $page;
-		} else {
-			$params['page'] = 1;
-		}
+		$params['page'] = isset($page) ? $page : 1;
 
 		$order_by = $this->input->get('orderby');
 		if (isset($order_by) && $order_by == 'name') {
@@ -32,7 +24,14 @@ class Search extends CI_Controller
 		$params['search_term'] = $query;
 		$params['filter'] = array('productStatus' => '1');
 
-		$data['products'] = $this->product_model->fetch($params);
+		$data = array(
+			'mainview' => 'search',
+			'products' => $this->product_model->fetch($params),
+			'entries' => $this->product_model->entries,
+			'q' => $query,
+			'orderby' => $order_by,
+			'page' => $page,
+		);
 
 		$config = array(
 			'base_url' => base_url('search') . '?q=' . $query . '&orderby=' . $order_by,
@@ -55,20 +54,8 @@ class Search extends CI_Controller
 		);
 
 		$this->pagination->initialize($config);
-
 		$data['pagination'] = $this->pagination->create_links();
-		$data['entries'] = $this->product_model->entries;
-		$data['q'] = $query;
-		$data['orderby'] = $order_by;
-		$data['page'] = $page;
 
-		$this->load->view('body', $data);
-	}
-
-	public function test($n1 = null, $n2 = null, $n3 = null, $n4 = null)
-	{
-		$this->load->helper('url');
-		echo $n1.' '.$n2.' '. $n3.' '. $n4;
-		echo current_url();
+		$this->load_view($data);
 	}
 }
