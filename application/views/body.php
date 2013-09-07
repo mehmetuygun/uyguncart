@@ -1,3 +1,5 @@
-<?php $this->load->view('body/header') ?>
-<?php $this->load->view(''.$mainview);?>
-<?php $this->load->view('body/footer') ?>
+<?php
+
+$this->load->view('body/header');
+$this->load->view($mainview);
+$this->load->view('body/footer');
