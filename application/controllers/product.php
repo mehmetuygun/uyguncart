@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product extends CI_Controller
+class Product extends Main_Controller
 {
 	public function index()
 	{
@@ -10,7 +10,6 @@ class Product extends CI_Controller
 
 	public function id($id)
 	{
-		$this->load->helper('url');
 		$this->load->model('Product_model');
 
 		$product = $this->Product_model->set($id);
@@ -26,6 +25,6 @@ class Product extends CI_Controller
 			'images' => $images,
 		);
 
-		$this->load->view('body', $data);
+		$this->load_view($data);
 	}
 }
