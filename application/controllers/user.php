@@ -1,14 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends CI_Controller {
-
+class User extends Main_Controller
+{
 	public function register()
 	{
-		$this->load->helper('url');
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		$this->load->model('User_model');
-		$this->load->library('session');
 
 		$data = array(
 			'mainview' => 'register'
@@ -64,16 +62,14 @@ class User extends CI_Controller {
 			}
 		}
 
-		$this->load->view('body', $data);
+		$this->load_view($data);
 	}
 
 	public function login()
 	{
-		$this->load->helper('url');
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		$this->load->model('User_model');
-		$this->load->library('session');
 
 		$data = array(
 			'mainview' => 'login'
@@ -106,7 +102,7 @@ class User extends CI_Controller {
 				redirect(base_url());
 			}
 		}
-		$this->load->view('body', $data);	
+		$this->load_view($data);
 	}
 
 	public function logout()
@@ -118,6 +114,3 @@ class User extends CI_Controller {
 
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

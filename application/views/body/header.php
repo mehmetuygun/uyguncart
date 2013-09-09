@@ -46,7 +46,10 @@
                                 <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
                             </form>
                             <span class="navbar-form pull-right">
-                                <a href="<?php echo base_url('cart') ?>" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Empty</a>
+                                <a href="<?php echo base_url('cart') ?>" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    Cart (<?php echo $cart_item_count ?>)
+                                </a>
                             </span>
                             </div>
                         </div>
