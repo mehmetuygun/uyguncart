@@ -67,6 +67,7 @@ class User extends Main_Controller
 
 	public function login()
 	{
+		$this->load->helper('url');
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		$this->load->model('User_model');
@@ -112,5 +113,30 @@ class User extends Main_Controller
 		$this->session->sess_destroy();
 		redirect(base_url());
 
+	}
+
+	public function account()
+	{
+		$data['mainview'] = 'account';
+
+		$this->load->library('form_validation');
+		$this->load->model('user_model');
+
+
+		$data['alert_message'] ='';
+		$data['email'] ='';
+		$data['alert_class'] = 'error';
+		if($this->form_validation->run()==TRUE){
+
+		}
+
+		$this->user_model->set($this->session->userdata('userID'));
+
+		$data['userID'] = $this->user_model->userID;
+		$data['userFirstName'] = $this->user_model->userFirstName;
+		$data['userLastName'] = $this->user_model->userLastName;
+		$data['userEmail'] = $this->user_model->userEmail;
+
+		$this->load_view($data);
 	}
 }

@@ -88,4 +88,19 @@ class User_model extends CI_Model
 			return false;
 		}
 	}
+
+	public function set($userID)
+	{
+		$this->load->database();
+
+		$this->db->from('user')
+			->where('userID', $userID);
+		$query = $this->db->get();
+		$row = $query->row();
+		$this->userID = $row->userID;
+		$this->userEmail = $row->userEmail;
+		$this->userFirstName = $row->userFirstName;
+		$this->userLastName = $row->userLastName;
+		$this->userType = $row->userType;
+	}
 }
