@@ -123,6 +123,7 @@ class User extends Main_Controller
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$userID = $this->session->userdata('userID');
+		$this->User_model->initialize('user', 'userID');
 		$this->User_model->set($userID);
 
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
@@ -134,15 +135,15 @@ class User extends Main_Controller
 					'label' => 'Email',
 					'rules' => 'required|valid_email|max_length[75]|is_unique[user.userEmail]',
 				),
-				'fname' => array(
+				'firstname' => array(
 					'col'   => 'userFirstName',
-					'field' => 'fname',
+					'field' => 'firstname',
 					'label' => 'First Name',
 					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
 				),
-				'lname' => array(
+				'lastname' => array(
 					'col'   => 'userLastName',
-					'field' => 'lname',
+					'field' => 'lastname',
 					'label' => 'Last Name',
 					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
 				),
@@ -183,7 +184,7 @@ class User extends Main_Controller
 			}
 		}
 
-		$this->User_model->set($userID);
+		$this->User_model->set('userID', $userID);
 
 		$data['userID'] = $this->User_model->userID;
 		$data['userFirstName'] = $this->User_model->userFirstName;

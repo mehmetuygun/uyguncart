@@ -1,6 +1,6 @@
 <?php
 
-class User_model extends CI_Model
+class User_model extends MY_Model
 {
 	public $userID;
 	public $userEmail;
@@ -87,20 +87,5 @@ class User_model extends CI_Model
 		} else {
 			return false;
 		}
-	}
-
-	public function set($userID)
-	{
-		$this->load->database();
-
-		$this->db->from('user')
-			->where('userID', $userID);
-		$query = $this->db->get();
-		$row = $query->row();
-		$this->userID = $row->userID;
-		$this->userEmail = $row->userEmail;
-		$this->userFirstName = $row->userFirstName;
-		$this->userLastName = $row->userLastName;
-		$this->userType = $row->userType;
 	}
 }
