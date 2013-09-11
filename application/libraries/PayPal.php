@@ -19,7 +19,7 @@ class PayPal implements IPaymentGateway
 	 *                               on authentication with PayPal
 	 * @todo use api credentials instead
 	 */
-	public function __construct(array $api_credentials)
+	public function __construct()
 	{
 		$this->getAccessToken(self::$client_id, self::$secret);
 	}
@@ -42,14 +42,13 @@ class PayPal implements IPaymentGateway
 	 *									),
 	 *									...
 	 *								)
-	 * @return array              Payment information
-	 * @todo   Fix up return array
+	 * @return array              Fields to be saved to payment table
 	 */
 	public function createPayment($params, $accept_url, $cancel_url, $cart)
 	{
 		$url = '/v1/payments/payment';
 
-		$json = array(
+		$request = array(
 			'intent' => 'sale',
 			'redirect_urls' => array(
 				'return_url' => $accept_url,
@@ -65,21 +64,39 @@ class PayPal implements IPaymentGateway
 						'currency' => $params['currency'],
 					),
 					'item_list' => array(
-						'items' => $cart,
+						'items' => $this->prepareItems($cart),
 					),
 					'description' => $params['description'],
 				),
 			),
 		);
 
-		$req_params = array(CURLOPT_POSTFIELDS => json_encode($json));
+		$response = $this->doApiCall($url, $request);
 
-		$extraHeaders = array(
-			'Authorization:Bearer ' . $this->accessToken,
-			'Content-Type: application/json',
+		if (!$response) {
+			return false;
+		}
+
+		$payment = array(
+			'gateway_ref' => $response['id'],
 		);
 
-		return $this->sendRequest($url, $req_params, $extraHeaders);
+		foreach ($response['links'] as $url) {
+			switch ($url['rel']) {
+				case 'self':
+					$p_url = &$payment['info_url'];
+					break;
+				case 'approval_url':
+					$p_url = &$payment['approve_url'];
+					break;
+				case 'execute':
+					$p_url = &$payment['execute_url'];
+					break;
+			}
+			$p_url = $url['href'];
+		}
+
+		return $payment;
 	}
 
 	/**
@@ -89,19 +106,39 @@ class PayPal implements IPaymentGateway
 	 * @return array              PayPal response
 	 * @todo   Check returned json and return bool
 	 */
-	public function completePayment($payment_id, $payer_id)
+	public function completePayment($execute_url, $payer_id)
 	{
-		$url = '/v1/payments/payment/' . $payment_id . '/execute';
-
-		$json = array(
+		$request = array(
 			'payer_id' => $payer_id
 		);
 
-		$req_params = array(CURLOPT_POSTFIELDS => json_encode($json));
+		return $this->doApiCall($execute_url, $request);
+	}
+
+	private function prepareItems($cart)
+	{
+		$items = array();
+
+		foreach ($cart as $item) {
+			$items[] = array(
+				'quantity' => $item['qty'],
+				'name' => $item['name'],
+				'price' => $item['price'],
+				'currency' => 'USD',
+			);
+		}
+
+		return $items;
+	}
+
+	private function doApiCall($url, $request)
+	{
 		$extraHeaders = array(
-			'Authorization:Bearer ' . $this->accessToken,
+			'Authorization: Bearer ' . $this->accessToken,
 			'Content-Type: application/json',
 		);
+
+		$req_params = array(CURLOPT_POSTFIELDS => json_encode($request));
 
 		return $this->sendRequest($url, $req_params, $extraHeaders);
 	}
@@ -121,32 +158,30 @@ class PayPal implements IPaymentGateway
 		return $this->accessToken;
 	}
 
-	private function sendRequest($url, $req_params, $extraHeaders = array())
+	private function sendRequest($url, $req_params, $extraHeaders = null)
 	{
 		$url = 'https://' . self::$api_endpoint . $url;
+
+		$headers = array(
+			'Accept: application/json',
+		);
+
+		if (isset($extraHeaders)) {
+			$headers = array_merge($headers, $extraHeaders);
+		}
 
 		$ch = curl_init($url);
 		curl_setopt_array($ch, array(
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_POST => true,
-			CURLOPT_HTTPHEADER => array_merge(
-				array(
-					'Accept: application/json',
-				),
-				$extraHeaders
-			)
+			CURLOPT_HTTPHEADER => $headers,
 		));
 
 		// Set extra parameters sent to the method
 		curl_setopt_array($ch, $req_params);
 
 		$response = curl_exec($ch);
-
-
 		$json = json_decode($response, true);
-		if ($json === null) {
-			$json = array();
-		}
 
 		return $json;
 	}

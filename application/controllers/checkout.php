@@ -15,7 +15,7 @@ class Checkout extends Main_Controller
 
 		$Cart = $this->cart;
 
-		$PP = new PayPal(array());
+		$PP = new PayPal;
 		$PP->createPayment(
 			array(
 				'description' => '',
