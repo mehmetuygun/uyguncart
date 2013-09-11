@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-default">Create</button>
+					<button type="submit" class="btn btn-default">Login</button>
 				</div>
 			</div>
 		</form>
