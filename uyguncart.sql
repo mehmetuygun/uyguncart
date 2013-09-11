@@ -220,6 +220,10 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `order_id` int(10) unsigned NOT NULL,
-  `gateway_ref` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `status` varchar(15) CHARACTER SET latin1 NOT NULL DEFAULT 'pending',
+  `info_url` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `approve_url` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `execute_url` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `gateway_ref` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
