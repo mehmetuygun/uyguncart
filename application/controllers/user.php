@@ -161,7 +161,7 @@ class User extends Main_Controller
 				$data['alert_class'] = 'alert-error';
 			} else {
 				$this->form_validation->set_rules(
-					'pwd',
+					'password',
 					'Password',
 					'required|min_length[8]|max_length[64]|checkpassword'
 				);
