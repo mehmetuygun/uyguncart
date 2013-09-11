@@ -173,10 +173,6 @@ class User extends Main_Controller
 					$data['alert_class'] = 'alert-success';
 					$this->User_model->set($userID);
 					$this->session->set_userdata($update);
-					$this->session->set_userdata('userFullName',
-						$this->User_model->userFirstName . ' ' .
-						$this->User_model->userLastName
-					);
 				} else {
 					$data['alert_message'] = 'Something went wrong.';
 					$data['alert_class'] = 'alert-error';

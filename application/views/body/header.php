@@ -21,7 +21,7 @@
                             echo '<span class="user">Welcome, </span>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                Mehmet Uygun <span class="caret"></span>
+                                '.$user['FirstName'].' '.$user['LastName'].' <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="'.base_url('user/account').'">Account</a></li>
