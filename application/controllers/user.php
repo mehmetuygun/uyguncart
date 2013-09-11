@@ -120,22 +120,75 @@ class User extends Main_Controller
 		$data['mainview'] = 'account';
 
 		$this->load->library('form_validation');
-		$this->load->model('user_model');
+		$this->load->library('session');
+		$this->load->model('User_model');
+		$userID = $this->session->userdata('userID');
+		$this->User_model->set($userID);
 
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			$update = array();
+			$fields = array(
+				'email' => array(
+					'col'   => 'userEmail',
+					'field' => 'email',
+					'label' => 'Email',
+					'rules' => 'required|valid_email|max_length[75]|is_unique[user.userEmail]',
+				),
+				'fname' => array(
+					'col'   => 'userFirstName',
+					'field' => 'fname',
+					'label' => 'First Name',
+					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
+				),
+				'lname' => array(
+					'col'   => 'userLastName',
+					'field' => 'lname',
+					'label' => 'Last Name',
+					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
+				),
+			);
 
-		$data['alert_message'] ='';
-		$data['email'] ='';
-		$data['alert_class'] = 'error';
-		if($this->form_validation->run()==TRUE){
+			foreach ($fields as $f_name => $field) {
+				if ($this->input->post($f_name) != $this->User_model->{$field['col']}) {
+					$this->form_validation->set_rules(array($field));
+					$update[$field['col']] = $this->input->post($f_name);
+				}
+			}
 
+			if (empty($update)) {
+				$data['alert_message'] = 'Enter data you want to update.';
+				$data['alert_class'] = 'alert-error';
+			} else {
+				$this->form_validation->set_rules(
+					'pwd',
+					'Password',
+					'required|min_length[8]|max_length[64]|checkpassword'
+				);
+			}
+
+			if ($this->form_validation->run() == true) {
+				if ($this->User_model->update($update, $userID)) {
+					$data['alert_message'] = 'Your data has been updated successfully.';
+					$data['alert_class'] = 'alert-success';
+					$this->User_model->set($userID);
+					$this->session->set_userdata($update);
+					$this->session->set_userdata('userFullName',
+						$this->User_model->userFirstName . ' ' .
+						$this->User_model->userLastName
+					);
+				} else {
+					$data['alert_message'] = 'Something went wrong.';
+					$data['alert_class'] = 'alert-error';
+				}
+			}
 		}
 
-		$this->user_model->set($this->session->userdata('userID'));
+		$this->User_model->set($userID);
 
-		$data['userID'] = $this->user_model->userID;
-		$data['userFirstName'] = $this->user_model->userFirstName;
-		$data['userLastName'] = $this->user_model->userLastName;
-		$data['userEmail'] = $this->user_model->userEmail;
+		$data['userID'] = $this->User_model->userID;
+		$data['userFirstName'] = $this->User_model->userFirstName;
+		$data['userLastName'] = $this->User_model->userLastName;
+		$data['userEmail'] = $this->User_model->userEmail;
 
 		$this->load_view($data);
 	}
