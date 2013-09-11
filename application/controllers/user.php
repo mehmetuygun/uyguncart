@@ -5,7 +5,7 @@ class User extends Main_Controller
 	public function register()
 	{
 		$this->load->library('form_validation');
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'url'));
 		$this->load->model('User_model');
 
 		$data = array(
@@ -69,7 +69,7 @@ class User extends Main_Controller
 	{
 		$this->load->helper('url');
 		$this->load->library('form_validation');
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'url'));
 		$this->load->model('User_model');
 
 		$data = array(
