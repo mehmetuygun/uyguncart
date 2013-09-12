@@ -19,7 +19,7 @@ class PayPal implements IPaymentGateway
 	 *                               on authentication with PayPal
 	 * @todo use api credentials instead
 	 */
-	public function __construct()
+	public function __construct(array $api_credentials = array())
 	{
 		$this->getAccessToken(self::$client_id, self::$secret);
 	}
@@ -160,7 +160,9 @@ class PayPal implements IPaymentGateway
 
 	private function sendRequest($url, $req_params, $extraHeaders = null)
 	{
-		$url = 'https://' . self::$api_endpoint . $url;
+		if (strpos($url, 'http') !== 0) {
+			$url = 'https://' . self::$api_endpoint . $url;
+		}
 
 		$headers = array(
 			'Accept: application/json',

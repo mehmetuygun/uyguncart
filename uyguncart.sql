@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `object_image` (
 CREATE TABLE IF NOT EXISTS `order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
-  `payment_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `payment_id` int(10) unsigned DEFAULT NULL,
   `total_price` float NOT NULL DEFAULT '0',
   `shipping_address` int(10) unsigned NOT NULL,
   `billing_address` int(10) unsigned NOT NULL,

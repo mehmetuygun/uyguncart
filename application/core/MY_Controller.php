@@ -8,6 +8,17 @@ class Base_Controller extends CI_Controller
 
 		echo json_encode($array);
 	}
+
+	public function load_model($models)
+	{
+		if (!is_array($models)) {
+			$models = array($models);
+		}
+
+		foreach ($models as $model) {
+			$this->load->model($model . '_model');
+		}
+	}
 }
 
 class Admin_Controller extends Base_Controller
@@ -29,18 +40,6 @@ class Admin_Controller extends Base_Controller
 		$this->load->helper('url');
 		$this->load->view('admin/default', $data);
 	}
-
-	public function load_model($models)
-	{
-		if (!is_array($models)) {
-			$models = array($models);
-		}
-
-		foreach ($models as $model) {
-			$this->load->model($model . '_model');
-		}
-	}
-
 }
 
 class Main_Controller extends Base_Controller
