@@ -4,13 +4,6 @@
 		<h4>User register form.</h4>
 		<hr>
 		<form class="form-horizontal" role="form" method="POST" action="">
-			<div class="form-group <?php if(form_error('email')) echo "has-error"; ?>">
-				<label for="inputEmail1" class="col-lg-2 control-label">Email</label>
-				<div class="col-lg-10 error">
-					<input type="email" name="email" class="form-control" id="inputEmail1" placeholder="Email" value="<?php echo set_value('email'); ?>">
-					<span class="help-block"><?php echo form_error('email'); ?></span>
-				</div>
-			</div>
 			<div class="form-group <?php if(form_error('firstname')) echo "has-error"; ?>">
 				<label for="inputfirstname" class="col-lg-2 control-label">First Name</label>
 				<div class="col-lg-10">
@@ -23,6 +16,13 @@
 				<div class="col-lg-10">
 					<input type="text" name="lastname" class="form-control" id="inputlastname" placeholder="Last Name" value="<?php echo set_value('lastname'); ?>">
 					<span class="help-block"><?php echo form_error('lastname'); ?></span>
+				</div>
+			</div>
+			<div class="form-group <?php if(form_error('email')) echo "has-error"; ?>">
+				<label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+				<div class="col-lg-10 error">
+					<input type="email" name="email" class="form-control" id="inputEmail1" placeholder="Email" value="<?php echo set_value('email'); ?>">
+					<span class="help-block"><?php echo form_error('email'); ?></span>
 				</div>
 			</div>
 			<div class="form-group <?php if(form_error('password')) echo "has-error"; ?>">
