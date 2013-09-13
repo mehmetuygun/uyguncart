@@ -62,7 +62,7 @@
 					?>
 				</tbody>
 			</table>
-			<a class="btn btn-warning pull-right" href="<?php // echo base_url('checkout') ?>">Checkout</a>
+			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout') ?>">Checkout</a>
 			<div class="clearfix"></div>
 			<?php
 		} // end of else
