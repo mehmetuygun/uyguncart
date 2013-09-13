@@ -42,7 +42,7 @@
 						echo '<input type="hidden" name="add_qty" value="1"/>';
 						echo '<input type="hidden" name="productID" value="'.$item['id'].'"/>';
 						echo '<input type="hidden" name="rowid" value="'.$item['rowid'].'"/>';
-						echo '<input type="text" name="qty" value="'.$item['qty'].'" class="col-lg-2">';
+						echo '<input type="text" name="qty" value="'.$item['qty'].'" class="form-control input-sm" style="width:40px;display:inline"> ';
 						echo '<button type="submit" class="btn btn-default btn-xs">Update</button>';
 						echo '</form>';
 						echo '</td>';
@@ -62,7 +62,10 @@
 					?>
 				</tbody>
 			</table>
-			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout') ?>">Checkout</a>
+			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout') ?>">
+				<span class="glyphicon glyphicon-credit-card"></span>
+				Checkout
+			</a>
 			<div class="clearfix"></div>
 			<?php
 		} // end of else

@@ -5,7 +5,7 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/bootstrap3/css/bootstrap.min.css');?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/bootstrap3/css/bootstrap-glyphicons.css');?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/bootstrap3/css/bootstrap-theme.min.css');?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/default/css/style.css');?>">
 	</head>
 	<body>
