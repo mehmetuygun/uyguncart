@@ -15,11 +15,13 @@
 			?>
 			<table class="table table-bordered">
 				<thead>
-					<th>Action</th>
-					<th>Product</th>
-					<th>Quantity</th>
-					<th>Unit Price</th>
-					<th>Sub Total</th>
+					<tr>
+						<th>Action</th>
+						<th>Product</th>
+						<th>Quantity</th>
+						<th>Unit Price</th>
+						<th>Sub Total</th>
+					</tr>
 				</thead>
 				<tbody>
 					<?php
@@ -31,7 +33,7 @@
 						echo '<input type="hidden" name="add_qty" value="1"/>';
 						echo '<input type="hidden" name="rowid" value="'.$item['rowid'].'"/>';
 						echo '<input type="hidden" name="qty" value="0"/>';
-						echo '<button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>';
+						echo '<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span></button>';
 						echo '</form>';
 						echo '</td>';
 						echo '<td>';
@@ -43,7 +45,7 @@
 						echo '<input type="hidden" name="productID" value="'.$item['id'].'"/>';
 						echo '<input type="hidden" name="rowid" value="'.$item['rowid'].'"/>';
 						echo '<input type="text" name="qty" value="'.$item['qty'].'" class="form-control input-sm" style="width:40px;display:inline"> ';
-						echo '<button type="submit" class="btn btn-default btn-xs">Update</button>';
+						echo '<button type="submit" class="btn btn-default btn-sm">Update</button>';
 						echo '</form>';
 						echo '</td>';
 						echo '<td>';
