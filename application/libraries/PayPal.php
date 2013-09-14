@@ -103,8 +103,7 @@ class PayPal implements IPaymentGateway
 	 * Complete the created payment
 	 * @param  string $payment_id PAY-xxxxxxx
 	 * @param  string $payer_id   xxxxxx
-	 * @return array              PayPal response
-	 * @todo   Check returned json and return bool
+	 * @return array              Whether the payment successfully completed
 	 */
 	public function completePayment($execute_url, $payer_id)
 	{
@@ -112,7 +111,9 @@ class PayPal implements IPaymentGateway
 			'payer_id' => $payer_id
 		);
 
-		return $this->doApiCall($execute_url, $request);
+		$response = $this->doApiCall($execute_url, $request);
+
+		return $response['state'] == 'approved';
 	}
 
 	private function prepareItems($cart)
