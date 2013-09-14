@@ -14,10 +14,16 @@ class Search extends Main_Controller
 		$params['page'] = isset($page) ? $page : 1;
 
 		$order_by = $this->input->get('orderby');
-		if (isset($order_by) && $order_by == 'name') {
-			$params['order_by'] = 'productName';
-		} else {
-			$params['order_by'] = 'productPrice';
+		switch ($order_by) {
+			case 'price_desc':
+				$params['sort'] = 'desc';
+			case 'price_asc':
+				$params['order_by'] = 'productPrice';
+				break;
+			case 'name':
+			default:
+				$params['order_by'] = 'productName';
+				break;
 		}
 
 		$query = $this->input->get('q');
