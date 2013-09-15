@@ -227,3 +227,24 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `gateway_ref` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `full_name` varchar(64) NOT NULL,
+  `address1` varchar(64) NOT NULL,
+  `address2` varchar(64) NOT NULL,
+  `city` varchar(64) NOT NULL,
+  `postcode` varchar(24) NOT NULL,
+  `country_id` int(10) unsigned NOT NULL,
+  `added_date` datetime NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
