@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel panel-default">
 	<div class="panel-heading">Cart</div>
 	<div class="panel-body">
 		<?php

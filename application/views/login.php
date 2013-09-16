@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel panel-default">
 	<div class="panel-heading"><h3 class="panel-title">Login</h3></div>
 	<div class="panel-body">
 		<h4>User login form.</h4>
