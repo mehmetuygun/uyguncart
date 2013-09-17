@@ -118,6 +118,7 @@ class User extends Main_Controller
 	public function account()
 	{
 		$data['mainview'] = 'account';
+		$this->redirect_user('user/login');
 
 		$this->load->library('form_validation');
 		$this->load->library('session');
@@ -188,5 +189,10 @@ class User extends Main_Controller
 		$data['userEmail'] = $this->User_model->userEmail;
 
 		$this->load_view($data);
+	}
+
+	public function address()
+	{
+
 	}
 }
