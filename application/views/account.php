@@ -2,7 +2,7 @@
 	<div class="panel-body">
 		<ul class="nav nav-tabs nav-justified ">
 	        <li class="active"><a href="#">Account</a></li>
-	        <li><a href="<?php echo base_url('user/address') ?>">Address</a></li>
+	        <li><a href="<?php echo base_url('user/addresses') ?>">Addresses</a></li>
 	        <li><a href="<?php echo base_url('user/password')?>">Password</a></li>
 	    </ul>
 	    <div class="space"></div>
