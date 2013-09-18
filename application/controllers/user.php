@@ -191,7 +191,7 @@ class User extends Main_Controller
 		$this->load_view($data);
 	}
 
-	public function addresses()
+	public function addresses($select = NUll)
 	{
 		$data['mainview'] = 'addresses';
 		$this->redirect_user('user/login');
@@ -205,6 +205,10 @@ class User extends Main_Controller
 		$this->User_model->set($userID);
 
 		$this->User_model->set('userID', $userID);
+
+		if(isset($select)) {
+			$data['select'] = $select;
+		}
 
 		$data['userID'] = $this->User_model->userID;
 		$data['userFirstName'] = $this->User_model->userFirstName;
