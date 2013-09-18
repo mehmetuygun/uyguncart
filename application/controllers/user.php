@@ -191,8 +191,26 @@ class User extends Main_Controller
 		$this->load_view($data);
 	}
 
-	public function address()
+	public function addresses()
 	{
+		$data['mainview'] = 'addresses';
+		$this->redirect_user('user/login');
 
+		$this->load->library('form_validation');
+		$this->load->library('session');
+		$this->load->model('User_model');
+
+		$userID = $this->session->userdata('userID');
+		$this->User_model->initialize('user', 'userID');
+		$this->User_model->set($userID);
+
+		$this->User_model->set('userID', $userID);
+
+		$data['userID'] = $this->User_model->userID;
+		$data['userFirstName'] = $this->User_model->userFirstName;
+		$data['userLastName'] = $this->User_model->userLastName;
+		$data['userEmail'] = $this->User_model->userEmail;
+
+		$this->load_view($data);
 	}
 }
