@@ -20,8 +20,7 @@ $(function() {
 		});
 	});
 
-	init_delete();
-	init_pagination();
+	ajax('', 1);
 });
 
 function ajax(search, page) {
@@ -75,6 +74,7 @@ function pagination(page, pcount) {
 	};
 
 	var range = function(pcount) {
+		if (pcount == 0) return [1];
 		var nums = [];
 		for (var i = 1; i <= pcount; i++) {
 			nums.push(i);
@@ -123,6 +123,10 @@ function show_info(page, entries) {
 		end = (entries > limit * page) ? page * limit : entries;
 		from = page * limit - limit + 1;
 	}
-	message = 'Showing ' + from + ' to ' + end + ' of ' + entries + ' entries.';
+	if (end > 0) {
+		message = 'Showing ' + from + ' to ' + end + ' of ' + entries + ' entries';
+	} else {
+		message = 'No entries found';
+	}
 	$('#show_info').html(message);
 }

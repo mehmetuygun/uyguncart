@@ -34,20 +34,8 @@ HTML;
 		?>
 	</tbody>
 </table>
-<span class="pull-left" id="show_info">Showing 1 to 10 of <?php echo $entries; ?> entries.</span>
-<div class="pagination pull-right" style="margin:0">
-	<ul>
-		<li class="active"><a href="#" onclick="return false">&laquo;</a></li>
-		<li class="active"><a href="#1" onclick="return false">1</a></li>
-		<?php 
-		if ($pagecount > 5) $pagecount = 5;
-		for ($i=2; $i <= $pagecount ; $i++) { 
-			echo '<li><a href="#'.$i.'"   onclick="return false">'.$i.'</a></li>';
-		}
-		?>
-		<li <?php if($pagecount==1)echo 'class="active"'; ?>><a href="#"  onclick="return false">&raquo;</a></li>
-	</ul>
-</div>
+<span class="pull-left" id="show_info"></span>
+<div class="pagination pull-right" style="margin:0"></div>
 <span class="clearfix"></span>
 <script type="text/javascript">
 	function draw_table(data) {
