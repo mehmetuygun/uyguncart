@@ -6,6 +6,7 @@ class Search extends Main_Controller
 	{
 		$this->load->helper('url');
 		$this->load->model('product_model');
+		$this->load->model('category_model');
 		$this->load->library('pagination');
 
 		$page = $this->input->get('page');
@@ -33,6 +34,7 @@ class Search extends Main_Controller
 		$data = array(
 			'mainview' => 'search',
 			'products' => $this->product_model->fetch($params),
+			'categories' => $this->category_model->group_by_parent(true),
 			'entries' => $this->product_model->entries,
 			'q' => $query,
 			'orderby' => $order_by,

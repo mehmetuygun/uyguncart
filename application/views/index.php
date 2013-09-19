@@ -1,7 +1,12 @@
 <div class="row">
-	<div class="col-lg-3">
-    category here
-	</div>
+    <div class="col-lg-3">
+    <?php
+    $cat_list = isset($categories['']) ? $categories[''] : array();
+    foreach ($cat_list as $cat) {
+        echo $cat['categoryName'], '<br />';
+    }
+    ?>
+    </div>
     <div class="col-lg-9">
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#home" data-toggle="tab">Recently Added</a></li>
@@ -43,6 +48,6 @@
             } // end while
             ?>
             </div>
-		</div>
+        </div>
     </div>
 </div>

@@ -4,8 +4,13 @@ class Home extends Main_Controller
 {
 	public function index()
 	{
-		$data['mainview'] = 'index';
-		
+		$this->load->model('Category_model');
+
+		$data = array(
+			'mainview' => 'index',
+			'categories' => $this->Category_model->group_by_parent(true),
+		);
+
 		$this->load_view($data);
 	}
 }

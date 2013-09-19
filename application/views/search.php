@@ -27,7 +27,12 @@ if(empty($products)) {
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="panel">
-				Category
+			<?php
+			$cat_list = isset($categories['']) ? $categories[''] : array();
+			foreach ($cat_list as $cat) {
+				echo $cat['categoryName'], '<br />';
+			}
+			?>
 			</div>
 		</div>
 		<div class="col-lg-9">

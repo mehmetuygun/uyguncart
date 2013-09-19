@@ -79,7 +79,7 @@ class Category_model extends MY_Model
 	 *
 	 * @return array category IDs grouped by their parent ID
 	 */
-	public function group_by_parent()
+	public function group_by_parent($full_row = false)
 	{
 		$categories = array();
 		$this->load->database();
@@ -87,7 +87,8 @@ class Category_model extends MY_Model
 		$query = $this->db->get();
 
 		foreach ($query->result_array() as $row) {
-			$categories[$row['parentID']][] = $row['categoryID'];
+			$parent_list = &$categories[$row['parentID']];
+			$parent_list[] = $full_row ? $row : $row['categoryID'];
 		}
 
 		return $categories;
