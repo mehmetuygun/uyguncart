@@ -214,7 +214,13 @@ class User extends Main_Controller
 		$data['userFirstName'] = $this->User_model->userFirstName;
 		$data['userLastName'] = $this->User_model->userLastName;
 		$data['userEmail'] = $this->User_model->userEmail;
+		$data['js'] = array('public/default/js/addresses.js');
 
 		$this->load_view($data);
+	}
+
+	public function get_address()
+	{
+		
 	}
 }
