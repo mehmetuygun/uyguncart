@@ -223,7 +223,17 @@ class User extends Main_Controller
 	{
 		$this->load->model('Address_model');
 		$this->load->library('session');
-		$this->Address_model->fetch((array('filter' => array('user_id' => $this->session->userdata('userID'))));
+		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
+		$this->output_json($addresses);
+	
 	}
 
+	public function test()
+	{
+		$this->load->model('Address_model');
+		$this->load->library('session');
+		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
+		var_dump($addresses);
+	
+	}
 }
