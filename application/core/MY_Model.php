@@ -70,11 +70,40 @@ class MY_Model extends CI_Model
 			$this->$key = $value;
 		}
 
+		// Make sure filter parameter is array of arrays
+		if (!is_array(reset($this->filter))) {
+			$this->filter = array($this->filter);
+		}
+
+		// Make sure join parameter is array of arrays
+		if (isset($this->join[0]) && !is_array($this->join[0])) {
+			$this->join = array($this->join);
+		}
+
+		$this->db->from($this->table);
+		// Do the like
+		if ($this->search_field && $this->search_term) {
+			$this->db->like($this->search_field, $this->search_term);
+		}
+		// Do the filters
+		foreach ($this->filter as $filter) {
+			call_user_func_array(array($this->db, 'where'), array($filter));
+		}
+		// Do the joins
+		foreach ($this->join as $join) {
+			call_user_func_array(array($this->db, 'join'), $join);
+		}
+
+		// Don't let query get discarded
+		// when count_all_results is called
+		$query = clone $this->db;
+
 		// Count all results matching the search for pagination
-		$this->entries = $this->db->from($this->table)
-			->like($this->search_field, $this->search_term)
-			->count_all_results();
+		$this->entries = $this->db->count_all_results();
 		$this->pagecount = ceil($this->entries / $this->limit);
+
+		$this->db = $query;
+		unset($query);
 
 		// Return empty array if no result found
 		if ($this->entries == 0) {
@@ -90,33 +119,12 @@ class MY_Model extends CI_Model
 		// Calculate query offset
 		$start = ($this->page - 1) * $this->limit;
 
-		// Do the search
-		$this->db->from($this->table)
-			->like($this->search_field, $this->search_term);
-
-		// Make sure filter parameter is array of arrays
-		if (!is_array(reset($this->filter))) {
-			$this->filter = array($this->filter);
+		// Do the order by
+		if ($this->order_by && $this->sort) {
+			$this->db->order_by($this->order_by, $this->sort);
 		}
-
-		// Do the filters
-		foreach ($this->filter as $filter) {
-			call_user_func_array(array($this->db, 'where'), array($filter));
-		}
-
-		// Make sure join parameter is array of arrays
-		if (isset($this->join[0]) && !is_array($this->join[0])) {
-			$this->join = array($this->join);
-		}
-
-		// Do the joins
-		foreach ($this->join as $join) {
-			call_user_func_array(array($this->db, 'join'), $join);
-		}
-
-		// Do the order by and limit
-		$this->db->order_by($this->order_by, $this->sort)
-			->limit($this->limit, $start);
+		// Do the limit
+		$this->db->limit($this->limit, $start);
 
 		// Get the result
 		$result = $this->db->get();

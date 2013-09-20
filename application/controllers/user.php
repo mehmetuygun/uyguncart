@@ -230,6 +230,6 @@ class User extends Main_Controller
 		$this->load->model('Address_model');
 		$this->load->library('session');
 		echo $this->session->userdata('userID');
-		var_dump($this->Address_model->fetch(array $filter = array());
+		var_dump($this->Address_model->fetch());
 	}
 }
