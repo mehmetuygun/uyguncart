@@ -12,5 +12,6 @@
 			<tbody>
 			</tbody>
 		</table>
+		<button class="btn btn-primary">Create New Address</button>
 	</div>
 </div>
