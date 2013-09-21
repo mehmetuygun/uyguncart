@@ -226,14 +226,18 @@ class User extends Main_Controller
 	public function get_address()
 	{
 		$this->load->model('Address_model');
-		// $this->Address_model->fetch()
+		$this->load->library('session');
+		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
+		$this->output_json($addresses);
+	
 	}
 
 	public function test()
 	{
 		$this->load->model('Address_model');
 		$this->load->library('session');
-		echo $this->session->userdata('userID');
-		var_dump($this->Address_model->fetch(array('filter' => array('user_id' => 3))));
+		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
+		var_dump($addresses);
+	
 	}
 }
