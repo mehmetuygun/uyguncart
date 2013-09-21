@@ -17,7 +17,7 @@ class Product extends Admin_Controller
 	public function view()
 	{
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Products',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/product' => 'Product',
@@ -41,7 +41,7 @@ class Product extends Admin_Controller
 		$this->load->helper('form');
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Add Product',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/product' => 'Product',
@@ -98,7 +98,7 @@ class Product extends Admin_Controller
 		$this->load->helper('form');
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Edit Product',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/product' => 'Product',

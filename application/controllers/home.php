@@ -8,6 +8,7 @@ class Home extends Main_Controller
 
 		$data = array(
 			'mainview' => 'index',
+			'title' => 'Home',
 			'categories' => $this->Category_model->group_by_parent(true),
 		);
 

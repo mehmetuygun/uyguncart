@@ -21,7 +21,7 @@ class Setting extends Admin_Controller
 		$this->load->helper('form');
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Account',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/setting' => 'Setting',
@@ -104,7 +104,7 @@ class Setting extends Admin_Controller
 		$this->load->helper('form');
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Password',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/setting' => 'Setting',

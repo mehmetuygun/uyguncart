@@ -33,6 +33,7 @@ class Search extends Main_Controller
 
 		$data = array(
 			'mainview' => 'search',
+			'title' => $query,
 			'products' => $this->product_model->fetch($params),
 			'categories' => $this->category_model->group_by_parent(true),
 			'entries' => $this->product_model->entries,

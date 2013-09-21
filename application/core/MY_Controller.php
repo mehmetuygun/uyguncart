@@ -35,9 +35,11 @@ class Admin_Controller extends Base_Controller
 
 	public function load_view($data = array())
 	{
-		$data['fullname'] = $this->session->userdata('userFullName');
+		$this->load->helper(array('url', 'uc_helper'));
 
-		$this->load->helper('url');
+		$data['fullname'] = $this->session->userdata('userFullName');
+		$data['title'] = make_title(array($data['title'], 'Admin Panel'));
+
 		$this->load->view('admin/default', $data);
 	}
 }
@@ -54,6 +56,8 @@ class Main_Controller extends Base_Controller
 
 	public function load_view($data = array())
 	{
+		$this->load->helper(array('url', 'uc_helper'));
+
 		if ($this->session->userdata('userLoggedIn')) {
 			$data['user'] = array(
 				'FirstName' => $this->session->userdata('userFirstName'),
@@ -65,8 +69,8 @@ class Main_Controller extends Base_Controller
 		}
 
 		$data['cart_item_count'] = $this->cart->total_items();
+		$data['title'] = make_title($data['title']);
 
-		$this->load->helper('url');
 		$this->load->view('body', $data);
 	}
 
