@@ -20,7 +20,7 @@ class Manufacturer extends Admin_Controller
 		$this->load->helper('form');
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Manufacturers',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/manufacturer' => 'Manufacturer',
@@ -49,7 +49,7 @@ class Manufacturer extends Admin_Controller
 		);
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Add Manufacturer',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/manufacturer' => 'Manufacturer',
@@ -89,7 +89,7 @@ class Manufacturer extends Admin_Controller
 		}
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Edit Manufacturer',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/manufacturer' => 'Manufacturer',

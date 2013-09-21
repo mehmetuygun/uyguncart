@@ -5,7 +5,7 @@ class Home extends Admin_Controller
 	public function Index()
 	{
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Home',
 			'breadcrumb' => array(
 				'last' => 'Dashboard'
 			),

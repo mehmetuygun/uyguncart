@@ -8,6 +8,7 @@ class Cart extends Main_Controller
 
 		$data = array(
 			'mainview' => 'cart',
+			'title' => 'Cart',
 		);
 
 		$productID = $this->input->post('productID');

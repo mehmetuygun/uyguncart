@@ -21,6 +21,7 @@ class Product extends Main_Controller
 
 		$data = array(
 			'mainview' => 'product',
+			'title' => $this->Product_model->productName,
 			'row' => $product,
 			'images' => $images,
 		);

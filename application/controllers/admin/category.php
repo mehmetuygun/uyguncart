@@ -17,7 +17,7 @@ class Category extends Admin_Controller
 	public function view()
 	{
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Categories',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/category' => 'Category',
@@ -40,7 +40,7 @@ class Category extends Admin_Controller
 		$this->load->helper('form');
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Add Category',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/category' => 'Category',
@@ -109,7 +109,7 @@ class Category extends Admin_Controller
 		}
 
 		$data = array(
-			'title' => 'UygunCart',
+			'title' => 'Edit Category',
 			'breadcrumb' => array(
 				'admin/home' => 'Dashboard',
 				'admin/category' => 'Category',

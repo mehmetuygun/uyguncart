@@ -9,7 +9,8 @@ class User extends Main_Controller
 		$this->load->model('User_model');
 
 		$data = array(
-			'mainview' => 'register'
+			'mainview' => 'register',
+			'title' => 'Register',
 		);
 
 		$rules = array(
@@ -73,7 +74,8 @@ class User extends Main_Controller
 		$this->load->model('User_model');
 
 		$data = array(
-			'mainview' => 'login'
+			'mainview' => 'login',
+			'title' => 'Login',
 		);
 
 		$rules = array(
@@ -117,7 +119,11 @@ class User extends Main_Controller
 
 	public function account()
 	{
-		$data['mainview'] = 'account';
+		$data = array(
+			'mainview' => 'account',
+			'title' => 'Account',
+		);
+
 		$this->redirect_user('user/login');
 
 		$this->load->library('form_validation');
@@ -222,18 +228,14 @@ class User extends Main_Controller
 	public function get_address()
 	{
 		$this->load->model('Address_model');
-		$this->load->library('session');
-		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
-		$this->output_json($addresses);
-	
+		// $this->Address_model->fetch()
 	}
 
 	public function test()
 	{
 		$this->load->model('Address_model');
 		$this->load->library('session');
-		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
-		var_dump($addresses);
-	
+		echo $this->session->userdata('userID');
+		var_dump($this->Address_model->fetch(array('filter' => array('user_id' => 3))));
 	}
 }

@@ -7,7 +7,7 @@ class Login extends CI_Controller
 		$this->load->library('session');
 		$this->load->helper('url');
 
-		$data['title'] = 'UygunCart';
+		$data['title'] = 'Login - UygunCart';
 
 		if ($this->input->post()) {
 			// loading user model
