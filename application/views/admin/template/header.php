@@ -27,7 +27,7 @@
 							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="sales")echo 'active'; ?>">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <i class="caret"></i></a>
 								<ul class="dropdown-menu">
-									<li><a href="<?php echo base_url('admin/category'); ?>">Order</a></li>
+									<li><a href="<?php echo base_url('admin/order'); ?>">Order</a></li>
 								</ul>
 							</li>
 							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="system")echo 'active'; ?>">
