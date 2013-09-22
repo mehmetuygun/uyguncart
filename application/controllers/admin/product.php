@@ -25,9 +25,6 @@ class Product extends Admin_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'product',
-			'products' => $this->Product_model->fetch(),
-			'entries'=> $this->Product_model->entries,
-			'pagecount'=> $this->Product_model->pagecount,
 			'js' => array('public/js/view.js'),
 		);
 

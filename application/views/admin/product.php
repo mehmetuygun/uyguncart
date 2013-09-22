@@ -16,23 +16,7 @@
             <th style="width:100px"></th>
         </tr>
     </thead>
-    <tbody>
-        <?php
-        foreach ($products as $product) {
-            $edit_url = base_url("admin/product/edit/{$product['productID']}");
-            echo <<<HTML
-        <tr>
-            <td><input name="check[]" type="checkbox" value="{$product['productID']}" /></td>
-            <td>{$product['productName']}</td>
-            <td valign="middle">
-                <a class="link" href="$edit_url">Edit</a>
-                <a class="link delete_one" href="#{$product['productID']}" onclick="return false">Delete</a>
-            </td>
-        </tr>
-HTML;
-        }
-        ?>
-    </tbody>
+    <tbody></tbody>
 </table>
 <span class="pull-left" id="show_info"></span>
 <div class="pagination pull-right" style="margin:0"></div>

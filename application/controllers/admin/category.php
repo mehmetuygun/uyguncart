@@ -25,9 +25,6 @@ class Category extends Admin_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'category',
-			'categories' => $this->Category_model->fetch(),
-			'entries'=> $this->Category_model->entries,
-			'pagecount'=> $this->Category_model->pagecount,
 			'js' => array('public/js/view.js'),
 		);
 
@@ -163,7 +160,7 @@ class Category extends Admin_Controller
 
 		$params = array(
 			'search_term' => $search,
-			'order_by' => 'productName',
+			'order_by' => 'categoryName',
 			'page' => $page,
 		);
 

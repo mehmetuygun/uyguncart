@@ -29,9 +29,6 @@ class Manufacturer extends Admin_Controller
 			'menu_active' => 'catalog',
 			'mainview' => 'manufacturer',
 			'js' => array('public/js/view.js'),
-			'manufacturers' => $this->Manufacturer_model->fetch(),
-			'entries' => $this->Manufacturer_model->entries,
-			'pagecount' => $this->Manufacturer_model->pagecount
 		);
 
 		$this->load_view( $data);
