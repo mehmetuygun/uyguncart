@@ -14,38 +14,44 @@
         <div id="myTabContent" class="tab-content with-frame">
             <div class="tab-pane fade active in" id="home">
             <?php
-            $i=0;
-            while ($i<9) {
-                if($i%3 == 0)
-                    echo '</div>';
-
-                if($i == 0 or $i%3 == 0 and $i!=9)
+            $i = 0;
+            $img_200_path = 'public/images/200/';
+            $cart_url = base_url('cart');
+            foreach ($products as $p) {
+                if ($i % 3 == 0 && $i < 9) {
                     echo '<div class="row f-space">';
+                }
 
-                echo '<div class="col-lg-4">
-                        <div class="thumbnail">
-                            <img  alt="200x150"/>
-                            <div class="caption">
-                                <h4><a href="#">Maclaren Rocker Black Champaigne</h4>
-                                <h4><span class="price">500 $</span></h4>
-                                <p><a href="#" class="btn btn-danger" style="width:100%">Add To Cart</a></p>
-                            </div>
+                $p_url = base_url('product/id/' . $p['productID']);
+                $img_src = base_url('public/images/135/' . 'noimage.jpg');
+                if (isset($p['imageFullName']) && file_exists($img_200_path . $p['imageFullName'])) {
+                    $img_src = base_url($img_200_path . $p['imageFullName']);
+                }
+
+                echo <<<HTML
+                <div class="col-lg-4">
+                    <div class="thumbnail">
+                        <a class="thumbnail" href="{$p_url}">
+                            <img alt="200x150" src="{$img_src}" />
+                        </a>
+                        <div class="caption">
+                            <h4><a href="{$p_url}">{$p['productName']}</a></h4>
+                            <h4><span class="price">\${$p['productPrice']}</span></h4>
+                            <form action="{$cart_url}" method="post">
+                                <input type="hidden" value="{$p['productID']}" name="productID" />
+                                <button type="submit" class="btn btn-danger" style="width:100%">
+                                    Add To Cart
+                                </button>
+                            </form>
                         </div>
-                    </div>';
-
-                // echo '<div class="col-lg-4">
-                //         <div class="thumbnail">
-                //             <img  alt="200x150" src="'.$recenltyAdded[$i]["imgSrc"].'"/>
-                //             <div class="caption">
-                //                 <h4><a href="'.base_url('product/id/'.$recenltyAdded[$i]["productId"]).'">'.$recenltyAdded[$i]["productName"].'</h4>
-                //                 <h4><span class="price">'.$recenltyAdded[$i]["productPrice"].'</span></h4>
-                //                 <p><a href="#" class="btn btn-danger .f-add-to-cart ">Add To Cart</a></p>
-                //             </div>
-                //         </div>
-                //     </div>';
-
+                    </div>
+                </div>
+HTML;
+                if ($i % 2 == 0 && $i > 0) {
+                    echo '</div>';
+                }
                 $i++;
-            } // end while
+            }
             ?>
             </div>
         </div>
