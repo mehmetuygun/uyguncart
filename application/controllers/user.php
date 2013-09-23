@@ -205,6 +205,7 @@ class User extends Main_Controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->model('User_model');
+		$this->load->model('Country_model');
 
 		$userID = $this->session->userdata('userID');
 		$this->User_model->initialize('user', 'userID');
@@ -213,6 +214,9 @@ class User extends Main_Controller
 		$this->User_model->set('userID', $userID);
 
 		$data['select'] = $select;
+		if($select == 'create') {
+			$data['countries'] = $this->Country_model->fetchAll();
+		}
 
 		$data['userID'] = $this->User_model->userID;
 		$data['userFirstName'] = $this->User_model->userFirstName;
@@ -235,6 +239,8 @@ class User extends Main_Controller
 	public function test()
 	{
 		$this->load->model('Country_model');
-		var_dump($this->Country_model->fetchAll());
+		foreach ($this->Country_model->get_countries() as $key => $value) {
+			echo $key.' = '.$value.'<br>';	
+		}
 	}
 }

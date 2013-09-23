@@ -9,7 +9,7 @@
 		  	<div class="form-group">
 		    	<label for="inputAddress1" class="col-lg-2 control-label">Address</label>
 		    	<div class="col-lg-10">
-		      		<?php echo form_dropdown('country_id', $countries, set_value('country_id', $country_id)) ?>
+		      		<?php echo form_dropdown('country', $countries, set_value('id', $id)) ?>
 		      		<span class="help-block"><?php echo form_error('country_id'); ?></span>
 		    	</div>
 		  	</div>
