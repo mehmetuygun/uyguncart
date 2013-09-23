@@ -57,7 +57,7 @@ class Setting extends Admin_Controller
 			);
 
 			foreach ($fields as $f_name => $field) {
-				if ($this->input->post($f_name) != $this->Setting_model->{$field['col']}) {
+				if ($this->input->post($f_name) != $this->Setting_model->{$field['field']}) {
 					$this->form_validation->set_rules(array($field));
 					$update[$field['col']] = $this->input->post($f_name);
 				}

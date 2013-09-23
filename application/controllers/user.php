@@ -218,6 +218,59 @@ class User extends Main_Controller
 		if($select == 'add') {
 			$data['countries'] = $this->Country_model->get_countries();
 			$data['fullname'] = $this->session->userdata('userFullName');
+			if ($this->input->server('REQUEST_METHOD') === 'POST') {
+				$insert = array();
+				$rules = array(
+			            array(
+		                    'field'   => 'name', 
+		                    'col'     => 'full_name', 
+		                    'label'   => 'Full Name', 
+		                    'rules'   => 'required|alpha|mint_length[64]'
+			            ),
+			            array(
+		                    'field'   => 'city',
+		                    'col'     => 'city',  
+		                    'label'   => 'City', 
+		                    'rules'   => 'required|alpha|mint_length[64]'
+			            ),
+			            array(
+		                    'field'   => 'address1', 
+		                    'col'     => 'address1', 
+		                    'label'   => 'Address 1', 
+		                    'rules'   => 'required|mint_length[64]'
+			            ),   
+			            array(
+		                    'field'   => 'address2', 
+		                    'col'     => 'address2', 
+		                    'label'   => 'Address 2', 
+		                    'rules'   => 'required|mint_length[64]'
+			            ),   
+			            array(
+		                    'field'   => 'postcode', 
+		                    'col'     => 'postcode', 
+		                    'label'   => 'Postcode', 
+		                    'rules'   => 'required|mint_length[24]'
+			            ),
+			            array(
+		                    'field'   => 'coutnry_id', 
+		                    'col'     => 'country_id', 
+		                    'label'   => 'Country', 
+		                    'rules'   => 'required|is_unique[country.id]'
+			            )
+			    );
+
+				$this->form_validation->set_rules($rules);
+
+				if($this->form_validation->run() == true) {
+					// foreach ($rules as $key => $field) {
+					// 	$insert[$field['col']] = $this->input->post($field['field']);
+					// }
+					echo 'ğpalad';
+					// var_dump($insert);
+				} else {
+					echo 'asdasd';
+				}
+			}
 		}
 
 

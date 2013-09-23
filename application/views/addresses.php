@@ -14,10 +14,10 @@
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
-		    	<label for="country" class="col-lg-2 control-label">Country:</label>
+		    	<label for="country_id" class="col-lg-2 control-label">Country:</label>
 		    	<div class="col-lg-10">
-		      		<?php echo form_dropdown('country', $countries, set_value('country', '235'), 'class = "form-control" id="country"') ?>
-		      		<span class="help-block"><?php echo form_error('country'); ?></span>
+		      		<?php echo form_dropdown('country_id', $countries, set_value('country_id', ''), 'class = "form-control" id="country_id"') ?>
+		      		<span class="help-block"><?php echo form_error('country_id'); ?></span>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
