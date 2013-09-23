@@ -1,7 +1,12 @@
 <div class="panel panel-default">
 	<div class="panel-heading"><h3 class="panel-title">Adresses</h3></div>
 	<div class="panel-body">
-	<?php 
+	<?php
+	if(isset($_GET['alert']) and $_GET['alert'] == 'success-add'){
+	    echo '<div class="alert alert-success">';
+	   	echo 'The address is added succesfuly.';
+	    echo '</div>';
+	} 
 	if($select == 'add') {
 		?>
 
