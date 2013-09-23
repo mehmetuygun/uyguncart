@@ -234,10 +234,7 @@ class User extends Main_Controller
 
 	public function test()
 	{
-		$this->load->model('Address_model');
-		$this->load->library('session');
-		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
-		var_dump($addresses);
-	
+		$this->load->model('Country_model');
+		var_dump($this->Country_model->fetchAll());
 	}
 }

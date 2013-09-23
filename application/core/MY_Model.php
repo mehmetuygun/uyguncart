@@ -136,4 +136,12 @@ class MY_Model extends CI_Model
 
 		return $rows;
 	}
+
+	public function fetchAll()
+	{
+		$this->load->database();
+		$this->db->from($this->table);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
 }

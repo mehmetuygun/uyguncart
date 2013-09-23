@@ -13,4 +13,9 @@ class Address_model extends MY_Model
 		$this->join = array('country', 'address.id = country_id', 'left');
 		return parent::fetch($params);
 	}
+
+	public function get_countries()
+	{
+		$this->load->library('db');
+	}
 }

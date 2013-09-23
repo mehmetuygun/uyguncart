@@ -3,7 +3,24 @@
 	<div class="panel-body">
 	<?php 
 	if($select == 'create') {
-		echo 'create';
+		?>
+
+		<form class="form-horizontal" role="form">
+		  	<div class="form-group">
+		    	<label for="inputAddress1" class="col-lg-2 control-label">Address</label>
+		    	<div class="col-lg-10">
+		      		<?php echo form_dropdown('country_id', $countries, set_value('country_id', $country_id)) ?>
+		      		<span class="help-block"><?php echo form_error('country_id'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		    	<div class="col-lg-offset-2 col-lg-10">
+		      		<button type="submit" class="btn btn-default">Create</button>
+		    	</div>
+		  	</div>
+		</form>
+
+		<?php
 	} else if ($select == 'edit') {
 		echo 'edit';
 	} else {
@@ -19,7 +36,7 @@
 			<tbody>
 			</tbody>
 		</table>
-		<a data-toggle="modal" href="<?php echo base_url('user/addresses/create') ?>" class="btn btn-primary">Create New Address</a>
+		<a href="<?php echo base_url('user/addresses/create') ?>" class="btn btn-primary">Create New Address</a>
 	<?php 
 	}
 	?>	
