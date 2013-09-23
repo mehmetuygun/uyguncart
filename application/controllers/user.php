@@ -207,6 +207,7 @@ class User extends Main_Controller
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$this->load->model('Country_model');
+		$this->load->model('Address_model');
 
 		$userID = $this->session->userdata('userID');
 		$this->User_model->initialize('user', 'userID');
@@ -252,23 +253,24 @@ class User extends Main_Controller
 		                    'rules'   => 'required|mint_length[24]'
 			            ),
 			            array(
-		                    'field'   => 'coutnry_id', 
+		                    'field'   => 'country_id', 
 		                    'col'     => 'country_id', 
 		                    'label'   => 'Country', 
-		                    'rules'   => 'required|is_unique[country.id]'
+		                    'rules'   => 'required|exists[country.id]'
 			            )
 			    );
 
 				$this->form_validation->set_rules($rules);
 
 				if($this->form_validation->run() == true) {
-					// foreach ($rules as $key => $field) {
-					// 	$insert[$field['col']] = $this->input->post($field['field']);
-					// }
-					echo 'ğpalad';
-					// var_dump($insert);
-				} else {
-					echo 'asdasd';
+					foreach ($rules as $key => $field) {
+						$insert[$field['col']] = $this->input->post($field['field']);
+					}
+					$insert['user_id'] = $this->session->userdata('userID');
+
+					if($this->Address_model->insert($insert)) {
+						redirect(base_url('user/addresses?alert=success-add'));
+					}
 				}
 			}
 		}

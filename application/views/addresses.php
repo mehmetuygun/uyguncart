@@ -2,6 +2,7 @@
 	<div class="panel-heading"><h3 class="panel-title">Adresses</h3></div>
 	<div class="panel-body">
 	<?php 
+	echo validation_errors();
 	if($select == 'add') {
 		?>
 
