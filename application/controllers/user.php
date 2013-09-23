@@ -200,6 +200,7 @@ class User extends Main_Controller
 	public function addresses($select = NUll)
 	{
 		$data['mainview'] = 'addresses';
+		$data['title'] = 'Add New Address';
 		$this->redirect_user('user/login');
 
 		$this->load->library('form_validation');
@@ -214,9 +215,10 @@ class User extends Main_Controller
 		$this->User_model->set('userID', $userID);
 
 		$data['select'] = $select;
-		if($select == 'create') {
-			$data['countries'] = $this->Country_model->fetchAll();
+		if($select == 'add') {
+			$data['countries'] = $this->Country_model->get_countries();
 		}
+
 
 		$data['userID'] = $this->User_model->userID;
 		$data['userFirstName'] = $this->User_model->userFirstName;

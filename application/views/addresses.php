@@ -2,14 +2,14 @@
 	<div class="panel-heading"><h3 class="panel-title">Adresses</h3></div>
 	<div class="panel-body">
 	<?php 
-	if($select == 'create') {
+	if($select == 'add') {
 		?>
 
 		<form class="form-horizontal" role="form">
 		  	<div class="form-group">
 		    	<label for="inputAddress1" class="col-lg-2 control-label">Address</label>
 		    	<div class="col-lg-10">
-		      		<?php echo form_dropdown('country', $countries, set_value('id', $id)) ?>
+		      		<?php echo form_dropdown('country', $countries, set_value('country', '')) ?>
 		      		<span class="help-block"><?php echo form_error('country_id'); ?></span>
 		    	</div>
 		  	</div>
