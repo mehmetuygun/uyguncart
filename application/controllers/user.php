@@ -217,6 +217,7 @@ class User extends Main_Controller
 		$data['select'] = $select;
 		if($select == 'add') {
 			$data['countries'] = $this->Country_model->get_countries();
+			$data['fullname'] = $this->session->userdata('userFullName');
 		}
 
 
