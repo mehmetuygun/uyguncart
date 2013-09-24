@@ -15,14 +15,21 @@
 							'width' => '135',
 							'height' => '135',
 						),
+						'image_500' => array(
+							'path' => '/public/images/135/noimage.jpg',
+							'width' => '135',
+							'height' => '135',
+						),
 					);
 				}
 				?>
 				<div class="img-main-frame">
 					<?php
 					$img = $images[0]['image_300'];
-					echo '<img class="media-object" width="'.$img['width'].'"',
-						' height="'.$img['height'].'" src="'.base_url($img['path']).'" />';
+					$lg_img = base_url($images[0]['image_500']['path']);
+
+					echo '<a href="'.$lg_img.'"><img class="media-object" width="'.$img['width'].'"',
+						' height="'.$img['height'].'" src="'.base_url($img['path']).'" /></a>';
 					?>
 				</div>
 				<div class="thum">
@@ -30,9 +37,15 @@
 						<?php
 						foreach ($images as $img) {
 							$thumb = $img['image_64'];
-							echo '<li><img class="media-object frame active"',
+							$md_img = base_url($img['image_300']['path']);
+							$md_size = $img['image_300']['width'] . 'x' . $img['image_300']['height'];
+							$lg_img = base_url($img['image_500']['path']);
+							// $lg_size = $img['image_500']['width'] . 'x' . $img['image_500']['height'];
+							echo '<li><a href="'.$lg_img.'" data-img-md="'.$md_img.'" data-img-lg="'.$lg_img.'"',
+								' data-img-md-size="'.$md_size.'">',
+								' <img class="media-object frame active"',
 								' width="'.$thumb['width'].'" height="'.$thumb['height'].'"',
-								' src="'.base_url($thumb['path']).'"/></li>';
+								' src="'.base_url($thumb['path']).'"/></a></li>';
 						}
 						?>
 					</ul>
