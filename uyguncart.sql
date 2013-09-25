@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
 --
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `address_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `full_name` varchar(64) NOT NULL,
   `address1` varchar(64) NOT NULL,
@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `address` (
 --
 
 CREATE TABLE IF NOT EXISTS `country` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `country_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `code` char(2) CHARACTER SET latin1 NOT NULL COMMENT 'ISO 3166-1 alpha-2',
   `name` varchar(64) CHARACTER SET latin1 NOT NULL COMMENT 'ISO 3166-1 official English short name (Gazetteer order, w/o diacritics)',
   PRIMARY KEY (`id`),
