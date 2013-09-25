@@ -257,7 +257,7 @@ class User extends Main_Controller
 		                    'field'   => 'country_id', 
 		                    'col'     => 'country_id', 
 		                    'label'   => 'Country', 
-		                    'rules'   => 'required|exists[country.id]'
+		                    'rules'   => 'required|exists[country.country_id]'
 			            )
 			    );
 
@@ -285,7 +285,6 @@ class User extends Main_Controller
 		$data['userFirstName'] = $this->User_model->userFirstName;
 		$data['userLastName'] = $this->User_model->userLastName;
 		$data['userEmail'] = $this->User_model->userEmail;
-		$data['js'] = array('public/default/js/addresses.js');
 
 		$this->load_view($data);
 		

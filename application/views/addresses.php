@@ -78,7 +78,9 @@
 			$count = 1;
 			foreach ($addresses as $row) {
 				echo '<tr><td>'.$count.'</td>';
-				echo '<td>'.$row['full_name'].' '.$row[''].'</td>';
+				echo '<td>'.$row['full_name'].' '.$row['name'].' '.$row['city'].' '.$row['address1'].' '.$row['address2'].' '.$row['postcode'].'</td>';
+				echo '<td><a href="'.base_url('user/addresses/edit/'.$row['address_id']).'">Edit</a></td></tr>';
+				$count++;
 			}
 			?>
 			</tbody>
