@@ -27,7 +27,7 @@ class Country_model extends MY_Model
 	{
 		$array = array();
 		foreach ($this->fetchAll() as $row) {
-			$array[$row['id']] = $row['name'];
+			$array[$row['country_id']] = $row['name'];
 		}
 		return $array;
 	}

@@ -62,7 +62,13 @@
 
 		<?php
 	} else if ($select == 'edit') {
-		echo 'edit';
+		if(empty($addresses)) {
+			redirect(base_url('user/addresses'));
+		} else {
+			?>
+
+			<?php
+		}
 	} else {
 	?>
 		<table class="table table-bordered" id="address_table">

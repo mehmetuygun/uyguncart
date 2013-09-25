@@ -197,7 +197,7 @@ class User extends Main_Controller
 		$this->load_view($data);
 	}
 
-	public function addresses($select = NUll)
+	public function addresses($select = NUll, $id = null)
 	{
 		$data['mainview'] = 'addresses';
 		$data['title'] = 'Add New Address';
@@ -275,9 +275,9 @@ class User extends Main_Controller
 				}// end of form validation
 			}//end of requested method
 		} else if ($select == 'edit') {
-
+			$data['addresses'] = $this->Address_model->fetch($params = array('filter' => array('address_id'=> $id, 'user_id' => $this->session->userdata('userID'))));
 		} else {
-			$data['addresses'] = $this->Address_model->fetch();
+			$data['addresses'] = $this->Address_model->fetch($params = array('filter' => array('user_id' => $this->session->userdata('userID'))));
 		}
 
 
@@ -302,6 +302,6 @@ class User extends Main_Controller
 	public function test()
 	{
 		$this->load->model('Address_model');
-		var_dump($this->Address_model->fetch());
+		var_dump($this->Address_model->fetch($params = array('filter' => array('address_id' => '2'))));
 	}
 }
