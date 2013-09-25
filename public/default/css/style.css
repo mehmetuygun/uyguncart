@@ -64,7 +64,7 @@ code {
 }
 .header-up {
     width: 100%;
-    padding:5px 5px;
+    padding:5px 0;
     height: 36px;
 }
 .price {
@@ -151,4 +151,7 @@ code {
 }
 .navbar {
     z-index: 999;
+}
+.no-padding {
+    padding: 0;
 }

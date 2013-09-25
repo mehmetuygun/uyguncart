@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="navbar navbar-default navbar-static-top">
-                <div class="container">
+                <div class="container no-padding">
                     <div class="row">
                             <div class="col-lg-3">
                                 <a class="navbar-brand" href="<?php echo base_url(); ?>">UygunCart</a>
@@ -45,7 +45,7 @@
                                 <input type="text" name="q" class="form-control" id="search" placeholder="Search" value="<?php if(isset($_GET["q"])) echo $_GET["q"]; ?>">
                                 <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
                             </form>
-                            <span class="navbar-form pull-right">
+                            <span class="navbar-form pull-right no-padding">
                                 <a href="<?php echo base_url('cart') ?>" class="btn btn-success">
                                     <span class="glyphicon glyphicon-shopping-cart"></span>
                                     Cart (<?php echo $cart_item_count ?>)
@@ -56,4 +56,4 @@
                 </div>
             </div>
 
-			<div class="container">
+			<div class="container no-padding">
