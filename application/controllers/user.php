@@ -216,7 +216,7 @@ class User extends Main_Controller
 		$this->User_model->set('userID', $userID);
 
 		$data['select'] = $select;
-		
+
 		if($select == 'add') {
 			$data['countries'] = $this->Country_model->get_countries();
 			$data['fullname'] = $this->session->userdata('userFullName');
@@ -272,8 +272,12 @@ class User extends Main_Controller
 					if($this->Address_model->insert($insert)) {
 						redirect(base_url('user/addresses?alert=success-add'));
 					}
-				}
-			}
+				}// end of form validation
+			}//end of requested method
+		} else if ($select == 'edit') {
+
+		} else {
+			$data['addresses'] = $this->Address_model->fetch();
 		}
 
 
@@ -284,7 +288,8 @@ class User extends Main_Controller
 		$data['js'] = array('public/default/js/addresses.js');
 
 		$this->load_view($data);
-	}
+		
+	}//end of address
 
 	public function get_address()
 	{
@@ -297,9 +302,7 @@ class User extends Main_Controller
 
 	public function test()
 	{
-		$this->load->model('Country_model');
-		foreach ($this->Country_model->get_countries() as $key => $value) {
-			echo $key.' = '.$value.'<br>';	
-		}
+		$this->load->model('Address_model');
+		var_dump($this->Address_model->fetch());
 	}
 }

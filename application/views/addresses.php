@@ -2,7 +2,7 @@
 	<div class="panel-heading"><h3 class="panel-title">Adresses</h3></div>
 	<div class="panel-body">
 	<?php
-	if(isset($_GET['alert']) and $_GET['alert'] == 'success-add'){
+	if(isset($_GET['alert']) && $_GET['alert'] == 'success-add') {
 	    echo '<div class="alert alert-success">';
 	   	echo 'The address is added succesfuly.';
 	    echo '</div>';
@@ -35,7 +35,7 @@
 		  	<div class="form-group <?php if(form_error('address1')) echo "has-error"; ?>">
 		    	<label for="address1" class="col-lg-2 control-label">Address 1:</label>
 		    	<div class="col-lg-10">
-		      		<input type="text" id="address1" name="address1" class="form-control" value="<?php echo set_value('address1', '') ?>">
+		      		<input type="text" id="address1" name="address1" class="form-control" valhue="<?php echo set_value('address1', '') ?>">
 		      		<span class="help-block"><?php echo form_error('address1'); ?></span>
 		    	</div>
 		  	</div>
@@ -68,15 +68,22 @@
 		<table class="table table-bordered" id="address_table">
 			<thead>
 				<tr>
-					<th></th>
+					<th>#</th>
 					<th>Address</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
+			<?php
+			$count = 1;
+			foreach ($addresses as $row) {
+				echo '<tr><td>'.$count.'</td>';
+				echo '<td>'.$row['full_name'].' '.$row[''].'</td>';
+			}
+			?>
 			</tbody>
 		</table>
-		<a href="<?php echo base_url('user/addresses/add') ?>" class="btn btn-primary">Create New Address</a>
+		<a href="<?php echo base_url('user/addresses/add') ?>" class="btn btn-primary">Add New Address</a>
 	<?php 
 	}
 	?>	
