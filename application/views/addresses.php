@@ -95,7 +95,7 @@
 		  	<div class="form-group <?php if(form_error('address1')) echo "has-error"; ?>">
 		    	<label for="address1" class="col-lg-2 control-label">Address 1:</label>
 		    	<div class="col-lg-10">
-		      		<input type="text" id="address1" name="address1" class="form-control" valhue="<?php echo set_value('address1', $addresses[0]['address1']) ?>">
+		      		<input type="text" id="address1" name="address1" class="form-control" value="<?php echo set_value('address1', $addresses[0]['address1']) ?>">
 		      		<span class="help-block"><?php echo form_error('address1'); ?></span>
 		    	</div>
 		  	</div>
