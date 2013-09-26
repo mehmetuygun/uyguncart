@@ -5,7 +5,7 @@ class Address_model extends MY_Model
 	public function __construct()
 	{
 		parent::__construct();
-		parent::initialize('address', 'id');
+		parent::initialize('address', 'address_id');
 	}
 
 	public function insert(array $params = array())

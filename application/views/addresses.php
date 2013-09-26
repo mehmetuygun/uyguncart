@@ -6,7 +6,11 @@
 	    echo '<div class="alert alert-success">';
 	   	echo 'The address is added succesfuly.';
 	    echo '</div>';
-	} 
+	} else if($_GET['alert'] && $_GET['alert'] == 'success-edit') {
+		echo '<div class="alert alert-success">';
+	   	echo 'The address is updated succesfuly.';
+	    echo '</div>';
+	}
 	if($select == 'add') {
 		?>
 
@@ -66,7 +70,55 @@
 			redirect(base_url('user/addresses'));
 		} else {
 			?>
-
+		<form class="form-horizontal" role="form" action="" method="POST">
+		  	<div class="form-group <?php if(form_error('name')) echo "has-error"; ?>">
+		    	<label for="name" class="col-lg-2 control-label">Full Name:</label>
+		    	<div class="col-lg-10">
+		      		<input type="text" id="name" name="name" class="form-control" value="<?php echo set_value('name', $addresses[0]['full_name']); ?>">
+		      		<span class="help-block"><?php echo form_error('name'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group <?php if(form_error('country_id')) echo "has-error"; ?>">
+		    	<label for="country_id" class="col-lg-2 control-label">Country:</label>
+		    	<div class="col-lg-10">
+		      		<?php echo form_dropdown('country_id', $countries, set_value('country_id', $addresses[0]['country_id']), 'class = "form-control" id="country_id"') ?>
+		      		<span class="help-block"><?php echo form_error('country_id'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group <?php if(form_error('city')) echo "has-error"; ?>">
+		    	<label for="city" class="col-lg-2 control-label">City:</label>
+		    	<div class="col-lg-10">
+		      		<input type="text" id="city" name="city" class="form-control" value="<?php echo set_value('city', $addresses[0]['city']) ?>">
+		      		<span class="help-block"><?php echo form_error('city'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group <?php if(form_error('address1')) echo "has-error"; ?>">
+		    	<label for="address1" class="col-lg-2 control-label">Address 1:</label>
+		    	<div class="col-lg-10">
+		      		<input type="text" id="address1" name="address1" class="form-control" valhue="<?php echo set_value('address1', $addresses[0]['address1']) ?>">
+		      		<span class="help-block"><?php echo form_error('address1'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group <?php if(form_error('address2')) echo "has-error"; ?>">
+		    	<label for="address2" class="col-lg-2 control-label">Address 2:</label>
+		    	<div class="col-lg-10">
+		      		<input type="text" id="address2" name="address2" class="form-control" value="<?php echo set_value('address2', $addresses[0]['address2']) ?>">
+		      		<span class="help-block"><?php echo form_error('address2'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group <?php if(form_error('postcode')) echo "has-error"; ?>">
+		    	<label for="postcode" class="col-lg-2 control-label">Postcode:</label>
+		    	<div class="col-lg-10">
+		      		<input type="text" id="postcode" name="postcode" class="form-control" value="<?php echo set_value('postcode', $addresses[0]['postcode']) ?>">
+		      		<span class="help-block"><?php echo form_error('postcode'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		    	<div class="col-lg-offset-2 col-lg-10">
+		      		<button type="submit" class="btn btn-default">Save Changes</button>
+		    	</div>
+		  	</div>
+		</form>
 			<?php
 		}
 	} else {

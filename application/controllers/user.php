@@ -217,9 +217,11 @@ class User extends Main_Controller
 
 		$data['select'] = $select;
 
+		$data['countries'] = $this->Country_model->get_countries();
+		$data['fullname'] = $this->session->userdata('userFullName');
+
 		if($select == 'add') {
-			$data['countries'] = $this->Country_model->get_countries();
-			$data['fullname'] = $this->session->userdata('userFullName');
+
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
 				$insert = array();
 				$rules = array(
@@ -276,6 +278,62 @@ class User extends Main_Controller
 			}//end of requested method
 		} else if ($select == 'edit') {
 			$data['addresses'] = $this->Address_model->fetch($params = array('filter' => array('address_id'=> $id, 'user_id' => $this->session->userdata('userID'))));
+			
+			if ($this->input->server('REQUEST_METHOD') === 'POST') {
+				$update = array();
+				$rules = array(
+			            array(
+		                    'field'   => 'name', 
+		                    'col'     => 'full_name', 
+		                    'label'   => 'Full Name', 
+		                    'rules'   => 'required|alpha|mint_length[64]'
+			            ),
+			            array(
+		                    'field'   => 'city',
+		                    'col'     => 'city',  
+		                    'label'   => 'City', 
+		                    'rules'   => 'required|alpha|mint_length[64]'
+			            ),
+			            array(
+		                    'field'   => 'address1', 
+		                    'col'     => 'address1', 
+		                    'label'   => 'Address 1', 
+		                    'rules'   => 'required|mint_length[64]'
+			            ),   
+			            array(
+		                    'field'   => 'address2', 
+		                    'col'     => 'address2', 
+		                    'label'   => 'Address 2', 
+		                    'rules'   => 'required|mint_length[64]'
+			            ),   
+			            array(
+		                    'field'   => 'postcode', 
+		                    'col'     => 'postcode', 
+		                    'label'   => 'Postcode', 
+		                    'rules'   => 'required|mint_length[24]'
+			            ),
+			            array(
+		                    'field'   => 'country_id', 
+		                    'col'     => 'country_id', 
+		                    'label'   => 'Country', 
+		                    'rules'   => 'required|exists[country.country_id]'
+			            )
+			    );
+
+				$this->form_validation->set_rules($rules);
+
+				if($this->form_validation->run() == true) {
+					foreach ($rules as $key => $field) {
+						if($this->input->post($field['field']) != $data['addresses'][0][$field['field']]) {
+							$update[$field['col']] = $this->input->post($field['field']);
+						}
+					}
+
+					if($this->Address_model->update($update, $id)) {
+						redirect(base_url('user/addresses?alert=success-edit'));
+					}
+				}// end of form validation
+			}
 		} else {
 			$data['addresses'] = $this->Address_model->fetch($params = array('filter' => array('user_id' => $this->session->userdata('userID'))));
 		}
