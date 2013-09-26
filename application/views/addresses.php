@@ -6,7 +6,7 @@
 	    echo '<div class="alert alert-success">';
 	   	echo 'The address is added succesfuly.';
 	    echo '</div>';
-	} else if($_GET['alert'] && $_GET['alert'] == 'success-edit') {
+	} else if(isset($_GET['alert']) && $_GET['alert'] == 'success-edit') {
 		echo '<div class="alert alert-success">';
 	   	echo 'The address is updated succesfuly.';
 	    echo '</div>';
