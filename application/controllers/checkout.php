@@ -66,11 +66,25 @@ class Checkout extends Main_Controller
 
 		$this->Payment_model->update(array('status' => 'complete'), $payment_id);
 
-		echo 'Payment complete. Payment ID:' . $payment_id;
+		$data = array(
+			'mainview' => 'checkout',
+			'title' => 'Checkout',
+			'alert_type' => 'alert-success',
+			'msg' => 'Payment complete. Payment ID: ' . $payment_id,
+		);
+
+		$this->load_view($data);
 	}
 
-	public function cancel()
+	public function cancel($payment_id)
 	{
-		echo 'Payment canceled';
+		$data = array(
+			'mainview' => 'checkout',
+			'title' => 'Checkout',
+			'alert_type' => 'alert-danger',
+			'msg' => 'Payment canceled. Payment ID: ' . $payment_id,
+		);
+
+		$this->load_view($data);
 	}
 }
