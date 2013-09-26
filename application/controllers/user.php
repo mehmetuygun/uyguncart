@@ -41,7 +41,7 @@ class User extends Main_Controller
 			)
 		);
 		$this->form_validation->set_rules($rules);
-		if($this->form_validation->run() == true) {
+		if ($this->form_validation->run() == true) {
 			$data = array(
 					'userEmail' => $this->input->post('email'),
 					'userFirstName' => $this->input->post('firstname'),
@@ -50,7 +50,7 @@ class User extends Main_Controller
 					'userType' => 2
 				);
 
-			if($this->User_model->insert($data)) {
+			if ($this->User_model->insert($data)) {
 				$session = array(
 					'userID' => $this->User_model->userID,
 					'userFirstName' => $this->input->post('firstname'),
@@ -91,9 +91,9 @@ class User extends Main_Controller
 			),
 		);
 		$this->form_validation->set_rules($rules);
-		
-		if($this->form_validation->run() == true) {
-			if($this->User_model->login($this->input->post('email'), $this->input->post('password'), 2)) {
+
+		if ($this->form_validation->run() == true) {
+			if ($this->User_model->login($this->input->post('email'), $this->input->post('password'), 2)) {
 				$session = array(
 					'userID' => $this->User_model->userID,
 					'userFirstName' => $this->User_model->userFirstName,
@@ -225,106 +225,111 @@ class User extends Main_Controller
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
 				$insert = array();
 				$rules = array(
-			            array(
-		                    'field'   => 'name', 
-		                    'col'     => 'full_name', 
-		                    'label'   => 'Full Name', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),
-			            array(
-		                    'field'   => 'city',
-		                    'col'     => 'city',  
-		                    'label'   => 'City', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),
-			            array(
-		                    'field'   => 'address1', 
-		                    'col'     => 'address1', 
-		                    'label'   => 'Address 1', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),   
-			            array(
-		                    'field'   => 'address2', 
-		                    'col'     => 'address2', 
-		                    'label'   => 'Address 2', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),   
-			            array(
-		                    'field'   => 'postcode', 
-		                    'col'     => 'postcode', 
-		                    'label'   => 'Postcode', 
-		                    'rules'   => 'required|max_length[24]'
-			            ),
-			            array(
-		                    'field'   => 'country_id', 
-		                    'col'     => 'country_id', 
-		                    'label'   => 'Country', 
-		                    'rules'   => 'required|exists[country.country_id]'
-			            )
-			    );
+						array(
+							'field'   => 'name',
+							'col'     => 'full_name',
+							'label'   => 'Full Name',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'city',
+							'col'     => 'city',
+							'label'   => 'City',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'address1',
+							'col'     => 'address1',
+							'label'   => 'Address 1',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'address2',
+							'col'     => 'address2',
+							'label'   => 'Address 2',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'postcode',
+							'col'     => 'postcode',
+							'label'   => 'Postcode',
+							'rules'   => 'required|max_length[24]'
+						),
+						array(
+							'field'   => 'country_id',
+							'col'     => 'country_id',
+							'label'   => 'Country',
+							'rules'   => 'required|exists[country.country_id]'
+						)
+				);
 
 				$this->form_validation->set_rules($rules);
 
-				if($this->form_validation->run() == true) {
+				if ($this->form_validation->run() == true) {
 					foreach ($rules as $key => $field) {
 						$insert[$field['col']] = $this->input->post($field['field']);
 					}
 					$insert['user_id'] = $this->session->userdata('userID');
 
-					if($this->Address_model->insert($insert)) {
+					if ($this->Address_model->insert($insert)) {
 						redirect(base_url('user/addresses?alert=success-add'));
 					}
-				}// end of form validation
-			}//end of requested method
+				} // end of form validation
+			} //end of requested method
 		} else if ($select == 'edit') {
-			$data['addresses'] = $this->Address_model->fetch($params = array('filter' => array('address_id'=> $id, 'user_id' => $this->session->userdata('userID'))));
-			
+			$data['addresses'] = $this->Address_model->fetch(array(
+				'filter' => array(
+					'address_id'=> $id,
+					'user_id' => $this->session->userdata('userID')
+				)
+			));
+
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
 				$update = array();
 				$rules = array(
-			            array(
-		                    'field'   => 'name', 
-		                    'col'     => 'full_name', 
-		                    'label'   => 'Full Name', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),
-			            array(
-		                    'field'   => 'city',
-		                    'col'     => 'city',  
-		                    'label'   => 'City', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),
-			            array(
-		                    'field'   => 'address1', 
-		                    'col'     => 'address1', 
-		                    'label'   => 'Address 1', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),   
-			            array(
-		                    'field'   => 'address2', 
-		                    'col'     => 'address2', 
-		                    'label'   => 'Address 2', 
-		                    'rules'   => 'required|max_length[64]'
-			            ),   
-			            array(
-		                    'field'   => 'postcode', 
-		                    'col'     => 'postcode', 
-		                    'label'   => 'Postcode', 
-		                    'rules'   => 'required|max_length[24]'
-			            ),
-			            array(
-		                    'field'   => 'country_id', 
-		                    'col'     => 'country_id', 
-		                    'label'   => 'Country', 
-		                    'rules'   => 'required|exists[country.country_id]'
-			            )
-			    );
+						array(
+							'field'   => 'name',
+							'col'     => 'full_name',
+							'label'   => 'Full Name',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'city',
+							'col'     => 'city',
+							'label'   => 'City',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'address1',
+							'col'     => 'address1',
+							'label'   => 'Address 1',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'address2',
+							'col'     => 'address2',
+							'label'   => 'Address 2',
+							'rules'   => 'required|max_length[64]'
+						),
+						array(
+							'field'   => 'postcode',
+							'col'     => 'postcode',
+							'label'   => 'Postcode',
+							'rules'   => 'required|max_length[24]'
+						),
+						array(
+							'field'   => 'country_id',
+							'col'     => 'country_id',
+							'label'   => 'Country',
+							'rules'   => 'required|exists[country.country_id]'
+						)
+				);
 
 				$this->form_validation->set_rules($rules);
 
-				if($this->form_validation->run() == true) {
+				if ($this->form_validation->run() == true) {
 					foreach ($rules as $key => $field) {
-						if($this->input->post($field['field']) != $data['addresses'][0][$field['field']]) {
+						if ($this->input->post($field['field']) != $data['addresses'][0][$field['field']]) {
 							$update[$field['col']] = $this->input->post($field['field']);
 						}
 					}
@@ -335,7 +340,9 @@ class User extends Main_Controller
 				}// end of form validation
 			}
 		} else {
-			$data['addresses'] = $this->Address_model->fetch($params = array('filter' => array('user_id' => $this->session->userdata('userID'))));
+			$data['addresses'] = $this->Address_model->fetch(array(
+				'filter' => array('user_id' => $this->session->userdata('userID'))
+			));
 		}
 
 
@@ -345,21 +352,17 @@ class User extends Main_Controller
 		$data['userEmail'] = $this->User_model->userEmail;
 
 		$this->load_view($data);
-		
+
 	}//end of address
 
 	public function get_address()
 	{
 		$this->load->model('Address_model');
 		$this->load->library('session');
-		$addresses = $this->Address_model->fetch(array('filter' => array('user_id' => $this->session->userdata('userID'))));
-		$this->output_json($addresses);
-	
-	}
+		$addresses = $this->Address_model->fetch(array(
+			'filter' => array('user_id' => $this->session->userdata('userID'))
+		));
 
-	public function test()
-	{
-		$this->load->model('Address_model');
-		var_dump($this->Address_model->fetch($params = array('filter' => array('address_id' => '2'))));
+		$this->output_json($addresses);
 	}
 }
