@@ -46,13 +46,13 @@ class Setting extends Admin_Controller
 					'col'   => 'userFirstName',
 					'field' => 'fname',
 					'label' => 'First Name',
-					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
+					'rules' => 'required|max_length[45]',
 				),
 				'lname' => array(
 					'col'   => 'userLastName',
 					'field' => 'lname',
 					'label' => 'Last Name',
-					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
+					'rules' => 'required|max_length[45]',
 				),
 			);
 

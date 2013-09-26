@@ -68,7 +68,7 @@ class Product extends Admin_Controller
 		$this->form_validation->set_rules(
 			'productName',
 			'Product',
-			'required|min_length[3]|max_length[75]|alpha_dash_space|is_unique[product.productName]'
+			'required|max_length[75]|is_unique[product.productName]'
 		);
 
 		if ($this->form_validation->run() == true) {

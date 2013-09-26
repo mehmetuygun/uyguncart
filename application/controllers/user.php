@@ -17,17 +17,17 @@ class User extends Main_Controller
 			array(
 				'field' => 'password',
 				'label' => 'Password',
-				'rules' => 'required|min_length[8]|max_length[64]|matches[re-password]'
+				'rules' => 'required|min_length[8]|max_length[64]'
 			),
 			array(
 				'field' => 're-password',
 				'label' => 'Re-password',
-				'rules' => 'required|min_length[8]|max_length[64]|matches[password]'
+				'rules' => 'required|matches[password]'
 			),
 			array(
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required|max_length[64]|email|is_unique[user.userEmail]'
+				'rules' => 'required|max_length[64]|valid_email|is_unique[user.userEmail]'
 			),
 			array(
 				'field' => 'firstname',
@@ -146,13 +146,13 @@ class User extends Main_Controller
 					'col'   => 'userFirstName',
 					'field' => 'firstname',
 					'label' => 'First Name',
-					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
+					'rules' => 'required|max_length[45]',
 				),
 				'lastname' => array(
 					'col'   => 'userLastName',
 					'field' => 'lastname',
 					'label' => 'Last Name',
-					'rules' => 'required|min_length[3]|max_length[45]|alpha_int',
+					'rules' => 'required|max_length[45]',
 				),
 			);
 
@@ -229,31 +229,31 @@ class User extends Main_Controller
 		                    'field'   => 'name', 
 		                    'col'     => 'full_name', 
 		                    'label'   => 'Full Name', 
-		                    'rules'   => 'required|alpha|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),
 			            array(
 		                    'field'   => 'city',
 		                    'col'     => 'city',  
 		                    'label'   => 'City', 
-		                    'rules'   => 'required|alpha|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),
 			            array(
 		                    'field'   => 'address1', 
 		                    'col'     => 'address1', 
 		                    'label'   => 'Address 1', 
-		                    'rules'   => 'required|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),   
 			            array(
 		                    'field'   => 'address2', 
 		                    'col'     => 'address2', 
 		                    'label'   => 'Address 2', 
-		                    'rules'   => 'required|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),   
 			            array(
 		                    'field'   => 'postcode', 
 		                    'col'     => 'postcode', 
 		                    'label'   => 'Postcode', 
-		                    'rules'   => 'required|mint_length[24]'
+		                    'rules'   => 'required|max_length[24]'
 			            ),
 			            array(
 		                    'field'   => 'country_id', 
@@ -286,31 +286,31 @@ class User extends Main_Controller
 		                    'field'   => 'name', 
 		                    'col'     => 'full_name', 
 		                    'label'   => 'Full Name', 
-		                    'rules'   => 'required|alpha|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),
 			            array(
 		                    'field'   => 'city',
 		                    'col'     => 'city',  
 		                    'label'   => 'City', 
-		                    'rules'   => 'required|alpha|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),
 			            array(
 		                    'field'   => 'address1', 
 		                    'col'     => 'address1', 
 		                    'label'   => 'Address 1', 
-		                    'rules'   => 'required|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),   
 			            array(
 		                    'field'   => 'address2', 
 		                    'col'     => 'address2', 
 		                    'label'   => 'Address 2', 
-		                    'rules'   => 'required|mint_length[64]'
+		                    'rules'   => 'required|max_length[64]'
 			            ),   
 			            array(
 		                    'field'   => 'postcode', 
 		                    'col'     => 'postcode', 
 		                    'label'   => 'Postcode', 
-		                    'rules'   => 'required|mint_length[24]'
+		                    'rules'   => 'required|max_length[24]'
 			            ),
 			            array(
 		                    'field'   => 'country_id', 

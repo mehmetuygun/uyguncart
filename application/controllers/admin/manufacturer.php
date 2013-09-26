@@ -42,7 +42,7 @@ class Manufacturer extends Admin_Controller
 		$this->form_validation->set_rules(
 			'manufacturer',
 			'Manufacturer',
-			'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]'
+			'required|max_length[45]|is_unique[manufacturer.manufacturerName]'
 		);
 
 		$data = array(
@@ -81,7 +81,7 @@ class Manufacturer extends Admin_Controller
 			$this->form_validation->set_rules(
 				'manufacturer',
 				'Manufacturer',
-				'required|min_length[3]|max_length[45]|alpha|is_unique[manufacturer.manufacturerName]'
+				'required|max_length[45]|is_unique[manufacturer.manufacturerName]'
 			);
 		}
 

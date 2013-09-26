@@ -30,18 +30,6 @@ class MY_Form_validation extends CI_Form_validation
 	 * @param	string	The form element to be checked
 	 * @return	bool	valid
 	 */
-	public function alpha_int($str)
-	{
-		$str = (strtolower($this->CI->config->item('charset')) != 'utf-8') ? utf8_encode($str) : $str;
-		$this->CI->form_validation->set_message('alpha_int', 'The %s field may only contain alphabetical characters.');
-
-		return !!preg_match("/^[[:alpha:]- ÀÁÂÃÄÅĀĄĂÆÇĆČĈĊĎĐÈÉÊËĒĘĚĔĖĜĞĠĢĤĦÌÍÎÏĪĨĬĮİĲĴĶŁĽĹĻĿÑŃŇŅŊÒÓÔÕÖØŌŐŎŒŔŘŖŚŠŞŜȘŤŢŦȚÙÚÛÜŪŮŰŬŨŲŴÝŶŸŹŽŻàáâãäåæçèéêëìíîïñòóôõöøùúûüýÿœšß_.]+$/", $str);
-	}
-
-	/**
-	 * @param	string	The form element to be checked
-	 * @return	bool	valid
-	 */
 	public function category_exist($str)
 	{
 		$this->CI->load->model('Category_model');
@@ -100,13 +88,6 @@ class MY_Form_validation extends CI_Form_validation
 		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
 
 		return $query->num_rows() != 0;
-	}
-
-	public function alpha_dash_space($str)
-	{
-		$this->CI->form_validation->set_message('alpha_dash_space', 'The %s field may only contain alphabetical characters.');
-
-		return !!preg_match("/^([-a-z_ ])+$/i", $str);
 	}
 
 	public function status($str)

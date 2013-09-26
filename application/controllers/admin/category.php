@@ -56,7 +56,7 @@ class Category extends Admin_Controller
 			array(
 				'field' => 'categoryName',
 				'label' => 'Category',
-				'rules' => 'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]'
+				'rules' => 'required|max_length[45]|is_unique[category.categoryName]'
 			)
 		);
 		$this->form_validation->set_rules($rules);
@@ -100,7 +100,7 @@ class Category extends Admin_Controller
 				$this->form_validation->set_rules(
 					'categoryName',
 					'Category',
-					'required|min_length[3]|max_length[45]|alpha|is_unique[category.categoryName]'
+					'required|max_length[45]|is_unique[category.categoryName]'
 				);
 			}
 		}
