@@ -67,7 +67,10 @@
 		<?php
 	} else if ($select == 'edit') {
 		if(empty($addresses)) {
-			redirect(base_url('user/addresses'));
+			echo '<div class="alert alert-warning">';
+	   		echo 'The address you are looking for is not found';
+	    	echo '</div>';
+	    	echo '<a href="'.base_url('user/addresses').'" class="btn btn-primary">Go Back</a>';
 		} else {
 			?>
 		<form class="form-horizontal" role="form" action="" method="POST">
