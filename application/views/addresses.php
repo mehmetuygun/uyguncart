@@ -10,7 +10,12 @@
 		echo '<div class="alert alert-success">';
 	   	echo 'The address is updated succesfuly.';
 	    echo '</div>';
+	} else if(isset($_GET['alert']) && $_GET['alert'] == 'success-delete') {
+		echo '<div class="alert alert-success">';
+	   	echo 'The address is deleted succesfuly.';
+	    echo '</div>';
 	}
+
 	if($select == 'add') {
 		?>
 
@@ -124,6 +129,30 @@
 		</form>
 			<?php
 		}
+	} else if($select == 'delete') {
+
+		if(empty($addresses)) {
+			echo '<div class="alert alert-warning">';
+	   		echo 'You do not have permission to delete this address';
+	    	echo '</div>';
+	    	echo '<a href="'.base_url('user/addresses').'" class="btn btn-primary">Go Back</a>';
+		} else {
+
+			?>
+			<form method="POST" action="">
+				<div class="alert alert-warning">
+					<p>Are you sure to delete this address. </p>
+					<p><?php echo $addresses[0]['full_name'].' '.$addresses[0]['name'].' '.$addresses[0]['city'].' '.$addresses[0]['address1'].' '.$addresses[0]['address2'].' '.$addresses[0]['postcode'];?></p>
+					<p>
+						<button type="submit" class="btn btn-primary">Yes</button>
+						<a href="<?php echo base_url('user/addresses') ?>">Cancel</a>
+					</p>
+				</div>
+			</form>
+			<?php
+
+		}
+
 	} else {
 	?>
 		<table class="table table-bordered" id="address_table">
@@ -140,7 +169,8 @@
 			foreach ($addresses as $row) {
 				echo '<tr><td>'.$count.'</td>';
 				echo '<td>'.$row['full_name'].' '.$row['name'].' '.$row['city'].' '.$row['address1'].' '.$row['address2'].' '.$row['postcode'].'</td>';
-				echo '<td><a href="'.base_url('user/addresses/edit/'.$row['address_id']).'">Edit</a></td></tr>';
+				echo '<td><a href="'.base_url('user/addresses/edit/'.$row['address_id']).'">Edit</a>
+				<a href="'.base_url('user/addresses/delete/'.$row['address_id']).'">Delete</a></td></tr>';
 				$count++;
 			}
 			?>

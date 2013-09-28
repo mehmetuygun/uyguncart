@@ -339,6 +339,23 @@ class User extends Main_Controller
 					}
 				}// end of form validation
 			}
+		} else if ($select == 'delete') {
+
+			$data['addresses'] = $this->Address_model->fetch(array(
+				'filter' => array(
+					'address_id'=> $id,
+					'user_id' => $this->session->userdata('userID')
+				)
+			));
+
+			if ($this->input->server('REQUEST_METHOD') === 'POST') {
+				if(!empty($data['addresses'])) {
+					if($this->Address_model->delete($id)) {
+						redirect(base_url('user/addresses/?alert=success-delete'));
+					}
+				}
+			}
+
 		} else {
 			$data['addresses'] = $this->Address_model->fetch(array(
 				'filter' => array('user_id' => $this->session->userdata('userID'))

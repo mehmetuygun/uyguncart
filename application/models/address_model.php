@@ -20,6 +20,11 @@ class Address_model extends MY_Model
 		return parent::fetch($params);
 	}
 
+	public function delete($id)
+	{
+		return parent::delete($id);
+	}
+
 	public function get_countries()
 	{
 		$this->load->library('db');
