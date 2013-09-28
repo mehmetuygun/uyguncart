@@ -200,7 +200,7 @@ class User extends Main_Controller
 	public function addresses($select = NUll, $id = null)
 	{
 		$data['mainview'] = 'addresses';
-		$data['title'] = 'Add New Address';
+		$data['title'] = 'Addresses';
 		$this->redirect_user('user/login');
 
 		$this->load->library('form_validation');
@@ -222,6 +222,7 @@ class User extends Main_Controller
 
 		if($select == 'add') {
 
+			$data['title'] = 'Add New Address';
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
 				$insert = array();
 				$rules = array(
@@ -277,6 +278,7 @@ class User extends Main_Controller
 				} // end of form validation
 			} //end of requested method
 		} else if ($select == 'edit') {
+			$data['title'] = 'Edit Address';
 			$data['addresses'] = $this->Address_model->fetch(array(
 				'filter' => array(
 					'address_id'=> $id,
@@ -340,7 +342,7 @@ class User extends Main_Controller
 				}// end of form validation
 			}
 		} else if ($select == 'delete') {
-
+			$data['title'] = 'Delete Address';
 			$data['addresses'] = $this->Address_model->fetch(array(
 				'filter' => array(
 					'address_id'=> $id,
