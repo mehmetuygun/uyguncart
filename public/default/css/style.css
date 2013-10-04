@@ -60,12 +60,11 @@ code {
     height: 20px;
 }
 #header {
-    background-color: black;
+    background-color: rgb(73, 73, 73);
 }
 .header-up {
     width: 100%;
     padding:5px 0;
-    height: 36px;
 }
 .price {
     color: orange;

@@ -14,12 +14,12 @@
                     <span class="pull-right">
                     <?php
                         if(!isset($user['LoggedIn']) or $user['LoggedIn'] != TRUE) {
-                            echo '<a href="'.base_url('user/register').'">Register</a> ';
-                            echo '<a href="'.base_url('user/login').'">Login</a>';
+                            echo '<a class="btn btn-primary btn-sm" href="'.base_url('user/register').'">Register</a> ';
+                            echo '<a class="btn btn-default btn-sm" href="'.base_url('user/login').'">Login</a>';
                         } else {
                             echo '<span class="user">Welcome, </span>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                                 '.$user['FirstName'].' '.$user['LastName'].' <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
