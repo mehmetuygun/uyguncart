@@ -22,13 +22,13 @@ class Login extends CI_Controller
 			if ($login) {
 				// setting user session information
 				$session = array(
-					'userID' => $this->User_model->userID,
-					'userEmail' => $this->User_model->userEmail,
-					'userFirstName' => $this->User_model->userFirstName,
-					'userLastName' => $this->User_model->userLastName,
-					'userFullName' => $this->User_model->userFirstName .
-						' ' . $this->User_model->userLastName,
-					'role' => $this->User_model->userType,
+					'userID' => $this->User_model->user_id,
+					'userEmail' => $this->User_model->email,
+					'userFirstName' => $this->User_model->first_name,
+					'userLastName' => $this->User_model->last_name,
+					'userFullName' => $this->User_model->first_name .
+						' ' . $this->User_model->last_name,
+					'role' => $this->User_model->type,
 					'logged_in' => true
 				);
 				$this->session->set_userdata($session);

@@ -70,13 +70,6 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
   KEY `last_activity_idx` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `ci_sessions`
---
-
-INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('37c16af99588e913b4d09fc75ed8cec3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36', 1375295697, 'a:8:{s:9:"user_data";s:0:"";s:6:"userID";s:1:"1";s:9:"userEmail";s:24:"mehmet.uygun@hotmail.com";s:13:"userFirstName";s:6:"Mehmet";s:12:"userLastName";s:5:"Uygun";s:12:"userFullName";s:12:"Mehmet Uygun";s:4:"role";s:1:"1";s:9:"logged_in";b:1;}');
-
 -- --------------------------------------------------------
 
 --
@@ -145,20 +138,20 @@ INSERT INTO `product` (`productID`, `productName`, `productDescription`, `produc
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `userID` int(11) NOT NULL AUTO_INCREMENT,
-  `userFirstName` varchar(45) NOT NULL,
-  `userLastName` varchar(45) NOT NULL,
-  `userEmail` varchar(75) NOT NULL,
-  `userPassword` varchar(64) NOT NULL,
-  `userType` char(1) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `type` char(1) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `userFirstName`, `userLastName`, `userEmail`, `userPassword`, `userType`) VALUES
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `type`) VALUES
 (1, 'Mehmet', 'Uygun', 'mehmet.uygun@hotmail.com', '12345678', '1');
 
 -- --------------------------------------------------------

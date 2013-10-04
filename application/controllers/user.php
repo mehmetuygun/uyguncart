@@ -27,7 +27,7 @@ class User extends Main_Controller
 			array(
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required|max_length[64]|valid_email|is_unique[user.userEmail]'
+				'rules' => 'required|max_length[64]|valid_email|is_unique[user.email]'
 			),
 			array(
 				'field' => 'firstname',
@@ -43,16 +43,16 @@ class User extends Main_Controller
 		$this->form_validation->set_rules($rules);
 		if ($this->form_validation->run() == true) {
 			$data = array(
-					'userEmail' => $this->input->post('email'),
-					'userFirstName' => $this->input->post('firstname'),
-					'userLastName' => $this->input->post('lastname'),
-					'userPassword' => $this->input->post('password'),
-					'userType' => 2
+					'email' => $this->input->post('email'),
+					'first_name' => $this->input->post('firstname'),
+					'last_name' => $this->input->post('lastname'),
+					'password' => $this->input->post('password'),
+					'type' => 2
 				);
 
 			if ($this->User_model->insert($data)) {
 				$session = array(
-					'userID' => $this->User_model->userID,
+					'userID' => $this->User_model->user_id,
 					'userFirstName' => $this->input->post('firstname'),
 					'userLastName' => $this->input->post('lastname'),
 					'userFullName' =>  $this->input->post('firstname').' '.$this->input->post('lastname'),
@@ -95,10 +95,10 @@ class User extends Main_Controller
 		if ($this->form_validation->run() == true) {
 			if ($this->User_model->login($this->input->post('email'), $this->input->post('password'), 2)) {
 				$session = array(
-					'userID' => $this->User_model->userID,
-					'userFirstName' => $this->User_model->userFirstName,
-					'userLastName' => $this->User_model->userLastName,
-					'userFullName' =>  $this->User_model->userFirstName.' '.$this->User_model->userLastName,
+					'userID' => $this->User_model->user_id,
+					'userFirstName' => $this->User_model->first_name,
+					'userLastName' => $this->User_model->last_name,
+					'userFullName' =>  $this->User_model->first_name.' '.$this->User_model->last_name,
 					'userLoggedIn' => true
 					);
 				$this->session->set_userdata($session);
@@ -130,26 +130,26 @@ class User extends Main_Controller
 		$this->load->library('session');
 		$this->load->model('User_model');
 		$userID = $this->session->userdata('userID');
-		$this->User_model->initialize('user', 'userID');
+
 		$this->User_model->set($userID);
 
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
 			$update = array();
 			$fields = array(
 				'email' => array(
-					'col'   => 'userEmail',
+					'col'   => 'email',
 					'field' => 'email',
 					'label' => 'Email',
-					'rules' => 'required|valid_email|max_length[75]|is_unique[user.userEmail]',
+					'rules' => 'required|valid_email|max_length[75]|is_unique[user.email]',
 				),
 				'firstname' => array(
-					'col'   => 'userFirstName',
+					'col'   => 'first_name',
 					'field' => 'firstname',
 					'label' => 'First Name',
 					'rules' => 'required|max_length[45]',
 				),
 				'lastname' => array(
-					'col'   => 'userLastName',
+					'col'   => 'last_name',
 					'field' => 'lastname',
 					'label' => 'Last Name',
 					'rules' => 'required|max_length[45]',
@@ -187,12 +187,12 @@ class User extends Main_Controller
 			}
 		}
 
-		$this->User_model->set('userID', $userID);
+		$this->User_model->set($userID);
 
-		$data['userID'] = $this->User_model->userID;
-		$data['userFirstName'] = $this->User_model->userFirstName;
-		$data['userLastName'] = $this->User_model->userLastName;
-		$data['userEmail'] = $this->User_model->userEmail;
+		$data['userID'] = $this->User_model->user_id;
+		$data['userFirstName'] = $this->User_model->first_name;
+		$data['userLastName'] = $this->User_model->last_name;
+		$data['userEmail'] = $this->User_model->email;
 
 		$this->load_view($data);
 	}
@@ -215,7 +215,7 @@ class User extends Main_Controller
 			array(
 				'field' => 'new-password',
 				'label' => 'New Password',
-				'rules' => 'required|min_length[8]|max_length[64]|matches[re-password]'
+				'rules' => 'required|min_length[8]|max_length[64]'
 			),
 			array(
 				'field' => 're-password',
@@ -227,7 +227,7 @@ class User extends Main_Controller
 		$this->form_validation->set_rules($rules);
 
 		if($this->form_validation->run() == TRUE) {
-			$update = array('userPassword' => $this->input->post('new-password'));
+			$update = array('password' => $this->input->post('new-password'));
 			if($this->User_model->update($update, $this->session->userdata('userID'))) {
 				$data['alert_message'] = 'The password is updated.';
 				$data['alert_class'] = 'alert-success';
@@ -237,7 +237,7 @@ class User extends Main_Controller
 		$this->load_view($data);
 	}
 
-	public function addresses($select = NUll, $id = null)
+	public function addresses($select = null, $id = null)
 	{
 		$data['mainview'] = 'addresses';
 		$data['title'] = 'Addresses';
@@ -250,10 +250,7 @@ class User extends Main_Controller
 		$this->load->model('Address_model');
 
 		$userID = $this->session->userdata('userID');
-		$this->User_model->initialize('user', 'userID');
 		$this->User_model->set($userID);
-
-		$this->User_model->set('userID', $userID);
 
 		$data['select'] = $select;
 
@@ -405,10 +402,10 @@ class User extends Main_Controller
 		}
 
 
-		$data['userID'] = $this->User_model->userID;
-		$data['userFirstName'] = $this->User_model->userFirstName;
-		$data['userLastName'] = $this->User_model->userLastName;
-		$data['userEmail'] = $this->User_model->userEmail;
+		$data['userID'] = $this->User_model->user_id;
+		$data['userFirstName'] = $this->User_model->first_name;
+		$data['userLastName'] = $this->User_model->last_name;
+		$data['userEmail'] = $this->User_model->email;
 
 		$this->load_view($data);
 

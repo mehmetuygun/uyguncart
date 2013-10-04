@@ -2,16 +2,16 @@
 
 class User_model extends MY_Model
 {
-	public $userID;
-	public $userEmail;
-	public $userFirstName;
-	public $userLastName;
-	public $userType;
+	public $user_id;
+	public $email;
+	public $first_name;
+	public $last_name;
+	public $type;
 
 	public function __construct()
 	{
 		parent::__construct();
-		parent::initialize('user', 'userID');
+		parent::initialize('user', 'user_id');
 	}
 	
 	/**
@@ -26,10 +26,10 @@ class User_model extends MY_Model
 		$this->load->database();
 
 		$this->db->from('user')
-			->where('userEmail', $email)
-			->where('userPassword', $password);
+			->where('email', $email)
+			->where('password', $password);
 		if($userType == 2)
-			$this->db->where('userType', $userType);
+			$this->db->where('type', $userType);
 		$query = $this->db->get();
 
 		if ($query->num_rows() != 1) {
@@ -37,11 +37,11 @@ class User_model extends MY_Model
 		}
 
 		$row = $query->row();
-		$this->userID = $row->userID;
-		$this->userEmail = $row->userEmail;
-		$this->userFirstName = $row->userFirstName;
-		$this->userLastName = $row->userLastName;
-		$this->userType = $row->userType;
+		$this->user_id = $row->user_id;
+		$this->email = $row->email;
+		$this->first_name = $row->first_name;
+		$this->last_name = $row->last_name;
+		$this->type = $row->type;
 
 		return true;
 	}
@@ -73,7 +73,7 @@ class User_model extends MY_Model
 		$this->load->database();
 		$this->db->from('user');
 
-		$data = array('userID' => $id, 'userPassword' => $password);
+		$data = array('user_id' => $id, 'password' => $password);
 
 		$query = $this->db->where($data)->get();
 
@@ -88,7 +88,7 @@ class User_model extends MY_Model
 	{
 		$this->load->database();
 		if($this->db->insert('user', $data)) {
-			$this->userID = $this->db->insert_id();
+			$this->user_id = $this->db->insert_id();
 			return true;
 		} else {
 			return false;

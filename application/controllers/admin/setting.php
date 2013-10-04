@@ -37,19 +37,19 @@ class Setting extends Admin_Controller
 			$update = array();
 			$fields = array(
 				'email' => array(
-					'col'   => 'userEmail',
+					'col'   => 'email',
 					'field' => 'email',
 					'label' => 'Email',
-					'rules' => 'required|valid_email|max_length[75]|is_unique[user.userEmail]',
+					'rules' => 'required|valid_email|max_length[75]|is_unique[user.email]',
 				),
 				'fname' => array(
-					'col'   => 'userFirstName',
+					'col'   => 'first_name',
 					'field' => 'fname',
 					'label' => 'First Name',
 					'rules' => 'required|max_length[45]',
 				),
 				'lname' => array(
-					'col'   => 'userLastName',
+					'col'   => 'last_name',
 					'field' => 'lname',
 					'label' => 'Last Name',
 					'rules' => 'required|max_length[45]',
@@ -57,7 +57,7 @@ class Setting extends Admin_Controller
 			);
 
 			foreach ($fields as $f_name => $field) {
-				if ($this->input->post($f_name) != $this->Setting_model->{$field['field']}) {
+				if ($this->input->post($f_name) != $this->Setting_model->{$field['col']}) {
 					$this->form_validation->set_rules(array($field));
 					$update[$field['col']] = $this->input->post($f_name);
 				}
@@ -81,8 +81,8 @@ class Setting extends Admin_Controller
 					$this->Setting_model->set($userID);
 					$this->session->set_userdata($update);
 					$this->session->set_userdata('userFullName',
-						$this->Setting_model->userFirstName . ' ' .
-						$this->Setting_model->userLastName
+						$this->Setting_model->first_name . ' ' .
+						$this->Setting_model->last_name
 					);
 				} else {
 					$data['alert_message'] = 'Something went wrong.';
@@ -91,9 +91,9 @@ class Setting extends Admin_Controller
 			}
 		}
 
-		$data['userEmail'] = $this->Setting_model->userEmail;
-		$data['userFirstName'] = $this->Setting_model->userFirstName;
-		$data['userLastName'] = $this->Setting_model->userLastName;
+		$data['userEmail'] = $this->Setting_model->email;
+		$data['userFirstName'] = $this->Setting_model->first_name;
+		$data['userLastName'] = $this->Setting_model->last_name;
 
 		$this->load_view($data);
 	}
@@ -134,7 +134,7 @@ class Setting extends Admin_Controller
 
 		if ($this->form_validation->run() == true) {
 			$update = array(
-				'userPassword' => $this->input->post('new_password'),
+				'password' => $this->input->post('new_password'),
 			);
 			if ($this->Setting_model->update($update, $this->session->userdata('userID'))) {
 				$data['alert_message'] = 'Your data is update succesfuly.';
