@@ -8,6 +8,12 @@ class User_model extends MY_Model
 	public $userLastName;
 	public $userType;
 
+	public function __construct()
+	{
+		parent::__construct();
+		parent::initialize('user', 'userID');
+	}
+	
 	/**
 	 *	User Authentication
 	 *

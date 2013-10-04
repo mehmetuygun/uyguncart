@@ -197,6 +197,46 @@ class User extends Main_Controller
 		$this->load_view($data);
 	}
 
+	public function password()
+	{
+		$data['mainview'] = 'password';
+		$data['title'] = 'Password';
+		$this->redirect_user('user/login');
+
+		$this->load->model('User_model');
+		$this->load->library('form_validation');
+
+		$rules = array(
+			array(
+				'field' => 'password',
+				'label' => 'Current Password',
+				'rules' => 'required|checkpassword'
+			),
+			array(
+				'field' => 'new-password',
+				'label' => 'New Password',
+				'rules' => 'required|min_length[8]|max_length[64]|matches[re-password]'
+			),
+			array(
+				'field' => 're-password',
+				'label' => 'Re-password',
+				'rules' => 'required|min_length[8]|max_length[64]|matches[new-password]'
+			)
+		);
+
+		$this->form_validation->set_rules($rules);
+
+		if($this->form_validation->run() == TRUE) {
+			$update = array('userPassword' => $this->input->post('new-password'));
+			if($this->User_model->update($update, $this->session->userdata('userID'))) {
+				$data['alert_message'] = 'The password is updated.';
+				$data['alert_class'] = 'alert-success';
+ 			}
+		}
+
+		$this->load_view($data);
+	}
+
 	public function addresses($select = NUll, $id = null)
 	{
 		$data['mainview'] = 'addresses';
