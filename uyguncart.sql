@@ -28,18 +28,17 @@ USE `uyguncart`;
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `categoryID` int(11) NOT NULL AUTO_INCREMENT,
-  `categoryName` varchar(45) NOT NULL,
-  `parentID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`categoryID`),
-  KEY `categoryID` (`categoryID`)
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`categoryID`, `categoryName`, `parentID`) VALUES
+INSERT INTO `category` (`category_id`, `name`, `parent_id`) VALUES
 (5, 'uygun', 20),
 (6, 'asdasdasds', NULL),
 (10, 'easdasd', NULL),

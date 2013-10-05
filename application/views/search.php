@@ -30,7 +30,7 @@ if(empty($products)) {
 			<?php
 			$cat_list = isset($categories['']) ? $categories[''] : array();
 			foreach ($cat_list as $cat) {
-				echo $cat['categoryName'], '<br />';
+				echo $cat['name'], '<br />';
 			}
 			?>
 			</div>

@@ -56,16 +56,16 @@ class Category extends Admin_Controller
 			array(
 				'field' => 'categoryName',
 				'label' => 'Category',
-				'rules' => 'required|max_length[45]|is_unique[category.categoryName]'
+				'rules' => 'required|max_length[45]|is_unique[category.name]'
 			)
 		);
 		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == true) {
 			$parentID = $this->input->post('parentID');
-			$field = array('categoryName'=> $this->input->post('categoryName'));
+			$field = array('name'=> $this->input->post('categoryName'));
 			if (strlen($parentID) > 0) {
-				$field['parentID'] = $this->input->post('parentID');
+				$field['parent_id'] = $this->input->post('parentID');
 			}
 
 			if ($this->Category_model->insert($field)) {
@@ -88,9 +88,9 @@ class Category extends Admin_Controller
 
 		$this->Category_model->set($id);
 
-		$cat_name_changed = $this->Category_model->categoryName != $this->input->post('categoryName');
+		$cat_name_changed = $this->Category_model->name != $this->input->post('categoryName');
 
-		if ($cat_name_changed || $this->Category_model->parentID != $this->input->post('parentID')) {
+		if ($cat_name_changed || $this->Category_model->parent_id != $this->input->post('parentID')) {
 			$this->form_validation->set_rules(
 				'parentID',
 				'Parent Category',
@@ -100,7 +100,7 @@ class Category extends Admin_Controller
 				$this->form_validation->set_rules(
 					'categoryName',
 					'Category',
-					'required|max_length[45]|is_unique[category.categoryName]'
+					'required|max_length[45]|is_unique[category.name]'
 				);
 			}
 		}
@@ -124,8 +124,8 @@ class Category extends Admin_Controller
 			}
 
 			$field = array(
-				'parentID' => $parentID,
-				'categoryName' => $this->input->post('categoryName')
+				'parent_id' => $parentID,
+				'name' => $this->input->post('categoryName')
 			);
 
 			if ($this->Category_model->update($field, $id)) {
@@ -138,8 +138,8 @@ class Category extends Admin_Controller
 			}
 		}
 
-		$data['parentID'] = $this->Category_model->parentID;
-		$data['categoryName'] = $this->Category_model->categoryName;
+		$data['parentID'] = $this->Category_model->parent_id;
+		$data['categoryName'] = $this->Category_model->name;
 
 		$this->load_view($data);
 	}
@@ -160,7 +160,7 @@ class Category extends Admin_Controller
 
 		$params = array(
 			'search_term' => $search,
-			'order_by' => 'categoryName',
+			'order_by' => 'name',
 			'page' => $page,
 		);
 

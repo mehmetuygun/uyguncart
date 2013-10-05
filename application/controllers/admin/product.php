@@ -53,7 +53,7 @@ class Product extends Admin_Controller
 			$this->form_validation->set_rules(
 				'categoryID',
 				'Category',
-				'required|exists[category.categoryID]'
+				'required|exists[category.category_id]'
 			);
 		}
 
@@ -123,7 +123,7 @@ class Product extends Admin_Controller
 				array(
 					'field' => 'categoryID',
 					'label' => 'Category',
-					'rules' => 'exists_null[category.categoryID]',
+					'rules' => 'exists_null[category.category_id]',
 				),
 				array(
 					'field' => 'manufacturerID',
