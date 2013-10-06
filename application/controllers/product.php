@@ -24,7 +24,7 @@ class Product extends Main_Controller
 			'title' => $this->Product_model->productName,
 			'row' => $product,
 			'images' => $images,
-			'js' => array('public/default/js/product.js'),
+			'js' => array('product.js'),
 		);
 
 		$this->load_view($data);

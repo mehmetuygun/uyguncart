@@ -24,7 +24,7 @@ class Order extends Admin_Controller
 			),
 			'menu_active' => 'sales',
 			'mainview' => 'order',
-			'js' => array('public/js/view.js'),
+			'js' => array('view.js'),
 		);
 
 		$this->load_view($data);

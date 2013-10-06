@@ -6,6 +6,12 @@ class MY_Loader extends CI_Loader
 	{
 		parent::__construct();
 
-		$this->_ci_view_paths = array(APPPATH.'views/'	=> TRUE);
+		$this->config('uyguncart');
+
+		$CI =& get_instance();
+		// var_dump($CI->config);
+		$template = $CI->config->item('template');
+
+		$this->_ci_view_paths = array(APPPATH.'templates/'.$template.'/' => TRUE);
 	}
 }

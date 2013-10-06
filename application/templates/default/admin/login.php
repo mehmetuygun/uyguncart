@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<title><?php echo $title?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/bootstrap/css/bootstrap-responsive.min.css');?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/bootstrap/css/bootstrap.min.css');?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/login.css');?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/templates/default/admin/css/bootstrap-responsive.min.css');?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/templates/default/admin/css/bootstrap.min.css');?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/templates/default/admin/css/login.css');?>">
 	</head>
 	<body>
 		<div class="login-box">
@@ -42,7 +42,7 @@
 				</div>
 			</form>
 		</div>
-		<script type="text/javascript" src="<?php echo base_url('public/js/jquery-1.10.2.min.js');?>"></script>
-		<script type="text/javascript" src="<?php echo base_url('public/bootstrap/js/bootstrap.min.js');?>"></script>
+		<script type="text/javascript" src="<?php echo base_url('public/templates/default/admin/js/jquery-1.10.2.min.js');?>"></script>
+		<script type="text/javascript" src="<?php echo base_url('public/templates/default/admin/js/bootstrap.min.js');?>"></script>
 	</body>
 </html>

@@ -25,7 +25,7 @@ class Category extends Admin_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'category',
-			'js' => array('public/js/view.js'),
+			'js' => array('view.js'),
 		);
 
 		$this->load_view($data);

@@ -25,7 +25,7 @@ class Product extends Admin_Controller
 			),
 			'menu_active' => 'catalog',
 			'mainview' => 'product',
-			'js' => array('public/js/view.js'),
+			'js' => array('view.js'),
 		);
 
 		$this->load_view($data);
@@ -104,9 +104,9 @@ class Product extends Admin_Controller
 			'menu_active' => 'catalog',
 			'mainview' => 'product_edit',
 			'js' => array(
-				'public/js/tinymce/tinymce.min.js',
-				'public/js/product_edit.js',
-				'public/js/jquery.form.min.js'
+				'tinymce/tinymce.min.js',
+				'product_edit.js',
+				'jquery.form.min.js'
 			),
 			'status' => array(0 => 'Disabled', 1 => 'Enabled'),
 			'categories' => $this->Category_model->fetchAll(true),
