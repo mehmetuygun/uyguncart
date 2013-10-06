@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
 	<div class="panel-heading"><h3 class="panel-title">Login</h3></div>
 	<div class="panel-body">
 		<h4>User login form.</h4>
@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-default">Login</button>
+					<button type="submit" class="btn btn-primary">Login</button>
 				</div>
 			</div>
 		</form>

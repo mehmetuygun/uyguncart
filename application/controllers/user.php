@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User extends Main_Controller
-{
+{	
 	public function register()
 	{
 		$this->load->library('form_validation');
