@@ -8,7 +8,7 @@
 	      	</div>
 	      	<!-- end of footer -->
 	    </div>
-		<script type="text/javascript" src="<?php echo base_url('public/templates/default/admin/js/jquery-1.10.2.min.js');?>"></script>
+		<script type="text/javascript" src="<?php echo base_url('public/js/jquery-1.10.2.min.js');?>"></script>
 		<script type="text/javascript" src="<?php echo base_url('public/templates/default/admin/js/bootstrap.min.js');?>"></script>
 		<?php
 		if(isset($js)){
