@@ -61,7 +61,7 @@ class Product extends Admin_Controller
 			$this->form_validation->set_rules(
 				'manufacturerID',
 				'Manufacturer',
-				'required|exists[manufacturer.manufacturerID]'
+				'required|exists[manufacturer.manufacturer_id]'
 			);
 		}
 
@@ -128,7 +128,7 @@ class Product extends Admin_Controller
 				array(
 					'field' => 'manufacturerID',
 					'label' => 'Manufacturer',
-					'rules' => 'exists_null[manufacturer.manufacturerID]',
+					'rules' => 'exists_null[manufacturer.manufacturer_id]',
 				),
 				array(
 					'field' => 'productPrice',

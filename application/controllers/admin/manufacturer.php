@@ -42,7 +42,7 @@ class Manufacturer extends Admin_Controller
 		$this->form_validation->set_rules(
 			'manufacturer',
 			'Manufacturer',
-			'required|max_length[45]|is_unique[manufacturer.manufacturerName]'
+			'required|max_length[45]|is_unique[manufacturer.name]'
 		);
 
 		$data = array(
@@ -58,7 +58,7 @@ class Manufacturer extends Admin_Controller
 
 		if ($this->form_validation->run() == true)
 		{
-			$field = array("manufacturerName" => $this->input->post('manufacturer'));
+			$field = array("name" => $this->input->post('manufacturer'));
 			if($this->Manufacturer_model->insert($field)){
 				$data["alert_message"] = "The manufacturer is added successfully.";
 				$data["alert_class"] = "alert-success";
@@ -77,11 +77,11 @@ class Manufacturer extends Admin_Controller
 		$this->load->helper('form');
 
 		$this->Manufacturer_model->set($id);
-		if ($this->Manufacturer_model->manufacturerName != $this->input->post('manufacturer')) {
+		if ($this->Manufacturer_model->name != $this->input->post('manufacturer')) {
 			$this->form_validation->set_rules(
 				'manufacturer',
 				'Manufacturer',
-				'required|max_length[45]|is_unique[manufacturer.manufacturerName]'
+				'required|max_length[45]|is_unique[manufacturer.name]'
 			);
 		}
 
@@ -97,7 +97,7 @@ class Manufacturer extends Admin_Controller
 		);
 
 		if ($this->form_validation->run() == true) {
-			$field = array("manufacturerName" => $this->input->post('manufacturer'));
+			$field = array("name" => $this->input->post('manufacturer'));
 			if ($this->Manufacturer_model->update($field, $id)) {
 				$data["alert_message"] = "The manufacturer is updated.";
 				$data["alert_class"] = "alert-success";
@@ -107,7 +107,7 @@ class Manufacturer extends Admin_Controller
 			}
 		}
 
-		$data['manufacturer'] = $this->Manufacturer_model->manufacturerName;
+		$data['manufacturer'] = $this->Manufacturer_model->name;
 
 		$this->load_view($data);
 	}
@@ -128,7 +128,7 @@ class Manufacturer extends Admin_Controller
 
 		$params = array(
 			'search_term' => $search,
-			'order_by' => 'manufacturerName',
+			'order_by' => 'name',
 			'page' => $page,
 		);
 

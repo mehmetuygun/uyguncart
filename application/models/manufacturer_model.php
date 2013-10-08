@@ -2,8 +2,8 @@
 
 class Manufacturer_model extends MY_Model
 {
-	public $manufacturerID;
-	public $manufacturerName;
+	public $manufacturer_id;
+	public $name;
 	public $entries;
 	public $pagecount;
 
@@ -11,7 +11,7 @@ class Manufacturer_model extends MY_Model
 	public function __construct()
 	{
 		parent::__construct();
-		parent::initialize('manufacturer', 'manufacturerID');
+		parent::initialize('manufacturer', 'manufacturer_id');
 	}
 
 	/**
@@ -22,8 +22,8 @@ class Manufacturer_model extends MY_Model
 	 */
 	public function fetch(array $params = array())
 	{
-		$this->order_by = 'manufacturerName';
-		$this->search_field = 'manufacturerName';
+		$this->order_by = 'name';
+		$this->search_field = 'name';
 
 		return parent::fetch($params);
 	}
@@ -36,7 +36,7 @@ class Manufacturer_model extends MY_Model
 		$field = array();
 		if ($with_none) $field[''] = '-- NONE --';
 		foreach ($query->result() as $row) {
-		 	$field[$row->manufacturerID] = $row->manufacturerName;
+		 	$field[$row->manufacturer_id] = $row->name;
 		}
 		return $field;
 	}

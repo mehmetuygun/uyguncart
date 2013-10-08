@@ -76,17 +76,16 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 CREATE TABLE IF NOT EXISTS `manufacturer` (
-  `manufacturerID` int(11) NOT NULL AUTO_INCREMENT,
-  `manufacturerName` varchar(45) NOT NULL,
-  PRIMARY KEY (`manufacturerID`),
-  KEY `manufacturerID` (`manufacturerID`)
+  `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`manufacturer_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `manufacturer`
 --
 
-INSERT INTO `manufacturer` (`manufacturerID`, `manufacturerName`) VALUES
+INSERT INTO `manufacturer` (`manufacturer_id`, `name`) VALUES
 (2, 'asdasd'),
 (3, 'casdasd'),
 (4, 'asdiacn'),
