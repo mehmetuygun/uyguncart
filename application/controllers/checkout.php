@@ -21,7 +21,6 @@ class Checkout extends Main_Controller
 			'total_price' => $Cart->total(),
 			'shipping_address' => 0,
 			'billing_address' => 0,
-			'date_created' => date('Y-m-d H:i:s'),
 		));
 
 		$payment = array(
