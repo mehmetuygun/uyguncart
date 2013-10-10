@@ -509,3 +509,11 @@ INSERT INTO `country` (`id`, `code`, `name`) VALUES
 (247, 'YE', 'Yemen'),
 (248, 'ZM', 'Zambia'),
 (249, 'ZW', 'Zimbabwe');
+
+CREATE TABLE IF NOT EXISTS `setting` (
+  `setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`setting_id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
