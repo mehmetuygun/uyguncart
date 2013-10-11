@@ -27,13 +27,13 @@ function get_images() {
 			var med_info = res[i]['image_200'];
 			var img_med = base_url + med_info['path'];
 			var img_lrg = base_url + res[i]['image_500']['path'];
-			var del_image = ' onclick="delete_image(' + res[i]['imageID'] + ')"';
+			var del_image = ' onclick="delete_image(' + res[i]['image_id'] + ')"';
 			var w_h = ' width="' + med_info['width'] + 'px" height="' + med_info['height'] + 'px"';
 			if (res[i]['default']) {
 				outer_class = ' img-default';
 				set_default = ' disabled="disabled"';
 			} else {
-				set_default = ' onclick="$(\'#defaultImage\').val(' + res[i]['imageID'] + ')"';
+				set_default = ' onclick="$(\'#defaultImage\').val(' + res[i]['image_id'] + ')"';
 			}
 
 			html += '<div class="img-outer' + outer_class + '">';

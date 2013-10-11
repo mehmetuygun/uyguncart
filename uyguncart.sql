@@ -159,15 +159,15 @@ INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `
 --
 
 CREATE TABLE IF NOT EXISTS `image` (
-  `imageID` int(11) NOT NULL AUTO_INCREMENT,
-  `imageFullName` varchar(25) NOT NULL,
-  `imageOriginal` varchar(255) NOT NULL,
+  `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(25) NOT NULL,
+  `original_name` varchar(255) NOT NULL,
   `size_64` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   `size_135` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   `size_200` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   `size_300` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   `size_500` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
-  PRIMARY KEY (`imageID`)
+  PRIMARY KEY (`image_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -177,10 +177,10 @@ CREATE TABLE IF NOT EXISTS `image` (
 --
 
 CREATE TABLE IF NOT EXISTS `object_image` (
-  `imageID` int(11) NOT NULL,
-  `objectType` enum('product','user','manufacturer','category') CHARACTER SET latin1 NOT NULL,
-  `objectID` int(11) NOT NULL,
-  KEY `object` (`objectType`,`objectID`)
+  `image_id` int(11) NOT NULL,
+  `object_type` enum('product','user','manufacturer','category') CHARACTER SET latin1 NOT NULL,
+  `object_id` int(11) NOT NULL,
+  KEY `object` (`object_type`,`objectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

@@ -64,8 +64,8 @@ if(empty($products)) {
 						foreach ($products as $row) {
 							$product_url = base_url('product/id/' . $row['productID']);
 							$img_src = $img_135_url . 'noimage.jpg';
-							if (!is_null($row['imageFullName']) && file_exists('public/images/135/'.$row['imageFullName'])) {
-								$img_src = $img_135_url . $row['imageFullName'];
+							if (!is_null($row['full_name']) && file_exists('public/images/135/'.$row['full_name'])) {
+								$img_src = $img_135_url . $row['full_name'];
 							}
 
 							echo <<<HTML

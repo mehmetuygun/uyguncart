@@ -24,8 +24,8 @@
 
                 $p_url = base_url('product/id/' . $p['productID']);
                 $img_src = base_url('public/images/135/' . 'noimage.jpg');
-                if (isset($p['imageFullName']) && file_exists($img_200_path . $p['imageFullName'])) {
-                    $img_src = base_url($img_200_path . $p['imageFullName']);
+                if (isset($p['full_name']) && file_exists($img_200_path . $p['full_name'])) {
+                    $img_src = base_url($img_200_path . $p['full_name']);
                 }
 
                 echo <<<HTML

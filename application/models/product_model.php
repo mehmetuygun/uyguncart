@@ -41,12 +41,12 @@ class Product_model extends MY_Model
 		$this->load->database();
 
 		$query = $this->db->from('object_image')
-			->where('objectType', 'product')
-			->where('objectID', $id)
+			->where('object_type', 'product')
+			->where('object_id', $id)
 			->get();
 
 		foreach ($query->result_array() as $row) {
-			$this->delete_image($row['imageID']);
+			$this->delete_image($row['image_id']);
 		}
 
 		return parent::delete($id);
@@ -56,24 +56,24 @@ class Product_model extends MY_Model
 	{
 		$this->load->database();
 		$this->db->from('object_image')
-			->join('image', 'object_image.imageID = image.imageID');
+			->join('image', 'object_image.image_id = image.image_id');
 
 		if ($default_only) {
 			$this->db->select('object_image.*, image.*, product.defaultImage')
-				->join('product', 'defaultImage = image.imageID');
+				->join('product', 'defaultImage = image.image_id');
 		}
 
-		$this->db->where('objectType', 'product')
-			->where('objectID', $this->productID);
+		$this->db->where('object_type', 'product')
+			->where('object_id', $this->productID);
 
 		$query = $this->db->get();
 		$this->productImages = array();
 
 		foreach ($query->result_array() as $row) {
-			$row['default'] = $this->defaultImage == $row['imageID'];
+			$row['default'] = $this->defaultImage == $row['image_id'];
 
 			foreach (static::$img_sizes as $s_dir => $size) {
-				$s_path = static::$img_path . $s_dir . '/' . $row['imageFullName'];
+				$s_path = static::$img_path . $s_dir . '/' . $row['full_name'];
 				if (!file_exists(FCPATH . $s_path)) {
 					continue;
 				}
@@ -126,8 +126,8 @@ class Product_model extends MY_Model
 			$sizes = $this->create_thumbnails($upload_data['full_path'], $f_name);
 
 			$field = array(
-				'imageFullName' => $f_name,
-				'imageOriginal' => $upload_data['file_name'],
+				'full_name' => $f_name,
+				'original_name' => $upload_data['file_name'],
 			);
 
 			foreach ($sizes as $s_dir => $size) {
@@ -138,9 +138,9 @@ class Product_model extends MY_Model
 			$imageID = $this->db->insert_id();
 
 			$field = array(
-				'imageID' => $imageID,
-				'objectType' => 'product',
-				'objectID' => $this->productID,
+				'image_id' => $imageID,
+				'object_type' => 'product',
+				'object_id' => $this->productID,
 			);
 			$this->db->insert('object_image', $field);
 
@@ -234,7 +234,7 @@ class Product_model extends MY_Model
 	{
 		$this->order_by = 'productName';
 		$this->search_field = 'productName';
-		$this->join = array('image', 'defaultImage = imageID', 'left');
+		$this->join = array('image', 'defaultImage = image_id', 'left');
 
 		return parent::fetch($params);
 	}
