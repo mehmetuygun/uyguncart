@@ -13,7 +13,7 @@
 		<?php
 		if(isset($js)){
 			foreach ($js as $value) {
-				echo '<script type="text/javascript" src="'.base_url($value).'"></script>';
+				echo '<script type="text/javascript" src="'.base_url('public/templates/default/js/'.$value).'"></script>';
 			}
 		}
 		?>
