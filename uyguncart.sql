@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 --
 
 CREATE TABLE IF NOT EXISTS `payment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `payment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `order_id` int(10) unsigned NOT NULL,
   `status` varchar(15) CHARACTER SET latin1 NOT NULL DEFAULT 'pending',

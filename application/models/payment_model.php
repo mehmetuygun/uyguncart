@@ -12,6 +12,6 @@ class Payment_model extends MY_Model
 	{
 		parent::__construct();
 
-		parent::initialize('payment', 'id');
+		parent::initialize('payment', 'payment_id');
 	}
 }
