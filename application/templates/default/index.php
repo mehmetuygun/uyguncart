@@ -22,7 +22,7 @@
                     echo '<div class="row f-space">';
                 }
 
-                $p_url = base_url('product/id/' . $p['productID']);
+                $p_url = base_url('product/id/' . $p['product_id']);
                 $img_src = base_url('public/images/135/' . 'noimage.jpg');
                 if (isset($p['full_name']) && file_exists($img_200_path . $p['full_name'])) {
                     $img_src = base_url($img_200_path . $p['full_name']);
@@ -35,10 +35,10 @@
                             <img alt="200x150" src="{$img_src}" />
                         </a>
                         <div class="caption">
-                            <h4><a href="{$p_url}">{$p['productName']}</a></h4>
-                            <h4><span class="price">\${$p['productPrice']}</span></h4>
+                            <h4><a href="{$p_url}">{$p['name']}</a></h4>
+                            <h4><span class="price">\${$p['price']}</span></h4>
                             <form action="{$cart_url}" method="post">
-                                <input type="hidden" value="{$p['productID']}" name="productID" />
+                                <input type="hidden" value="{$p['product_id']}" name="product_id" />
                                 <button type="submit" class="btn btn-danger" style="width:100%">
                                     Add To Cart
                                 </button>

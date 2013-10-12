@@ -26,9 +26,9 @@
         var html = "";
         for (var i = 0; i < data.length; i++) {
             html += '<tr>';
-            html += '<td><input type="checkbox" value="'+data[i]['productID']+'" class="check"></td>';
-            html += '<td>'+data[i]['productName']+'</td>';
-            html += '<td><a class="link" href="edit/'+data[i]['productID']+'">Edit</a>&nbsp;<a class="link delete_one" href="#'+data[i]['productID']+'">Delete</a></td>';
+            html += '<td><input type="checkbox" value="'+data[i]['product_id']+'" class="check"></td>';
+            html += '<td>'+data[i]['name']+'</td>';
+            html += '<td><a class="link" href="edit/'+data[i]['product_id']+'">Edit</a>&nbsp;<a class="link delete_one" href="#'+data[i]['product_id']+'">Delete</a></td>';
             html += '</tr>';
         }
         $(".table tbody").html(html);

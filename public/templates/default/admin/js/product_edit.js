@@ -33,7 +33,7 @@ function get_images() {
 				outer_class = ' img-default';
 				set_default = ' disabled="disabled"';
 			} else {
-				set_default = ' onclick="$(\'#defaultImage\').val(' + res[i]['image_id'] + ')"';
+				set_default = ' onclick="$(\'#default_image\').val(' + res[i]['image_id'] + ')"';
 			}
 
 			html += '<div class="img-outer' + outer_class + '">';

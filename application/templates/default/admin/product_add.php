@@ -13,25 +13,25 @@
         <?php echo $alert_message ?>
     </div>
     <?php } ?>
-	<div class="control-group <?php if(form_error('productName')) echo "error"; ?>">
+	<div class="control-group <?php if(form_error('name')) echo "error"; ?>">
 	<label class="control-label" for="inputProductName">Product Name</label>
 	   <div class="controls">
-			<input type="text" name="productName" id="inputProductName" value="<?php echo set_value('productName'); ?>">
-            <span class="help-inline"><?php echo form_error('productName'); ?></span>
+			<input type="text" name="name" id="inputProductName" value="<?php echo set_value('name'); ?>">
+            <span class="help-inline"><?php echo form_error('name'); ?></span>
 	   </div>
 	</div>
     <div class="control-group">
         <label class="control-label">Category</label>
         <div class="controls">
-            <?php echo form_dropdown('categoryID', $categories, set_value('categoryID', '')) ?>
-            <span class="help-inline"><?php echo form_error('categoryID'); ?></span>
+            <?php echo form_dropdown('category_id', $categories, set_value('category_id', '')) ?>
+            <span class="help-inline"><?php echo form_error('category_id'); ?></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Manufacturer</label>
         <div class="controls">
-            <?php echo form_dropdown('manufacturerID', $manufacturer, set_value('manufacturerID', '')) ?>
-            <span class="help-inline"><?php echo form_error('manufacturerID'); ?></span>
+            <?php echo form_dropdown('manufacturer_id', $manufacturer, set_value('manufacturer_id', '')) ?>
+            <span class="help-inline"><?php echo form_error('manufacturer_id'); ?></span>
         </div>
     </div>
 	<div class="form-actions">

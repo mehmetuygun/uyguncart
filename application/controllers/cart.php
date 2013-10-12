@@ -25,8 +25,8 @@ class Cart extends Main_Controller
 			$this->cart->update(array(
 				'rowid' => $rowid,
 				'qty' => $quantity,
-				'price' => $this->Product_model->productPrice,
-				'name' => $this->Product_model->productName
+				'price' => $this->Product_model->price,
+				'name' => $this->Product_model->name
 				)
 			);
 		}
@@ -34,12 +34,12 @@ class Cart extends Main_Controller
 
 		if(isset($productID) and !$add_qty) {
 			$this->Product_model->set($productID);
-			if($this->Product_model->productStatus) {
+			if($this->Product_model->status) {
 				$this->cart->insert(array(
-					'id' => $this->Product_model->productID,
+					'id' => $this->Product_model->product_id,
 					'qty' => 1,
-					'price' => $this->Product_model->productPrice,
-					'name' => $this->Product_model->productName
+					'price' => $this->Product_model->price,
+					'name' => $this->Product_model->name
 					)
 				);
 

@@ -9,7 +9,7 @@ class Home extends Main_Controller
 
 		$params = array(
 			'search_term' => '',
-			'order_by' => 'productAddedDate',
+			'order_by' => 'added_date',
 			'sort' => 'desc',
 			'limit' => 9,
 		);

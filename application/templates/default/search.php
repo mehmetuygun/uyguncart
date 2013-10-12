@@ -62,7 +62,7 @@ if(empty($products)) {
 						<?php
 						$img_135_url = base_url('public/images/135') . '/';
 						foreach ($products as $row) {
-							$product_url = base_url('product/id/' . $row['productID']);
+							$product_url = base_url('product/id/' . $row['product_id']);
 							$img_src = $img_135_url . 'noimage.jpg';
 							if (!is_null($row['full_name']) && file_exists('public/images/135/'.$row['full_name'])) {
 								$img_src = $img_135_url . $row['full_name'];
@@ -77,9 +77,9 @@ if(empty($products)) {
 								</a>
 								<div class="media-body">
 									<h4 class="media-heading">
-										<a href="{$product_url}">{$row['productName']}</a>
+										<a href="{$product_url}">{$row['name']}</a>
 									</h4>
-									<span class="price">\${$row['productPrice']}</span>
+									<span class="price">\${$row['price']}</span>
 								</div>
 							</div>
 HTML;

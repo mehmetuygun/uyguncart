@@ -53,7 +53,7 @@
 			</div>
 			<div class="col-sm-6">
 				<h3 class="media-heading">
-					<?php echo $row->productName ?>
+					<?php echo $row->name ?>
 				</h3>
 				<table class="table">
 					<tbody>
@@ -63,7 +63,7 @@
 						</tr>
 						<tr>
 							<td>Price:</td>
-							<td><span class="price">$<?php echo $row->productPrice; ?></span></td>
+							<td><span class="price">$<?php echo $row->price; ?></span></td>
 						</tr>
 						<tr>
 							<td>Share on</td>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="col-sm-2">
 				<form method="post" action="<?php echo base_url('cart'); ?>">
-					<input type="hidden" name="productID" value="<?php echo $row->productID; ?>">
+					<input type="hidden" name="productID" value="<?php echo $row->product_id; ?>">
 					<button type="submit" class="btn btn-primary pull-right">Add to Cart</button>
 				</form>
 			</div>
@@ -88,7 +88,7 @@
 	</ul>
 	<div class="tab-content tab-content-style" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
 		<div class="tab-pane active" id="tab1">
-			<?php echo $row->productDescription; ?>
+			<?php echo $row->description; ?>
 		</div>
 		<div class="tab-pane" id="tab2">
 			<p>Howdy, I'm in Section 2.</p>

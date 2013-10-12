@@ -19,17 +19,17 @@ class Search extends Main_Controller
 			case 'price_desc':
 				$params['sort'] = 'desc';
 			case 'price_asc':
-				$params['order_by'] = 'productPrice';
+				$params['order_by'] = 'price';
 				break;
 			case 'name':
 			default:
-				$params['order_by'] = 'productName';
+				$params['order_by'] = 'name';
 				break;
 		}
 
 		$query = $this->input->get('q');
 		$params['search_term'] = $query;
-		$params['filter'] = array('productStatus' => '1');
+		$params['filter'] = array('status' => '1');
 
 		$data = array(
 			'mainview' => 'search',

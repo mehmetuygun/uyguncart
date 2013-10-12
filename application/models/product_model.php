@@ -2,14 +2,14 @@
 
 class Product_model extends MY_Model
 {
-	public $productID;
-	public $productName;
-	public $productPrice;
-	public $productDescription;
-	public $productStatus;
-	public $categoryID;
-	public $manufacturerID;
-	public $defaultImage;
+	public $product_id;
+	public $name;
+	public $price;
+	public $description;
+	public $status;
+	public $category_id;
+	public $manufacturer_id;
+	public $default_image;
 	public $productImages;
 
 	protected static $img_path = 'public/images/';
@@ -26,12 +26,12 @@ class Product_model extends MY_Model
 	public function __construct()
 	{
 		parent::__construct();
-		parent::initialize('product', 'productID');
+		parent::initialize('product', 'product_id');
 	}
 
 	public function insert($field)
 	{
-		$field['productAddedDate'] = date('Y-m-d H:i:s');
+		$field['added_date'] = date('Y-m-d H:i:s');
 
 		return parent::insert($field);
 	}
@@ -59,18 +59,18 @@ class Product_model extends MY_Model
 			->join('image', 'object_image.image_id = image.image_id');
 
 		if ($default_only) {
-			$this->db->select('object_image.*, image.*, product.defaultImage')
-				->join('product', 'defaultImage = image.image_id');
+			$this->db->select('object_image.*, image.*, product.default_image')
+				->join('product', 'default_image = image.image_id');
 		}
 
 		$this->db->where('object_type', 'product')
-			->where('object_id', $this->productID);
+			->where('object_id', $this->product_id);
 
 		$query = $this->db->get();
 		$this->productImages = array();
 
 		foreach ($query->result_array() as $row) {
-			$row['default'] = $this->defaultImage == $row['image_id'];
+			$row['default'] = $this->default_image == $row['image_id'];
 
 			foreach (static::$img_sizes as $s_dir => $size) {
 				$s_path = static::$img_path . $s_dir . '/' . $row['full_name'];
@@ -122,7 +122,7 @@ class Product_model extends MY_Model
 			}
 
 			$upload_data = $this->upload->data();
-			$f_name = uniqid('p' . $this->productID) . $upload_data['file_ext'];
+			$f_name = uniqid('p' . $this->product_id) . $upload_data['file_ext'];
 			$sizes = $this->create_thumbnails($upload_data['full_path'], $f_name);
 
 			$field = array(
@@ -140,16 +140,16 @@ class Product_model extends MY_Model
 			$field = array(
 				'image_id' => $imageID,
 				'object_type' => 'product',
-				'object_id' => $this->productID,
+				'object_id' => $this->product_id,
 			);
 			$this->db->insert('object_image', $field);
 
-			if (!isset($this->defaultImage)) {
+			if (!isset($this->default_image)) {
 				$field = array(
-					'defaultImage' => $imageID
+					'default_image' => $imageID
 				);
-				$this->update($field, $this->productID);
-				$this->defaultImage = $imageID;
+				$this->update($field, $this->product_id);
+				$this->default_image = $imageID;
 			}
 		}
 
@@ -211,8 +211,8 @@ class Product_model extends MY_Model
 		$this->db->delete('object_image', array('imageID' => $id));
 		$this->db->update(
 			'product',
-			array('defaultImage' => null),
-			array('defaultImage' => $id)
+			array('default_image' => null),
+			array('default_image' => $id)
 		);
 
 		foreach (static::$img_sizes as $s_dir => $size) {
@@ -232,9 +232,9 @@ class Product_model extends MY_Model
 	 */
 	public function fetch(array $params = array())
 	{
-		$this->order_by = 'productName';
-		$this->search_field = 'productName';
-		$this->join = array('image', 'defaultImage = image_id', 'left');
+		$this->order_by = 'name';
+		$this->search_field = 'name';
+		$this->join = array('image', 'default_image = image_id', 'left');
 
 		return parent::fetch($params);
 	}

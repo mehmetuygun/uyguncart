@@ -57,25 +57,25 @@ class Product extends Admin_Controller
 			);
 		}
 
-		if ($this->input->post('manufacturerID') != NULL) {
+		if ($this->input->post('manufacturer_id') != NULL) {
 			$this->form_validation->set_rules(
-				'manufacturerID',
+				'manufacturer_id',
 				'Manufacturer',
 				'required|exists[manufacturer.manufacturer_id]'
 			);
 		}
 
 		$this->form_validation->set_rules(
-			'productName',
+			'name',
 			'Product',
-			'required|max_length[75]|is_unique[product.productName]'
+			'required|max_length[75]|is_unique[product.name]'
 		);
 
 		if ($this->form_validation->run() == true) {
 			$field = array(
-				'productName'=> $this->input->post('productName'),
-				'categoryID'=> $this->input->post('categoryID'),
-				'manufacturerID'=> $this->input->post('manufacturerID')
+				'name'=> $this->input->post('name'),
+				'category_id'=> $this->input->post('category_id'),
+				'manufacturer_id'=> $this->input->post('manufacturer_id')
 			);
 			if ($productID = $this->Product_model->insert($field)) {
 				redirect('/admin/product/edit/' . $productID);
@@ -116,37 +116,37 @@ class Product extends Admin_Controller
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
 			$fields = array(
 				array(
-					'field' => 'productName',
+					'field' => 'name',
 					'label' => 'Product Name',
 					'rules' => 'required|is_unique[product.productName]',
 				),
 				array(
-					'field' => 'categoryID',
+					'field' => 'category_id',
 					'label' => 'Category',
 					'rules' => 'exists_null[category.category_id]',
 				),
 				array(
-					'field' => 'manufacturerID',
+					'field' => 'manufacturer_id',
 					'label' => 'Manufacturer',
 					'rules' => 'exists_null[manufacturer.manufacturer_id]',
 				),
 				array(
-					'field' => 'productPrice',
+					'field' => 'price',
 					'label' => 'Product Price',
 					'rules' => 'numeric',
 				),
 				array(
-					'field' => 'productStatus',
+					'field' => 'status',
 					'label' => 'Product Status',
 					'rules' => 'status',
 				),
 				array(
-					'field' => 'productDescription',
+					'field' => 'description',
 					'label' => 'Product Description',
 					'rules' => 'required',
 				),
 				array(
-					'field' => 'defaultImage',
+					'field' => 'default_image',
 					'label' => 'Default Image',
 					'rules' => ''
 				)
@@ -234,7 +234,7 @@ class Product extends Admin_Controller
 
 		$params = array(
 			'search_term' => $search,
-			'order_by' => 'productName',
+			'order_by' => 'name',
 			'page' => $page,
 		);
 
