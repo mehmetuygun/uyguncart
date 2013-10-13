@@ -2,7 +2,7 @@
 
 class Cart extends Main_Controller
 {
-	public function Index()
+	public function index()
 	{
 		$this->load->model('Product_model');
 
@@ -16,34 +16,29 @@ class Cart extends Main_Controller
 		$quantity = $this->input->post('qty');
 		$rowid = $this->input->post('rowid');
 
-		if(!is_numeric($quantity) and $add_qty) {
-			$data['error'] = 'true';
-			$data['error_type'] = 'danger';
-			$data['error_message'] = 'The quantity you entered is wrong';
-		} else if($add_qty) {
+		if ($add_qty) {
+			if (!is_numeric($quantity)) {
+				$data['error'] = true;
+				$data['error_type'] = 'danger';
+				$data['error_message'] = 'The quantity you entered is wrong';
+			} else {
+				$this->Product_model->set($productID);
+				$this->cart->update(array(
+					'rowid' => $rowid,
+					'qty' => $quantity,
+					'price' => $this->Product_model->price,
+					'name' => $this->Product_model->name
+				));
+			}
+		} else if (isset($productID)) {
 			$this->Product_model->set($productID);
-			$this->cart->update(array(
-				'rowid' => $rowid,
-				'qty' => $quantity,
-				'price' => $this->Product_model->price,
-				'name' => $this->Product_model->name
-				)
-			);
-		}
-
-
-		if(isset($productID) and !$add_qty) {
-			$this->Product_model->set($productID);
-			if($this->Product_model->status) {
+			if ($this->Product_model->status) {
 				$this->cart->insert(array(
 					'id' => $this->Product_model->product_id,
 					'qty' => 1,
 					'price' => $this->Product_model->price,
 					'name' => $this->Product_model->name
-					)
-				);
-
-				// var_dump($this->cart->contents());
+				));
 			}
 		}
 
