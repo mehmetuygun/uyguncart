@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `object_image` (
   `image_id` int(11) NOT NULL,
   `object_type` enum('product','user','manufacturer','category') CHARACTER SET latin1 NOT NULL,
   `object_id` int(11) NOT NULL,
-  KEY `object` (`object_type`,`objectID`)
+  KEY `object` (`object_type`,`object_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
