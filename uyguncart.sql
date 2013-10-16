@@ -106,28 +106,28 @@ INSERT INTO `manufacturer` (`manufacturer_id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `product` (
- `productID` int(11) NOT NULL AUTO_INCREMENT,
- `productName` varchar(75) NOT NULL,
- `productDescription` text,
- `productStatus` tinyint(1) NOT NULL DEFAULT '0',
- `productAddedDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
- `productUpdatedDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
- `productPrice` double(11,2) NOT NULL DEFAULT '0.00',
- `manufacturerID` varchar(11) DEFAULT NULL,
- `categoryID` varchar(11) DEFAULT NULL,
- `defaultImage` int(11) DEFAULT NULL,
- PRIMARY KEY (`productID`),
- KEY `manufacturerID` (`manufacturerID`),
- KEY `categoryID` (`categoryID`)
+ `product_id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(75) NOT NULL,
+ `description` text,
+ `status` tinyint(1) NOT NULL DEFAULT '0',
+ `price` double(11,2) NOT NULL DEFAULT '0.00',
+ `manufacturer_id` varchar(11) DEFAULT NULL,
+ `category_id` varchar(11) DEFAULT NULL,
+ `default_image` int(11) DEFAULT NULL,
+ `added_date` datetime NOT NULL,
+ `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+ PRIMARY KEY (`product_id`),
+ KEY `manufacturer_id` (`manufacturer_id`),
+ KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productID`, `productName`, `productDescription`, `productStatus`, `productAddedDate`, `productPrice`, `manufacturerID`, `categoryID`) VALUES
-(1, 'test product', NULL, NULL, '2013-07-28 19:14:17', NULL, '', ''),
-(2, 'test productq', NULL, NULL, '2013-07-28 19:14:41', NULL, '', '');
+INSERT INTO `product` (`product_id`, `name`, `description`, `status`, `price`, `manufacturer_id`, `category_id`, `added_date`) VALUES
+(1, 'test product', NULL, NULL, NULL, '', '', '2013-07-28 19:14:17'),
+(2, 'test productq', NULL, NULL, NULL, '', '', '2013-07-28 19:14:41');
 
 -- --------------------------------------------------------
 
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `approve_url` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `execute_url` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `gateway_ref` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`payment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `country_id` int(10) unsigned NOT NULL,
   `added_date` datetime NOT NULL,
   `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `country_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `code` char(2) CHARACTER SET latin1 NOT NULL COMMENT 'ISO 3166-1 alpha-2',
   `name` varchar(64) CHARACTER SET latin1 NOT NULL COMMENT 'ISO 3166-1 official English short name (Gazetteer order, w/o diacritics)',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`country_id`),
   UNIQUE KEY `code` (`code`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=250 ;
