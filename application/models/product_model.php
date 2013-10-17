@@ -200,15 +200,15 @@ class Product_model extends MY_Model
 		$this->load->database();
 
 		$image = $this->db->from('image')
-			->where('imageID', $id)
+			->where('image_id', $id)
 			->get()->row();
 
 		if (empty($image)) {
 			return false;
 		}
 
-		$this->db->delete('image', array('imageID' => $id));
-		$this->db->delete('object_image', array('imageID' => $id));
+		$this->db->delete('image', array('image_id' => $id));
+		$this->db->delete('object_image', array('image_id' => $id));
 		$this->db->update(
 			'product',
 			array('default_image' => null),
