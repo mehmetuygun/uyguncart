@@ -10,6 +10,7 @@ class Home extends Main_Controller
 		$params = array(
 			'search_term' => '',
 			'order_by' => 'added_date',
+			'filter' => array('status' => 1),
 			'sort' => 'desc',
 			'limit' => 9,
 		);
