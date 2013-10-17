@@ -158,6 +158,10 @@ class Product extends Admin_Controller
 				if ($this->input->post($field['field']) != $this->Product_model->{$field['field']}) {
 					$this->form_validation->set_rules(array($field));
 					$update[$field['field']] = $this->input->post($field['field']);
+
+					if ($field['field'] == 'default_image' && !$update[$field['field']]) {
+						$update[$field['field']] = null;
+					}
 				}
 			}
 
