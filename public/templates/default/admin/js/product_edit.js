@@ -20,6 +20,7 @@ $(function() {
 
 function get_images() {
 	var url = base_url + 'admin/product/get_images/' + product_id;
+	document.getElementById('default_image').value = '';
 	$.get(url, function(res) {
 		$('#image_container').empty();
 		for (var i = 0; i < res.length; i++) {
@@ -32,6 +33,7 @@ function get_images() {
 			if (res[i]['default']) {
 				outer_class = ' img-default';
 				set_default = ' disabled="disabled"';
+				document.getElementById('default_image').value = res[i]['image_id'];
 			} else {
 				set_default = ' onclick="$(\'#default_image\').val(' + res[i]['image_id'] + ')"';
 			}
