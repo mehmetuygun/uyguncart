@@ -44,7 +44,7 @@
 								<i class="caret"></i>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="<?php echo base_url('admin/setting'); ?>">Settings</a></li>
+								<li><a href="<?php echo base_url('admin/user'); ?>">Account</a></li>
 								<li class="divider"></li>
 								<li> <a href="<?php echo base_url('admin/logout'); ?>">Logout</a></li>
 							</ul>

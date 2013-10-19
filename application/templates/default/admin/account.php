@@ -1,11 +1,11 @@
 <div class="navbar">
 	<div class="navbar-inner">
-		<a class="brand" href="#">Setting</a>
+		<a class="brand" href="#">User</a>
 	</div>
 </div>
 <div class="row-fluid">
 	<div class="span3">
-		<?php $this->load->view('admin/setting_navs') ?>
+		<?php $this->load->view('admin/user_navs') ?>
 	</div>
 	<div class="span9">
 		<form class="form-horizontal" method="POST" action="">
