@@ -27,11 +27,11 @@
 		var html = "";
 		for (var i = 0; i < data.length; i++) {
 			html += '<tr>';
-			html += '<td><input type="checkbox" value="'+data[i]['id']+'" class="check"></td>';
+			html += '<td><input type="checkbox" value="'+data[i]['order_id']+'" class="check"></td>';
 			html += '<td>'+data[i]['user_id']+'</td>';
 			html += '<td>'+data[i]['total_price']+'</td>';
 			html += '<td>'+data[i]['shipping_address']+'</td>';
-			html += '<td>'+data[i]['date_created']+'</td>';
+			html += '<td>'+data[i]['added_date']+'</td>';
 			html += '</tr>';
 		}
 		$(".table tbody").html(html);

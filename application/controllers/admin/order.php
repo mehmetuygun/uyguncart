@@ -37,7 +37,7 @@ class Order extends Admin_Controller
 
 		$params = array(
 			'search_term' => $search,
-			'order_by' => 'id',
+			'order_by' => 'order_id',
 			'sort' => 'desc',
 			'page' => $page,
 		);
