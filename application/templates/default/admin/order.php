@@ -4,13 +4,9 @@
 	</div>
 </div>
 <span class="pull-left"><input type="text" name="search" placeholder="Search" class="span4"></span>
-<span class="pull-right">
-	<a class="btn btn-danger" href="#" onclick="return false" id="delete">Delete</a>
-</span>
 <table class="table table-bordered">
 	<thead>
 		<tr>
-			<th style="width:20px"><input type="checkbox" name="check_all" onclick="check_all(this)"></th>
 			<th>User ID</th>
 			<th>Total Price</th>
 			<th>Shipping Address</th>
@@ -27,7 +23,6 @@
 		var html = "";
 		for (var i = 0; i < data.length; i++) {
 			html += '<tr>';
-			html += '<td><input type="checkbox" value="'+data[i]['order_id']+'" class="check"></td>';
 			html += '<td>'+data[i]['user_id']+'</td>';
 			html += '<td>'+data[i]['total_price']+'</td>';
 			html += '<td>'+data[i]['shipping_address']+'</td>';
