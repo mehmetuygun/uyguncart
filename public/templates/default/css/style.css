@@ -160,6 +160,7 @@ code {
     border: 1px solid #428bca;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    background-color: #F8F8F8;
 }
 .category ul {
     padding-left: 0;
