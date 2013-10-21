@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
 	<div class="panel-heading"><h3 class="panel-title">Register</h3></div>
 	<div class="panel-body">
 		<h4>User register form.</h4>
