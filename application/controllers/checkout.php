@@ -43,6 +43,8 @@ class Checkout extends Main_Controller
 			$Cart->contents()
 		);
 
+		var_dump($payment);
+
 		$this->Payment_model->update($payment, $payment_id);
 
 		header("Location: {$payment['approve_url']}");

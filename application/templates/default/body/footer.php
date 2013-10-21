@@ -4,7 +4,39 @@
 		</div>
 		<div id="footer">
 	      	<div class="container">
-	        	<p class="muted credit">UygunCart</p>
+	      		<div class="row">
+	      			<div class="col-md-3">
+	      				<h4>Information</h4>
+	      				<ul class="list-unstyled">
+	      					<li><a href="#">About</a></li>
+	      					<li><a href="#">Contact</a></li>
+	      					<li><a href="#">Help</a></li>
+	      				</ul>
+	      			</div>
+	      			<div class="col-md-3">
+	      				<h4>Follow us on</h4>
+	      				<ul class="list-unstyled">
+	      					<li><a href="#">Facebook</a></li>
+	      					<li><a href="#">Twitter</a></li>
+	      					<li><a href="#">Google+</a></li>
+	      				</ul>
+	      			</div>
+	      			<div class="col-md-3">
+	      				<h4>Categories</h4>
+	      				<ul class="list-unstyled">
+	      					<li><a href="#">Software</a></li>
+	      					<li><a href="#">Hardware</a></li>
+	      					<li><a href="#">Electronic</a></li>
+	      					<li><a href="#">Gift</a></li>
+	      				</ul>
+	      			</div>
+	      			<div class="col-md-3">
+	      				<h4>Payment</h4>
+	      				<ul class="list-unstyled">
+	      					<li><a href="#">Payment method</a></li>
+	      				</ul>
+	      			</div>
+	      		</div>
 	      	</div>
 	      	<!-- end of footer -->
 	    </div>

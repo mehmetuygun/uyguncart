@@ -178,6 +178,7 @@ class PayPal implements IPaymentGateway
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_POST => true,
 			CURLOPT_HTTPHEADER => $headers,
+			CURLOPT_VERBOSE => true,
 		));
 
 		// Set extra parameters sent to the method
