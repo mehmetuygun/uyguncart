@@ -26,13 +26,16 @@ if(empty($products)) {
 	?>
 	<div class="row">
 		<div class="col-lg-3">
-			<div class="panel">
-			<?php
-			$cat_list = isset($categories['']) ? $categories[''] : array();
-			foreach ($cat_list as $cat) {
-				echo $cat['name'], '<br />';
-			}
-			?>
+			<div class="category">
+			<div class="head">Category</div>
+				<ul class="nav">
+				<?php
+				$cat_list = isset($categories['']) ? $categories[''] : array();
+				foreach ($cat_list as $cat) {
+					echo '<li><a href="#">', $cat['name'], '</a></li>';
+				}
+				?>
+				</ul>
 			</div>
 		</div>
 		<div class="col-lg-9">
