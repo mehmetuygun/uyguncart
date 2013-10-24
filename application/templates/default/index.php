@@ -17,7 +17,7 @@
         <div class="jumbotron">
             <div class="container">
             <h1>Welcome!</h1>
-            <p>This is the basic template of uyguncart. Whic is developed as opensource for shopping cart solution.</p>
+            <p>This is the basic template of uyguncart. Uyguncart is developed as an opensource shopping cart solution.</p>
             <p><a class="btn btn-primary btn-lg" href="http://github.com/uyguncyp/uyguncart">Learn more</a></p>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <?php
             $i = 0;
             $img_200_path = 'public/images/200/';
-            $cart_url = base_url('Thcart');
+            $cart_url = base_url('cart');
             foreach ($products as $p) {
                 if ($i % 3 == 0 && $i < 9) {
                     echo '<div class="row f-space">';
@@ -61,10 +61,9 @@
                 </div>
 HTML;
                 $i++;
-                if ($i % 3 == 0) {
+                if ($i % 2 == 0 && $i > 0) { 
                     echo '</div>';
                 }
-                
             }
 
             if ($i % 2 != 0 && $i > 0) {
@@ -74,4 +73,3 @@ HTML;
             </div>
         </div>
     </div>
-<hr>
