@@ -43,6 +43,10 @@ class Checkout extends Main_Controller
 			$Cart->contents()
 		);
 
+		if (!$payment) {
+			redirect('/checkout/failed/' . $payment_id);
+		}
+
 		$this->Payment_model->update($payment, $payment_id);
 
 		header("Location: {$payment['approve_url']}");
@@ -82,6 +86,18 @@ class Checkout extends Main_Controller
 			'title' => 'Checkout',
 			'alert_type' => 'alert-danger',
 			'msg' => 'Payment canceled. Payment ID: ' . $payment_id,
+		);
+
+		$this->load_view($data);
+	}
+
+	public function failed($payment_id)
+	{
+		$data = array(
+			'mainview' => 'checkout',
+			'title' => 'Checkout',
+			'alert_type' => 'alert-danger',
+			'msg' => 'Payment failed. Payment ID: ' . $payment_id,
 		);
 
 		$this->load_view($data);
