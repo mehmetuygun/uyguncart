@@ -52,41 +52,21 @@ class Product_model extends MY_Model
 		return parent::delete($id);
 	}
 
-	public function get_images($default_only = false)
+	public function get_images()
 	{
-		$this->load->database();
-		$this->db->from('object_image')
-			->join('image', 'object_image.image_id = image.image_id');
+		$this->load->model('Image_model');
 
-		if ($default_only) {
-			$this->db->select('object_image.*, image.*, product.default_image')
-				->join('product', 'default_image = image.image_id');
-		}
+		$params = array(
+			'filter' => array(
+				array('object_type' => 'product'),
+				array('object_id' => $this->product_id),
+			),
+		);
 
-		$this->db->where('object_type', 'product')
-			->where('object_id', $this->product_id);
+		$this->productImages = $this->Image_model->fetch($params);
 
-		$query = $this->db->get();
-		$this->productImages = array();
-
-		foreach ($query->result_array() as $row) {
+		foreach ($this->productImages as &$row) {
 			$row['default'] = $this->default_image == $row['image_id'];
-
-			foreach (static::$img_sizes as $s_dir => $size) {
-				$s_path = static::$img_path . $s_dir . '/' . $row['full_name'];
-				if (!file_exists(FCPATH . $s_path)) {
-					continue;
-				}
-
-				$imageinfo = explode('x', $row['size_' . $s_dir]);
-				$row['image_' . $s_dir] = array(
-					'path' => $s_path,
-					'width' => $imageinfo[0],
-					'height' => $imageinfo[1],
-				);
-			}
-
-			$this->productImages[] = $row;
 		}
 
 		return $this->productImages;
@@ -95,6 +75,7 @@ class Product_model extends MY_Model
 	public function upload_image($inputs = null)
 	{
 		$this->load->database();
+		$this->load->model('Image_model');
 
 		if (!isset($inputs)) {
 			$inputs = 'image';
@@ -104,46 +85,23 @@ class Product_model extends MY_Model
 			$inputs = array($inputs);
 		}
 
-		$images_dir = FCPATH . static::$img_path;
+		$prefix = 'p' . $this->product_id;
 
-		$config = array(
-			'upload_path' => $images_dir . 'original/',
-			'allowed_types' => 'gif|jpg|png',
-			'max_width' => '2048',
-			'max_height' => '2048',
-		);
-
-		$this->load->library('upload', $config);
-
+		$upload_errors = array();
 		foreach ($inputs as $input) {
-			if (!$this->upload->do_upload($input)) {
-				$upload_data = $this->upload->data();
+			$imageID = $this->Image_model->upload(
+				$input,
+				'product',
+				$this->product_id,
+				$prefix
+			);
+
+			if (!is_numeric($imageID)) {
+				$upload_errors = array_merge($upload_errors, $imageID);
 				continue;
 			}
 
-			$upload_data = $this->upload->data();
-			$f_name = uniqid('p' . $this->product_id) . $upload_data['file_ext'];
-			$sizes = $this->create_thumbnails($upload_data['full_path'], $f_name);
-
-			$field = array(
-				'full_name' => $f_name,
-				'original_name' => $upload_data['file_name'],
-			);
-
-			foreach ($sizes as $s_dir => $size) {
-				$field['size_' . $s_dir] = $size[0] . 'x' . $size[1];
-			}
-
-			$this->db->insert('image', $field);
-			$imageID = $this->db->insert_id();
-
-			$field = array(
-				'image_id' => $imageID,
-				'object_type' => 'product',
-				'object_id' => $this->product_id,
-			);
-			$this->db->insert('object_image', $field);
-
+			// Set the new image as default if there isn't one
 			if (!isset($this->default_image)) {
 				$field = array(
 					'default_image' => $imageID
@@ -153,73 +111,23 @@ class Product_model extends MY_Model
 			}
 		}
 
-		return count($this->upload->error_msg) > 0
-			 ? $this->upload->error_msg
-			 : true;
-	}
-
-	public function create_thumbnails($source_image, $f_name = null)
-	{
-		$images_dir = FCPATH . static::$img_path;
-
-		$this->load->library('image_lib');
-		if (!isset($f_name)) {
-			$f_name = basename($source_image);
-		}
-
-		$sizes = array();
-		foreach (static::$img_sizes as $s_dir => $size) {
-			list($w, $h) = $size;
-
-			$dir = $images_dir . $s_dir . '/';
-			$f_path = $dir . $f_name;
-
-			$config = array(
-				'source_image' => $source_image,
-				'new_image' => $f_path,
-				'width' => $w,
-				'height' => $h,
-			);
-
-			$this->image_lib->initialize($config);
-			$this->image_lib->resize();
-
-			$this->image_lib->clear();
-
-			$s = &$sizes[$s_dir];
-			list($s[0], $s[1]) = getimagesize($f_path);
-		}
-
-		return $sizes;
+		return $upload_errors ? $upload_errors : true;
 	}
 
 	public function delete_image($id)
 	{
-		$images_dir = FCPATH . static::$img_path;
-
 		$this->load->database();
+		$this->load->model('Image_model');
 
-		$image = $this->db->from('image')
-			->where('image_id', $id)
-			->get()->row();
-
-		if (empty($image)) {
+		if (!$this->Image_model->delete($id)) {
 			return false;
 		}
 
-		$this->db->delete('image', array('image_id' => $id));
-		$this->db->delete('object_image', array('image_id' => $id));
 		$this->db->update(
 			'product',
 			array('default_image' => null),
 			array('default_image' => $id)
 		);
-
-		foreach (static::$img_sizes as $s_dir => $size) {
-			unlink($images_dir . $s_dir . '/' . $image->imageFullName);
-		}
-
-		unlink($images_dir . 'original/' . $image->imageOriginal);
 
 		return true;
 	}
