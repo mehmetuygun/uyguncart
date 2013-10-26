@@ -12,16 +12,6 @@ class Product_model extends MY_Model
 	public $default_image;
 	public $productImages;
 
-	protected static $img_path = 'public/images/';
-	protected static $img_sizes = array(
-		// dir			width 		height
-		64 		 => array(64, 		64),
-		135 	 => array(135, 		135),
-		200 	 => array(200, 		200),
-		300 	 => array(300, 		300),
-		500 	 => array(500, 		500),
-	);
-
 
 	public function __construct()
 	{
