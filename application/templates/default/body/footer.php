@@ -5,34 +5,25 @@
 		<div id="footer">
 	      	<div class="container">
 	      		<div class="row">
-	      			<div class="col-md-3">
+	      			<div class="col-md-4">
 	      				<h4>Information</h4>
-	      				<ul class="list-unstyled">
+	      				<ul class="list-unstyled footer-link">
 	      					<li><a href="#">About</a></li>
 	      					<li><a href="#">Contact</a></li>
 	      					<li><a href="#">Help</a></li>
 	      				</ul>
 	      			</div>
-	      			<div class="col-md-3">
+	      			<div class="col-md-4">
 	      				<h4>Follow us on</h4>
-	      				<ul class="list-unstyled">
+	      				<ul class="list-unstyled footer-link">
 	      					<li><a href="#">Facebook</a></li>
 	      					<li><a href="#">Twitter</a></li>
 	      					<li><a href="#">Google+</a></li>
 	      				</ul>
 	      			</div>
-	      			<div class="col-md-3">
-	      				<h4>Categories</h4>
-	      				<ul class="list-unstyled">
-	      					<li><a href="#">Software</a></li>
-	      					<li><a href="#">Hardware</a></li>
-	      					<li><a href="#">Electronic</a></li>
-	      					<li><a href="#">Gift</a></li>
-	      				</ul>
-	      			</div>
-	      			<div class="col-md-3">
+	      			<div class="col-md-4">
 	      				<h4>Payment</h4>
-	      				<ul class="list-unstyled">
+	      				<ul class="list-unstyled footer-link">
 	      					<li><a href="#">Payment method</a></li>
 	      				</ul>
 	      			</div>

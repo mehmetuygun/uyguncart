@@ -181,3 +181,9 @@ code {
     font-size: 16px;
     padding: 5px;
 }
+.footer-link a {
+    color: dimGray;
+}
+.footer-link a:hover {
+    color: black;
+}
