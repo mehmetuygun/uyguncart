@@ -73,7 +73,7 @@ class PayPal implements IPaymentGateway
 
 		$response = $this->doApiCall($url, $request);
 
-		if (!$response) {
+		if (!$response || !isset($response['id'])) {
 			return false;
 		}
 
