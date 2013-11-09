@@ -17,8 +17,9 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="col-xs-4">
-                    <select class="form-control" id="display_products">
+                    <select class="form-control" id="option_product">
                         <option value="latestproduct">Latest Products</option>
+                        <option value="latestproduct2">Latest Products</option>
                     </select>
                 </div>
                 <div class="display_products">

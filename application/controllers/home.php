@@ -11,10 +11,17 @@ class Home extends Main_Controller
 			'mainview' => 'index',
 			'title' => 'Home',
 			'categories' => $this->Category_model->group_by_parent(true),
-			'products' => $this->latest_added_product(),
 			'js' => array('display_products.js'),
 		);
 
 		$this->load_view($data);
+	}
+
+	public function ajax()
+	{
+		$select = $this->input->post('select');
+		if($select == 'latestproduct') {
+			return $this->get_latest_products();
+		}
 	}
 }

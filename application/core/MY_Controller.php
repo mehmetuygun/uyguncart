@@ -84,6 +84,8 @@ class Main_Controller extends Base_Controller
 	}
 
 	public function get_latest_products() {
+		$this->load->model('Product_model');
+		
 		$params = array(
 			'search_term' => '',
 			'order_by' => 'added_date',
