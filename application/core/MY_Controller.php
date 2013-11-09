@@ -82,4 +82,16 @@ class Main_Controller extends Base_Controller
 			redirect(base_url().$url);
 		}
 	}
+
+	public function latest_added_product() {
+		$params = array(
+			'search_term' => '',
+			'order_by' => 'added_date',
+			'filter' => array('status' => 1),
+			'sort' => 'desc',
+			'limit' => 9,
+		);
+
+		return $this->Product_model->fetch($params);
+	}
 }

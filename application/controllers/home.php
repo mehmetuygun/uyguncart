@@ -7,19 +7,11 @@ class Home extends Main_Controller
 		$this->load->model('Category_model');
 		$this->load->model('Product_model');
 
-		$params = array(
-			'search_term' => '',
-			'order_by' => 'added_date',
-			'filter' => array('status' => 1),
-			'sort' => 'desc',
-			'limit' => 9,
-		);
-
 		$data = array(
 			'mainview' => 'index',
 			'title' => 'Home',
 			'categories' => $this->Category_model->group_by_parent(true),
-			'products' => $this->Product_model->fetch($params),
+			'products' => $this->latest_added_product(),
 		);
 
 		$this->load_view($data);
