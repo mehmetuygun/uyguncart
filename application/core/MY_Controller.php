@@ -83,7 +83,7 @@ class Main_Controller extends Base_Controller
 		}
 	}
 
-	public function latest_added_product() {
+	public function get_latest_products() {
 		$params = array(
 			'search_term' => '',
 			'order_by' => 'added_date',
@@ -92,6 +92,6 @@ class Main_Controller extends Base_Controller
 			'limit' => 9,
 		);
 
-		return $this->Product_model->fetch($params);
+		return $this->output_json($this->Product_model->fetch($params));
 	}
 }
