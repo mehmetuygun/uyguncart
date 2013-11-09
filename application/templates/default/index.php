@@ -22,6 +22,7 @@
                         <option value="latestproduct2">Latest Products</option>
                     </select>
                 </div>
+                <input type="hidden" name="base_url" id="base_url" value="<?php echo base_url(); ?>">
                 <div class="display_products">
                     
                 </div>
