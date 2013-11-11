@@ -187,3 +187,6 @@ code {
 .footer-link a:hover {
     color: black;
 }
+.display_products {
+    margin-top: 50px;
+}
