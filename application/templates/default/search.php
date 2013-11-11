@@ -5,16 +5,16 @@
 <?php
 if(empty($products)) {
 ?>
-<div class="panel">
+<div class="panel panel-primary">
 	<div class="panel-heading">
 		<h3 class="panel-title">Search</h3>
 	</div>
 	<div class="panel-body">
-		<div class="alert">
+		<div class="alert alert-warning">
 			<!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
 			No result found related with <strong><?php echo $q ?></strong>
 		</div>
-		Suggestion
+		<h4>Suggestion</h4>
 		<ul>
 			<li>Make sure the word is correct.</li>
 			<li>Try to search with similar word.</li>
@@ -39,7 +39,7 @@ if(empty($products)) {
 			</div>
 		</div>
 		<div class="col-lg-9">
-			<div class="panel">
+			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="alert alert-warning" style="margin-bottom:0">
 						<strong><?php echo $entries ?></strong> products are found for <strong><?php echo $q ?></strong>.
