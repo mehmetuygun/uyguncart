@@ -22,6 +22,24 @@ if(empty($products)) {
 	</div>
 </div>
 <?php
+} else if(empty($_GET['q'])) {
+?>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Search</h3>
+	</div>
+	<div class="panel-body">
+		<div class="alert alert-warning">
+			<!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+			You tried to search with empty input.
+		</div>
+		<h4>Suggestion</h4>
+		<ul>
+			<li>Make sure the word is entered.</li>
+		</ul>
+	</div>
+</div>
+<?php
 } else {
 	?>
 	<div class="row">
