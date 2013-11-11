@@ -45,6 +45,10 @@ function display(data) {
 	var cart_url = base_url+'cart';
 
 	for(var i=0;i<9;i++) {
+		if (typeof data[i] == 'undefined') {
+			i--;
+			break;
+		}
 		if(i==0 || i==3 || i==6) {
 			html += '<div class="row f-space">';
 		}
@@ -72,6 +76,10 @@ function display(data) {
             html += '</div>';
         }
 	}
+
+    if (i > 0 && i!=2 && i!=5 && i!=8) { 
+        html += '</div>';
+    }
 
 	$('.display_products').html(html);
 }
