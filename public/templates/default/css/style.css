@@ -190,3 +190,6 @@ code {
 .display_products {
     margin-top: 50px;
 }
+#product_detail_header {
+    background-color: #f8f8f8;
+}
