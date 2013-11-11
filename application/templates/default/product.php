@@ -1,3 +1,16 @@
+<ol class="breadcrumb">
+  	<li><a href="#">Home</a></li>
+<?php
+$cat_array = explode(' / ', $cat_path);
+for($i=0;$i<count($cat_array);$i++) {
+	if($i==count($cat_array)-1) {
+		echo '<li class="active">'.$cat_array[$i].'</li>'; 
+	} else {
+		echo '<li><a href="#">'.$cat_array[$i].'</a></li>';
+	}
+}
+?>
+</ol>
 <div class="panel panel-default" id="product_detail_header">
 	<div class="panel-body">
 		<div class="row">
@@ -84,14 +97,10 @@
 <div class="tabbable" style="margin-bottom: 18px;">
 	<ul class="nav nav-pills nav-justified tab-style">
 		<li class="active"><a href="#tab1" data-toggle="tab">General</a></li>
-		<li class=""><a href="#tab2" data-toggle="tab">Comment</a></li>
 	</ul>
 	<div class="tab-content tab-content-style" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
 		<div class="tab-pane active" id="tab1">
 			<?php echo $row->description; ?>
-		</div>
-		<div class="tab-pane" id="tab2">
-			<p>Howdy, I'm in Section 2.</p>
 		</div>
 	</div>
 </div>
