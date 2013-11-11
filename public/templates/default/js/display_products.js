@@ -51,7 +51,7 @@ function display(data) {
 
 		var p_url = base_url + 'product/id/'+ data[i].product_id;
 		var img_src = base_url+'public/images/135/noimage.jpg';
-		if(typeof data[i].product_full_name != 'undefined' && fileExists(img_200_path+data[i].full_name)) {
+		if(typeof data[i].full_name != 'undefined' && fileExists(img_200_path+data[i].full_name)) {
 			img_src = base_url+img_200_path+data[i].full_name;
 		}
 
@@ -64,7 +64,7 @@ function display(data) {
         html += '<h4><span class="price">$'+data[i].price+'</span></h4>';
         html += '<form action="'+cart_url+'" method="post">';
         html += '<input type="hidden" value="'+data[i].product_id+'" name="product_id" />';
-        html += '<button type="submit" class="btn btn-danger" style="width:100%">';
+        html += '<button type="submit" class="btn btn-primary" style="width:100%">';
         html += 'Add To Cart';
         html += '</button></form></div></div></div>';
 
