@@ -28,8 +28,12 @@ class Search extends Main_Controller
 		}
 
 		$query = $this->input->get('q');
+		$category_id = $this->input->get('cid');
 		$params['search_term'] = $query;
 		$params['filter'] = array('status' => '1');
+		if(!empty($category_id)) {
+			$params['filter']['category_id'] = $category_id;
+		}
 
 		$data = array(
 			'mainview' => 'search',
@@ -43,7 +47,7 @@ class Search extends Main_Controller
 		);
 
 		$config = array(
-			'base_url' => base_url('search') . '?q=' . $query . '&orderby=' . $order_by,
+			'base_url' => base_url('search') . '?q=' . $query.'&orderby=' . $order_by.'&cid='.$category_id,
 			'total_rows' => $this->product_model->entries,
 			'per_page' => $this->product_model->limit,
 			'page_query_string' => true,

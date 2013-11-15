@@ -71,10 +71,6 @@ for($i=0;$i<count($cat_array);$i++) {
 				<table class="table">
 					<tbody>
 						<tr>
-							<td>Rating</td>
-							<td></td>
-						</tr>
-						<tr>
 							<td>Price:</td>
 							<td><span class="price">$<?php echo $row->price; ?></span></td>
 						</tr>
