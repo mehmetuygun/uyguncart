@@ -68,8 +68,7 @@ if(empty($products)) {
 							<div class="form-group">
 								<select class="form-control input-xs col-xs-3" name="orderby">
 									<option value="name"<?php if ($orderby == 'name') echo ' selected="selected"' ?>>Name</option>
-									<option value="price_asc"<?php if ($orderby == 'price_asc') echo ' selected="selected"' ?>>Price - Ascending</option>
-									<option value="price_desc"<?php if ($orderby == 'price_desc') echo ' selected="selected"' ?>>Price - Descending</option>
+									<option value="price"<?php if ($orderby == 'price') echo ' selected="selected"' ?>>Price</option>
 								</select>
 							</div>
 							<input name="page" type="hidden" value="<?php echo $page ?>">
@@ -113,9 +112,7 @@ HTML;
 							<div class="form-group">
 								<select class="form-control input-xs col-xs-3" name="orderby">
 									<option value="name"<?php if ($orderby == 'name') echo ' selected="selected"' ?>>Name</option>
-									<option value="price_asc"<?php if ($orderby == 'price_asc') echo ' selected="selected"' ?>>Price - Ascending</option>
-									<option value="price_desc"<?php if ($orderby == 'price_desc') echo ' selected="selected"' ?>>Price - Descending</option>
-
+									<option value="price"<?php if ($orderby == 'price') echo ' selected="selected"' ?>>Price</option>
 								</select>
 							</div>
 							<input name="page" type="hidden" value="<?php echo $page ?>">
