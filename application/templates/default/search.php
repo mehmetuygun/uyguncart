@@ -5,16 +5,22 @@
 <div class="row">
 	<div class="col-lg-3">
 		<div class="category">
-		<div class="head">Category</div>
+			<div class="head">Category</div>
 			<ul class="nav">
 			<?php
 			$cat_list = isset($categories['']) ? $categories[''] : array();
 			foreach ($cat_list as $cat) {
-				echo '<li><a href="#">', $cat['name'], '</a></li>';
+				echo '<li><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
 			}
 			?>
 			</ul>
 		</div>
+		<form id="filter_form" method="get" action="">
+			<input name="q" type="hidden" value="<?php echo $q ?>" />
+			<input name="orderby" type="hidden" value="<?php echo $orderby ?>" />
+			<input name="page" type="hidden" value="<?php echo $page ?>" />
+			<input name="cid" type="hidden" value="<?php echo $cid ?>" />
+		</form>
 	</div>
 	<div class="col-lg-9">
 		<div class="panel panel-default">
@@ -57,6 +63,7 @@
 							</select>
 						</div>
 						<input name="page" type="hidden" value="<?php echo $page ?>">
+						<input name="cid" type="hidden" value="<?php echo $cid ?>">
 						<button type="submit" class="btn btn-default">Sort</button>
 					</form>
 

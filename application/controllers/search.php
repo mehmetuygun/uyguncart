@@ -44,6 +44,8 @@ class Search extends Main_Controller
 			'q' => $query,
 			'orderby' => $order_by,
 			'page' => $page,
+			'cid' => $category_id,
+			'js' => array('search.js'),
 		);
 
 		$config = array(
