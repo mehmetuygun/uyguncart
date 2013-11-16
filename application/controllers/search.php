@@ -31,7 +31,7 @@ class Search extends Main_Controller
 		$category_id = $this->input->get('cid');
 		$params['search_term'] = $query;
 		$params['filter'] = array('status' => '1');
-		if(!empty($category_id)) {
+		if ($category_id) {
 			$params['filter']['category_id'] = $category_id;
 		}
 
