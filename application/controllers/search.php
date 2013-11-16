@@ -9,14 +9,16 @@ class Search extends Main_Controller
 		$this->load->model('category_model');
 		$this->load->library('pagination');
 
-		$page = $this->input->get('per_page');
+		$page = $this->input->get('page');
 
 		$params = array();
 		$params['page'] = isset($page) ? $page : 1;
 
 		$order_by = $this->input->get('orderby');
 		switch ($order_by) {
-			case 'price':
+			case 'price_desc':
+				$params['sort'] = 'desc';
+			case 'price_asc':
 				$params['order_by'] = 'price';
 				break;
 			case 'name':
