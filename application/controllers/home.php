@@ -11,7 +11,7 @@ class Home extends Main_Controller
 			'mainview' => 'index',
 			'title' => 'Home',
 			'categories' => $this->Category_model->group_by_parent(true),
-			'js' => array('display_products.js'),
+			'js' => array('display_products.js', 'filter.js'),
 		);
 
 		$this->load_view($data);

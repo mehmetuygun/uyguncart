@@ -37,7 +37,7 @@
 					<li>Try to search with similar word.</li>
 				</ul>
 			<?php
-			} else if (!$q) {
+			} else if (!$q && !$cid) {
 			?>
 				<div class="alert alert-warning">
 					You tried to search with empty input.

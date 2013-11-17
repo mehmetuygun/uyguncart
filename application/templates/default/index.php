@@ -1,17 +1,20 @@
 <div class="row">
     <div class="col-lg-3">
-    <div class="category">
-        <div class="head">Category</div>
-        <ul class="nav">
-            
-    <?php
-    $cat_list = isset($categories['']) ? $categories[''] : array();
-    foreach ($cat_list as $cat) {
-        echo '<li><a href="#">'.$cat['name'].'</a></li>';
-    }
-    ?>
-        </ul>
-    </div>
+        <div class="category">
+            <div class="head">Category</div>
+            <ul class="nav">
+            <?php
+            $cat_list = isset($categories['']) ? $categories[''] : array();
+            foreach ($cat_list as $cat) {
+                echo '<li><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
+            }
+            ?>
+            </ul>
+        </div>
+        <form id="filter_form" method="get" action="<?php echo base_url('search') ?>">
+            <input name="q" type="hidden" value="" />
+            <input name="cid" type="hidden" value="" />
+        </form>
     </div>
     <div class="col-lg-9">
         <div class="panel panel-default">
