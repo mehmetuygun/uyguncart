@@ -11,7 +11,7 @@ class Cart extends Main_Controller
 			'title' => 'Cart',
 		);
 
-		$productID = $this->input->post('productID');
+		$productID = $this->input->post('product_id');
 		$add_qty = $this->input->post('add_qty');
 		$quantity = $this->input->post('qty');
 		$rowid = $this->input->post('rowid');
