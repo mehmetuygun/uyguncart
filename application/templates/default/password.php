@@ -1,18 +1,18 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 		<ul class="nav nav-tabs nav-justified ">
-	        <li><a href="<?php echo base_url('user/account') ?>">Account</a></li>
-	        <li><a href="<?php echo base_url('user/addresses') ?>">Addresses</a></li>
-	        <li class="active"><a href="#">Password</a></li>
-	    </ul>
-	    <div class="space"></div>
-	    <?php
-	    if(isset($alert_message)){
-	    	echo '<div class="alert '.$alert_class.'">';
-	    	echo $alert_message;
-	    	echo '</div>';
-	    }
-	    ?>
+			<li><a href="<?php echo base_url('user/account') ?>">Account</a></li>
+			<li><a href="<?php echo base_url('user/addresses') ?>">Addresses</a></li>
+			<li class="active"><a href="#">Password</a></li>
+		</ul>
+		<div class="space"></div>
+		<?php
+		if(isset($alert_message)){
+			echo '<div class="alert '.$alert_class.'">';
+			echo $alert_message;
+			echo '</div>';
+		}
+		?>
 		<form class="form-horizontal" role="form" method="POST" action="">
 			<div class="form-group <?php if(form_error('password')) echo "has-error"; ?>">
 				<label for="inputpassword" class="col-lg-2 control-label">Current Password</label>
@@ -41,6 +41,5 @@
 				</div>
 			</div>
 		</form>
-
 	</div>
 </div>

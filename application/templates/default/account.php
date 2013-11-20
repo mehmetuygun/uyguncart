@@ -1,18 +1,18 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 		<ul class="nav nav-tabs nav-justified ">
-	        <li class="active"><a href="#">Account</a></li>
-	        <li><a href="<?php echo base_url('user/addresses') ?>">Addresses</a></li>
-	        <li><a href="<?php echo base_url('user/password')?>">Password</a></li>
-	    </ul>
-	    <div class="space"></div>
-	    <?php
-	    if(isset($alert_message)){
-	    	echo '<div class="alert '.$alert_class.'">';
-	    	echo $alert_message;
-	    	echo '</div>';
-	    }
-	    ?>
+			<li class="active"><a href="#">Account</a></li>
+			<li><a href="<?php echo base_url('user/addresses') ?>">Addresses</a></li>
+			<li><a href="<?php echo base_url('user/password')?>">Password</a></li>
+		</ul>
+		<div class="space"></div>
+		<?php
+		if(isset($alert_message)){
+			echo '<div class="alert '.$alert_class.'">';
+			echo $alert_message;
+			echo '</div>';
+		}
+		?>
 		<form class="form-horizontal" role="form" method="POST" action="">
 			<div class="form-group <?php if(form_error('email')) echo "has-error"; ?>">
 				<label for="inputEmail1" class="col-lg-2 control-label">Email</label>

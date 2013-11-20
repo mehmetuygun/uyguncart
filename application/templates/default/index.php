@@ -22,12 +22,10 @@
                 <div class="col-xs-4">
                     <select class="form-control" id="option_product">
                         <option value="latestproduct">Latest Products</option>
-                        <option value="latestproduct2">Latest Products</option>
                     </select>
                 </div>
                 <input type="hidden" name="base_url" id="base_url" value="<?php echo base_url(); ?>">
                 <div class="display_products">
-                    
                 </div>
             </div>
         </div>
