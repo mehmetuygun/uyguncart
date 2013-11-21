@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-3">
         <div class="well well-lg">
-            <h4>Category</h4>
+            <h4>Categories</h4>
             <ul class="list-unstyled">
             <?php
             $cat_list = isset($categories['']) ? $categories[''] : array();

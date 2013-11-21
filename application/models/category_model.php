@@ -83,7 +83,7 @@ class Category_model extends MY_Model
 	{
 		$categories = array();
 		$this->load->database();
-		$this->db->from('category');
+		$this->db->from('category')->order_by('name');
 		$query = $this->db->get();
 
 		foreach ($query->result_array() as $row) {

@@ -172,10 +172,10 @@ code {
 .well .list-unstyled > li:not(:last-child) {
     border-bottom: 1px solid rgb(226, 226, 226);
 }
-.footer-link a {
+#footer a {
     color: dimGray;
 }
-.footer-link a:hover {
+#footer a:hover {
     color: black;
 }
 .display_products {

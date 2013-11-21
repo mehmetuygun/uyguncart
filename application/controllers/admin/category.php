@@ -166,6 +166,10 @@ class Category extends Admin_Controller
 
 		$categories = $this->Category_model->fetch($params);
 
+		foreach ($categories as &$category) {
+			$category['name'] = $this->Category_model->get_path($category['category_id']);
+		}
+
 		$array = array(
 			$categories,
 			array(
