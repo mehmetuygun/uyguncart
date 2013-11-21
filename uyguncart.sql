@@ -32,26 +32,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(45) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`category_id`, `name`, `parent_id`) VALUES
-(5, 'uygun', 20),
-(6, 'asdasdasds', NULL),
-(10, 'easdasd', NULL),
-(11, 'easdaasdasd', NULL),
-(12, 'easda', NULL),
-(13, 'easdaasd', NULL),
-(14, 'easdn', NULL),
-(15, 'asdasda', NULL),
-(16, 'asdasdab', NULL),
-(17, 'basdasdb', NULL),
-(18, 'basdbac', NULL),
-(19, 'basdbacb', NULL),
-(20, 'uyfguhyjgyuh', 5);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -79,25 +60,7 @@ CREATE TABLE IF NOT EXISTS `manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`manufacturer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
-
---
--- Dumping data for table `manufacturer`
---
-
-INSERT INTO `manufacturer` (`manufacturer_id`, `name`) VALUES
-(2, 'asdasd'),
-(3, 'casdasd'),
-(4, 'asdiacn'),
-(6, 'asdasdasda'),
-(7, 'aqweqweqwe'),
-(8, 'testt'),
-(10, 'aqweqqwqqwe'),
-(14, 'aqweqqweqwqweeqqweqwe'),
-(16, 'aqweqqweqwqqwqweweeqqweqwe'),
-(17, 'poac'),
-(18, 'poacm'),
-(19, 'poacmkm');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -119,15 +82,7 @@ CREATE TABLE IF NOT EXISTS `product` (
  PRIMARY KEY (`product_id`),
  KEY `manufacturer_id` (`manufacturer_id`),
  KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`product_id`, `name`, `description`, `status`, `price`, `manufacturer_id`, `category_id`, `added_date`) VALUES
-(1, 'test product', NULL, NULL, NULL, '', '', '2013-07-28 19:14:17'),
-(2, 'test productq', NULL, NULL, NULL, '', '', '2013-07-28 19:14:41');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -143,14 +98,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(64) NOT NULL,
   `type` char(1) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=2;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `type`) VALUES
-(1, 'Mehmet', 'Uygun', 'mehmet.uygun@hotmail.com', '12345678', '1');
+(1, 'Admin', 'Admin', 'admin@example.com', 'passw0rd', '1');
 
 -- --------------------------------------------------------
 
@@ -168,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `size_300` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   `size_500` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -509,6 +464,12 @@ INSERT INTO `country` (`country_id`, `code`, `name`) VALUES
 (247, 'YE', 'Yemen'),
 (248, 'ZM', 'Zambia'),
 (249, 'ZW', 'Zimbabwe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting`
+--
 
 CREATE TABLE IF NOT EXISTS `setting` (
   `setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
