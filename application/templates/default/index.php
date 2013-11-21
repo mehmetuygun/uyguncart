@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-lg-3">
-        <div class="category">
-            <div class="head">Category</div>
-            <ul class="nav">
+        <div class="well well-lg">
+            <h4>Category</h4>
+            <ul class="list-unstyled">
             <?php
             $cat_list = isset($categories['']) ? $categories[''] : array();
             foreach ($cat_list as $cat) {

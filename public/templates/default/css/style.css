@@ -155,31 +155,22 @@ code {
 .no-padding {
     padding: 0;
 }
-.category{
-    width: 100%;
-    border: 1px solid #428bca;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    background-color: #F8F8F8;
+.well h4 {
+    margin-top: 0;
 }
-.category ul {
-    padding-left: 0;
-    margin: 0;
-    display: block;
+.well .ul-sb {
+    list-style: line;
+    padding-left: 15px;
 }
-.category li {
-    list-style: none;
+.well ul .active {
+    font-weight: bold;
 }
-.category li a {
-    width: 100%;
-    display: block;
+.well .list-unstyled > li {
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
-.category .head {
-    background-color: #428bca;
-    color: white;
-    width: 100%;
-    font-size: 16px;
-    padding: 5px;
+.well .list-unstyled > li:not(:last-child) {
+    border-bottom: 1px solid rgb(226, 226, 226);
 }
 .footer-link a {
     color: dimGray;
