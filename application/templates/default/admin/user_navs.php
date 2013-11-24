@@ -1,4 +1,13 @@
 <ul class="nav nav-tabs nav-stacked">
-	<li <?php echo $this->router->method == "account"  ? 'class="active"' : '' ?>><a href="<?php echo base_url('admin/user/account'); ?>">Account</a></li>
-	<li <?php echo $this->router->method == "password" ? 'class="active"' : '' ?>><a href="<?php echo base_url('admin/user/password'); ?>">Password</a></li>
+<?php
+foreach ($side_nav as $url => $details) {
+	$class = '';
+	if ($this->router->method == $details['method']) {
+		$class = ' class="active"';
+	}
+	echo '<li', $class, '>',
+		'<a href="', base_url($url), '">', $details['label'], '</a>',
+		'</li>';
+}
+?>
 </ul>
