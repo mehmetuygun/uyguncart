@@ -35,11 +35,12 @@ class Search extends Main_Controller
 			$params['filter']['category_id'] = $category_id;
 		}
 
+
+
 		$data = array(
 			'mainview' => 'search',
 			'title' => $query,
 			'products' => $this->product_model->fetch($params),
-			'categories' => $this->category_model->group_by_parent(true),
 			'entries' => $this->product_model->entries,
 			'q' => $query,
 			'orderby' => $order_by,
@@ -47,6 +48,34 @@ class Search extends Main_Controller
 			'cid' => $category_id,
 			'js' => array('filter.js'),
 		);
+
+		$this->category_model->set($category_id);
+
+		if(!empty($category_id)) {
+			$categories = $this->category_model->get_subcategory($category_id);
+			$data['subcategory'] = array('category_id' => $this->category_model->category_id,
+				'name' => $this->category_model->name,
+				'parent_id' => $this->category_model->parent_id );
+			// var_dump($categories);
+		}
+
+		if(empty($categories) and !isset($this->category_model->parent_id)){
+			$categories = $this->category_model->get_subcategory(null);
+			$data['subcategory'] = NULL;
+			// var_dump($categories);
+		}
+
+		if(empty($categories) and isset($this->category_model->parent_id)){
+			$categories = $this->category_model->get_subcategory($this->category_model->parent_id);
+			// var_dump($categories);
+
+			$this->category_model->set($this->category_model->parent_id);
+			$data['subcategory'] = array('category_id' => $this->category_model->category_id,
+				'name' => $this->category_model->name,
+				'parent_id' => $this->category_model->parent_id );
+		}
+		// var_dump($data['subcategory']);
+		$data['categories'] = $categories;
 
 		$config = array(
 			'base_url' => base_url('search') . '?q=' . $query.'&orderby=' . $order_by.'&cid='.$category_id,
