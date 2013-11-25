@@ -44,6 +44,7 @@ class MY_Form_validation extends CI_Form_validation
 	/*
 	 * @param	integer	Category to look for in the list of children
 	 * @param	integer	Category to check the children of
+	 * @param	array	List of categories, used for recursion
 	 * @return	bool	valid
 	 */
 	public function not_sub_category($id, $target, $categories = null)
@@ -68,6 +69,11 @@ class MY_Form_validation extends CI_Form_validation
 		return true;
 	}
 
+	/**
+	 * @param  string the value to look for in the table
+	 * @param  string table name and field name separated by a dot
+	 * @return bool   valid
+	 */
 	public function exists($str, $field)
 	{
 		$this->CI->form_validation->set_message('exists', 'The %s field does not exists.');
@@ -77,6 +83,11 @@ class MY_Form_validation extends CI_Form_validation
 		return $query->num_rows() != 0;
 	}
 
+	/**
+	 * @param  string the value to look for in the table
+	 * @param  string table name and field name separated by a dot
+	 * @return bool   valid
+	 */
 	public function exists_null($str, $field)
 	{
 		if ($str == null) {
@@ -90,6 +101,10 @@ class MY_Form_validation extends CI_Form_validation
 		return $query->num_rows() != 0;
 	}
 
+	/**
+	 * @param  string the value to check
+	 * @return bool   valid
+	 */
 	public function status($str)
 	{
 		$this->CI->form_validation->set_message('status', 'The %s field contains invalid status.');
