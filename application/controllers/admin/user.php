@@ -2,6 +2,17 @@
 
 class User extends Admin_Controller
 {
+	private static $side_nav = array(
+		'admin/user/account' => array(
+			'label' => 'Account',
+			'method' => 'account',
+		),
+		'admin/user/password' => array(
+			'label' => 'Password',
+			'method' => 'password',
+		),
+	);
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -27,7 +38,8 @@ class User extends Admin_Controller
 				'admin/user' => 'User',
 				'last' => 'Account'
 			),
-			'mainview' => 'account'
+			'mainview' => 'account',
+			'side_nav' => static::$side_nav,
 		);
 
 		$userID = $this->session->userdata('userID');
@@ -110,7 +122,8 @@ class User extends Admin_Controller
 				'admin/user' => 'User',
 				'last' => 'Password'
 			),
-			'mainview' => 'password'
+			'mainview' => 'password',
+			'side_nav' => static::$side_nav,
 		);
 
 		$rules = array(
