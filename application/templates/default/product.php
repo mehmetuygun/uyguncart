@@ -83,7 +83,7 @@ for($i=0;$i<count($cat_array);$i++) {
 			</div>
 			<div class="col-sm-2">
 				<form method="post" action="<?php echo base_url('cart'); ?>">
-					<input type="hidden" name="productID" value="<?php echo $row->product_id; ?>">
+					<input type="hidden" name="product_id" value="<?php echo $row->product_id; ?>">
 					<button type="submit" class="btn btn-primary pull-right">Add to Cart</button>
 				</form>
 			</div>
