@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
 	<div class="panel-heading">Cart</div>
 	<div class="panel-body">
 		<?php
@@ -64,6 +64,7 @@
 					?>
 				</tbody>
 			</table>
+			<a class="btn btn-primary pull-left" href="<?php echo base_url() ?>">Continue Shoopping</a>
 			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout') ?>">
 				<span class="glyphicon glyphicon-credit-card"></span>
 				Checkout
