@@ -1,9 +1,9 @@
 <div class="panel panel-primary">
 	<?php $step2 = $this->input->post('step2'); ?>
-	<div class="panel-heading"><?php if(!isset($step2)) echo '<b>Set Cart - Step1</b>'; else echo 'Set Cart - Step1'; ?> | <?php if(isset($step2)) echo '<b>Address - Step2</b>'; ?> | Complete Payment - Step3</div>
+	<div class="panel-heading"><?php if(isset($step2) && empty($step2)) echo '<b>Set Cart - Step1</b>'; else echo 'Set Cart - Step1'; ?> | <?php if(isset($step2) && !empty($step2)) echo '<b>Address - Step2</b>'; else echo 'Address - Step2'; ?> | Complete Payment - Step3</div>
 	<div class="panel-body">
 		<?php
-		if(isset($step2)) {
+		if(isset($step2) && !empty($step2)) {
 			?>
 			<form method="POST" action="" class="form-horizontal" role="form">
 				<div class="form-group">
@@ -42,6 +42,7 @@
 				      	</select>
 				    </div>
   				</div>
+  				<a href="<?php echo base_url('cart'); ?>" class="btn btn-primary pull-left">Back</a>
   				<button type="submit" class="btn btn-warning pull-right">Complete</button>
 			</form>
 			<?php
@@ -110,7 +111,8 @@
 			</table>
 			<a class="btn btn-primary pull-left" href="<?php echo base_url() ?>">Continue Shoopping</a>
 			<form method="POST" action="">
-				<button type="submit" name="step2" class="btn btn-warning pull-right">Continue to buy</button>
+				<input type="hidden" name="step2" value="true">
+				<button type="submit" class="btn btn-warning pull-right">Continue to buy</button>
 			</form>
 			<div class="clearfix"></div>
 			<?php
