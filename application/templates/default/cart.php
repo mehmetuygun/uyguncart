@@ -3,7 +3,7 @@
 	<div class="panel-heading"><?php if(isset($step2) && empty($step2)) echo '<b>Set Cart - Step1</b>'; else echo 'Set Cart - Step1'; ?> | <?php if(isset($step2) && !empty($step2)) echo '<b>Address - Step2</b>'; else echo 'Address - Step2'; ?> | Complete Payment - Step3</div>
 	<div class="panel-body">
 		<?php
-		if(isset($step2) && !empty($step2)) {
+		if(!empty($step2)) {
 			?>
 			<form method="POST" action="" class="form-horizontal" role="form">
 				<div class="form-group">
@@ -110,10 +110,7 @@
 				</tbody>
 			</table>
 			<a class="btn btn-primary pull-left" href="<?php echo base_url() ?>">Continue Shoopping</a>
-			<form method="POST" action="">
-				<input type="hidden" name="step2" value="true">
-				<button type="submit" class="btn btn-warning pull-right">Continue to buy</button>
-			</form>
+			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout/address') ?>">Continue to buy</a>
 			<div class="clearfix"></div>
 			<?php
 			}

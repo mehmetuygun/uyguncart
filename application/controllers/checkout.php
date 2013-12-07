@@ -102,4 +102,21 @@ class Checkout extends Main_Controller
 
 		$this->load_view($data);
 	}
+
+	public function address()
+	{	
+		$this->redirect_user('');
+
+		$this->load->model('address_model');
+
+		$data = array(
+			'mainview' => 'checkout_address',
+			'title' => 'Checkout Address',
+			);
+
+		$parram = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
+		$data['addresses'] = $this->address_model->fetch($parram);
+
+		$this->load_view($data);
+	}
 }
