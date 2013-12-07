@@ -1,45 +1,25 @@
-$( document ).ready(function(){
-
-	var base_url = $("#base_url").val();
-
-	$("#option_product").change(function(){
-		select_mode();
-		ajax(select);
-	});
-
-	select_mode();
-	ajax(select);
-
+$(document).ready(function() {
+	$('#option_product').change(function() {
+		ajax($(this).val());
+	}).trigger('change');
 });
 
-var select;
-var base_url = $("#base_url").val();
-
-function select_mode() {
-	base_url = $("#base_url").val();
-	select = $( "#option_product" ).val();
-	return select;
-}
-
 function fileExists(url) {
-    if(url){
-        var req = new XMLHttpRequest();
-        req.open('GET', url, false);
-        req.send();
-        return req.status==200;
-    } else {
-        return false;
-    }
+	if(url){
+		var req = new XMLHttpRequest();
+		req.open('GET', url, false);
+		req.send();
+		return req.status==200;
+	} else {
+		return false;
+	}
 }
 
 function ajax(select) {
-	$.post('home/ajax', {select: select}, function(data) {
-		display(data);
-	});
+	$.post('home/ajax', {select: select}, display);
 }
 
 function display(data) {
-	
 	var html = '';
 	var img_200_path = 'public/images/200/';
 	var cart_url = base_url+'cart';
@@ -60,26 +40,26 @@ function display(data) {
 		}
 
 		html += '<div class="col-lg-4">';
-        html += '<div class="thumbnail">';
-        html += '<a class="thumbnail" href="'+p_url+'">';
-        html += '<img alt="200x150" src="'+img_src+'" /></a>';
-        html += '<div class="caption">';
-        html += '<h4><a href="'+p_url+'">'+data[i].name+'</a></h4>';
-        html += '<h4><span class="price">$'+data[i].price+'</span></h4>';
-        html += '<form action="'+cart_url+'" method="post">';
-        html += '<input type="hidden" value="'+data[i].product_id+'" name="product_id" />';
-        html += '<button type="submit" class="btn btn-primary" style="width:100%">';
-        html += 'Add To Cart';
-        html += '</button></form></div></div></div>';
+		html += '<div class="thumbnail">';
+		html += '<a class="thumbnail" href="'+p_url+'">';
+		html += '<img alt="200x150" src="'+img_src+'" /></a>';
+		html += '<div class="caption">';
+		html += '<h4><a href="'+p_url+'">'+data[i].name+'</a></h4>';
+		html += '<h4><span class="price">$'+data[i].price+'</span></h4>';
+		html += '<form action="'+cart_url+'" method="post">';
+		html += '<input type="hidden" value="'+data[i].product_id+'" name="product_id" />';
+		html += '<button type="submit" class="btn btn-primary" style="width:100%">';
+		html += 'Add To Cart';
+		html += '</button></form></div></div></div>';
 
-        if (i==2 || i==5 || i==8) { 
-            html += '</div>';
-        }
+		if (i==2 || i==5 || i==8) {
+			html += '</div>';
+		}
 	}
 
-    if (i > 0 && i!=2 && i!=5 && i!=8) { 
-        html += '</div>';
-    }
+	if (i > 0 && i!=2 && i!=5 && i!=8) {
+		html += '</div>';
+	}
 
 	$('.display_products').html(html);
 }

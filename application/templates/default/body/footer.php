@@ -41,6 +41,9 @@
 			</div>
 			<!-- end of footer -->
 		</div>
+		<script type="text/javascript">
+			var base_url = '<?php echo base_url() ?>';
+		</script>
 		<script type="text/javascript" src="<?php echo base_url('public/js/jquery-1.10.2.min.js');?>"></script>
 		<script type="text/javascript" src="<?php echo base_url('public/templates/default/js/bootstrap.min.js');?>"></script>
 		<?php
