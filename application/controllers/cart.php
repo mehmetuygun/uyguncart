@@ -5,8 +5,6 @@ class Cart extends Main_Controller
 	public function index()
 	{
 		$this->load->model('Product_model');
-		$this->load->model('address_model');
-		// $this->load->library('session');
 
 		$data = array(
 			'mainview' => 'cart',
@@ -43,12 +41,7 @@ class Cart extends Main_Controller
 				));
 			}
 		}
-
-		$step2 = $this->input->post('step2');
-		if(isset($step2)) {
-			$parram = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
-			$data['addresses'] = $this->address_model->fetch($parram);
-		}
+		
 		$data['items'] = $this->cart->contents();
 		$this->load_view($data);
 	}

@@ -109,6 +109,10 @@ class Checkout extends Main_Controller
 
 		$this->load->model('address_model');
 
+		if($this->cart->total_items() == 0) {
+			redirect(base_url());
+		}
+
 		$data = array(
 			'mainview' => 'checkout_address',
 			'title' => 'Checkout Address',
