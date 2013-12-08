@@ -189,6 +189,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` varchar(64) NOT NULL,
   `postcode` varchar(24) NOT NULL,
   `country_id` int(10) unsigned NOT NULL,
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `added_date` datetime NOT NULL,
   `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`address_id`),
