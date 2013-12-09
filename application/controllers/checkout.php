@@ -123,4 +123,22 @@ class Checkout extends Main_Controller
 
 		$this->load_view($data);
 	}
+
+	public function paymentMethods()
+	{
+		$this->redirect_user('');
+
+		if($this->cart->total_items() == 0) {
+			redirect(base_url());
+		}
+
+		$data = array(
+			'mainview' => 'paymentmethods',
+			'title' => 'Checkout Payment Methods',
+			);
+
+
+
+		$this->load_view($data);
+	}
 }
