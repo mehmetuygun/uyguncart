@@ -26,6 +26,7 @@ class Address extends Main_Controller
 	{
 		$this->redirect_user('user/login');
 
+		$this->load->library('form_validation');
 		$this->load->model('Address_model');
 		$userID = $this->session->userdata('userID');
 
@@ -47,7 +48,7 @@ class Address extends Main_Controller
 
 		$rules = array(
 			array(
-				'field'   => 'name',
+				'field'   => 'full_name',
 				'label'   => 'Full Name',
 				'rules'   => 'required|max_length[64]'
 			),
@@ -93,7 +94,7 @@ class Address extends Main_Controller
 				}
 
 				// Update
-				$old_value = $addresses[$field['field']];
+				$old_value = $address[$field['field']];
 				if ($old_value != $new_value) {
 					$field_list[$field['field']] = $new_value;
 				}
