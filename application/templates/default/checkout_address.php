@@ -6,7 +6,7 @@
 				<h4>Shipping Address</h4>
 				<form role="form">
 				  	<div class="form-group">
-				    	<select type="email" class="form-control">
+				    	<select type="ShippingAddress" class="form-control">
 				  			<option>Select your shipping address</option>
 				      		<?php  
 				      		foreach ($addresses as $row) {
@@ -28,7 +28,7 @@
 			<div class="col-md-6">
 				<h4>Billing Address</h4>
 				<div class="form-group">
-			    	<select type="email" class="form-control">
+			    	<select name="BillingAddress" class="form-control">
 			  			<option>Select your billing address</option>
 			 			<?php  
 			      		foreach ($addresses as $row) {
