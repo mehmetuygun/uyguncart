@@ -137,7 +137,7 @@ class Checkout extends Main_Controller
 			'title' => 'Checkout Payment Methods',
 			);
 		
-		redirect('checkout');
+		// redirect('checkout');
 
 		$this->load_view($data);
 	}
