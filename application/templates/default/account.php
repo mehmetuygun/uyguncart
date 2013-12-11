@@ -2,7 +2,7 @@
 	<div class="col-md-3">
 		<div class="list-group">
 		  	<a href="#" class="list-group-item active">Account<a>
-		  	<a href="<?php echo base_url('user/password')?>" class="list-group-item">Address</a>
+		  	<a href="<?php echo base_url('user/addresses')?>" class="list-group-item">Address</a>
 		  	<a href="<?php echo base_url('user/password')?>" class="list-group-item">Password</a>
 		</div>
 	</div>

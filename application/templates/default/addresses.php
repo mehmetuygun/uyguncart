@@ -1,11 +1,16 @@
+<div class="row">
+	<div class="col-md-3">
+		<div class="list-group">
+		  	<a href="<?php echo base_url('user/account')?>" class="list-group-item">Account<a>
+		  	<a href="#" class="list-group-item active">Address</a>
+		  	<a href="<?php echo base_url('user/password')?>" class="list-group-item">Password</a>
+		</div>
+	</div>
+	<div class="col-md-9">
 <div class="panel panel-default">
 	<div class="panel-body">
-		<ul class="nav nav-tabs nav-justified ">
-			<li><a href="<?php echo base_url('user/account') ?>">Account</a></li>
-			<li class="active"><a href="#">Addresses</a></li>
-			<li><a href="<?php echo base_url('user/password')?>">Password</a></li>
-		</ul>
-		<div class="space"></div>
+		<h3>Address <small>Manage address information.</small></h3>
+  		<hr>
 		<?php
 		$alert = isset($_GET['alert']) ? $_GET['alert'] : '';
 		switch ($alert) {
@@ -262,3 +267,5 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</div>
+</div>
