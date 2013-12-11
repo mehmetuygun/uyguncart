@@ -49,6 +49,7 @@
 			</div>
 		</div>
 		<hr>
+		<a href="<?php echo base_url('cart'); ?>" class="btn btn-primary">Back</a>
 		<button type="submit" class="btn btn-primary pull-right">Next</button>
 		<form>
 	</div>
