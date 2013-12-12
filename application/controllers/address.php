@@ -36,6 +36,7 @@ class Address extends Main_Controller
 					'user_id' => $userID,
 					'address_id' => $id,
 				),
+				// Do not join with country table
 				'join' => array(),
 			));
 
@@ -106,6 +107,8 @@ class Address extends Main_Controller
 					$response['success'] = true;
 				}
 			} else {
+				// Set the user_id for the address
+				$field_list['user_id'] = $userID;
 				$result = $this->Address_model->insert($field_list);
 				if ($result > 0) {
 					$response['success'] = true;
