@@ -119,4 +119,27 @@ class Address extends Main_Controller
 
 		$this->output_json($response);
 	}
+
+	public function delete($id)
+	{
+		$this->load->model('Address_model');
+		$userID = $this->session->userdata('userID');
+
+		$addresses = $this->Address_model->fetch(array(
+			'filter' => array(
+				'user_id' => $userID,
+				'address_id' => $id,
+			),
+			// Do not join with country table
+			'join' => array(),
+		));
+
+		if (!isset($addresses[0])) {
+			return false;
+		}
+
+		$this->Address_model->soft_delete($id);
+
+		$this->output_json(array('success' => true));
+	}
 }
