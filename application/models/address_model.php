@@ -14,6 +14,15 @@ class Address_model extends MY_Model
 		return parent::insert($params);
 	}
 
+	public function delete($id)
+	{
+		if ($this->is_used($id)) {
+			return $this->soft_delete($id);
+		}
+
+		return parent::delete($id);
+	}
+
 	public function soft_delete($id)
 	{
 		$params['status'] = 0;

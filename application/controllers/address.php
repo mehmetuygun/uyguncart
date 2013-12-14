@@ -138,7 +138,7 @@ class Address extends Main_Controller
 			return false;
 		}
 
-		$this->Address_model->soft_delete($id);
+		$this->Address_model->delete($id);
 
 		$this->output_json(array('success' => true));
 	}
