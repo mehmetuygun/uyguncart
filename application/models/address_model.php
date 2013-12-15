@@ -23,6 +23,19 @@ class Address_model extends MY_Model
 		return parent::delete($id);
 	}
 
+	public function duplicate($id)
+	{
+		$this->load->database();
+		$row = $this->db->from($this->table)
+			->where($this->primary_key, $id)
+			->get
+			->row_array();
+
+		unset($row['updated_date']);
+
+		return $this->insert($row);
+	}
+
 	public function soft_delete($id)
 	{
 		$params['status'] = 0;
