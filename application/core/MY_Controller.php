@@ -2,6 +2,12 @@
 
 class Base_Controller extends CI_Controller
 {
+	/**
+	 * Adds content type json header and prints out json encoded version
+	 *
+	 * @param  array  $array Array to be json encoded
+	 * @return void
+	 */
 	public function output_json(array $array)
 	{
 		header('Content-Type: application/json');
@@ -9,6 +15,12 @@ class Base_Controller extends CI_Controller
 		echo json_encode($array);
 	}
 
+	/**
+	 * Loads list of models into the controller
+	 *
+	 * @param  mixed $models Name of the model or array of model names
+	 * @return void
+	 */
 	public function load_model($models)
 	{
 		if (!is_array($models)) {
@@ -33,6 +45,12 @@ class Admin_Controller extends Base_Controller
 		$this->User_model->admin_logged();
 	}
 
+	/**
+	 * Load default view using the data provided
+	 *
+	 * @param  array  $data Data to be provided to the view
+	 * @return void
+	 */
 	public function load_view($data = array())
 	{
 		$this->load->helper(array('url', 'uc_helper'));
@@ -54,6 +72,12 @@ class Main_Controller extends Base_Controller
 		$this->load->library('cart');
 	}
 
+	/**
+	 * Load default view using the data provided
+	 *
+	 * @param  array  $data Data to be provided to the view
+	 * @return void
+	 */
 	public function load_view($data = array())
 	{
 		$this->load->helper(array('url', 'uc_helper'));
@@ -74,6 +98,12 @@ class Main_Controller extends Base_Controller
 		$this->load->view('body', $data);
 	}
 
+	/**
+	 * Check if the user is logged in and redirect to specified url otherwise
+	 *
+	 * @param  string $url Url to redirect to
+	 * @return void
+	 */
 	public function redirect_user($url)
 	{
 		$this->load->library('session');
@@ -83,17 +113,21 @@ class Main_Controller extends Base_Controller
 		}
 	}
 
+	/**
+	 * Prints out 9 recently added products
+	 *
+	 * @return [type] [description]
+	 */
 	public function get_latest_products() {
 		$this->load->model('Product_model');
 		
 		$params = array(
-			'search_term' => '',
 			'order_by' => 'added_date',
 			'filter' => array('status' => 1),
 			'sort' => 'desc',
 			'limit' => 9,
 		);
 
-		return $this->output_json($this->Product_model->fetch($params));
+		$this->output_json($this->Product_model->fetch($params));
 	}
 }

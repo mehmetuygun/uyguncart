@@ -21,7 +21,7 @@ class Home extends Main_Controller
 	{
 		$select = $this->input->post('select');
 		if($select == 'latestproduct') {
-			return $this->get_latest_products();
+			$this->get_latest_products();
 		}
 	}
 }
