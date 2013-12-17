@@ -17,13 +17,27 @@ class MY_Model extends CI_Model
 	protected $join = array();
 	protected $sort = 'asc';
 
-
+	/**
+	 * Set the table name and the primary key for the model
+	 *
+	 * @param  string $table       Table name
+	 * @param  string $primary_key Primary key column name
+	 *
+	 * @return void
+	 */
 	public function initialize($table, $primary_key)
 	{
 		$this->table = $table;
 		$this->primary_key = $primary_key;
 	}
 
+	/**
+	 * Gets the row for the given id and returns the row as an object
+	 *
+	 * @param integer $id Value of the primary key
+	 *
+	 * @return object Row object
+	 */
 	public function set($id)
 	{
 		$this->load->database();
@@ -38,6 +52,13 @@ class MY_Model extends CI_Model
 		return $row;
 	}
 
+	/**
+	 * Inserts a new row into the table and returns the id of the new row
+	 *
+	 * @param  array $fields Associative array of fields and their values
+	 *
+	 * @return integer       Id of the inserted row
+	 */
 	public function insert($fields)
 	{
 		$this->load->database();
@@ -46,6 +67,14 @@ class MY_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	/**
+	 * Updates a row
+	 *
+	 * @param  array   $fields Associative array of fields and their values
+	 * @param  integer $id     Id of the row to be updated
+	 *
+	 * @return boolean         Whether the row update succeeded
+	 */
 	public function update($fields, $id)
 	{
 		$this->load->database();
@@ -54,6 +83,13 @@ class MY_Model extends CI_Model
 		return $this->db->update($this->table, $fields, $data);
 	}
 
+	/**
+	 * Deletes a row
+	 *
+	 * @param  integer $id Id of the row to be deleted
+	 *
+	 * @return boolean     Whether the row delete succeeded
+	 */
 	public function delete($id)
 	{
 		$this->load->database();
@@ -62,6 +98,13 @@ class MY_Model extends CI_Model
 		return $this->db->delete($this->table, $data);
 	}
 
+	/**
+	 * Fetch multiple rows with joins and filters
+	 *
+	 * @param  array  $params List of parameters
+	 *
+	 * @return array          Array of rows
+	 */
 	public function fetch(array $params = array())
 	{
 		$this->load->database();
@@ -137,6 +180,11 @@ class MY_Model extends CI_Model
 		return $rows;
 	}
 
+	/**
+	 * Fetch all rows from a table
+	 *
+	 * @return array Array containing all the rows
+	 */
 	public function fetchAll()
 	{
 		$this->load->database();
