@@ -28,7 +28,7 @@ class Address_model extends MY_Model
 		$this->load->database();
 		$row = $this->db->from($this->table)
 			->where($this->primary_key, $id)
-			->get
+			->get()
 			->row_array();
 
 		unset($row['updated_date']);
