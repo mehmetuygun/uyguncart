@@ -24,6 +24,7 @@ class Address extends Main_Controller
 
 	public function edit($id)
 	{
+		$response = array('success' => false);
 		$this->redirect_user('user/login');
 
 		$this->load->library('form_validation');
@@ -31,6 +32,7 @@ class Address extends Main_Controller
 		$userID = $this->session->userdata('userID');
 
 		if ($id) {
+			// Validate address id
 			$addresses = $this->Address_model->fetch(array(
 				'filter' => array(
 					'user_id' => $userID,
@@ -41,7 +43,7 @@ class Address extends Main_Controller
 			));
 
 			if (!isset($addresses[0])) {
-				return false;
+				return $this->output_json($response);
 			}
 
 			$address = $addresses[0];
@@ -84,7 +86,6 @@ class Address extends Main_Controller
 
 		$field_list = array();
 
-		$response = array('success' => false);
 		if ($this->form_validation->run() === true) {
 			foreach ($rules as $key => $field) {
 				$new_value = $this->input->post($field['field']);
@@ -122,9 +123,12 @@ class Address extends Main_Controller
 
 	public function delete($id)
 	{
+		$response = array('success' => false);
+
 		$this->load->model('Address_model');
 		$userID = $this->session->userdata('userID');
 
+		// Validate address id
 		$addresses = $this->Address_model->fetch(array(
 			'filter' => array(
 				'user_id' => $userID,
@@ -135,11 +139,10 @@ class Address extends Main_Controller
 		));
 
 		if (!isset($addresses[0])) {
-			return false;
+			return $this->output_json($response);
 		}
 
-		$this->Address_model->delete($id);
-
-		$this->output_json(array('success' => true));
+		$response['success'] = $this->Address_model->delete($id);
+		$this->output_json($response);
 	}
 }
