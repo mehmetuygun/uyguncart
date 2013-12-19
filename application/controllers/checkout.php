@@ -108,6 +108,7 @@ class Checkout extends Main_Controller
 		$this->redirect_user('');
 
 		$this->load->model('address_model');
+		$this->load->library('form_validation');
 
 		if($this->cart->total_items() == 0) {
 			redirect(base_url());
@@ -120,6 +121,29 @@ class Checkout extends Main_Controller
 
 		$parram = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
 		$data['addresses'] = $this->address_model->fetch($parram);
+
+		if($this->input->server("REQUEST_METHOD") == 'POST') {
+
+			$config = array(
+               array(
+                     'field'   => 'username', 
+                     'label'   => 'Username', 
+                     'rules'   => 'required'
+                  ),
+               array(
+                     'field'   => 'password', 
+                     'label'   => 'Password', 
+                     'rules'   => 'required'
+                  ),
+            );
+
+            $this->form_validation->set_rules($config);
+
+            if($this->form_validation->run() == TRUE) {
+
+            } // end of if
+
+		} // end of request method 
 
 		$this->load_view($data);
 	}

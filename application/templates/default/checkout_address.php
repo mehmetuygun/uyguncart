@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h4>Shipping Address</h4>
-				<form role="form">
+				<form role="form" method="POST" action="">
 				  	<div class="form-group">
 				    	<select type="ShippingAddress" class="form-control">
 				  			<option>Select your shipping address</option>

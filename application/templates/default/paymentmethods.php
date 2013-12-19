@@ -5,7 +5,7 @@
 	<div class="panel-body">
 		<h4>Select payment method you want to complete checkout with</h4>
 		<br>
-		<form>
+		<form method="POST" action="">
 			<div class="radio">
 			  	<label>
 			    	<input type="radio" name="paymentMethod" value="1" checked>
