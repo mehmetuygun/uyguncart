@@ -24,8 +24,10 @@ class Address extends Main_Controller
 
 	public function edit($id)
 	{
-		$response = array('success' => false);
 		$this->redirect_user('user/login');
+
+		$response = array('success' => false);
+		$is_post = $this->input->server('REQUEST_METHOD') === 'POST';
 
 		$this->load->library('form_validation');
 		$this->load->model('Address_model');
@@ -42,11 +44,24 @@ class Address extends Main_Controller
 				'join' => array(),
 			));
 
-			if (!isset($addresses[0])) {
+			if (isset($addresses[0])) {
+				$address = $addresses[0];
+			} elseif ($is_post) {
 				return $this->output_json($response);
 			}
+		}
 
-			$address = $addresses[0];
+		// Return modal HTML
+		if (!$is_post) {
+			$this->load->model('Country_model');
+			$data = array();
+			$data['countries'] = $this->Country_model->get_countries();
+
+			if (isset($address)) {
+				$data['address'] = $address;
+			}
+
+			return $this->load->view('address_edit', $data);
 		}
 
 		$rules = array(
