@@ -126,21 +126,21 @@ class Checkout extends Main_Controller
 
 			$config = array(
                array(
-                     'field'   => 'username', 
-                     'label'   => 'Username', 
-                     'rules'   => 'required'
+                    'field'   => 'saddress', 
+                    'label'   => 'Shipping Address', 
+                    'rules'   => 'required|min_length[100]'
                   ),
                array(
-                     'field'   => 'password', 
-                     'label'   => 'Password', 
-                     'rules'   => 'required'
-                  ),
+                    'field'   => 'baddress', 
+                    'label'   => 'Billing Address', 
+                    'rules'   => 'required'
+                  ),               
             );
 
             $this->form_validation->set_rules($config);
 
             if($this->form_validation->run() == TRUE) {
-
+            	echo "true";
             } // end of if
 
 		} // end of request method 
