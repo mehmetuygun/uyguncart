@@ -9,6 +9,7 @@ class Address extends Main_Controller
 		$data = array(
 			'mainview' => 'addresses',
 			'title' => 'Addresses',
+			'js' => array('address.js'),
 		);
 
 		$userID = $this->session->userdata('userID');
@@ -54,10 +55,13 @@ class Address extends Main_Controller
 		// Return modal HTML
 		if (!$is_post) {
 			$this->load->model('Country_model');
-			$data = array();
-			$data['countries'] = $this->Country_model->get_countries();
+			$data = array(
+				'countries' => $this->Country_model->get_countries(),
+				'address_id' => '0',
+			);
 
 			if (isset($address)) {
+				$data['address_id'] = $address['address_id'];
 				$data['address'] = $address;
 			}
 
