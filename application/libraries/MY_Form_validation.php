@@ -2,12 +2,35 @@
 
 class MY_Form_validation extends CI_Form_validation
 {
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 
 		$this->_error_prefix = '';
 		$this->_error_suffix = '';
+	}
+
+	/**
+	 * Get form validation errors as an array
+	 *
+	 * @return array Form validation errors by field name
+	 */
+	public function get_errors()
+	{
+		$error_list = array();
+
+		foreach ($this->_field_data as $data) {
+			if (!$data['error']) {
+				continue;
+			}
+
+			$error_list[] = array(
+				'field' => $data['field'],
+				'error' => $data['error'],
+			);
+		}
+		
+		return $error_list;
 	}
 
 	/**

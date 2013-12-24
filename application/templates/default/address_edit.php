@@ -2,9 +2,9 @@
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h4 class="modal-title" id="addressModalLabel">CHANGE THIS (ADD / EDIT)</h4>
+			<h4 class="modal-title" id="addressModalLabel"><?php echo isset($address) ? 'Edit' : 'Add' ?> Address</h4>
 		</div>
-		<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('address/edit/' . $address_id) ?>">
+		<form class="form-horizontal" role="form" method="post" onsubmit="submitAddress(this); return false" action="<?php echo base_url('address/edit/' . $address_id) ?>">
 			<div class="modal-body">
 				<div class="container">
 					<div class="form-group">
@@ -25,7 +25,7 @@
 						<label for="country_id" class="col-lg-3 control-label">Country:</label>
 						<div class="col-lg-9">
 							<?php echo form_dropdown('country_id', $countries, isset($address) ? $address['country_id'] : 0, 'class="form-control" id="country_id"') ?>
-							<span class="help-block"><?php echo form_error('country_id'); ?></span>
+							<span class="help-block"></span>
 						</div>
 					</div>
 					<div class="form-group">

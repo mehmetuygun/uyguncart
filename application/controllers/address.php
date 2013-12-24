@@ -55,14 +55,15 @@ class Address extends Main_Controller
 		// Return modal HTML
 		if (!$is_post) {
 			$this->load->model('Country_model');
-			$data = array(
-				'countries' => $this->Country_model->get_countries(),
-				'address_id' => '0',
-			);
+			$data = array();
 
 			if (isset($address)) {
 				$data['address_id'] = $address['address_id'];
 				$data['address'] = $address;
+				$data['countries'] = $this->Country_model->get_countries();
+			} else {
+				$data['address_id'] = '0';
+				$data['countries'] = $this->Country_model->get_countries(true);
 			}
 
 			return $this->load->view('address_edit', $data);
@@ -122,7 +123,10 @@ class Address extends Main_Controller
 			}
 
 			if ($id) {
-				$result = $this->Address_model->update($field_list, $id);
+				$result = true;
+				if ($field_list) {
+					$result = $this->Address_model->update($field_list, $id);
+				}
 				if ($result) {
 					$response['success'] = true;
 				}
@@ -135,6 +139,8 @@ class Address extends Main_Controller
 					$response['key'] = $result;
 				}
 			}
+		} else {
+			$response['errors'] = $this->form_validation->get_errors();
 		}
 
 		$this->output_json($response);
