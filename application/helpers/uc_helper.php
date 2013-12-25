@@ -1,11 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 if ( ! function_exists('make_title')) {
-	function make_title($title)
+	function make_title()
 	{
-		if (!is_array($title)) {
-			$title = array($title);
-		}
+		$title = func_get_args();
 
 		$title[] = 'UygunCart';
 		$sep = ' - ';

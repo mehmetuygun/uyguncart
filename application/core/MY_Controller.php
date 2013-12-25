@@ -56,7 +56,7 @@ class Admin_Controller extends Base_Controller
 		$this->load->helper(array('url', 'uc_helper'));
 
 		$data['fullname'] = $this->session->userdata('userFullName');
-		$data['title'] = make_title(array($data['title'], 'Admin Panel'));
+		$data['title'] = make_title($data['title'], 'Admin Panel');
 
 		$this->load->view('admin/default', $data);
 	}
