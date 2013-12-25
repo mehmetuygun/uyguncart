@@ -34,7 +34,7 @@ function addressSaveResponse(res) {
 	}
 
 	if (!res.errors) {
-		alert('An error occured.');
+		alert('An error occured while saving changes.');
 		return;
 	}
 
@@ -48,5 +48,10 @@ function addressSaveResponse(res) {
 }
 
 function addressDeleteResponse(res) {
-	alert(JSON.stringify(res));
+	if (res.success) {
+		alert('Address was deleted successfully.');
+		return;
+	}
+
+	alert('An error occured while deleting address.')
 }

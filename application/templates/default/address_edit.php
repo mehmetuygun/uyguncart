@@ -22,20 +22,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="country_id" class="col-lg-3 control-label">Country:</label>
-						<div class="col-lg-9">
-							<?php echo form_dropdown('country_id', $countries, isset($address) ? $address['country_id'] : 0, 'class="form-control" id="country_id"') ?>
-							<span class="help-block"></span>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="city" class="col-lg-3 control-label">City:</label>
-						<div class="col-lg-9">
-							<input type="text" id="city" name="city" class="form-control" value="<?php echo isset($address) ? $address['city'] : '' ?>">
-							<span class="help-block"></span>
-						</div>
-					</div>
-					<div class="form-group">
 						<label for="address1" class="col-lg-3 control-label">Address 1:</label>
 						<div class="col-lg-9">
 							<input type="text" id="address1" name="address1" class="form-control" value="<?php echo isset($address) ? $address['address1'] : '' ?>">
@@ -50,9 +36,23 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="city" class="col-lg-3 control-label">City:</label>
+						<div class="col-lg-9">
+							<input type="text" id="city" name="city" class="form-control" value="<?php echo isset($address) ? $address['city'] : '' ?>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="postcode" class="col-lg-3 control-label">Postcode:</label>
 						<div class="col-lg-9">
 							<input type="text" id="postcode" name="postcode" class="form-control" value="<?php echo isset($address) ? $address['postcode'] : '' ?>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="country_id" class="col-lg-3 control-label">Country:</label>
+						<div class="col-lg-9">
+							<?php echo form_dropdown('country_id', $countries, isset($address) ? $address['country_id'] : 0, 'class="form-control" id="country_id"') ?>
 							<span class="help-block"></span>
 						</div>
 					</div>
