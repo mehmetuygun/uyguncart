@@ -24,6 +24,32 @@ class Address extends Main_Controller
 		$this->load_view($data);
 	}
 
+	public function get_list()
+	{
+		$this->redirect_user('user/login');
+
+		$this->load->model('Address_model');
+		$this->load->model('Country_model');
+
+		$userID = $this->session->userdata('userID');
+
+		$countries = $this->Country_model->get_countries();
+		$addresses = $this->Address_model->fetch(array(
+			'filter' => array('user_id' => $userID),
+		));
+
+		foreach ($addresses as &$address) {
+			$address['country_name'] = '';
+			if (isset($address['country_id'])
+				&& isset($countries[$address['country_id']])
+			) {
+				$address['country_name'] = $countries[$address['country_id']];
+			}
+		}
+
+		$this->output_json($addresses);
+	}
+
 	public function edit($id)
 	{
 		$this->redirect_user('user/login');
