@@ -6,12 +6,21 @@ $(function() {
 	});
 });
 
-function submitAddress(form) {
+function saveAddress(form) {
 	var data = $(form).serialize();
-	$.post(form.action, data, addressResponse);
+	$.post(form.action, data, addressSaveResponse);
 }
 
-function addressResponse(res) {
+function deleteAddress(anchor) {
+	if (!confirm('Are you sure you want to delete the address?')) {
+		return;
+	}
+
+	var url = anchor.href;
+	$.get(anchor.href, addressDeleteResponse);
+}
+
+function addressSaveResponse(res) {
 	var addressModal = $('#addressModal');
 
 	// Cleanup the errors
@@ -36,4 +45,8 @@ function addressResponse(res) {
 		f_elem.closest('.form-group').addClass('has-error');
 		f_elem.siblings('.help-block').html(cur.error);
 	}
+}
+
+function addressDeleteResponse(res) {
+	alert(JSON.stringify(res));
 }

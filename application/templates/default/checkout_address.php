@@ -12,10 +12,11 @@
 			      		foreach ($addresses as $row) {
 			      			echo '<option value="'.$row['address_id'].'">';
 			      			echo $row['full_name'].', ';
-			      			echo $row['name'].', ';
-			      			echo $row['city'].', ';
 			      			echo $row['address1'].', ';
-			      			echo $row['address2'];
+			      			echo $row['address2'].', ';
+			      			echo $row['city'].', ';
+			      			echo $row['postcode'].', ';
+			      			echo $countries[$row['country_id']];
 			      			echo '</option>';
 			      		}
 			      		?>
@@ -35,10 +36,11 @@
 			      		foreach ($addresses as $row) {
 			      			echo '<option value="'.$row['address_id'].'">';
 			      			echo $row['full_name'].', ';
-			      			echo $row['name'].', ';
-			      			echo $row['city'].', ';
 			      			echo $row['address1'].', ';
 			      			echo $row['address2'];
+			      			echo $row['city'].', ';
+			      			echo $row['postcode'].', ';
+			      			echo $countries[$row['country_id']].', ';
 			      			echo '</option>';
 			      		}
 			      		?>

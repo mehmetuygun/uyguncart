@@ -6,19 +6,20 @@ class Address extends Main_Controller
 	{
 		$this->redirect_user('user/login');
 
+		$this->load->model('Address_model');
+		$this->load->model('Country_model');
+
+		$userID = $this->session->userdata('userID');
+
 		$data = array(
 			'mainview' => 'addresses',
 			'title' => 'Addresses',
 			'js' => array('address.js'),
+			'addresses' => $this->Address_model->fetch(array(
+				'filter' => array('user_id' => $userID),
+			)),
+			'countries' => $this->Country_model->get_countries(),
 		);
-
-		$userID = $this->session->userdata('userID');
-
-		$this->load->model('Address_model');
-
-		$data['addresses'] = $this->Address_model->fetch(array(
-			'filter' => array('user_id' => $userID),
-		));
 
 		$this->load_view($data);
 	}
@@ -41,8 +42,6 @@ class Address extends Main_Controller
 					'user_id' => $userID,
 					'address_id' => $id,
 				),
-				// Do not join with country table
-				'join' => array(),
 			));
 
 			if (isset($addresses[0])) {
@@ -159,8 +158,6 @@ class Address extends Main_Controller
 				'user_id' => $userID,
 				'address_id' => $id,
 			),
-			// Do not join with country table
-			'join' => array(),
 		));
 
 		if (!isset($addresses[0])) {

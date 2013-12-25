@@ -51,10 +51,4 @@ class Address_model extends MY_Model
 
 		return $this->db->count_all_results() > 0;
 	}
-
-	public function fetch(array $params = array())
-	{
-		$this->join = array('country', 'address.country_id = country.country_id', 'left');
-		return parent::fetch($params);
-	}
 }

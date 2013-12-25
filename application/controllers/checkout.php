@@ -108,6 +108,7 @@ class Checkout extends Main_Controller
 		$this->redirect_user('');
 
 		$this->load->model('address_model');
+		$this->load->model('Country_model');
 		$this->load->library('form_validation');
 
 		if($this->cart->total_items() == 0) {
@@ -117,7 +118,8 @@ class Checkout extends Main_Controller
 		$data = array(
 			'mainview' => 'checkout_address',
 			'title' => 'Checkout Address',
-			);
+			'countries' => $this->Country_model->get_countries(),
+		);
 
 		$parram = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
 		$data['addresses'] = $this->address_model->fetch($parram);

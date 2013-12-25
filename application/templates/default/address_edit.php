@@ -4,7 +4,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h4 class="modal-title" id="addressModalLabel"><?php echo isset($address) ? 'Edit' : 'Add' ?> Address</h4>
 		</div>
-		<form class="form-horizontal" role="form" method="post" onsubmit="submitAddress(this); return false" action="<?php echo base_url('address/edit/' . $address_id) ?>">
+		<form class="form-horizontal" role="form" method="post" onsubmit="saveAddress(this); return false" action="<?php echo base_url('address/edit/' . $address_id) ?>">
 			<div class="modal-body">
 				<div class="container">
 					<div class="form-group">
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				<button type="submit" class="btn btn-primary" id="modalSubmitButton">Save changes</button>
 			</div>
 		</form>
