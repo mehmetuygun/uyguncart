@@ -71,6 +71,7 @@ function addressSaveResponse(res) {
 	if (res.success) {
 		addressModal.modal('hide');
 		alert('Changes were saved successfully.');
+		getAddressList();
 		return;
 	}
 
@@ -91,8 +92,9 @@ function addressSaveResponse(res) {
 function addressDeleteResponse(res) {
 	if (res.success) {
 		alert('Address was deleted successfully.');
+		getAddressList();
 		return;
 	}
 
-	alert('An error occured while deleting address.')
+	alert('An error occured while deleting address.');
 }
