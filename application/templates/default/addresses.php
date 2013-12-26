@@ -39,26 +39,7 @@
 							<th>Action</th>
 						</tr>
 					</thead>
-					<tbody>
-					<?php
-					$count = 1;
-					$edit_url = base_url('address/edit');
-					$delete_url = base_url('address/delete');
-					foreach ($addresses as $row) {
-						echo <<<HTML
-						<tr>
-							<td>$count</td>
-							<td>{$row['full_name']} {$row['address1']} {$row['address2']} {$row['city']} {$row['postcode']} {$countries[$row['country_id']]}</td>
-							<td>
-								<a href="$edit_url/{$row['address_id']}" data-target="#addressModal" data-toggle="modal">Edit</a>
-								<a href="$delete_url/{$row['address_id']}" onclick="deleteAddress(this); return false">Delete</a>
-							</td>
-						</tr>
-HTML;
-						$count++;
-					}
-					?>
-					</tbody>
+					<tbody></tbody>
 				</table>
 				<a href="<?php echo base_url('address/edit/0') ?>" data-target="#addressModal" data-toggle="modal" class="btn btn-primary">Add New Address</a>
 			</div>
