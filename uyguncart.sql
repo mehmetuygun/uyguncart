@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.3.9
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jul 31, 2013 at 08:40
--- Server version: 5.6.10
--- PHP Version: 5.3.5
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
@@ -478,4 +469,20 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `value` text NOT NULL,
   PRIMARY KEY (`setting_id`),
   UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_item`
+--
+
+CREATE TABLE IF NOT EXISTS `order_item` (
+  `item_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` int(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned NOT NULL,
+  `name` varchar(75) NOT NULL,
+  `quantity` int(10) unsigned NOT NULL,
+  `unit_price` float NOT NULL,
+  PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
