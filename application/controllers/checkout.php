@@ -119,6 +119,7 @@ class Checkout extends Main_Controller
 			'mainview' => 'checkout_address',
 			'title' => 'Checkout Address',
 			'countries' => $this->Country_model->get_countries(),
+			'js' => array('address.js', 'checkout.js'),
 		);
 
 		$parram = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
