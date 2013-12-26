@@ -58,6 +58,7 @@ class Checkout extends Main_Controller
 		$this->load->library('PayPal');
 
 		$this->load_model('Payment');
+		$this->load_model('OrderItem');
 
 		$this->Payment_model->set($payment_id);
 		$execute_url = $this->Payment_model->execute_url;
@@ -68,6 +69,20 @@ class Checkout extends Main_Controller
 		$PP->completePayment($execute_url, $payer_id);
 
 		$this->Payment_model->update(array('status' => 'complete'), $payment_id);
+
+		$items = $this->cart->contents();
+
+		foreach ($items as $item) {
+			$this->OrderItem_model->insert(
+				array(
+					'order_id' 		=>	$this->Payment_model->order_id,
+					'product_id' 	=>	$item['id'],
+					'name'			=> 	$item['name'],
+					'quantity'		=> 	$item['qty'],
+					'unit_price'	=>	$item['price'],
+					)
+				);
+		}
 
 		$data = array(
 			'mainview' => 'checkout',
