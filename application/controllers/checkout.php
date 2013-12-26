@@ -130,7 +130,7 @@ class Checkout extends Main_Controller
                array(
                     'field'   => 'saddress', 
                     'label'   => 'Shipping Address', 
-                    'rules'   => 'required|min_length[100]'
+                    'rules'   => 'required'
                   ),
                array(
                     'field'   => 'baddress', 
@@ -142,7 +142,17 @@ class Checkout extends Main_Controller
             $this->form_validation->set_rules($config);
 
             if($this->form_validation->run() == TRUE) {
-            	echo "true";
+            		
+            	$session = array(
+            		'shippingAddress' 	=>	$this->input->post('saddress'),
+            		'billingAddress'	=>	$this->input->post('baddress'),
+            		'checkout'			=>	true,
+            		);
+
+            	$this->session->set_userdata($session);
+
+            	redirect('checkout/paymentmethods');
+
             } // end of if
 
 		} // end of request method 
@@ -163,7 +173,9 @@ class Checkout extends Main_Controller
 			'title' => 'Checkout Payment Methods',
 			);
 		
-		// redirect('checkout');
+		if($this->input->server("REQUEST_METHOD") == 'POST') {
+			redirect('checkout');
+		}
 
 		$this->load_view($data);
 	}
