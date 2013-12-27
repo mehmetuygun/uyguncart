@@ -174,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
 CREATE TABLE IF NOT EXISTS `address` (
   `address_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
+  `address_name` varchar(45) NOT NULL,
   `full_name` varchar(64) NOT NULL,
   `address1` varchar(64) NOT NULL,
   `address2` varchar(64) NOT NULL,
