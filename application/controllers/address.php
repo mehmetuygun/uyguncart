@@ -96,6 +96,11 @@ class Address extends Main_Controller
 
 		$rules = array(
 			array(
+				'field'   => 'address_name',
+				'label'   => 'Address Name',
+				'rules'   => 'required|max_length[45]'
+			),
+			array(
 				'field'   => 'full_name',
 				'label'   => 'Full Name',
 				'rules'   => 'required|max_length[64]'

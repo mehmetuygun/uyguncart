@@ -8,9 +8,9 @@
 			<div class="modal-body">
 				<div class="container">
 					<div class="form-group">
-						<label for="inputName" class="col-lg-3 control-label">Address Name:</label>
+						<label for="address_name" class="col-lg-3 control-label">Address Name:</label>
 						<div class="col-lg-9">
-							<input type="text" id="inputName" name="addressName" class="form-control" value="">
+							<input type="text" id="address_name" name="address_name" class="form-control" value="<?php echo isset($address) ? $address['address_name'] : '' ?>">
 							<span class="help-block"></span>
 						</div>
 					</div>
