@@ -38,12 +38,11 @@ function loadAddressDetails() {
 
 function loadAddressList(res) {
 	var cur,
-		html = '<option>Please select</option>',
+		html = '<option value="">Please select</option>',
 		ship_address = $('#saddress'),
-		bill_address = $('#baddress');
-
-	var prev_ship = ship_address.val();
-	var prev_bill = bill_address.val();
+		bill_address = $('#baddress'),
+		prev_ship = ship_address.val(),
+		prev_bill = bill_address.val();
 
 	addresses = [];
 	for (var i=0; i < res.length; i++) {
@@ -51,12 +50,9 @@ function loadAddressList(res) {
 		addresses[cur['address_id']] = cur;
 
 		details = [
-			cur['full_name'],
+			cur['address_name'],
 			cur['address1'],
-			cur['address2'],
-			cur['city'],
-			cur['postcode'],
-			cur['country_name']
+			cur['city']
 		];
 
 		html += '<option value="' + cur['address_id'] + '">';
