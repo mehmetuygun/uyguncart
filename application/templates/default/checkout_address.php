@@ -13,6 +13,7 @@
 						<select id="saddress" name="saddress" class="form-control"></select>
 						<span class="help-block"><?php echo form_error('saddress'); ?></span>
 					</div>
+					<div class="address-details"></div>
 				</div>
 				<div class="col-md-6">
 					<h4>Billing Address</h4>
@@ -20,6 +21,7 @@
 						<select id="baddress" name="baddress" class="form-control"></select>
 						<span class="help-block"><?php echo form_error('baddress') ?></span>
 					</div>
+					<div class="address-details"></div>
 				</div>
 			</div>
 			<hr>

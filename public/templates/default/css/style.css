@@ -184,3 +184,10 @@ code {
 #product_detail_header {
     background-color: #f8f8f8;
 }
+.address-details > p {
+    margin: 5px;
+}
+.address-details > .edit-btn {
+    float: right;
+    margin-top: -35px;
+}
