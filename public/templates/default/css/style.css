@@ -191,3 +191,12 @@ code {
     float: right;
     margin-top: -35px;
 }
+#description {
+    padding: 10px;
+}
+#product-detail {
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: block;
+}

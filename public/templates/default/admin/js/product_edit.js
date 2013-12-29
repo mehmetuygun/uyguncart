@@ -1,4 +1,4 @@
-tinymce.init({selector:'textarea', plugins:'table'});
+tinymce.init({selector:'textarea', plugins:'table', width:900});
 
 $(function() {
 	$('#image_upload').on('shown', function() {
