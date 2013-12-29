@@ -35,6 +35,7 @@
 					<thead>
 						<tr>
 							<th>#</th>
+							<th>Name</th>
 							<th>Address</th>
 							<th>Action</th>
 						</tr>

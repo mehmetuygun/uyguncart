@@ -53,7 +53,8 @@ function loadAddressList(res) {
 
 		html += '<tr>';
 		html += '<td>' + (i+1) + '</td>';
-		html += '<td>' + details.join(' ')  + '</td>';
+		html += '<td>' + cur['address_name'] + '</td>';
+		html += '<td><div class="address-details"><p>' + details.join('</p><p>') + '</p></div></td>';
 		html += '<td>' + actions.join(' ')  + '</td>';
 		html += '</tr>';
 	}
