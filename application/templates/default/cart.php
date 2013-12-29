@@ -52,14 +52,14 @@
 						echo '$' . $item['price'];
 						echo '</td>';
 						echo '<td>';
-						echo '$' . $item['subtotal'];
+						echo '$' . number_format($item['subtotal'], 2);
 						echo '</td>';
 						echo '</tr>';
 						$totalPrice += $item['subtotal'];
 					}
 					echo '<tr>';
-					echo '<td colspan="4">Total</td>';
-					echo '<td>$'.$totalPrice.'</td>';
+					echo '<td colspan="4" align="right">Total</td>';
+					echo '<td>$'. number_format($totalPrice, 2).'</td>';
 					echo '</tr>';
 					?>
 				</tbody>
