@@ -118,7 +118,7 @@ class Product extends Admin_Controller
 				array(
 					'field' => 'name',
 					'label' => 'Product Name',
-					'rules' => 'required|is_unique[product.productName]',
+					'rules' => 'required|is_unique[product.name]',
 				),
 				array(
 					'field' => 'category_id',
