@@ -5,7 +5,6 @@ class Cart extends Main_Controller
 	public function index()
 	{
 		$this->load->model('Product_model');
-		$this->load->library('cart');
 
 		$data = array(
 			'mainview' => 'cart',
