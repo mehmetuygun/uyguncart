@@ -200,3 +200,6 @@ code {
     border-bottom: 1px solid #ddd;
     display: block;
 }
+#comment {
+    padding: 10px;
+}

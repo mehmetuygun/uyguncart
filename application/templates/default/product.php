@@ -13,6 +13,9 @@ for($i=0;$i<count($cat_array);$i++) {
 </ol>
 <div class="panel panel-default" id="product_detail_header">
 	<div class="panel-body">
+		<h3 class="media-heading">
+			<?php echo $row->name ?>
+		</h3>
 		<div class="row">
 			<div class="col-sm-4">
 				<?php
@@ -65,9 +68,6 @@ for($i=0;$i<count($cat_array);$i++) {
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<h3 class="media-heading">
-					<?php echo $row->name ?>
-				</h3>
 				<table class="table">
 					<tbody>
 						<tr>
@@ -99,6 +99,6 @@ for($i=0;$i<count($cat_array);$i++) {
 		<?php echo $row->description; ?>
 	</div>
 	<div class="tab-pane fade" id="comment">
-		<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+		<p>The comment is disabled.</p>
 	</div>
 </div>

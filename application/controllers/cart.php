@@ -5,6 +5,7 @@ class Cart extends Main_Controller
 	public function index()
 	{
 		$this->load->model('Product_model');
+		$this->load->library('cart');
 
 		$data = array(
 			'mainview' => 'cart',
@@ -33,15 +34,17 @@ class Cart extends Main_Controller
 		} else if (isset($productID)) {
 			$this->Product_model->set($productID);
 			if ($this->Product_model->status) {
-				$this->cart->insert(array(
+
+				$cart = array(
 					'id' => $this->Product_model->product_id,
 					'qty' => 1,
 					'price' => $this->Product_model->price,
-					'name' => $this->Product_model->name
-				));
+					'name' => $this->Product_model->name,
+				);
+
+				$this->cart->insert($cart);
 			}
 		}
-		
 		$data['items'] = $this->cart->contents();
 		$this->load_view($data);
 	}
