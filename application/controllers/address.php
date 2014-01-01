@@ -2,6 +2,11 @@
 
 class Address extends Main_Controller
 {
+	/**
+	 * Shows the main address view
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
 		$this->redirect_user('user/login');
@@ -24,6 +29,11 @@ class Address extends Main_Controller
 		$this->load_view($data);
 	}
 
+	/**
+	 * Outputs list of addresses as JSON array
+	 *
+	 * @return void
+	 */
 	public function get_list()
 	{
 		$this->redirect_user('user/login');
@@ -50,6 +60,14 @@ class Address extends Main_Controller
 		$this->output_json($addresses);
 	}
 
+	/**
+	 * Outputs json when request method is post
+	 *              outputs edit modal otherwise
+	 *
+	 * @param  integer $id ID of the address
+	 *
+	 * @return void
+	 */
 	public function edit($id)
 	{
 		$this->redirect_user('user/login');
@@ -176,6 +194,13 @@ class Address extends Main_Controller
 		$this->output_json($response);
 	}
 
+	/**
+	 * Deletes specified addresss and outputs JSON result
+	 *
+	 * @param  integer $id ID of the addresss
+	 *
+	 * @return void
+	 */
 	public function delete($id)
 	{
 		$response = array('success' => false);

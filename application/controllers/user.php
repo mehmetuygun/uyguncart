@@ -43,12 +43,12 @@ class User extends Main_Controller
 		$this->form_validation->set_rules($rules);
 		if ($this->form_validation->run() == true) {
 			$data = array(
-					'email' => $this->input->post('email'),
-					'first_name' => $this->input->post('firstname'),
-					'last_name' => $this->input->post('lastname'),
-					'password' => $this->input->post('password'),
-					'type' => 2
-				);
+				'email' => $this->input->post('email'),
+				'first_name' => $this->input->post('firstname'),
+				'last_name' => $this->input->post('lastname'),
+				'password' => $this->input->post('password'),
+				'type' => 2
+			);
 
 			if ($this->User_model->insert($data)) {
 				$session = array(
@@ -57,7 +57,7 @@ class User extends Main_Controller
 					'userLastName' => $this->input->post('lastname'),
 					'userFullName' =>  $this->input->post('firstname').' '.$this->input->post('lastname'),
 					'userLoggedIn' => true
-					);
+				);
 				$this->session->set_userdata($session);
 				redirect();
 			}
@@ -100,7 +100,7 @@ class User extends Main_Controller
 					'userLastName' => $this->User_model->last_name,
 					'userFullName' =>  $this->User_model->first_name.' '.$this->User_model->last_name,
 					'userLoggedIn' => true
-					);
+				);
 				$this->session->set_userdata($session);
 				redirect();
 			}
@@ -111,7 +111,6 @@ class User extends Main_Controller
 	public function logout()
 	{
 		$this->load->helper('url');
-		$this->load->library('session');
 		$this->session->sess_destroy();
 		redirect();
 	}
@@ -126,7 +125,6 @@ class User extends Main_Controller
 		$this->redirect_user('user/login');
 
 		$this->load->library('form_validation');
-		$this->load->library('session');
 		$this->load->model('User_model');
 		$userID = $this->session->userdata('userID');
 
@@ -198,12 +196,15 @@ class User extends Main_Controller
 
 	public function password()
 	{
-		$data['mainview'] = 'password';
-		$data['title'] = 'Password';
 		$this->redirect_user('user/login');
 
 		$this->load->model('User_model');
 		$this->load->library('form_validation');
+
+		$data = array(
+			'mainview' => 'password',
+			'title' => 'Password',
+		);
 
 		$rules = array(
 			array(
