@@ -59,7 +59,7 @@ class User extends Main_Controller
 					'userLoggedIn' => true
 					);
 				$this->session->set_userdata($session);
-				redirect(base_url());
+				redirect();
 			}
 		}
 
@@ -102,7 +102,7 @@ class User extends Main_Controller
 					'userLoggedIn' => true
 					);
 				$this->session->set_userdata($session);
-				redirect(base_url());
+				redirect();
 			}
 		}
 		$this->load_view($data);
@@ -113,7 +113,7 @@ class User extends Main_Controller
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->session->sess_destroy();
-		redirect(base_url());
+		redirect();
 	}
 
 	public function account()

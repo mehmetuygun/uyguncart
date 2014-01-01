@@ -127,7 +127,7 @@ class Checkout extends Main_Controller
 		$this->load->library('form_validation');
 
 		if($this->cart->total_items() == 0) {
-			redirect(base_url());
+			redirect();
 		}
 
 		$data = array(
@@ -181,7 +181,7 @@ class Checkout extends Main_Controller
 		$this->redirect_user('');
 
 		if($this->cart->total_items() == 0) {
-			redirect(base_url());
+			redirect();
 		}
 
 		$data = array(

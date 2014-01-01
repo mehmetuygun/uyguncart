@@ -109,7 +109,7 @@ class Main_Controller extends Base_Controller
 		$this->load->library('session');
 		$this->load->helper('url');
 		if(!$this->session->userdata('userLoggedIn')) {
-			redirect(base_url().$url);
+			redirect($url);
 		}
 	}
 
