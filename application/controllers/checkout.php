@@ -119,7 +119,7 @@ class Checkout extends Main_Controller
 	}
 
 	public function address()
-	{	
+	{
 		$this->redirect_user('');
 
 		$this->load->model('address_model');
@@ -143,35 +143,35 @@ class Checkout extends Main_Controller
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
 
 			$config = array(
-               array(
-                    'field'   => 'saddress', 
-                    'label'   => 'Shipping Address', 
-                    'rules'   => 'required'
-                  ),
-               array(
-                    'field'   => 'baddress', 
-                    'label'   => 'Billing Address', 
-                    'rules'   => 'required'
-                  ),               
-            );
+			   array(
+					'field'   => 'saddress',
+					'label'   => 'Shipping Address',
+					'rules'   => 'required'
+				),
+				array(
+					'field'   => 'baddress',
+					'label'   => 'Billing Address',
+					'rules'   => 'required'
+				),
+			);
 
-            $this->form_validation->set_rules($config);
+			$this->form_validation->set_rules($config);
 
-            if($this->form_validation->run() == TRUE) {
-            		
-            	$session = array(
-            		'shippingAddress' 	=>	$this->input->post('saddress'),
-            		'billingAddress'	=>	$this->input->post('baddress'),
-            		'checkout'			=>	true,
-            		);
+			if($this->form_validation->run() == TRUE) {
 
-            	$this->session->set_userdata($session);
+				$session = array(
+					'shippingAddress' 	=>	$this->input->post('saddress'),
+					'billingAddress'	=>	$this->input->post('baddress'),
+					'checkout'			=>	true,
+				);
 
-            	redirect('checkout/paymentmethods');
+				$this->session->set_userdata($session);
 
-            } // end of if
+				redirect('checkout/paymentmethods');
 
-		} // end of request method 
+			} // end of if
+
+		} // end of request method
 
 		$this->load_view($data);
 	}
@@ -188,7 +188,7 @@ class Checkout extends Main_Controller
 			'mainview' => 'paymentmethods',
 			'title' => 'Checkout Payment Methods',
 			);
-		
+
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
 			redirect('checkout');
 		}

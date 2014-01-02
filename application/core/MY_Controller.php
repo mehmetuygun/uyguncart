@@ -113,9 +113,9 @@ class Main_Controller extends Base_Controller
 	}
 
 	/**
-	 * Prints out 9 recently added products
+	 * Outputs 9 recently added products as JSON
 	 *
-	 * @return [type] [description]
+	 * @return void
 	 */
 	public function get_latest_products() {
 		$this->load->model('Product_model');
