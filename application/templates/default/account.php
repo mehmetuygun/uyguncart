@@ -27,18 +27,18 @@
 							<span class="help-block"><?php echo form_error('email'); ?></span>
 						</div>
 					</div>
-					<div class="form-group <?php if(form_error('firstname')) echo "has-error"; ?>">
+					<div class="form-group <?php if(form_error('first_name')) echo "has-error"; ?>">
 						<label for="inputfirstname" class="col-lg-2 control-label">First Name</label>
 						<div class="col-lg-10">
-							<input type="text" name="firstname" class="form-control" id="inputfirstname" placeholder="First Name" value="<?php echo set_value('firstname', $userFirstName); ?>">
-							<span class="help-block"><?php echo form_error('firstname'); ?></span>
+							<input type="text" name="first_name" class="form-control" id="inputfirstname" placeholder="First Name" value="<?php echo set_value('first_name', $userFirstName); ?>">
+							<span class="help-block"><?php echo form_error('first_name'); ?></span>
 						</div>
 					</div>
-					<div class="form-group <?php if(form_error('lastname')) echo "has-error"; ?>">
+					<div class="form-group <?php if(form_error('last_name')) echo "has-error"; ?>">
 						<label for="inputlastname" class="col-lg-2 control-label">Last Name</label>
 						<div class="col-lg-10">
-							<input type="text" name="lastname" class="form-control" id="inputlastname" placeholder="Last Name" value="<?php echo set_value('lastname', $userLastName); ?>">
-							<span class="help-block"><?php echo form_error('lastname'); ?></span>
+							<input type="text" name="last_name" class="form-control" id="inputlastname" placeholder="Last Name" value="<?php echo set_value('last_name', $userLastName); ?>">
+							<span class="help-block"><?php echo form_error('last_name'); ?></span>
 						</div>
 					</div>
 					<hr>

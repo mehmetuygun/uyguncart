@@ -30,12 +30,12 @@ class User extends Main_Controller
 				'rules' => 'required|max_length[64]|valid_email|is_unique[user.email]'
 			),
 			array(
-				'field' => 'firstname',
+				'field' => 'first_name',
 				'label' => 'First Name',
 				'rules' => 'required|min_length[3]|max_length[64]'
 			),
 			array(
-				'field' => 'lastname',
+				'field' => 'last_name',
 				'label' => 'Last Name',
 				'rules' => 'required|min_length[3]|max_length[64]'
 			)
@@ -44,8 +44,8 @@ class User extends Main_Controller
 		if ($this->form_validation->run() == true) {
 			$data = array(
 				'email' => $this->input->post('email'),
-				'first_name' => $this->input->post('firstname'),
-				'last_name' => $this->input->post('lastname'),
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
 				'password' => $this->input->post('password'),
 				'type' => 2
 			);
@@ -53,9 +53,9 @@ class User extends Main_Controller
 			if ($this->User_model->insert($data)) {
 				$session = array(
 					'userID' => $this->User_model->user_id,
-					'userFirstName' => $this->input->post('firstname'),
-					'userLastName' => $this->input->post('lastname'),
-					'userFullName' =>  $this->input->post('firstname').' '.$this->input->post('lastname'),
+					'userFirstName' => $this->input->post('first_name'),
+					'userLastName' => $this->input->post('last_name'),
+					'userFullName' =>  $this->input->post('first_name').' '.$this->input->post('last_name'),
 					'userLoggedIn' => true
 				);
 				$this->session->set_userdata($session);
@@ -134,29 +134,26 @@ class User extends Main_Controller
 			$update = array();
 			$fields = array(
 				'email' => array(
-					'col'   => 'email',
 					'field' => 'email',
 					'label' => 'Email',
 					'rules' => 'required|valid_email|max_length[75]|is_unique[user.email]',
 				),
-				'firstname' => array(
-					'col'   => 'first_name',
-					'field' => 'firstname',
+				'first_name' => array(
+					'field' => 'first_name',
 					'label' => 'First Name',
 					'rules' => 'required|max_length[45]',
 				),
-				'lastname' => array(
-					'col'   => 'last_name',
-					'field' => 'lastname',
+				'last_name' => array(
+					'field' => 'last_name',
 					'label' => 'Last Name',
 					'rules' => 'required|max_length[45]',
 				),
 			);
 
 			foreach ($fields as $f_name => $field) {
-				if ($this->input->post($f_name) != $this->User_model->{$field['col']}) {
+				if ($this->input->post($f_name) != $this->User_model->{$field['field']}) {
 					$this->form_validation->set_rules(array($field));
-					$update[$field['col']] = $this->input->post($f_name);
+					$update[$field['field']] = $this->input->post($f_name);
 				}
 			}
 
