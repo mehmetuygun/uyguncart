@@ -73,15 +73,13 @@ class Checkout extends Main_Controller
 		$items = $this->cart->contents();
 
 		foreach ($items as $item) {
-			$this->OrderItem_model->insert(
-				array(
-					'order_id' 		=>	$this->Payment_model->order_id,
-					'product_id' 	=>	$item['id'],
-					'name'			=> 	$item['name'],
-					'quantity'		=> 	$item['qty'],
-					'unit_price'	=>	$item['price'],
-					)
-				);
+			$this->OrderItem_model->insert(array(
+				'order_id' 		=>	$this->Payment_model->order_id,
+				'product_id' 	=>	$item['id'],
+				'name'			=> 	$item['name'],
+				'quantity'		=> 	$item['qty'],
+				'unit_price'	=>	$item['price'],
+			));
 		}
 
 		$data = array(
@@ -187,12 +185,26 @@ class Checkout extends Main_Controller
 		$data = array(
 			'mainview' => 'paymentmethods',
 			'title' => 'Checkout Payment Methods',
-			);
+		);
 
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
 			redirect('checkout');
 		}
 
 		$this->load_view($data);
+	}
+
+	private function _create_order()
+	{
+		$Cart = $this->cart;
+
+		$order_id = $this->Order_model->insert(array(
+			'user_id' => $this->session->userdata('userID'),
+			'total_price' => $Cart->total(),
+			'shipping_address' => 0,
+			'billing_address' => 0,
+		));
+
+		return $order_id;
 	}
 }
