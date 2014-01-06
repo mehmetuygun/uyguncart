@@ -14,14 +14,8 @@ class Checkout extends Main_Controller
 		$this->load->library('PayPal');
 		$this->load_model(array('Order', 'Payment'));
 
-		$Cart = $this->cart;
 
-		$order_id = $this->Order_model->insert(array(
-			'user_id' => $this->session->userdata('userID'),
-			'total_price' => $Cart->total(),
-			'shipping_address' => 0,
-			'billing_address' => 0,
-		));
+		$order_id = $this->_create_order();
 
 		$payment = array(
 			'user_id' => $this->session->userdata('userID'),
@@ -31,6 +25,7 @@ class Checkout extends Main_Controller
 		$payment_id = $this->Payment_model->insert($payment);
 		$this->Order_model->update(array('payment_id' => $payment_id), $order_id);
 
+		$Cart = $this->cart;
 		$PP = new PayPal;
 		$payment = $PP->createPayment(
 			array(
@@ -56,9 +51,7 @@ class Checkout extends Main_Controller
 	public function complete($payment_id)
 	{
 		$this->load->library('PayPal');
-
-		$this->load_model('Payment');
-		$this->load_model('OrderItem');
+		$this->load_model(array('Payment', 'OrderItem'));
 
 		$this->Payment_model->set($payment_id);
 		$execute_url = $this->Payment_model->execute_url;
@@ -135,8 +128,8 @@ class Checkout extends Main_Controller
 			'js' => array('address.js', 'checkout.js'),
 		);
 
-		$parram = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
-		$data['addresses'] = $this->address_model->fetch($parram);
+		$params = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
+		$data['addresses'] = $this->address_model->fetch($params);
 
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
 
@@ -196,11 +189,9 @@ class Checkout extends Main_Controller
 
 	private function _create_order()
 	{
-		$Cart = $this->cart;
-
 		$order_id = $this->Order_model->insert(array(
 			'user_id' => $this->session->userdata('userID'),
-			'total_price' => $Cart->total(),
+			'total_price' => $this->cart->total(),
 			'shipping_address' => 0,
 			'billing_address' => 0,
 		));
