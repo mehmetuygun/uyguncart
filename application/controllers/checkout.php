@@ -128,8 +128,9 @@ class Checkout extends Main_Controller
 			'js' => array('address.js', 'checkout.js'),
 		);
 
-		$params = array('filter'=> array('user_id'=> $this->session->userdata('userID')));
-		$data['addresses'] = $this->address_model->fetch($params);
+		$data['addresses'] = $this->address_model->fetch(array(
+			'filter'=> array('user_id'=> $this->session->userdata('userID'))
+		));
 
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
 
