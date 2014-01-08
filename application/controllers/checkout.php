@@ -5,7 +5,9 @@ class Checkout extends Main_Controller
 	public function index()
 	{
 		$this->load->helper('url');
-		redirect('/checkout/first');
+
+		$order_id = $this->_create_order();
+		redirect('/checkout/address/' . $order_id);
 	}
 
 	public function first()
@@ -190,6 +192,8 @@ class Checkout extends Main_Controller
 
 	private function _create_order()
 	{
+		$this->load->model('Order_model');
+
 		$order_id = $this->Order_model->insert(array(
 			'user_id' => $this->session->userdata('userID'),
 			'total_price' => $this->cart->total(),
