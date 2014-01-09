@@ -65,7 +65,7 @@
 				</tbody>
 			</table>
 			<a class="btn btn-primary pull-left" href="<?php echo base_url() ?>">Continue Shoopping</a>
-			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout/address') ?>">Checkout</a>
+			<a class="btn btn-warning pull-right" href="<?php echo base_url('checkout') ?>">Checkout</a>
 			<div class="clearfix"></div>
 			<?php
 			}

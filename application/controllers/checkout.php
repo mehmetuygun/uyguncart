@@ -10,14 +10,11 @@ class Checkout extends Main_Controller
 		redirect('/checkout/address/' . $order_id);
 	}
 
-	public function first()
+	public function first($order_id)
 	{
 		$this->load->helper('url');
 		$this->load->library('PayPal');
 		$this->load_model(array('Order', 'Payment'));
-
-
-		$order_id = $this->_create_order();
 
 		$payment = array(
 			'user_id' => $this->session->userdata('userID'),
@@ -111,11 +108,12 @@ class Checkout extends Main_Controller
 		$this->load_view($data);
 	}
 
-	public function address()
+	public function address($order_id)
 	{
 		$this->redirect_user('');
 
 		$this->load->model('address_model');
+		$this->load->model('Order_model');
 		$this->load->model('Country_model');
 		$this->load->library('form_validation');
 
@@ -159,9 +157,14 @@ class Checkout extends Main_Controller
 					'checkout'			=>	true,
 				);
 
+				$this->Order_model->update(array(
+					'shipping_address' 	=> $this->input->post('saddress'),
+					'billing_address'	=> $this->input->post('baddress'),
+				), $order_id);
+
 				$this->session->set_userdata($session);
 
-				redirect('checkout/paymentmethods');
+				redirect('checkout/paymentmethods/' . $order_id);
 
 			} // end of if
 
@@ -170,7 +173,7 @@ class Checkout extends Main_Controller
 		$this->load_view($data);
 	}
 
-	public function paymentMethods()
+	public function paymentMethods($order_id)
 	{
 		$this->redirect_user('');
 
@@ -184,7 +187,7 @@ class Checkout extends Main_Controller
 		);
 
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
-			redirect('checkout');
+			redirect('checkout/first/' . $order_id);
 		}
 
 		$this->load_view($data);
