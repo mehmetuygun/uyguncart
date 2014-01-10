@@ -1,7 +1,5 @@
 $(document).ready(function() {
-	$('#option_product').change(function() {
-		ajax($(this).val());
-	}).trigger('change');
+		ajax('latestproduct');
 });
 
 function fileExists(url) {
@@ -44,13 +42,14 @@ function display(data) {
 		html += '<a class="thumbnail" href="'+p_url+'">';
 		html += '<img alt="200x150" src="'+img_src+'" /></a>';
 		html += '<div class="caption">';
-		html += '<h4><a href="'+p_url+'">'+data[i].name+'</a></h4>';
-		html += '<h4><span class="price">$'+data[i].price+'</span></h4>';
-		html += '<form action="'+cart_url+'" method="post">';
-		html += '<input type="hidden" value="'+data[i].product_id+'" name="product_id" />';
-		html += '<button type="submit" class="btn btn-primary" style="width:100%">';
-		html += 'Add To Cart';
-		html += '</button></form></div></div></div>';
+		html += '<h5><a href="'+p_url+'">'+data[i].name+'</a></h5>';
+		html += '<h5><span class="price">$'+data[i].price+'</span></h5>';
+		// html += '<form action="'+cart_url+'" method="post">';
+		// html += '<input type="hidden" value="'+data[i].product_id+'" name="product_id" />';
+		// html += '<button type="submit" class="btn btn-primary" style="width:100%">';
+		// html += 'Add To Cart';
+		// html += '</button></form>';
+		html += '</div></div></div>';
 
 		if (i==2 || i==5 || i==8) {
 			html += '</div>';

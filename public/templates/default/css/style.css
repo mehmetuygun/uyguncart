@@ -44,12 +44,6 @@ code {
     padding: 10px;
     border-radius: 0 0 4px 4px;
 }
-.price {
-    color: red;
-}
-.price :hover {
-    color: red;
-}
 .f-space {
     margin-top: 10px;
 }
@@ -68,8 +62,7 @@ code {
     padding:5px 0;
 }
 .price {
-    color: orange;
-    font-size: 16px;
+    color: black;
     font-weight: bold;
 }
 .main-image {
@@ -179,7 +172,7 @@ code {
     color: black;
 }
 .display_products {
-    margin-top: 50px;
+    margin-top: 15px;
 }
 #product_detail_header {
     background-color: #f8f8f8;
