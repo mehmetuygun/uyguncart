@@ -50,7 +50,8 @@ class Checkout extends Main_Controller
 	public function complete($payment_id)
 	{
 		$this->load->library('PayPal');
-		$this->load_model(array('Payment', 'OrderItem'));
+		$this->load->model('Payment_model');
+		$this->load->model('OrderItem_model');
 
 		$this->Payment_model->set($payment_id);
 		$execute_url = $this->Payment_model->execute_url;
@@ -149,14 +150,7 @@ class Checkout extends Main_Controller
 
 			$this->form_validation->set_rules($config);
 
-			if($this->form_validation->run() == TRUE) {
-
-				$session = array(
-					'shippingAddress' 	=>	$this->input->post('saddress'),
-					'billingAddress'	=>	$this->input->post('baddress'),
-					'checkout'			=>	true,
-				);
-
+			if ($this->form_validation->run() == true) {
 				$this->Order_model->update(array(
 					'shipping_address' 	=> $this->input->post('saddress'),
 					'billing_address'	=> $this->input->post('baddress'),
