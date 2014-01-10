@@ -1,4 +1,3 @@
-				<hr>
 			</div>
 			<div id="push"></div>
 			<!-- End of wrap -->

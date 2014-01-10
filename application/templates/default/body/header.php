@@ -33,26 +33,20 @@
                     </span>
                 </div>
             </div>
-            <div class="navbar navbar-default navbar-static-top">
-                <div class="container no-padding">
-                    <div class="row">
-                            <div class="col-lg-3">
-                                <a class="navbar-brand" href="<?php echo base_url(); ?>">UygunCart</a>
-                            </div>
-                            <div class="col-lg-9">
-                            <form class="navbar-form pull-left" action="<?php echo base_url('search') ?>" method="get">
-                                <input type="text" name="q" class="form-control" id="search" placeholder="Search" value="<?php if(isset($_GET["q"])) echo $_GET["q"]; ?>">
-                                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
-                            </form>
-                            <span class="navbar-form pull-right no-padding">
-                                <a href="<?php echo base_url('cart') ?>" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    Cart (<?php echo $cart_item_count ?>)
-                                </a>
-                            </span>
-                            </div>
-                        </div>
-                </div>
+            <div class="container no-padding">
+                <nav class="navbar navbar-default" role="navigation">
+                    <a class="navbar-brand" href="<?php echo base_url(); ?>">UygunCart</a>
+                    <form class="navbar-form pull-left" action="<?php echo base_url('search') ?>" method="get">
+                        <input type="text" name="q" class="form-control" id="search" placeholder="Search" value="<?php if(isset($_GET["q"])) echo $_GET["q"]; ?>">
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                    </form>
+                    <span class="navbar-form pull-right">
+                        <a href="<?php echo base_url('cart') ?>" class="btn btn-success">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            Cart (<?php echo $cart_item_count ?>)
+                        </a>
+                    </span>
+                </nav>
             </div>
 
 			<div class="container no-padding">
