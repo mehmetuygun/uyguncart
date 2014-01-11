@@ -2,38 +2,33 @@
 			<div id="push"></div>
 			<!-- End of wrap -->
 		</div>
-		<div id="footer">
-			<div class="container">
+		<div class="container no-padding">
+			<div id="footer">
 				<div class="row">
-					<div class="col-md-3">
-						<h4>Information</h4>
+					<div class="col-md-4">
+						<h4>Pages</h4>
 						<ul class="list-unstyled">
 							<li><a href="#">About</a></li>
 							<li><a href="#">Contact</a></li>
+							<li><a href="#">Term and Condition</a></li>
 							<li><a href="#">Help</a></li>
 						</ul>
 					</div>
-					<div class="col-md-3">
-						<h4>Follow us on</h4>
-						<ul class="list-unstyled">
-							<li><a href="#">Facebook</a></li>
-							<li><a href="#">Twitter</a></li>
-							<li><a href="#">Google+</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<h4>Categories</h4>
 						<ul class="list-unstyled">
 							<li><a href="#">Software</a></li>
 							<li><a href="#">Hardware</a></li>
 							<li><a href="#">Electronic</a></li>
-							<li><a href="#">Gift</a></li>
+							<li><a href="#">...</a></li>
 						</ul>
 					</div>
-					<div class="col-md-3">
-						<h4>Payment</h4>
+					<div class="col-md-4">
+						<h4>Follow us on</h4>
 						<ul class="list-unstyled">
-							<li><a href="#">Payment method</a></li>
+							<li><a href="#">Facebook</a></li>
+							<li><a href="#">Google+</a></li>
+							<li><a href="#">Twitter</a></li>
 						</ul>
 					</div>
 				</div>
