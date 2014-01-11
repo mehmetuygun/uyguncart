@@ -40,6 +40,7 @@ class Order extends Admin_Controller
 			'order_by' => 'order_id',
 			'sort' => 'desc',
 			'page' => $page,
+			'join' => array('user', 'user.user_id = order.user_id'),
 		);
 
 		$orders = $this->Order_model->fetch($params);
