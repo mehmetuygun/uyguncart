@@ -5,7 +5,7 @@ class Product extends Main_Controller
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->view('index');
+		redirect();
 	}
 
 	public function id($id)

@@ -35,8 +35,6 @@ class Search extends Main_Controller
 			$params['filter']['category_id'] = $category_id;
 		}
 
-
-
 		$data = array(
 			'mainview' => 'search',
 			'title' => $query,

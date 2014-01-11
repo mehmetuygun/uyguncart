@@ -50,15 +50,9 @@ class User extends Main_Controller
 				'type' => 2
 			);
 
-			if ($this->User_model->insert($data)) {
-				$session = array(
-					'userID' => $this->User_model->user_id,
-					'userFirstName' => $this->input->post('first_name'),
-					'userLastName' => $this->input->post('last_name'),
-					'userFullName' =>  $this->input->post('first_name').' '.$this->input->post('last_name'),
-					'userLoggedIn' => true
-				);
-				$this->session->set_userdata($session);
+			if ($userID = $this->User_model->insert($data)) {
+				$this->User_model->set($userID);
+				$this->_set_session_data();
 				redirect();
 			}
 		}
@@ -94,14 +88,7 @@ class User extends Main_Controller
 
 		if ($this->form_validation->run() == true) {
 			if ($this->User_model->login($this->input->post('email'), $this->input->post('password'), 2)) {
-				$session = array(
-					'userID' => $this->User_model->user_id,
-					'userFirstName' => $this->User_model->first_name,
-					'userLastName' => $this->User_model->last_name,
-					'userFullName' =>  $this->User_model->first_name.' '.$this->User_model->last_name,
-					'userLoggedIn' => true
-				);
-				$this->session->set_userdata($session);
+				$this->_set_session_data();
 				redirect();
 			}
 		}
@@ -173,7 +160,7 @@ class User extends Main_Controller
 					$data['alert_message'] = 'Your data has been updated successfully.';
 					$data['alert_class'] = 'alert-success';
 					$this->User_model->set($userID);
-					$this->session->set_userdata($update);
+					$this->_set_session_data();
 				} else {
 					$data['alert_message'] = 'Something went wrong.';
 					$data['alert_class'] = 'alert-error';
@@ -232,5 +219,18 @@ class User extends Main_Controller
 		}
 
 		$this->load_view($data);
+	}
+
+	private function _set_session_data()
+	{
+		$session = array(
+			'userID' => $this->User_model->user_id,
+			'userFirstName' => $this->User_model->first_name,
+			'userLastName' => $this->User_model->last_name,
+			'userFullName' =>  $this->User_model->first_name.' '.$this->User_model->last_name,
+			'userLoggedIn' => true
+		);
+
+		$this->session->set_userdata($session);
 	}
 }
