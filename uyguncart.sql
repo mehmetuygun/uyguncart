@@ -465,11 +465,9 @@ INSERT INTO `country` (`country_id`, `code`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `setting` (
-  `setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
+  `name` char(50) CHARACTER SET latin1 NOT NULL,
   `value` text NOT NULL,
-  PRIMARY KEY (`setting_id`),
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
