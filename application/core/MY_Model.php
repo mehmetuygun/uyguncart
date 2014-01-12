@@ -100,6 +100,27 @@ class MY_Model extends CI_Model
 	}
 
 	/**
+	 * Resets the variables in case fetch method is being used
+	 * multiple times in the same instance of the model
+	 *
+	 * @return void
+	 */
+	public function clear()
+	{
+		$this->pagecount = null;
+		$this->page = 1;
+		$this->entries = null;
+		$this->limit = 10;
+		$this->search_term = '';
+		$this->order_by = null;
+		$this->search_field = null;
+		$this->filter = array();
+		$this->join = array();
+		$this->select = array();
+		$this->sort = 'asc';
+	}
+
+	/**
 	 * Fetch multiple rows with joins and filters
 	 *
 	 * @param  array  $params List of parameters
