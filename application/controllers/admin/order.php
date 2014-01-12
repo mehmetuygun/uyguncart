@@ -56,4 +56,11 @@ class Order extends Admin_Controller
 
 		$this->output_json($array);
 	}
+
+	public function get_order()
+	{
+		
+
+		$this->output_json($array);
+	}
 }
