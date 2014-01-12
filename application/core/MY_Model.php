@@ -15,6 +15,7 @@ class MY_Model extends CI_Model
 	protected $search_field;
 	protected $filter = array();
 	protected $join = array();
+	protected $select = array();
 	protected $sort = 'asc';
 
 	/**
@@ -122,6 +123,8 @@ class MY_Model extends CI_Model
 		if (isset($this->join[0]) && !is_array($this->join[0])) {
 			$this->join = array($this->join);
 		}
+
+		$this->db->select($this->select);
 
 		$this->db->from($this->table);
 		// Do the like
