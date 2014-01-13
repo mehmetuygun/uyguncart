@@ -72,11 +72,11 @@
 	                    		echo '<tr>';
 	                    		echo '<td>'.$item['name'].'</td>';
 	                    		echo '<td>'.$item['quantity'].'</td>';
-	                    		echo '<td>$'.$item['unit_price'].'</td>';
-	                    		echo '<td>$'.($item['quantity']*$item['unit_price']).'</td>';
+	                    		echo '<td>$'.number_format($item['unit_price'], 2).'</td>';
+	                    		echo '<td>$'.number_format(($item['quantity']*$item['unit_price']), 2).'</td>';
 	                    		echo '</tr>';	 	
 	                    	}
-	                    	echo '<tr><td colspan="3">Total Price:</td><td>$'.$total.'</td></tr>';
+	                    	echo '<tr><td colspan="3">Total Price:</td><td>$'.number_format($total, 2).'</td></tr>';
                     	?>
                     	</tbody>
                 	</table>
