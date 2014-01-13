@@ -2,6 +2,13 @@
 
 class User extends Main_Controller
 {
+	public function index()
+	{
+		$this->redirect_user('user/login');
+
+		redirect('user/account');
+	}
+
 	public function register()
 	{
 		$this->load->library('form_validation');
