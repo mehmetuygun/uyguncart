@@ -9,9 +9,11 @@ class Home extends Admin_Controller
 			'breadcrumb' => array(
 				'last' => 'Dashboard'
 			),
-			'mainview' => 'home'
+			'mainview' => 'home',
+			'js' => array('home.js'),
 		);
 
 		$this->load_view($data);
 	}
+
 }
