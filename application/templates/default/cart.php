@@ -8,9 +8,10 @@
 			echo '</div>';
 		}
 		if(!$items) {
-			echo '<div class="alert alert-warning">';
+			echo '<div class="alert alert-info">';
 			echo 'Your shopping cart is empty.';
 			echo '</div>';
+			echo '<a href="'.base_url().'" class="btn btn-default">Back to Home Page</a>';
 		} else {
 			?>
 			<table class="table table-bordered">
