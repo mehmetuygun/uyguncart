@@ -71,9 +71,10 @@ class Order extends Admin_Controller
 				),
 			'join'		=> 	array('user', 'user.user_id = order.user_id'),
 			'filter' => array('order_id' => $order_id),
-			);
+		);
 
 		$order = $this->Order_model->fetch($params);
+		$this->Order_model->clear();
 
 		$params = array(
 			'select' => array(
@@ -96,7 +97,6 @@ class Order extends Admin_Controller
 		);
 
 		$shipping = $this->Order_model->fetch($params);
-
 		$this->Order_model->clear();
 
 		$params = array(
@@ -131,11 +131,9 @@ class Order extends Admin_Controller
 		);
 
 		$items = $this->Order_model->fetch($items_array);
-		$this->Order_model->clear();
 
 		$data = array('order' => $order, 'shipping' => $shipping, 'billing' => $billing, 'items' => $items);
-		
 
-		$this->load->view('admin\order_detail', $data);
+		$this->load->view('admin/order_detail', $data);
 	}
 }
