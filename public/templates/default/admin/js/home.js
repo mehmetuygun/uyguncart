@@ -3,7 +3,7 @@ $(function(){
 });
 
 function ajax() {
-	$.post('admin/order/ajax', {page:1}, function(data) {
+	$.post('order/ajax', {page:1}, function(data) {
 		draw_table(data[0]);
 	});
 }
