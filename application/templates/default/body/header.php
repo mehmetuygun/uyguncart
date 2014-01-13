@@ -53,4 +53,4 @@
                 </div>
             </div>
 
-			<div class="container no-padding">
+			<div class="container no-padding" id="content_body">
