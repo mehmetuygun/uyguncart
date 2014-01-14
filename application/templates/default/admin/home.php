@@ -24,7 +24,7 @@
 			html += '<td>'+data[i]['first_name']+' '+data[i]['last_name']+'</td>';
 			html += '<td>$'+data[i]['total_price']+'</td>';
 			html += '<td>'+data[i]['added_date']+'</td>';
-			html += '<td><a href="'+base_url+'admin/order/get_order/'+data[i]['order_id']+'" class="view" data-toggle="modal" data-orderid="'+data[i]['order_id']+'" data-target="#OrderDetail">View</a></td>';
+			html += '<td><a href="'+base_url+'admin/order/get_order/'+data[i]['order_id']+'" class="view" data-toggle="modal" data-target="#OrderDetail">View</a></td>';
 			html += '</tr>';
 		}
 		$("#OrderTable tbody").html(html);
