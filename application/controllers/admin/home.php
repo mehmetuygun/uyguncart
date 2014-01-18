@@ -2,7 +2,7 @@
 
 class Home extends Admin_Controller
 {
-	public function Index()
+	public function index()
 	{
 		$data = array(
 			'title' => 'Home',
@@ -15,5 +15,4 @@ class Home extends Admin_Controller
 
 		$this->load_view($data);
 	}
-
 }

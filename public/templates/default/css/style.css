@@ -170,7 +170,7 @@ code {
     border-bottom: 1px solid rgb(226, 226, 226);
 }
 #footer a {
-    color: dimGray;
+    color: #696969;
 }
 #footer a:hover {
     color: black;
