@@ -3,15 +3,24 @@
 class Address extends Main_Controller
 {
 	/**
+	 * Construct address controller
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->redirect_user('user/login');
+
+		$this->load->model('Address_model');
+	}
+
+	/**
 	 * Shows the main address view
 	 *
 	 * @return void
 	 */
 	public function index()
 	{
-		$this->redirect_user('user/login');
-
-		$this->load->model('Address_model');
 		$this->load->model('Country_model');
 
 		$userID = $this->session->userdata('userID');
@@ -36,9 +45,6 @@ class Address extends Main_Controller
 	 */
 	public function get_list()
 	{
-		$this->redirect_user('user/login');
-
-		$this->load->model('Address_model');
 		$this->load->model('Country_model');
 
 		$userID = $this->session->userdata('userID');
@@ -70,13 +76,10 @@ class Address extends Main_Controller
 	 */
 	public function edit($id)
 	{
-		$this->redirect_user('user/login');
-
 		$response = array('success' => false);
 		$is_post = $this->input->server('REQUEST_METHOD') === 'POST';
 
 		$this->load->library('form_validation');
-		$this->load->model('Address_model');
 		$userID = $this->session->userdata('userID');
 
 		if ($id) {
@@ -205,7 +208,6 @@ class Address extends Main_Controller
 	{
 		$response = array('success' => false);
 
-		$this->load->model('Address_model');
 		$userID = $this->session->userdata('userID');
 
 		// Validate address id
