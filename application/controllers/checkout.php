@@ -113,7 +113,7 @@ class Checkout extends Main_Controller
 	{
 		$this->redirect_user('');
 
-		$this->load->model('address_model');
+		$this->load->model('Address_model');
 		$this->load->model('Order_model');
 		$this->load->model('Country_model');
 		$this->load->library('form_validation');

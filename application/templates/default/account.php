@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="list-group">
-		  	<a href="<?php echo base_url('user/account')?>" class="list-group-item active">Account</a>
-		  	<a href="<?php echo base_url('address')?>" class="list-group-item">Address</a>
-		  	<a href="<?php echo base_url('user/password')?>" class="list-group-item">Password</a>
+			<a href="<?php echo base_url('user/account')?>" class="list-group-item active">Account</a>
+			<a href="<?php echo base_url('address')?>" class="list-group-item">Address</a>
+			<a href="<?php echo base_url('user/password')?>" class="list-group-item">Password</a>
 		</div>
 	</div>
 	<div class="col-md-9">
@@ -57,7 +57,5 @@
 				</form>
 			</div>
 		</div>
-		
 	</div>
-
 </div>

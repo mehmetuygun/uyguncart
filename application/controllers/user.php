@@ -151,7 +151,7 @@ class User extends Main_Controller
 				}
 			}
 
-			if (empty($update)) {
+			if ($update) {
 				$data['alert_message'] = 'Enter data you want to update.';
 				$data['alert_class'] = 'alert-error';
 			} else {
@@ -217,7 +217,7 @@ class User extends Main_Controller
 
 		$this->form_validation->set_rules($rules);
 
-		if($this->form_validation->run() == TRUE) {
+		if($this->form_validation->run() == true) {
 			$update = array('password' => $this->input->post('new-password'));
 			if($this->User_model->update($update, $this->session->userdata('userID'))) {
 				$data['alert_message'] = 'The password is updated.';

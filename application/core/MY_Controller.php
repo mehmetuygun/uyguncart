@@ -6,6 +6,7 @@ class Base_Controller extends CI_Controller
 	 * Adds content type json header and prints out json encoded version
 	 *
 	 * @param  array  $array Array to be json encoded
+	 *
 	 * @return void
 	 */
 	public function output_json(array $array)
@@ -19,6 +20,7 @@ class Base_Controller extends CI_Controller
 	 * Loads list of models into the controller
 	 *
 	 * @param  mixed $models Name of the model or array of model names
+	 *
 	 * @return void
 	 */
 	public function load_model($models)
@@ -49,6 +51,7 @@ class Admin_Controller extends Base_Controller
 	 * Load default view using the data provided
 	 *
 	 * @param  array  $data Data to be provided to the view
+	 *
 	 * @return void
 	 */
 	public function load_view($data = array())
@@ -76,6 +79,7 @@ class Main_Controller extends Base_Controller
 	 * Load default view using the data provided
 	 *
 	 * @param  array  $data Data to be provided to the view
+	 *
 	 * @return void
 	 */
 	public function load_view($data = array())
@@ -102,6 +106,7 @@ class Main_Controller extends Base_Controller
 	 * Check if the user is logged in and redirect to specified url otherwise
 	 *
 	 * @param  string $url Url to redirect to
+	 *
 	 * @return void
 	 */
 	public function redirect_user($url)

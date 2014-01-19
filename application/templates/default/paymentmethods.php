@@ -7,10 +7,10 @@
 		<br>
 		<form method="POST" action="">
 			<div class="radio">
-			  	<label>
-			    	<input type="radio" name="paymentMethod" value="1" checked>
-			    	<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;">
-			  	</label>
+				<label>
+					<input type="radio" name="paymentMethod" value="1" checked>
+					<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;">
+				</label>
 			</div>
 			<br>
 			<hr>
