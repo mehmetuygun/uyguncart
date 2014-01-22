@@ -9,8 +9,8 @@
 	<div class="col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-body">
-  				<h3>Account <small>Change basic account information.</small></h3>
-  				<hr>
+				<h3>Account <small>Change basic account information.</small></h3>
+				<hr>
 				<div class="space"></div>
 				<?php
 				if(isset($alert_message)){

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-		ajax('latestproduct');
+	ajax('latestproduct');
 });
 
 function fileExists(url) {

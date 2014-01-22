@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  	<li><a href="#">Home</a></li>
+	<li><a href="#">Home</a></li>
 <?php
 $cat_array = explode(' / ', $cat_path);
 for($i=0;$i<count($cat_array);$i++) {

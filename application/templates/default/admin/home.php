@@ -1,7 +1,7 @@
 <div class="navbar">
-  	<div class="navbar-inner">
-    	<a class="brand" href="#">Latest 10 Order</a>
-  	</div>
+	<div class="navbar-inner">
+		<a class="brand" href="#">Latest 10 Order</a>
+	</div>
 </div>
 <table class="table table-bordered" id="OrderTable">
 	<thead>

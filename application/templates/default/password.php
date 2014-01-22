@@ -1,16 +1,16 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="list-group">
-		  	<a href="<?php echo base_url('user/account')?>" class="list-group-item">Account</a>
-		  	<a href="<?php echo base_url('address')?>" class="list-group-item">Address</a>
-		  	<a href="<?php echo base_url('user/password')?>" class="list-group-item active">Password</a>
+			<a href="<?php echo base_url('user/account')?>" class="list-group-item">Account</a>
+			<a href="<?php echo base_url('address')?>" class="list-group-item">Address</a>
+			<a href="<?php echo base_url('user/password')?>" class="list-group-item active">Password</a>
 		</div>
 	</div>
 	<div class="col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-body">
-  				<h3>Password <small>Change password.</small></h3>
-  				<hr>
+				<h3>Password <small>Change password.</small></h3>
+				<hr>
 				<?php
 				if(isset($alert_message)){
 					echo '<div class="alert '.$alert_class.'">';

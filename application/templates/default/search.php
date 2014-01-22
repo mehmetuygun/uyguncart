@@ -8,12 +8,11 @@
 			<h4>Category</h4>
 			<ul class="list-unstyled">
 			<?php
-			// $cat_list = isset($categories['']) ? $categories[''] : array();
 			if(isset($subcategory)) {
-					if(isset($cid) and $cid == $subcategory['category_id'])
-						echo '<li class="active"><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
-					else 
-						echo '<li><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
+				if(isset($cid) and $cid == $subcategory['category_id'])
+					echo '<li class="active"><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
+				else 
+					echo '<li><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
 				echo '<ul class="ul-sb">';
 			}
 
