@@ -18,6 +18,16 @@ class Image_model extends MY_Model
 		parent::initialize('object_image', 'image_id');
 	}
 
+	/**
+	 * Save uploaded image into the system
+	 *
+	 * @param  string  $input    Name of the file input
+	 * @param  string  $obj_type Type of the object the image was uploaded for
+	 * @param  integer $obj_id   ID of the object
+	 * @param  string  $prefix   Prefix for the file names
+	 *
+	 * @return string           The error or the ID of the image
+	 */
 	public function upload($input, $obj_type, $obj_id, $prefix)
 	{
 		$this->load->database();
@@ -63,6 +73,14 @@ class Image_model extends MY_Model
 			 : $imageID;
 	}
 
+	/**
+	 * Create thumbnails for the image
+	 *
+	 * @param  string $source_image Path of the source image
+	 * @param  string $f_name       Name of the image file
+	 *
+	 * @return array                List of sizes generated for the image
+	 */
 	public function create_thumbnails($source_image, $f_name = null)
 	{
 		$images_dir = FCPATH . static::$img_path;
@@ -98,6 +116,13 @@ class Image_model extends MY_Model
 		return $sizes;
 	}
 
+	/**
+	 * Delete image
+	 *
+	 * @param  integer $id ID of the image to be deleted
+	 *
+	 * @return boolean     True if delete succeeded
+	 */
 	public function delete($id)
 	{
 		$this->load->database();
