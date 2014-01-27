@@ -35,7 +35,7 @@
             </div>
             <div class="container no-padding">
                 <div class="row">
-                    <div class="col-lg-3">Logo</div>
+                    <div class="col-lg-3"><a href="<?php echo base_url() ?>">UygunCart</a></div>
                     <div class="col-lg-9">
                         <nav class="navbar navbar-default" role="navigation">
                             <form class="navbar-form pull-left" action="<?php echo base_url('search') ?>" method="get">
