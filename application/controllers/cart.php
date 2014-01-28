@@ -33,7 +33,6 @@ class Cart extends Main_Controller
 		} else if (isset($productID)) {
 			$this->Product_model->set($productID);
 			if ($this->Product_model->status) {
-
 				$cart = array(
 					'id' => $this->Product_model->product_id,
 					'qty' => 1,

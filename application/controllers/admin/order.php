@@ -59,17 +59,17 @@ class Order extends Admin_Controller
 
 	public function get_order($order_id)
 	{
-
 		$params = array(
-			'select'	=>	array('user.user_id', 
+			'select' => array(
+				'user.user_id', 
 				'user.first_name', 
 				'user.last_name',
 				'user.email',
 				'order.total_price',
 				'order.added_date',
 				'order.order_id',
-				),
-			'join'		=> 	array('user', 'user.user_id = order.user_id'),
+			),
+			'join' => array('user', 'user.user_id = order.user_id'),
 			'filter' => array('order_id' => $order_id),
 		);
 
