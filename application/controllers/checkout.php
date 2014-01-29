@@ -200,4 +200,22 @@ class Checkout extends Main_Controller
 
 		return $order_id;
 	}
+
+	private function _validate_order($order_id)
+	{
+		$this->load->model('Order_model');
+
+		if ($order_id) {
+			$orders = $this->Order_model->fetch(array(
+				'filter' => array(
+					'user_id' => $this->session->userdata('userID'),
+					'order_id' => $order_id,
+				),
+			));
+
+			return true;
+		}
+
+		redirect('checkout');
+	}
 }
