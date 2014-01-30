@@ -12,6 +12,9 @@ class Checkout extends Main_Controller
 
 	public function first($order_id)
 	{
+		$this->redirect_user('');
+		$this->_validate_order($order_id);
+
 		$this->load->helper('url');
 		$this->load->library('PayPal');
 		$this->load_model(array('Order', 'Payment'));
@@ -112,6 +115,7 @@ class Checkout extends Main_Controller
 	public function address($order_id)
 	{
 		$this->redirect_user('');
+		$this->_validate_order($order_id);
 
 		$this->load->model('Address_model');
 		$this->load->model('Order_model');
@@ -170,6 +174,7 @@ class Checkout extends Main_Controller
 	public function paymentMethods($order_id)
 	{
 		$this->redirect_user('');
+		$this->_validate_order($order_id);
 
 		if($this->cart->total_items() == 0) {
 			redirect();
