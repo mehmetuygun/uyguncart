@@ -12,6 +12,8 @@ Set database connection settings in [application/config/database.php](https://gi
 
 ``$db['default']['hostname']``, ``$db['default']['username']``, ``$db['default']['password']``, and ``$db['default']['database']``
 
+Set $client_id and $secret in [application/libraries/PayPal.php](https://raw.github.com/uyguncyp/uyguncart/master/application/libraries/PayPal.php) to make PayPal work 
+
 Usage
 -----
 ### Admin Login
