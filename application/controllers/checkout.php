@@ -131,14 +131,12 @@ class Checkout extends Main_Controller
 			'title' => 'Checkout Address',
 			'countries' => $this->Country_model->get_countries(),
 			'js' => array('address.js', 'checkout.js'),
+			'addresses' => $this->Address_model->fetch(array(
+				'filter'=> array('user_id'=> $this->session->userdata('userID'))
+			)),
 		);
 
-		$data['addresses'] = $this->address_model->fetch(array(
-			'filter'=> array('user_id'=> $this->session->userdata('userID'))
-		));
-
-		if($this->input->server("REQUEST_METHOD") == 'POST') {
-
+		if ($this->input->server("REQUEST_METHOD") == 'POST') {
 			$config = array(
 			   array(
 					'field'   => 'saddress',
@@ -163,10 +161,8 @@ class Checkout extends Main_Controller
 				$this->session->set_userdata($session);
 
 				redirect('checkout/paymentmethods/' . $order_id);
-
-			} // end of if
-
-		} // end of request method
+			}
+		}
 
 		$this->load_view($data);
 	}
@@ -221,6 +217,7 @@ class Checkout extends Main_Controller
 			return true;
 		}
 
+		// Invalid order id, create a new order
 		redirect('checkout');
 	}
 }
