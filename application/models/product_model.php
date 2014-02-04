@@ -19,6 +19,13 @@ class Product_model extends MY_Model
 		parent::initialize('product', 'product_id');
 	}
 
+	/**
+	 * Inserts a new product with added_date
+	 *
+	 * @param  array  $field Details of the product
+	 *
+	 * @return integer       ID of the created address
+	 */
 	public function insert($field)
 	{
 		$field['added_date'] = date('Y-m-d H:i:s');
@@ -26,6 +33,13 @@ class Product_model extends MY_Model
 		return parent::insert($field);
 	}
 
+	/**
+	 * ID of the product to be deleted
+	 *
+	 * @param  integer $id ID of the product
+	 *
+	 * @return boolean Success
+	 */
 	public function delete($id)
 	{
 		$this->load->database();
@@ -42,6 +56,11 @@ class Product_model extends MY_Model
 		return parent::delete($id);
 	}
 
+	/**
+	 * Gets all the images assigned to the product
+	 *
+	 * @return array List of images
+	 */
 	public function get_images()
 	{
 		$this->load->model('Image_model');
@@ -62,6 +81,13 @@ class Product_model extends MY_Model
 		return $this->productImages;
 	}
 
+	/**
+	 * Uploads images for the product
+	 *
+	 * @param  string|array $inputs List of inputs to get the images from
+	 *
+	 * @return mixed        Errors if there is any, otherwise true
+	 */
 	public function upload_image($inputs = null)
 	{
 		$this->load->database();
@@ -104,6 +130,13 @@ class Product_model extends MY_Model
 		return $upload_errors ? $upload_errors : true;
 	}
 
+	/**
+	 * Deletes an image and unassigns the image from the product
+	 *
+	 * @param  integer $id ID of the image to be deleted
+	 *
+	 * @return boolean     True if successful
+	 */
 	public function delete_image($id)
 	{
 		$this->load->database();
