@@ -83,15 +83,4 @@ class User_model extends MY_Model
 
 		return true;
 	}
-
-	public function insert($data)
-	{
-		$this->load->database();
-		if($this->db->insert('user', $data)) {
-			$this->user_id = $this->db->insert_id();
-			return true;
-		} else {
-			return false;
-		}
-	}
 }
