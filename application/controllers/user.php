@@ -151,14 +151,14 @@ class User extends Main_Controller
 				}
 			}
 
-			if ($update) {
+			if (!$update) {
 				$data['alert_message'] = 'Enter data you want to update.';
 				$data['alert_class'] = 'alert-error';
 			} else {
 				$this->form_validation->set_rules(
 					'password',
 					'Password',
-					'required|min_length[8]|max_length[64]|checkpassword'
+					'required|checkpassword'
 				);
 			}
 
