@@ -20,12 +20,12 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="btn-group" data-toggle="buttons" id="option_product">
-				  	<label class="btn btn-primary active" val="latest" id="sadasd">
-				    	<input type="radio" name="options" value="test"> Latest
-				  	</label>
-				  	<label class="btn btn-primary" val="bestseller">
-				    	<input type="radio" name="options"> Best Seller
-				  	</label>
+					<label class="btn btn-primary active" val="latest" id="sadasd">
+						<input type="radio" name="options" value="test"> Latest
+					</label>
+					<label class="btn btn-primary" val="bestseller">
+						<input type="radio" name="options"> Best Seller
+					</label>
 				</div>
 				<div class="display_products">
 				</div>
