@@ -132,6 +132,11 @@ class Main_Controller extends Base_Controller
 			'limit' => 9,
 		);
 
-		$this->output_json($this->Product_model->fetch($params));
+		$products = $this->Product_model->fetch($params);
+		array_walk($products, function (&$product) {
+			$product['price'] = number_format($product['price'], 2);
+		});
+
+		$this->output_json($products);
 	}
 }

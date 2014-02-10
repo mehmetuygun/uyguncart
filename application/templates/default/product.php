@@ -72,7 +72,7 @@ for($i=0;$i<count($cat_array);$i++) {
 					<tbody>
 						<tr>
 							<td>Price:</td>
-							<td><span class="price">$<?php echo $row->price; ?></span></td>
+							<td><span class="price">$<?php echo number_format($row->price, 2); ?></span></td>
 						</tr>
 						<tr>
 							<td>Share on</td>

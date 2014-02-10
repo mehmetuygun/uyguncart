@@ -50,7 +50,7 @@
 						echo '</form>';
 						echo '</td>';
 						echo '<td>';
-						echo '$' . $item['price'];
+						echo '$' . number_format($item['price'], 2);
 						echo '</td>';
 						echo '<td>';
 						echo '$' . number_format($item['subtotal'], 2);

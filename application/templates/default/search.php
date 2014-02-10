@@ -94,6 +94,7 @@
 							$img_src = $img_135_url . $row['full_name'];
 						}
 
+						$format_price = number_format($row['price'], 2);
 						echo <<<HTML
 						<div class="media">
 							<a class="pull-left" href="{$product_url}">
@@ -105,7 +106,7 @@
 								<h4 class="media-heading">
 									<a href="{$product_url}">{$row['name']}</a>
 								</h4>
-								<span class="price">\${$row['price']}</span>
+								<span class="price">\${$format_price}</span>
 							</div>
 						</div>
 HTML;
