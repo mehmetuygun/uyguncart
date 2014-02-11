@@ -4,7 +4,7 @@
 		</div>
 		<div class="container no-padding">
 			<div id="footer">
-			<p>@2014 UygunCart.com all right reserved.
+			<p>&copy; 2014 UygunCart All rights reserved.
 			<span class="pull-right">
 				Page: <a href="#">Home</a> <a href="#">About</a> <a href="#">Contact</a> <a href="#">Terms and Conditions</a>
 			</span></p>
