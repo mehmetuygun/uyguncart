@@ -27,5 +27,4 @@ class Country_model extends MY_Model
 		}
 		return $array;
 	}
-
 }

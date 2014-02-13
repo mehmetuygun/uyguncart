@@ -43,8 +43,8 @@ class Cart extends Main_Controller
 				$this->cart->insert($cart);
 			}
 		}
+
 		$data['items'] = $this->cart->contents();
 		$this->load_view($data);
 	}
-
 }
