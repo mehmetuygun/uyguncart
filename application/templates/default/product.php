@@ -99,6 +99,6 @@ for($i=0;$i<count($cat_array);$i++) {
 		<?php echo $row->description; ?>
 	</div>
 	<div class="tab-pane fade" id="comment">
-		<p>The comment is disabled.</p>
+		<p>Comments are disabled.</p>
 	</div>
 </div>
