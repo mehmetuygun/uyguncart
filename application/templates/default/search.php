@@ -9,7 +9,7 @@
 			<ul class="list-unstyled">
 			<?php
 			if(isset($subcategory)) {
-				if(isset($cid) and $cid == $subcategory['category_id'])
+				if(isset($cid) && $cid == $subcategory['category_id'])
 					echo '<li class="active"><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
 				else 
 					echo '<li><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
@@ -17,7 +17,7 @@
 			}
 
 			foreach ($categories as $cat) {
-				if(isset($cid) and $cid == $cat['category_id'])
+				if(isset($cid) && $cid == $cat['category_id'])
 					echo '<li class="active"><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
 				else 
 					echo '<li><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
@@ -43,12 +43,12 @@
 			if (!$products) {
 			?>
 				<div class="alert alert-warning">
-					No result found related with <strong><?php echo $q ?></strong>
+					No results found related with <strong>&apos;<?php echo $q ?>&apos;</strong>
 				</div>
 				<h4>Suggestion</h4>
 				<ul>
-					<li>Make sure the word is correct.</li>
-					<li>Try to search with similar word.</li>
+					<li>Make sure that all words are spelled correctly.</li>
+					<li>Try searching with different words.</li>
 				</ul>
 			<?php
 			} else if (!$q && !$cid) {
@@ -58,13 +58,13 @@
 				</div>
 				<h4>Suggestion</h4>
 				<ul>
-					<li>Make sure the word is entered.</li>
+					<li>Enter at least one character into the search box.</li>
 				</ul>
 			<?php
 			} else {
 			?>
 				<div class="alert alert-warning" style="margin-bottom:0">
-					<strong><?php echo $entries ?></strong> products are found for <strong><?php echo $q ?></strong>.
+					<strong><?php echo $entries ?></strong> products are found for <strong>&apos;<?php echo $q ?>&apos;</strong>.
 				</div>
 				<div class="pull-left pagination">
 					<form method="GET" action="" class="form-inline" role="form">
