@@ -78,6 +78,8 @@ class Checkout extends Main_Controller
 			));
 		}
 
+		$this->cart->destroy();
+
 		$data = array(
 			'mainview' => 'checkout',
 			'title' => 'Checkout',
