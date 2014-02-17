@@ -5,8 +5,8 @@ class Search extends Main_Controller
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->model('product_model');
-		$this->load->model('category_model');
+		$this->load->model('Product_model');
+		$this->load->model('Category_model');
 		$this->load->library('pagination');
 
 		$page = $this->input->get('page');
@@ -38,8 +38,8 @@ class Search extends Main_Controller
 		$data = array(
 			'mainview' => 'search',
 			'title' => $query,
-			'products' => $this->product_model->fetch($params),
-			'entries' => $this->product_model->entries,
+			'products' => $this->Product_model->fetch($params),
+			'entries' => $this->Product_model->entries,
 			'q' => $query,
 			'orderby' => $order_by,
 			'page' => $page,
@@ -49,15 +49,15 @@ class Search extends Main_Controller
 
 
 		if ($category_id) {
-			$this->category_model->set($category_id);
-			$categories = $this->category_model->get_subcategory($category_id);
+			$this->Category_model->set($category_id);
+			$categories = $this->Category_model->get_subcategory($category_id);
 			$data['cur_category'] = array(
-				'category_id' => $this->category_model->category_id,
-				'name' => $this->category_model->name,
-				'parent_id' => $this->category_model->parent_id,
+				'category_id' => $this->Category_model->category_id,
+				'name' => $this->Category_model->name,
+				'parent_id' => $this->Category_model->parent_id,
 			);
 		} else {
-			$categories = $this->category_model->get_subcategory(null);
+			$categories = $this->Category_model->get_subcategory(null);
 			$data['cur_category'] = null;
 		}
 
@@ -65,8 +65,8 @@ class Search extends Main_Controller
 
 		$config = array(
 			'base_url' => base_url('search') . '?q=' . $query.'&orderby=' . $order_by.'&cid='.$category_id,
-			'total_rows' => $this->product_model->entries,
-			'per_page' => $this->product_model->limit,
+			'total_rows' => $this->Product_model->entries,
+			'per_page' => $this->Product_model->limit,
 			'page_query_string' => true,
 			'first_link' => false,
 			'last_link' => false,
