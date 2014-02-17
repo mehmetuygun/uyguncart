@@ -4,8 +4,7 @@
 			<h4>Categories</h4>
 			<ul class="list-unstyled">
 			<?php
-			$cat_list = isset($categories['']) ? $categories[''] : array();
-			foreach ($cat_list as $cat) {
+			foreach ($categories as $cat) {
 				echo '<li><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
 			}
 			?>

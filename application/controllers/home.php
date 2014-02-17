@@ -10,7 +10,7 @@ class Home extends Main_Controller
 		$data = array(
 			'mainview' => 'index',
 			'title' => 'Home',
-			'categories' => $this->Category_model->group_by_parent(true),
+			'categories' => $this->Category_model->get_subcategory(null),
 			'js' => array('display_products.js', 'filter.js'),
 		);
 

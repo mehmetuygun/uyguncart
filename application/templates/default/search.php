@@ -8,22 +8,21 @@
 			<h4>Category</h4>
 			<ul class="list-unstyled">
 			<?php
-			if(isset($subcategory)) {
-				if(isset($cid) && $cid == $subcategory['category_id'])
-					echo '<li class="active"><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
-				else 
-					echo '<li><a href="#" onclick="change_filter(\'cid\', ', $subcategory['category_id'], ', true); return false">', $subcategory['name'], '</a></li>';
+			if (isset($cur_category)) {
+				$cat_link = '<a href="#" onclick="change_filter(\'cid\', ' . $cur_category['category_id'] . ', true); return false">' . $cur_category['name'] . '</a>';
+				if ($cid == $cur_category['category_id']) {
+					echo '<li class="active">', $cat_link,' <a href="#" onclick="change_filter(\'cid\', \'\', true); return false">&times;</a></li>';
+				} else {
+					echo "<li>{$cat_link}</li>";
+				}
 				echo '<ul class="ul-sb">';
 			}
 
 			foreach ($categories as $cat) {
-				if(isset($cid) && $cid == $cat['category_id'])
-					echo '<li class="active"><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
-				else 
-					echo '<li><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
+				echo '<li><a href="#" onclick="change_filter(\'cid\', ', $cat['category_id'], ', true); return false">', $cat['name'], '</a></li>';
 			}
 
-			if(isset($subcategory)) {
+			if (isset($cur_category)) {
 				echo '</ul>';
 			}
 			?>

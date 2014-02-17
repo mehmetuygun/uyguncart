@@ -47,29 +47,18 @@ class Search extends Main_Controller
 			'js' => array('filter.js'),
 		);
 
-		$this->category_model->set($category_id);
 
-		if (!empty($category_id)) {
+		if ($category_id) {
+			$this->category_model->set($category_id);
 			$categories = $this->category_model->get_subcategory($category_id);
-			$data['subcategory'] = array(
+			$data['cur_category'] = array(
 				'category_id' => $this->category_model->category_id,
 				'name' => $this->category_model->name,
 				'parent_id' => $this->category_model->parent_id,
 			);
 		} else {
-			if (!isset($this->category_model->parent_id)) {
-				$categories = $this->category_model->get_subcategory(null);
-				$data['subcategory'] = NULL;
-			} else {
-				$categories = $this->category_model->get_subcategory($this->category_model->parent_id);
-
-				$this->category_model->set($this->category_model->parent_id);
-				$data['subcategory'] = array(
-					'category_id' => $this->category_model->category_id,
-					'name' => $this->category_model->name,
-					'parent_id' => $this->category_model->parent_id,
-				);
-			}
+			$categories = $this->category_model->get_subcategory(null);
+			$data['cur_category'] = null;
 		}
 
 		$data['categories'] = $categories;

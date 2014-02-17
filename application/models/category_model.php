@@ -136,11 +136,14 @@ class Category_model extends MY_Model
 	 *	@param	integer	id of category
 	 *	@return	array	list of categories
 	 */
-
 	public function get_subcategory($category_id) {
 		$this->load->database();
-		$this->db->from('category')->where('parent_id', $category_id)->order_by('name');
-		$result = $this->db->get();
+
+		$result = $this->db->from('category')
+			->where('parent_id', $category_id)
+			->order_by('name')
+			->get();
+
 		return $result->result_array();
 	}
 }
