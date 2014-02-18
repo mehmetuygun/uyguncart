@@ -51,7 +51,7 @@ class Category extends Admin_Controller
 			array(
 				'field' => 'parentID',
 				'label' => 'Parent Category',
-				'rules' => 'category_exist'
+				'rules' => 'exists_null[category.category_id]'
 			),
 			array(
 				'field' => 'categoryName',
@@ -94,7 +94,7 @@ class Category extends Admin_Controller
 			$this->form_validation->set_rules(
 				'parentID',
 				'Parent Category',
-				'category_exist|not_sub_category['. $id .']'
+				'exists_null[category.category_id]|not_sub_category['. $id .']'
 			);
 			if ($cat_name_changed) {
 				$this->form_validation->set_rules(

@@ -38,21 +38,6 @@ class Category_model extends MY_Model
 	}
 
 	/**
-	 *	Check if category is exist.
-	 *
-	 *	@param string The id of category.
-	 *	@return boolean true for success
-	 */
-	public function category_exist($categoryID)
-	{
-		$this->load->database();
-		$this->db->from('category')
-			->where('category_id', $categoryID);
-
-		return $this->db->count_all_results() > 0;
-	}
-
-	/**
 	 *	Get category path.
 	 *
 	 *	@param	integer	Category ID.

@@ -49,21 +49,6 @@ class MY_Form_validation extends CI_Form_validation
 		return false;
 	}
 
-	/**
-	 * @param	string	The form element to be checked
-	 * @return	bool	valid
-	 */
-	public function category_exist($str)
-	{
-		$this->CI->load->model('Category_model');
-		$this->CI->form_validation->set_message('category_exist', 'The %s does not exist.');
-		if ($str == null) {
-			return true;
-		}
-
-		return $this->CI->Category_model->category_exist($str);
-	}
-
 	/*
 	 * @param	integer	Category to look for in the list of children
 	 * @param	integer	Category to check the children of
@@ -99,7 +84,7 @@ class MY_Form_validation extends CI_Form_validation
 	 */
 	public function exists($str, $field)
 	{
-		$this->CI->form_validation->set_message('exists', 'The %s field does not exists.');
+		$this->CI->form_validation->set_message('exists', 'The %s does not exist.');
 		list($table, $field) = explode('.', $field);
 		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
 
@@ -117,7 +102,7 @@ class MY_Form_validation extends CI_Form_validation
 			return true;
 		}
 
-		$this->CI->form_validation->set_message('exists', 'The %s field does not exists.');
+		$this->CI->form_validation->set_message('exists_null', 'The %s does not exist.');
 		list($table, $field) = explode('.', $field);
 		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
 
