@@ -24,7 +24,10 @@ class Product extends Main_Controller
 			'mainview' => 'product',
 			'title' => $this->Product_model->name,
 			'row' => $product,
-			'cat_path' => $this->Category_model->get_path($product->category_id),
+			'product_category' => $product->category_id,
+			'cat_anchestors' => $this->Category_model->get_anchestors(
+				$product->category_id
+			),
 			'images' => $images,
 			'js' => array('product.js'),
 		);

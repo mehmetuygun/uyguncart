@@ -1,15 +1,11 @@
 <ol class="breadcrumb">
-	<li><a href="#">Home</a></li>
+	<li><a href="<?php echo base_url() ?>">Home</a></li>
 <?php
-$cat_array = explode(' / ', $cat_path);
-for($i=0;$i<count($cat_array);$i++) {
-	if($i==count($cat_array)-1) {
-		echo '<li class="active">'.$cat_array[$i].'</li>'; 
-	} else {
-		echo '<li><a href="#">'.$cat_array[$i].'</a></li>';
-	}
+foreach ($cat_anchestors as $cat_id => $cat_name) {
+	echo '<li><a href="', base_url('search?q=&cid='), $cat_id, '">', $cat_name, '</a></li>';
 }
 ?>
+	<li class="active"><?php echo $row->name ?></li>
 </ol>
 <div class="panel panel-default" id="product_detail_header">
 	<div class="panel-body">

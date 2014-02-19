@@ -60,6 +60,33 @@ class Category_model extends MY_Model
 	}
 
 	/**
+	 * Get anchestors of the category indexed by their IDs
+	 *
+	 * @param  integer $id ID of the category
+	 *
+	 * @return array       List of categories
+	 */
+	public function get_anchestors($id)
+	{
+		if (!$id) {
+			return array();
+		}
+
+		$this->load->database();
+		$row = $this->db->from('category')
+			->where('category_id', $id)
+			->get()
+			->row();
+
+		if (!$row) {
+			return array();
+		}
+
+		return array($id => $row->name)
+			+ $this->get_anchestors($row->parent_id);
+	}
+
+	/**
 	 * Groups categories by their parent ID
 	 *
 	 * @return array category IDs grouped by their parent ID
