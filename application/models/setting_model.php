@@ -53,7 +53,7 @@ class Setting_model extends CI_Model
 				->count_all_results();
 
 			if (!$exists) {
-				$setting_row = array_merge($cond, $data);
+				$setting_row = $cond + $data;
 				$this->db->insert($this->table, $setting_row);
 			}
 		}
