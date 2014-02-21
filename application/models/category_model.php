@@ -24,10 +24,9 @@ class Category_model extends MY_Model
 	public function delete($categoryID)
 	{
 		$this->load->database();
-		$this->db->from('category')
-			->where('parent_id', $categoryID);
-
-		$query = $this->db->get();
+		$query = $this->db->from('category')
+			->where('parent_id', $categoryID)
+			->get();
 		foreach ($query->result() as $row) {
 			$this->delete($row->categoryID);
 		}
@@ -95,8 +94,9 @@ class Category_model extends MY_Model
 	{
 		$categories = array();
 		$this->load->database();
-		$this->db->from('category')->order_by('name');
-		$query = $this->db->get();
+		$query = $this->db->from('category')
+			->order_by('name')
+			->get();
 
 		foreach ($query->result_array() as $row) {
 			$parent_list = &$categories[$row['parent_id']];
@@ -130,16 +130,23 @@ class Category_model extends MY_Model
 	public function fetchAll($with_none = false, $skip = false)
 	{
 		$this->load->database();
-		$this->db->from('category');
-		$query = $this->db->get();
-		$field = array();
 
-		if ($with_none) $field[''] = '-- NONE --';
-		foreach ($query->result() as $row) {
-			if ($row->category_id === $skip) continue;
-		 	$field[$row->category_id] = $this->get_path($row->category_id);
+		$query = $this->db->from('category')
+			->get();
+		$list = array();
+
+		if ($with_none) {
+			$list[''] = '-- NONE --';
 		}
-		return $field;
+
+		foreach ($query->result() as $row) {
+			if ($row->category_id === $skip) {
+				continue;
+			}
+
+		 	$list[$row->category_id] = $this->get_path($row->category_id);
+		}
+		return $list;
 	}
 
 	/**
