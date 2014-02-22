@@ -31,10 +31,8 @@ function ajax(search, page) {
 	});
 }
 
-function check_all() {
-	$('tbody [type=checkbox]').each(function() {
-		this.checked = !this.checked;
-	});
+function check_all(checkbox) {
+	$('tbody [type=checkbox]').prop('checked', checkbox.checked);
 }
 
 function draw_page(data) {
