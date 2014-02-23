@@ -28,7 +28,7 @@ class Category_model extends MY_Model
 			->where('parent_id', $categoryID)
 			->get();
 		foreach ($query->result() as $row) {
-			$this->delete($row->categoryID);
+			$this->delete($row->category_id);
 		}
 
 		$data = array('category_id' => $categoryID);
