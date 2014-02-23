@@ -41,8 +41,9 @@ function draw_page(data) {
 	init_pagination();
 }
 
-function init_delete(){
-	$('.delete_one').unbind('click').on('click',function() {
+function init_delete() {
+	$('.delete_one').unbind('click').on('click', function(event) {
+		event.preventDefault();
 		checkboxValues = [$(this).attr("href").substring(1)];
 
 		if (!confirm('Are sure you want to delete?'))
