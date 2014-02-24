@@ -28,7 +28,7 @@ class User extends Main_Controller
 			),
 			array(
 				'field' => 're-password',
-				'label' => 'Re-password',
+				'label' => 'Confirm Password',
 				'rules' => 'required|matches[password]'
 			),
 			array(
@@ -81,13 +81,13 @@ class User extends Main_Controller
 
 		$rules = array(
 			array(
-				'field' => 'password',
-				'label' => 'Password',
+				'field' => 'email',
+				'label' => 'Email',
 				'rules' => 'required'
 			),
 			array(
-				'field' => 'email',
-				'label' => 'Email',
+				'field' => 'password',
+				'label' => 'Password',
 				'rules' => 'required'
 			),
 		);
@@ -210,8 +210,8 @@ class User extends Main_Controller
 			),
 			array(
 				'field' => 're-password',
-				'label' => 'Re-password',
-				'rules' => 'required|min_length[8]|max_length[64]|matches[new-password]'
+				'label' => 'Re-enter New Password',
+				'rules' => 'required|matches[new-password]'
 			)
 		);
 

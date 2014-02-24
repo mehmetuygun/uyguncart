@@ -139,7 +139,7 @@ class User extends Admin_Controller
 			),
 			array(
 				'field' => 'confirm_password',
-				'label' => 'Confirm Password',
+				'label' => 'Re-enter New Password',
 				'rules' => 'required|matches[new_password]'
 			)
 		);

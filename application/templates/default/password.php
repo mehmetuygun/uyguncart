@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="form-group <?php if(form_error('re-password')) echo "has-error"; ?>">
-						<label for="inputre-password1" class="col-lg-2 control-label">Re-password</label>
+						<label for="inputre-password1" class="col-lg-2 control-label">Re-enter New Password</label>
 						<div class="col-lg-10 error">
 							<input type="password" name="re-password" class="form-control" id="inputre-password1" value="<?php echo set_value('re-password'); ?>">
 							<span class="help-block"><?php echo form_error('re-password'); ?></span>

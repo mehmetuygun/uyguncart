@@ -33,9 +33,9 @@
 				</div>
 			</div>
 			<div class="form-group <?php if(form_error('re-password')) echo "has-error"; ?>">
-				<label for="inputPassword2" class="col-lg-2 control-label">Re-password</label>
+				<label for="inputPassword2" class="col-lg-2 control-label">Confirm Password</label>
 				<div class="col-lg-10">
-					<input type="password" name="re-password" class="form-control" id="inputPassword2" placeholder="Re-password">
+					<input type="password" name="re-password" class="form-control" id="inputPassword2" placeholder="Confirm Password">
 					<span class="help-block"><?php echo form_error('re-password'); ?></span>
 				</div>
 			</div>

@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="control-group <?php if(form_error('confirm_password')) echo "error"; ?>">
-				<label class="control-label" for="inputConfirmPassword">Confirm Passwword</label>
+				<label class="control-label" for="inputConfirmPassword">Re-enter New Password</label>
 				<div class="controls">
 					<input type="password" name="confirm_password" id="inputConfirmPassword">
 					<span class="help-inline"><?php echo form_error('confirm_password'); ?></span>
