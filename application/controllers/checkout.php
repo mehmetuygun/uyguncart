@@ -5,6 +5,7 @@ class Checkout extends Main_Controller
 	public function index()
 	{
 		$this->load->helper('url');
+		$this->redirect_user('user/login');
 
 		$order_id = $this->_create_order();
 		redirect('/checkout/address/' . $order_id);
