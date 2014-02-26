@@ -81,8 +81,8 @@ class Category_model extends MY_Model
 			return array();
 		}
 
-		return array($id => $row->name)
-			+ $this->get_anchestors($row->parent_id);
+		return $this->get_anchestors($row->parent_id)
+			+ array($id => $row->name);
 	}
 
 	/**
