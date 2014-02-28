@@ -135,11 +135,6 @@ class MY_Model extends CI_Model
 			$this->$key = $value;
 		}
 
-		// Make sure filter parameter is array of arrays
-		if (!is_array(reset($this->filter))) {
-			$this->filter = array($this->filter);
-		}
-
 		// Make sure join parameter is array of arrays
 		if (isset($this->join[0]) && !is_array($this->join[0])) {
 			$this->join = array($this->join);
@@ -153,8 +148,8 @@ class MY_Model extends CI_Model
 			$this->db->like($this->search_field, $this->search_term);
 		}
 		// Do the filters
-		foreach ($this->filter as $filter) {
-			call_user_func_array(array($this->db, 'where'), array($filter));
+		foreach ($this->filter as $field => $value) {
+			call_user_func_array(array($this->db, 'where'), array($field, $value));
 		}
 		// Do the joins
 		foreach ($this->join as $join) {
