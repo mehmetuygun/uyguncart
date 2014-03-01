@@ -67,8 +67,8 @@ class Product_model extends MY_Model
 
 		$params = array(
 			'filter' => array(
-				array('object_type' => 'product'),
-				array('object_id' => $this->product_id),
+				'object_type' => 'product',
+				'object_id' => $this->product_id,
 			),
 		);
 
