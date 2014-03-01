@@ -32,7 +32,7 @@ class Search extends Main_Controller
 		$params['search_term'] = $query;
 		$params['filter'] = array('status' => '1');
 		if ($category_id) {
-			$params['filter']['category_id'] = $category_id;
+			$params['filter']['category_id'] = $this->Category_model->get_descendants($category_id);
 		}
 
 		$data = array(

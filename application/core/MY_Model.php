@@ -149,7 +149,8 @@ class MY_Model extends CI_Model
 		}
 		// Do the filters
 		foreach ($this->filter as $field => $value) {
-			call_user_func_array(array($this->db, 'where'), array($field, $value));
+			$func = is_array($value) ? 'where_in' : 'where';
+			call_user_func_array(array($this->db, $func), array($field, $value));
 		}
 		// Do the joins
 		foreach ($this->join as $join) {

@@ -85,6 +85,28 @@ class Category_model extends MY_Model
 			+ array($id => $row->name);
 	}
 
+	public function get_descendants($id)
+	{
+		if (!$id) {
+			return array();
+		}
+
+		$this->load->database();
+		$query = $this->db->from('category')
+			->where('parent_id', $id)
+			->get();
+
+		$categories = array($id);
+		foreach ($query->result() as $row) {
+			$categories = array_merge(
+				$categories,
+				$this->get_descendants($row->category_id)
+			);
+		}
+
+		return $categories;
+	}
+
 	/**
 	 * Groups categories by their parent ID
 	 *
