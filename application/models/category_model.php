@@ -85,6 +85,13 @@ class Category_model extends MY_Model
 			+ array($id => $row->name);
 	}
 
+	/**
+	 * Get list of category IDs descendant of the given category ID
+	 *
+	 * @param  integer $id Category ID
+	 *
+	 * @return array       List of category IDs
+	 */
 	public function get_descendants($id)
 	{
 		if (!$id) {
