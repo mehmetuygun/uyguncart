@@ -89,7 +89,7 @@
 					foreach ($products as $row) {
 						$product_url = base_url('product/id/' . $row['product_id']);
 						$img_src = $img_135_url . 'noimage.jpg';
-						if (!is_null($row['full_name']) && file_exists('public/images/135/'.$row['full_name'])) {
+						if (!is_null($row['full_name'])) {
 							$img_src = $img_135_url . $row['full_name'];
 						}
 
