@@ -67,6 +67,7 @@ class Search extends Main_Controller
 			'base_url' => base_url('search') . '?q=' . $query.'&orderby=' . $order_by.'&cid='.$category_id,
 			'total_rows' => $this->Product_model->entries,
 			'per_page' => $this->Product_model->limit,
+			'query_string_segment' => 'page',
 			'page_query_string' => true,
 			'first_link' => false,
 			'last_link' => false,
@@ -79,7 +80,7 @@ class Search extends Main_Controller
 			'next_tag_open' => '<li>',
 			'prev_tag_close' => '</li>',
 			'next_tag_close' => '</li>',
-			'cur_tag_open' => '<li class="active"><a href="#">',
+			'cur_tag_open' => '<li class="active"><a href="#" onclick="return false">',
 			'cur_tag_close' => '<span class="sr-only">(current)</span></a></li>',
 		);
 
