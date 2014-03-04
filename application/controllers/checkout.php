@@ -131,7 +131,7 @@ class Checkout extends Main_Controller
 
 		$data = array(
 			'mainview' => 'checkout_address',
-			'title' => 'Checkout Address',
+			'title' => 'Address - Checkout',
 			'countries' => $this->Country_model->get_countries(),
 			'js' => array('address.js', 'checkout.js'),
 			'addresses' => $this->Address_model->fetch(array(
@@ -181,7 +181,7 @@ class Checkout extends Main_Controller
 
 		$data = array(
 			'mainview' => 'paymentmethods',
-			'title' => 'Checkout Payment Methods',
+			'title' => 'Payment Methods - Checkout',
 		);
 
 		if($this->input->server("REQUEST_METHOD") == 'POST') {
