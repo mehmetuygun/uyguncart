@@ -13,7 +13,7 @@ class Checkout extends Main_Controller
 
 	public function first($order_id)
 	{
-		$this->redirect_user('');
+		$this->redirect_user();
 		$this->_validate_order($order_id);
 
 		$this->load->helper('url');
@@ -117,7 +117,7 @@ class Checkout extends Main_Controller
 
 	public function address($order_id)
 	{
-		$this->redirect_user('');
+		$this->redirect_user();
 		$this->_validate_order($order_id);
 
 		$this->load->model('Address_model');
@@ -172,7 +172,7 @@ class Checkout extends Main_Controller
 
 	public function paymentMethods($order_id)
 	{
-		$this->redirect_user('');
+		$this->redirect_user();
 		$this->_validate_order($order_id);
 
 		if($this->cart->total_items() == 0) {

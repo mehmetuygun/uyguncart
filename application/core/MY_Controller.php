@@ -109,7 +109,7 @@ class Main_Controller extends Base_Controller
 	 *
 	 * @return void
 	 */
-	public function redirect_user($url)
+	public function redirect_user($url = '')
 	{
 		$this->load->helper('url');
 		if(!$this->session->userdata('userLoggedIn')) {
