@@ -15,27 +15,38 @@
 					<div class="container-fluid">
 						<a class="brand" href="<?php echo base_url('admin/home'); ?>">UygunCart</a>
 						<ul class="nav">
-							<li class="<?php if(isset($menu_active)&&$menu_active=="home")echo 'active'; ?>"><a href="<?php echo base_url('admin/home'); ?>">Home</a></li>
-							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="catalog")echo 'active'; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <i class="caret"></i></a>
-								<ul class="dropdown-menu">
-									<li><a href="<?php echo base_url('admin/category'); ?>">Categories</a></li>
-									<li><a href="<?php echo base_url('admin/product'); ?>">Products</a></li>
-									<li><a href="<?php echo base_url('admin/manufacturer'); ?>">Manufacturers</a></li>
-								</ul>
-							</li>
-							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="sales")echo 'active'; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <i class="caret"></i></a>
-								<ul class="dropdown-menu">
-									<li><a href="<?php echo base_url('admin/order'); ?>">Order</a></li>
-								</ul>
-							</li>
-							<li class="dropdown <?php if(isset($menu_active)&&$menu_active=="system")echo 'active'; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">System <i class="caret"></i></a>
-								<ul class="dropdown-menu">
-									<li><a href="<?php echo base_url('admin/category'); ?>">Payment Setting</a></li>
-								</ul>
-							</li>
+						<?php
+						foreach ($nav_menu as $menu => $item) {
+							$class_def = '';
+							$item_name = $item['name'];
+							if (isset($item['sub'])) {
+								$item_name .= ' <i class="caret"></i>';
+								$class_def .= ' dropdown';
+								$anchor_attrs = ' href="#" class="dropdown-toggle" data-toggle="dropdown"';
+							} else {
+								$anchor_attrs = ' href="' . base_url($item['url']) . '"';
+							}
+							if (isset($menu_active) && $menu_active == $menu) {
+								$class_def .= ' active';
+							}
+							$class_def = trim($class_def);
+							if ($class_def) {
+								$class_def = ' class="' . $class_def . '"';
+							}
+							echo "<li{$class_def}><a{$anchor_attrs}>{$item_name}</a>";
+
+							if (isset($item['sub'])) {
+								echo '<ul class="dropdown-menu">';
+								foreach ($item['sub'] as $sub_menu => $sub_item) {
+									echo '<li><a href="',
+										base_url($sub_item['url']), '">',
+										$sub_item['name'], '</a></li>';
+								}
+								echo '</ul>';
+							}
+							echo '</li>';
+						}
+						?>
 						</ul>
 						<div class="btn-group pull-right">
 							<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">

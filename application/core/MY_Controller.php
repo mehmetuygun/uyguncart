@@ -60,6 +60,47 @@ class Admin_Controller extends Base_Controller
 
 		$data['fullname'] = $this->session->userdata('userFullName');
 		$data['title'] = make_title($data['title'], 'Admin Panel');
+		$data['nav_menu'] = array(
+			'home' => array(
+				'name' => 'Home',
+				'url' => 'admin/home',
+			),
+			'catalog' => array(
+				'name' => 'Catalog',
+				'sub' => array(
+					'category' => array(
+						'name' => 'Category',
+						'url' => 'admin/category',
+					),
+					'product' => array(
+						'name' => 'Products',
+						'url' => 'admin/product',
+					),
+					'manufacturer' => array(
+						'name' => 'Manufacturers',
+						'url' => 'admin/manufacturer',
+					),
+				),
+			),
+			'sales' => array(
+				'name' => 'Sales',
+				'sub' => array(
+					'order' => array(
+						'name' => 'Order',
+						'url' => 'admin/order',
+					),
+				),
+			),
+			'system' => array(
+				'name' => 'System',
+				'sub' => array(
+					'payment_setting' => array(
+						'name' => 'Payment Settings',
+						'url' => 'admin/category',
+					),
+				),
+			),
+		);
 
 		$this->load->view('admin/default', $data);
 	}
