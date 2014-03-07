@@ -99,6 +99,10 @@ function pagination(page, pcount) {
 	var nums = getPageNumbers(page, pcount);
 	var prev = page > 1 ? page - 1 : '';
 	var next = page < pcount ? page + 1 : '';
+	if (pcount == 1) {
+		$('.pagination').html('');
+		return;
+	}
 	html += returnLink('&laquo;', prev, prev ? '' : 'disabled');
 	for (var i = 0; i < nums.length; i++) {
 		if (nums[i] == page) {
