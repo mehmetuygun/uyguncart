@@ -69,7 +69,7 @@ class Admin_Controller extends Base_Controller
 				'name' => 'Catalog',
 				'sub' => array(
 					'category' => array(
-						'name' => 'Category',
+						'name' => 'Categories',
 						'url' => 'admin/category',
 					),
 					'product' => array(
