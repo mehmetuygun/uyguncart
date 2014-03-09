@@ -9,7 +9,7 @@ class Address extends Main_Controller
 	{
 		parent::__construct();
 
-		$this->redirect_user('user/login');
+		$this->check_login();
 
 		$this->load->model('Address_model');
 	}

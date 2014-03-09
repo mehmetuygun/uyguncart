@@ -4,7 +4,7 @@ class User extends Main_Controller
 {
 	public function index()
 	{
-		$this->redirect_user('user/login');
+		$this->check_login();
 
 		redirect('user/account');
 	}
@@ -116,7 +116,7 @@ class User extends Main_Controller
 			'title' => 'Account',
 		);
 
-		$this->redirect_user('user/login');
+		$this->check_login();
 
 		$this->load->library('form_validation');
 		$this->load->model('User_model');
@@ -187,7 +187,7 @@ class User extends Main_Controller
 
 	public function password()
 	{
-		$this->redirect_user('user/login');
+		$this->check_login();
 
 		$this->load->model('User_model');
 		$this->load->library('form_validation');
