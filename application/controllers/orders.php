@@ -2,24 +2,23 @@
 
 class Orders extends Main_Controller
 {
-	/**
-	 * Get list of orders as JSON
-	 *
-	 * @return void
-	 */
-	function get_list()
+	public function index()
 	{
 		$this->load->model('Order_model');
 
 		$userID = $this->session->userdata('userID');
-		if (!$userID) {
-			return $this->output_json(array());
-		}
+
+		$data = array(
+			'title' => 'Orders',
+			'mainview' => 'orders',
+		);
 
 		$orders = $this->Order_model->fetch(array(
 			'filter' => array('user_id' => $userID),
 		));
 
-		$this->output_json($orders);
+		$data['orders'] = $orders;
+
+		$this->load_view($data);
 	}
 }

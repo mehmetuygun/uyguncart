@@ -2,30 +2,36 @@
 	<div class="col-md-3">
 		<div class="list-group">
 			<a href="<?php echo base_url('user/account')?>" class="list-group-item">Account</a>
-			<a href="<?php echo base_url('address')?>" class="list-group-item active">Address</a>
+			<a href="<?php echo base_url('address')?>" class="list-group-item">Address</a>
 			<a href="<?php echo base_url('user/password')?>" class="list-group-item">Password</a>
-			<a href="<?php echo base_url('orders')?>" class="list-group-item">Orders</a>
+			<a href="<?php echo base_url('orders')?>" class="list-group-item active">Orders</a>
 		</div>
 	</div>
 	<div class="col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h3>Address <small>Manage address information.</small></h3>
+				<h3>Orders <small>See your order history.</small></h3>
 				<hr>
 				<table class="table table-bordered" id="address_table">
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Name</th>
-							<th>Address</th>
-							<th>Action</th>
+							<th>Date</th>
+							<th>Price</th>
 						</tr>
 					</thead>
-					<tbody></tbody>
+					<tbody>
+					<?php
+					foreach ($orders as $order) {
+						echo '<tr><td>', $order['order_id'], '</td><td>',
+							$order['added_date'] , '</td><td>',
+							number_format($order['total_price'], 2),
+							'</td></tr>';
+					}
+					?>
+					</tbody>
 				</table>
-				<a href="<?php echo base_url('address/edit/0') ?>" data-target="#addressModal" data-toggle="modal" class="btn btn-primary">Add New Address</a>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="addressModal" class="modal fade"></div>

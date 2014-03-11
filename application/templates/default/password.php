@@ -4,6 +4,7 @@
 			<a href="<?php echo base_url('user/account')?>" class="list-group-item">Account</a>
 			<a href="<?php echo base_url('address')?>" class="list-group-item">Address</a>
 			<a href="<?php echo base_url('user/password')?>" class="list-group-item active">Password</a>
+			<a href="<?php echo base_url('orders')?>" class="list-group-item">Orders</a>
 		</div>
 	</div>
 	<div class="col-md-9">
