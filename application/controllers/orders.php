@@ -15,6 +15,8 @@ class Orders extends Main_Controller
 
 		$orders = $this->Order_model->fetch(array(
 			'filter' => array('user_id' => $userID),
+			'order_by' => 'order_id',
+			'sort' => 'desc',
 		));
 
 		$data['orders'] = $orders;
